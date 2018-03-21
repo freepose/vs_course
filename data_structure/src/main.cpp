@@ -8,8 +8,8 @@ int main()
 	const int n = 5;
 	print_array(a, n);
 
-	// SqList
-	SqList* sqlist;
+	// Sequence List
+	SqList* sqlist = 0;
 
 	InitList(sqlist);
 	CreateList(sqlist, a, n);
@@ -17,6 +17,7 @@ int main()
 	// insert & delete
 
 
+	// Linked list
 	LinkNode *linkedlist = 0;
 	CreateListF(linkedlist, a, n);
 	DispList(linkedlist);

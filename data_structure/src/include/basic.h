@@ -21,6 +21,7 @@ void read_array(int a[], int n)
 	}
 }
 
+
 void print_array(int a[], int n)
 {
 	for(int i=0;i<n;i++)
@@ -29,6 +30,7 @@ void print_array(int a[], int n)
 	}
 	cout<<endl;
 }
+
 
 void select_sort_array(int a[], int n)
 {

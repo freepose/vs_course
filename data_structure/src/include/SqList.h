@@ -2,7 +2,6 @@
 #define SQ_LIST_H 1
 
 typedef int ElemType;
-
 #define MAX_SIZE 50
 
 typedef struct
@@ -76,11 +75,14 @@ int LocateElem(SqList *L, ElemType e)
 bool  ListInsert(SqList *&L, int i, ElemType e)
 {
 	int j;
-	if (i<1 || i>L->length + 1)
-		return false;  //参数错误时返回false
-	i--;    //将顺序表逻辑序号转化为物理序号
-	for (j = L->length; j>i; j--) //将data[i..n]元素后移一个位置
-		L->data[j] = L->data[j - 1];
+	if (i<1 || i>L->length + 1) {
+		return false; 
+	}
+		
+	i--;    // 将顺序表逻辑序号转化为物理序号
+	for (j = L->length; j > i; j--) {
+		L->data[j] = L->data[j - 1];	//将data[i..n]元素后移一个位置
+	}		
 	L->data[i] = e;  //插入元素e
 	L->length++;  //顺序表长度增1
 	return true;   //成功插入返回true

@@ -8,7 +8,7 @@ typedef struct
 {
 	ElemType data[MAX_SIZE];
 	int top;
-}SqStack;
+} SqStack;
 
 
 
