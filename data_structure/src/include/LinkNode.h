@@ -25,19 +25,19 @@ void CreateListF(LinkNode *&L,int a[],int n)
 	}
 }
 
-//void CreateListR(LinkNode *&L,int a[],int n)
-//{
-//	LinkNode *s, *r;
-//	L = new LinkNode;
-//	r=L;
-//	for(int i=0;i<n;i++){
-//		s=new LinkNode;
-//		s->data=a[i];
-//		r->next=s;
-//		r=s;
-//	}
-//	r->next=0;
-//}
+void CreateListR(LinkNode *&L,int a[],int n)
+{
+	LinkNode *s, *r;
+	L = new LinkNode;
+	r=L;
+	for(int i=0;i<n;i++){
+		s=new LinkNode;
+		s->data=a[i];
+		r->next=s;
+		r=s;
+	}
+	r->next=0;
+}
 
 
 void DispList(LinkNode *L)
