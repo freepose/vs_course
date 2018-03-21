@@ -15,20 +15,20 @@ void swap(int &f, int &s)
 
 void read_array(int a[], int n)
 {
-	for(int i=0;i<n;i++)
+	for (int i = 0; i<n; i++)
 	{
-		cin>>a[i];
+		cin >> a[i];
 	}
 }
 
 
 void print_array(int a[], int n)
 {
-	for(int i=0;i<n;i++)
+	for (int i = 0; i<n; i++)
 	{
-		cout<<"\t"<<a[i];
+		cout << "\t" << a[i];
 	}
-	cout<<endl;
+	cout << endl;
 }
 
 
@@ -36,7 +36,7 @@ void select_sort_array(int a[], int n)
 {
 	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = i+1; j < n;j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if (a[i] > a[j])
 			{
