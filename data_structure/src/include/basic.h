@@ -5,6 +5,12 @@
 using namespace std;
 
 
+void swap(int &f, int &s)
+{
+	int t = f;
+	f = s;
+	s = t;
+}
 
 
 void read_array(int a[], int n)
@@ -24,10 +30,20 @@ void print_array(int a[], int n)
 	cout<<endl;
 }
 
-//void bubble_sort_array(int a[], int n)
-//{
-//
-//}
+void select_sort_array(int a[], int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i+1; j < n;j++)
+		{
+			if (a[i] > a[j])
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+
+}
 
 
 #endif
