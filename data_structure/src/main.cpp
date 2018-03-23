@@ -26,7 +26,7 @@ int main()
 
 	CreateListR(linkedlist, a, n);
 	DispList(linkedlist);
-
+	Joseph_problem(linkedlist);
 	// insert & delete
 
 

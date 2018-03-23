@@ -1,8 +1,11 @@
-#include<memory.h>
 #ifndef STACK_H
 #define STACK_H 1
 
-#define MAX_SIZE 256
+#include<memory.h>
+#include<iostream>
+using namespace std;
+
+#define MAX_SIZE 50
 typedef int ElemType;
 
 typedef struct
@@ -24,6 +27,7 @@ bool push(SqStack* &S, ElemType e)
 		return false;
 	S->top++;
 	S->data[S->top] = e;	
+	return true;
 }
 
 bool pop(SqStack* &S, ElemType &e)
@@ -32,6 +36,7 @@ bool pop(SqStack* &S, ElemType &e)
 		return false;
 	S->data[S->top] = e;
 	S->top--;
+	return true;
 }
 
 void DestroyStack(SqStack* &S)
@@ -55,4 +60,5 @@ void InitStack(SqStack* &S, ElemType a[], ElemType n)
 		push(S, a[i]);
 	}
 }
+
 #endif

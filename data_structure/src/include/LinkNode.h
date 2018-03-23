@@ -9,9 +9,6 @@ typedef struct LNode {
 	struct LNode *next;
 }LinkNode;
 
-
-// this is a test
-// this is a test again.
 void CreateListF(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s;
@@ -62,5 +59,27 @@ void DestroyList(LinkNode *L)
 	delete pre;
 }
 
-
+void Joseph_problem(LinkNode *&L)
+{
+	LinkNode *P = L, *S;
+	int times = 0, n;
+	cin >> n;		// put which number to delete
+	while (P->next->next != P)
+	{
+		P = P->next;
+		if (P != L)
+		{
+			times++;
+			if (times == n - 1)
+			{
+				S = P->next;
+				P->next = S->next;
+				delete S;
+				times = 0;
+			}
+		}
+	}
+	cout << P->data;
+	delete P;
+}
 #endif 
