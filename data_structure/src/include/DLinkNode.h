@@ -4,6 +4,7 @@
 typedef struct DLNode {
 	int data;
 	struct LNode *next;
+
 }DoubleLinkNode;
 
 

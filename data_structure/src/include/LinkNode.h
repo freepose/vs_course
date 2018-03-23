@@ -36,7 +36,26 @@ void CreateListR(LinkNode *&L, int a[], int n)
 	r->next = 0;
 }
 
-void CreateCircleList(LinkNode *&L, int a[], int n)
+void CreateCircleListF(LinkNode *&L, int a[], int n)
+{
+	LinkNode *s, *r;
+	L = new LinkNode;
+	L->next = 0;
+	for (int i = 0; i<n; i++) {
+		s = new LinkNode;
+		s->data = a[i];
+		if (L->next == 0)
+		{
+			r = s;
+		}
+		s->next = L->next;
+		L->next = s;
+	}
+
+}
+
+
+void CreateCircleListR(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s, *r;
 	L = new LinkNode;
@@ -47,7 +66,7 @@ void CreateCircleList(LinkNode *&L, int a[], int n)
 		r->next = s;
 		r = s;
 	}
-	r->next = L;
+	r->next = L;	// note
 }
 
 void DispList(LinkNode *L)
@@ -72,11 +91,13 @@ void DestroyList(LinkNode *L)
 	delete pre;
 }
 
-void Joseph_problem(LinkNode *&L)
+// L, circle list
+void JosephProblem(LinkNode *&L)
 {
 	LinkNode *p = L, *S;
 	int times = 0, n;
-	cin >> n;		// put which number to delete
+	//cin >> n;		// put which number to delete
+	n = 3;
 	while (p->next->next != p)
 	{
 		p = p->next;
@@ -87,12 +108,13 @@ void Joseph_problem(LinkNode *&L)
 			{
 				S = p->next;
 				p->next = p->next->next;
+				cout <<"\t"<< S->data;
 				delete S;
 				times = 0;
 			}
 		}
 	}
-	cout << p->data << endl;
+	cout << "\t" << p->data << endl;
 	delete p;
 }
 

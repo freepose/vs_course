@@ -28,8 +28,10 @@ int main()
 	DispList(linkedlist);
 	DestroyList(linkedlist);
 
-	CreateCircleList(linkedlist, a, n);
-	Joseph_problem(linkedlist);
+	int b[] = { 1, 2, 3, 4, 5, 6 };
+
+	CreateCircleListR(linkedlist, b, 6);
+	JosephProblem(linkedlist);
 	// insert & delete
 
 
