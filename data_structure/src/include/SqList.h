@@ -72,7 +72,7 @@ int LocateElem(SqList *L, ElemType e)
 	else  return i + 1;
 }
 
-bool  ListInsert(SqList *&L, int i, ElemType e)
+bool ListInsert(SqList *&L, int i, ElemType e)
 {
 	int j;
 	if (i<1 || i>L->length + 1) {
