@@ -1,6 +1,7 @@
 #include"include/basic.h"
 #include"include/SqList.h"
 #include"include/LinkNode.h"
+#include"include\SqStack.h"
 
 int main()
 {
@@ -28,6 +29,14 @@ int main()
 
 	// insert & delete
 
+
+	// SqStack
+	SqStack *S;
+	CreateSqStack(S);
+	InitStack(S, a, n);
+	DispStack(S, n);
+	DestroyStack(S);
+	// insert & delete
 
 	return 0;
 }
