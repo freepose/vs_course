@@ -6,7 +6,7 @@ using namespace std;
 
 typedef struct LNode {
 	int data;
-	struct LNode *next;
+	LNode *next;
 }LinkNode;
 
 void CreateListF(LinkNode *&L, int a[], int n)
