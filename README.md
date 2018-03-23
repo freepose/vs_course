@@ -1,4 +1,4 @@
-## basic computer science courses for undergraduate students in visual sutdio
+## basic computer science courses for undergraduate students in visual studio
 
 ### data structure, 2018 srping semester
 	[1] List
