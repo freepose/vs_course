@@ -27,7 +27,7 @@
     <ClInclude Include="src\include\SqList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Stack.h">
+    <ClInclude Include="src\include\SqStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
