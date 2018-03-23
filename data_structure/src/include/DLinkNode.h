@@ -33,7 +33,7 @@ void CreateDList(DLinkNode *&L, ElemType a[], int n)
 }
 
 
-void DispList(DLinkNode *L)
+void DispDList(DLinkNode *L)
 {
 	DLinkNode *p = L->next;
 	while (p != 0) {
@@ -44,7 +44,7 @@ void DispList(DLinkNode *L)
 }
 
 
-bool ListInsert(DLinkNode *&L, int i, ElemType e)
+bool DListInsert(DLinkNode *&L, int i, ElemType e)
 {
 	int j = 0;
 	DLinkNode *p = L, *s;
@@ -70,7 +70,7 @@ bool ListInsert(DLinkNode *&L, int i, ElemType e)
 }
 
 
-bool ListDelete(DLinkNode *&L, int i, ElemType &e)
+bool DListDelete(DLinkNode *&L, int i, ElemType &e)
 {
 	DLinkNode *p = L, *q;
 	if (i <= 0) {
@@ -99,12 +99,17 @@ void DLinkNodeExample()
 {
 	int c[] = { 1,2,3,4,5 };
 	const int n = 5;
+	int e=0;
 	DLinkNode *dlinknode;
 
+
 	CreateDList(dlinknode, c, n);
-	DispList(dlinknode);
-
-
+	if (DListInsert(dlinknode, 3, e)) {
+		DispDList(dlinknode);
+	}
+	if (DListDelete(dlinknode, 3, e)) {
+		DispDList(dlinknode);
+	}
 }
 
 #endif 
