@@ -59,6 +59,10 @@ void DestroyList(LinkNode *L)
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////
+/// Cycle list
+////////////////////////////////////////////////////////////////////////////////////
+
 void CreateCircleListF(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s, *r;
@@ -119,6 +123,8 @@ void JosephProblem(LinkNode *&L)
 	delete p;
 }
 
+
+// examples
 void LinkNodeExample()
 {
 	int a[] = { 1, 2, 3, 4, 5 };
