@@ -101,6 +101,18 @@ bool ListDelete(SqList *&L, int i, ElemType &e)
 	return true;     //³É¹¦É¾³ý·µ»Øtrue
 }
 
+void delnode(SqList *&L, ElemType x)
+{
+	int i = 0, j = 0;
+	for (i = 0; i<L->length; i++) {
+		if (L->data[i] != x) {
+			L->data[j] = L->data[i];
+			j++;
+		}
+	}
+	L->length = j;
+}
+
 
 void SqListExample()
 {
@@ -121,6 +133,14 @@ void SqListExample()
 	int deletedElement;
 	ListDelete(sqlist, 6, deletedElement);
 	DisplayList(sqlist);
+
+	int b[] = { 1, 2, 3, 3, 3, 4, 5 };
+	SqList* sqlist2 = 0;
+	InitList(sqlist2);
+	CreateList(sqlist2, b, 7);
+	DisplayList(sqlist2);
+	delnode(sqlist2, 3);
+	DisplayList(sqlist2);
 }
 
 #endif 
