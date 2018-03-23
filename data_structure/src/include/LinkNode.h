@@ -36,6 +36,31 @@ void CreateListR(LinkNode *&L, int a[], int n)
 	r->next = 0;
 }
 
+void ListInsert(LinkNode *&L, int x, int n)
+{
+	LinkNode *p = L, *S;
+	for (int i = 0; i < n-1; i++)
+	{
+		p = p->next;
+	}
+	S = new LinkNode;
+	S->data = x;
+	S->next = p->next;
+	p->next = S;
+}
+
+void ListDelete(LinkNode *&L, int n)
+{
+	LinkNode *p = L, *pre = L;
+	for (int i = 0; i < n; i++)
+	{
+		pre = p;
+		p = p->next;
+	}
+	pre->next = p->next;
+	delete p;
+}
+
 void DispList(LinkNode *L)
 {
 	LinkNode *p = L->next;
@@ -137,6 +162,12 @@ void LinkNodeExample()
 	DestroyList(linkedlist);
 
 	CreateListR(linkedlist, a, n);
+	DispList(linkedlist);
+
+	ListInsert(linkedlist, 3, 6);
+	DispList(linkedlist);
+
+	ListDelete(linkedlist, 6);
 	DispList(linkedlist);
 
 	int b[] = { 1, 2, 3, 4, 5, 6 };

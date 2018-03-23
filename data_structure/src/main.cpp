@@ -5,9 +5,9 @@
 
 int main()
 {
-	SqListExample();
+	//SqListExample();
 	LinkNodeExample();
-	SqStackExample();
+	//SqStackExample();
 
 	return 0;
 }
