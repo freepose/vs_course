@@ -2,4 +2,4 @@
 
 basic computer courses for undergraduate students in visual sutdio
 
-## data structure, 2018 srping semester
+## 1. data structure, 2018 srping semester
