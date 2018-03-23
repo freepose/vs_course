@@ -1,5 +1,5 @@
 # vs_education
 
-basic computer courses for undergraduate students in visual sutdio
+basic computer science courses for undergraduate students in visual sutdio
 
-## 1. data structure, 2018 srping semester
+## data structure, 2018 srping semester
