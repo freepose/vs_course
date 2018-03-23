@@ -101,4 +101,26 @@ bool ListDelete(SqList *&L, int i, ElemType &e)
 	return true;     //³É¹¦É¾³ý·µ»Øtrue
 }
 
+
+void SqListExample()
+{
+	int a[] = { 1, 2, 3, 4, 5 };
+	const int n = 5;
+	//print_array(a, n);
+
+	// Sequence List
+	SqList* sqlist = 0;
+
+	InitList(sqlist);
+	CreateList(sqlist, a, n);
+	DisplayList(sqlist);
+
+	ListInsert(sqlist, 6, 6);
+	DisplayList(sqlist);
+
+	int deletedElement;
+	ListDelete(sqlist, 6, deletedElement);
+	DisplayList(sqlist);
+}
+
 #endif 

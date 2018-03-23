@@ -51,6 +51,7 @@ void DispStack(SqStack* S, ElemType n)
 		cout << '\t' << S->data[S->top];
 		S->top--;
 	}
+	cout << endl;
 }
 
 void InitStack(SqStack* &S, ElemType a[], ElemType n)
@@ -59,6 +60,21 @@ void InitStack(SqStack* &S, ElemType a[], ElemType n)
 	{
 		push(S, a[i]);
 	}
+}
+
+
+void SqStackExample()
+{
+	int a[] = { 1, 2, 3, 4, 5 };
+	const int n = 5;
+
+	// SqStack
+	SqStack *S;
+	CreateSqStack(S);
+	InitStack(S, a, n);
+	DispStack(S, n);
+	DestroyStack(S);
+
 }
 
 #endif

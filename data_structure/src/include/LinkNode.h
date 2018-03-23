@@ -119,4 +119,23 @@ void JosephProblem(LinkNode *&L)
 	delete p;
 }
 
+void LinkNodeExample()
+{
+	int a[] = { 1, 2, 3, 4, 5 };
+	const int n = 5;
+
+	// Linked list
+	LinkNode *linkedlist = 0;
+	CreateListF(linkedlist, a, n);
+	DispList(linkedlist);
+	DestroyList(linkedlist);
+
+	CreateListR(linkedlist, a, n);
+	DispList(linkedlist);
+
+	int b[] = { 1, 2, 3, 4, 5, 6 };
+	CreateCircleListR(linkedlist, b, 6);
+	JosephProblem(linkedlist);
+}
+
 #endif 
