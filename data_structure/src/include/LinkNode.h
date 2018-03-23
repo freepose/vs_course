@@ -88,7 +88,7 @@ void DestroyList(LinkNode *L)
 /// Cycle list
 ////////////////////////////////////////////////////////////////////////////////////
 
-void CreateCircleListF(LinkNode *&L, int a[], int n)
+void CreateCircularListF(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s, *r;
 	L = new LinkNode;
@@ -107,7 +107,7 @@ void CreateCircleListF(LinkNode *&L, int a[], int n)
 }
 
 
-void CreateCircleListR(LinkNode *&L, int a[], int n)
+void CreateCircularListR(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s, *r;
 	L = new LinkNode;
@@ -171,7 +171,8 @@ void LinkNodeExample()
 	DispList(linkedlist);
 
 	int b[] = { 1, 2, 3, 4, 5, 6 };
-	CreateCircleListR(linkedlist, b, 6);
+	//CreateCircularListF(linkedlist, b, 6);
+	CreateCircularListR(linkedlist, b, 6);
 	JosephProblem(linkedlist);
 }
 

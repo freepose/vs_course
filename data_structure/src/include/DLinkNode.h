@@ -102,7 +102,6 @@ void DLinkNodeExample()
 	int e=0;
 	DLinkNode *dlinknode;
 
-
 	CreateDList(dlinknode, c, n);
 	if (DListInsert(dlinknode, 3, e)) {
 		DispDList(dlinknode);
