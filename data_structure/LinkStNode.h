@@ -14,6 +14,7 @@ void InitStack(LinkStNode *&s)
 	s->next = 0;
 }
 
+
 void DestroyStack(LinkStNode *&s)
 {
 	LinkStNode *pre = s, *p = s->next;
@@ -36,10 +37,11 @@ void Push(LinkStNode *&s, ElemType e)
 {
 	LinkStNode *p;
 	p = new LinkStNode;
-	p->data = s;
+	p->data = e;
 	p->next = s->next;
 	s->next = p;
 }
+
 
 bool Pop(LinkStNode *&s, ElemType &e)
 {
@@ -53,6 +55,7 @@ bool Pop(LinkStNode *&s, ElemType &e)
 	delete p;
 	return true;
 }
+
 
 bool GetTop(LinkStNode *&s, ElemType &e)
 {
