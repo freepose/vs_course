@@ -101,4 +101,6 @@ bool ListDelete(SqList *&L, int i, ElemType &e)
 	return true;     //³É¹¦É¾³ý·µ»Øtrue
 }
 
+// example
+
 #endif 
