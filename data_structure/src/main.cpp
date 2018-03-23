@@ -26,6 +26,9 @@ int main()
 
 	CreateListR(linkedlist, a, n);
 	DispList(linkedlist);
+	DestroyList(linkedlist);
+
+	CreateCircleList(linkedlist, a, n);
 	Joseph_problem(linkedlist);
 	// insert & delete
 

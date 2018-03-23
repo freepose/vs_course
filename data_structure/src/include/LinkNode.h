@@ -36,6 +36,19 @@ void CreateListR(LinkNode *&L, int a[], int n)
 	r->next = 0;
 }
 
+void CreateCircleList(LinkNode *&L, int a[], int n)
+{
+	LinkNode *s, *r;
+	L = new LinkNode;
+	r = L;
+	for (int i = 0; i<n; i++) {
+		s = new LinkNode;
+		s->data = a[i];
+		r->next = s;
+		r = s;
+	}
+	r->next = L;
+}
 
 void DispList(LinkNode *L)
 {
@@ -61,25 +74,26 @@ void DestroyList(LinkNode *L)
 
 void Joseph_problem(LinkNode *&L)
 {
-	LinkNode *P = L, *S;
+	LinkNode *p = L, *S;
 	int times = 0, n;
 	cin >> n;		// put which number to delete
-	while (P->next->next != P)
+	while (p->next->next != p)
 	{
-		P = P->next;
-		if (P != L)
+		p = p->next;
+		if (p != L)
 		{
 			times++;
 			if (times == n - 1)
 			{
-				S = P->next;
-				P->next = S->next;
+				S = p->next;
+				p->next = p->next->next;
 				delete S;
 				times = 0;
 			}
 		}
 	}
-	cout << P->data;
-	delete P;
+	cout << p->data << endl;
+	delete p;
 }
+
 #endif 
