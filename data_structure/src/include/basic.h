@@ -44,8 +44,13 @@ void select_sort_array(int a[], int n)
 			}
 		}
 	}
+}
+
+void buble_sort_array(int a[], int n)
+{
 
 }
+
 
 
 #endif
