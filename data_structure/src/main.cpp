@@ -15,18 +15,24 @@ int main()
 	InitList(sqlist);
 	CreateList(sqlist, a, n);
 	DisplayList(sqlist);
-	// insert & delete
+	
+	ListInsert(sqlist, 6, 6);
+	DisplayList(sqlist);
 
+	int deletedElement;
+	ListDelete(sqlist, 6, deletedElement);
+	DisplayList(sqlist);
 
 	// Linked list
 	LinkNode *linkedlist = 0;
 	CreateListF(linkedlist, a, n);
 	DispList(linkedlist);
-	DestroyList(linkedlist);	// note
+	DestroyList(linkedlist);	
 
 	CreateListR(linkedlist, a, n);
 	DispList(linkedlist);
-	DestroyList(linkedlist);
+
+	
 
 	int b[] = { 1, 2, 3, 4, 5, 6 };
 

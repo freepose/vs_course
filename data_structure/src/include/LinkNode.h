@@ -36,6 +36,29 @@ void CreateListR(LinkNode *&L, int a[], int n)
 	r->next = 0;
 }
 
+void DispList(LinkNode *L)
+{
+	LinkNode *p = L->next;
+	while (p != 0) {
+		cout << "\t" << p->data;
+		p = p->next;
+	}
+	cout << endl;
+}
+
+void DestroyList(LinkNode *L)
+{
+	LinkNode *pre = L, *p = L->next;
+	while (p != 0)
+	{
+		delete pre;
+		pre = p;
+		p = pre->next;
+	}
+	delete pre;
+}
+
+
 void CreateCircleListF(LinkNode *&L, int a[], int n)
 {
 	LinkNode *s, *r;
@@ -67,28 +90,6 @@ void CreateCircleListR(LinkNode *&L, int a[], int n)
 		r = s;
 	}
 	r->next = L;	// note
-}
-
-void DispList(LinkNode *L)
-{
-	LinkNode *p = L->next;
-	while (p != 0) {
-		cout << "\t" << p->data;
-		p = p->next;
-	}
-	cout << endl;
-}
-
-void DestroyList(LinkNode *L)
-{
-	LinkNode *pre = L, *p = L->next;
-	while (p != 0)
-	{
-		delete pre;
-		pre = p;
-		p = pre->next;
-	}
-	delete pre;
 }
 
 // L, circle list
