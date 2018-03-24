@@ -6,7 +6,7 @@
 using namespace std;
 
 #define MAX_SIZE 50
-typedef int ElemType;
+#define ElemType char
 
 typedef struct
 {
@@ -14,14 +14,13 @@ typedef struct
 	int top;
 } SqStack;
 
-void CreateSqStack(SqStack* &S)
+void InitStack(SqStack *& S)
 {
 	S = new SqStack;
-	memset(S, 0, sizeof(SqStack));
 	S->top = -1;
 }
 
-bool push(SqStack* &S, ElemType e)
+bool Push(SqStack* &S, ElemType e)
 {
 	if (S->top == MAX_SIZE - 1)
 		return false;
@@ -30,11 +29,11 @@ bool push(SqStack* &S, ElemType e)
 	return true;
 }
 
-bool pop(SqStack* &S, ElemType &e)
+bool Pop(SqStack* &S, ElemType &e)
 {
 	if (S->top == -1)
 		return false;
-	S->data[S->top] = e;
+	e = S->data[S->top];
 	S->top--;
 	return true;
 }
@@ -54,24 +53,52 @@ void DispStack(SqStack* S, ElemType n)
 	cout << endl;
 }
 
-void InitStack(SqStack* &S, ElemType a[], ElemType n)
+bool StackEmpty(SqStack * S)
 {
-	for (int i = 0; i < n; i++)
-	{
-		push(S, a[i]);
-	}
+	return (S->top == -1);
 }
 
+bool GetTop(SqStack *s, ElemType &e)
+{
+	if (s->top == -1)
+		return false;
+	e = s->data[s->top];
+	return true;
+}
 
+bool Symmetry(ElemType str[])
+{
+	int i; ElemType e;
+	SqStack *st;
+	InitStack(st);
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		Push(st, str[i]);
+	}
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		Pop(st, e);
+		if (str[i] != e)
+		{
+			DestroyStack(st);
+			return false;
+		}
+	}
+	DestroyStack(st);
+	return true;
+}
 void SqStackExample()
 {
-	int a[] = { 1, 2, 3, 4, 5 };
+	ElemType a[] = { '1', '2', '3', '4', '5' };
+	ElemType b[] = { 'a', 'b', 'b', 'a', '\0' };
 	const int n = 5;
-
 	// SqStack
 	SqStack *S;
-	CreateSqStack(S);
-	InitStack(S, a, n);
+	InitStack(S);
+	if (Symmetry(b))
+		cout << "\tYes";
+	else
+		cout << "\tNo";
 	DispStack(S, n);
 	DestroyStack(S);
 
