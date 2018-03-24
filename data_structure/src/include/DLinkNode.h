@@ -15,7 +15,7 @@ typedef struct DLink
 }DLinkNode;
 
 
-void CreateDList(DLinkNode *&L, ElemType a[], int n)
+void CreateDListF(DLinkNode *&L, ElemType a[], int n)
 {
 	DLinkNode *s;
 	L = new DLinkNode;
@@ -95,18 +95,38 @@ bool DListDelete(DLinkNode *&L, int i, ElemType &e)
 }
 
 
+bool Del_X_Node(DLinkNode *&L, ElemType x)
+{
+	DLinkNode *p = L->next;
+	while (p != 0 && p->data != x) {
+		p = p->next;
+	}
+	if (p == 0) {
+		return false;
+	}
+	else {
+		p->prior->next = p->next;
+		p->next->prior = p->prior;
+		delete p;
+	}
+	return true;
+}
+
 void DLinkNodeExample()
 {
-	int c[] = { 1,2,3,4,5 };
-	const int n = 5;
+	int c[] = { 1,2,3,4,5,4 };
+	const int n = 6;
 	int e=0;
 	DLinkNode *dlinknode;
 
-	CreateDList(dlinknode, c, n);
+	CreateDListF(dlinknode, c, n);
 	if (DListInsert(dlinknode, 3, e)) {
 		DispDList(dlinknode);
 	}
 	if (DListDelete(dlinknode, 3, e)) {
+		DispDList(dlinknode);
+	}
+	if (Del_X_Node(dlinknode, 3)) {
 		DispDList(dlinknode);
 	}
 }
