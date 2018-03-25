@@ -1,7 +1,6 @@
 #pragma once
 #include<iostream>
 using namespace std;
-typedef char ElemType;
 
 typedef struct linknode
 {

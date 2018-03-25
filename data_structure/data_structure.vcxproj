@@ -146,10 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="LinkStNode.h" />
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\DLinkNode.h" />
     <ClInclude Include="src\include\LinkNode.h" />
+    <ClInclude Include="src\include\LinkStNode.h" />
     <ClInclude Include="src\include\SqList.h" />
     <ClInclude Include="src\include\SqStack.h" />
   </ItemGroup>

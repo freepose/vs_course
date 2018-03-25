@@ -12,6 +12,6 @@ int main()
 	//SqStackExample();
 	//DLinkNodeExample();
 	//basicExample();
-	//LinkStNodeExample();
+	LinkStNodeExample();
 	return 0;
 }
