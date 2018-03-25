@@ -84,6 +84,21 @@ void DestroyList(LinkNode *L)
 }
 
 
+void delmaxnode(LinkNode *&L)
+{
+	LinkNode *p = L->next, *pre = L, *maxp = p, *maxpre = p;
+	while (p != 0) {
+		if (maxp->data < p->data) {
+			maxp = p;
+			maxpre = pre;
+		}
+		pre = p;
+		p = p->next;
+	}
+	maxpre->next = maxp->next;
+	delete maxp;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 /// Cycle list
 ////////////////////////////////////////////////////////////////////////////////////
@@ -168,6 +183,9 @@ void LinkNodeExample()
 	DispList(linkedlist);
 
 	ListDelete(linkedlist, 6);
+	DispList(linkedlist);
+
+	delmaxnode(linkedlist);
 	DispList(linkedlist);
 
 	int b[] = { 1, 2, 3, 4, 5, 6 };
