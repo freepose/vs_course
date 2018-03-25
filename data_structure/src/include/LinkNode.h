@@ -188,10 +188,10 @@ void LinkNodeExample()
 	delmaxnode(linkedlist);
 	DispList(linkedlist);
 
-	int b[] = { 1, 2, 3, 4, 5, 6 };
+	//int b[] = { 1, 2, 3, 4, 5, 6 };
 	//CreateCircularListF(linkedlist, b, 6);
-	CreateCircularListR(linkedlist, b, 6);
-	JosephProblem(linkedlist);
+	//CreateCircularListR(linkedlist, b, 6);
+	//JosephProblem(linkedlist);
 }
 
 #endif 

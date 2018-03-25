@@ -33,6 +33,22 @@ void CreateDListF(DLinkNode *&L, ElemType a[], int n)
 }
 
 
+void CreateDListR(DLinkNode *&L, ElemType a[], int n)
+{
+	DLinkNode *s ,*r;
+	L = new DLinkNode;
+	r = L;
+	for (int i = 0; i < n; i++) {
+		s = new DLinkNode;
+		s->data = a[i];
+		r->next = s;
+		s->prior = r;
+		r = s;
+	}
+	r->next = 0;
+}
+
+
 void DispDList(DLinkNode *L)
 {
 	DLinkNode *p = L->next;
@@ -95,6 +111,19 @@ bool DListDelete(DLinkNode *&L, int i, ElemType &e)
 }
 
 
+void DestroyDList_pre(DLinkNode *L)
+{
+	DLinkNode *pre = L, *p = L->next;
+	while (p != 0)
+	{
+		delete pre;
+		pre = p;
+		p = pre->next;
+	}
+	delete pre;
+}
+
+
 bool Del_X_Node(DLinkNode *&L, ElemType x)
 {
 	DLinkNode *p = L->next;
@@ -120,13 +149,17 @@ void DLinkNodeExample()
 	DLinkNode *dlinknode;
 
 	CreateDListF(dlinknode, c, n);
+	DispDList(dlinknode);
+	//DestroyDList_pre(dlinknode);
+	CreateDListR(dlinknode, c, n);
+
 	if (DListInsert(dlinknode, 3, e)) {
 		DispDList(dlinknode);
 	}
 	if (DListDelete(dlinknode, 3, e)) {
 		DispDList(dlinknode);
 	}
-	if (Del_X_Node(dlinknode, 3)) {
+	if (Del_X_Node(dlinknode, 4)) {
 		DispDList(dlinknode);
 	}
 }

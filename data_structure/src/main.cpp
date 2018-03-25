@@ -10,8 +10,8 @@ int main()
 	//SqListExample();
 	//LinkNodeExample();
 	//SqStackExample();
-	//DLinkNodeExample();
+	DLinkNodeExample();
 	//basicExample();
-	LinkStNodeExample();
+	//LinkStNodeExample();
 	return 0;
 }
