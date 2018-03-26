@@ -16,7 +16,6 @@ void InitStack1(SqStack1 *& S)
 	S->top = -1;
 }
 
-
 bool Push1(SqStack1* &S, double e)
 {
 	if (S->top == MAX_SIZE - 1)
