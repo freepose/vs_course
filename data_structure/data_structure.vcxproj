@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\Arithmetic.h" />
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\DLinkNode.h" />
     <ClInclude Include="src\include\LinkNode.h" />

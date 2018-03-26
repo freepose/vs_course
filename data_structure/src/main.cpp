@@ -4,14 +4,16 @@
 #include"include/DLinkNode.h"
 #include"include/SqStack.h"
 #include"include/LinkStNode.h"
+#include"include/Arithmetic.h"
 
 int main()
 {
 	//SqListExample();
 	//LinkNodeExample();
 	//SqStackExample();
-	DLinkNodeExample();
+	//DLinkNodeExample();
 	//basicExample();
 	//LinkStNodeExample();
+	ArithmeticExample();
 	return 0;
 }
