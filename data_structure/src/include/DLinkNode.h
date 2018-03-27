@@ -160,6 +160,51 @@ bool Del_X_Node(DLinkNode *&L, ElemType x)
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+void CreateCircularDListF(DLinkNode *&L, int a[], int n)
+{
+	DLinkNode *s;
+	L = new DLinkNode;
+	L->next = 0;
+	for (int i = 0; i<n; i++) {
+		s = new DLinkNode;
+		s->data = a[i];
+		if (s->next == 0)
+		{
+			s->next = L;
+		}
+		s->next = L->next;
+		L->next = s;
+		
+	}
+}
+
+
+void CreateCircularDListR(DLinkNode *&L, int a[], int n)
+{
+	DLinkNode *s, *r;
+	L = new DLinkNode;
+	r = L;
+	for (int i = 0; i > n; i++) {
+		s = new DLinkNode;
+		s->data = a[i];
+		r->next = s;
+		r = s;
+	}
+	r->next = L;
+}
+
+
+void DispCDList(DLinkNode *L)
+{
+	DLinkNode *p = L->next;
+	while (p != L) {
+		cout << p->data << " ";
+		p = p->next;
+	}
+	cout << endl;
+}
+
+
 void DLinkNodeExample()
 {
 	int c[] = { 1,2,3,4,5,4 };
@@ -168,23 +213,31 @@ void DLinkNodeExample()
 	DLinkNode *dlinknode;
 
 	CreateDListF(dlinknode, c, n);
-	DispDList(dlinknode);
+	//DispDList(dlinknode);
 
 	//DestroyDList_pre(dlinknode);
 	DestroyDList_prior(dlinknode);
 
 	CreateDListR(dlinknode, c, n);
-	DispDList(dlinknode);
+	//DispDList(dlinknode);
 
 	if (DListInsert(dlinknode, 3, e)) {
-		DispDList(dlinknode);
+		//DispDList(dlinknode);
 	}
 	if (DListDelete(dlinknode, 3, e)) {
-		DispDList(dlinknode);
+		//DispDList(dlinknode);
 	}
 	if (Del_X_Node(dlinknode, 4)) {
-		DispDList(dlinknode);
+		//DispDList(dlinknode);
 	}
+
+	//Cycle list
+	int c1[] = { 1,2,3,4,5,6 };
+	DLinkNode *cdlinknode = 0;
+
+	CreateCircularDListF(cdlinknode, c1, n);
+	DispDList(cdlinknode);
+
 }
 
 #endif 

@@ -4,7 +4,6 @@
 #include"include/DLinkNode.h"
 #include"include/SqStack.h"
 #include"include/LinkStNode.h"
-#include"include/Arithmetic.h"
 
 int main()
 {
@@ -14,7 +13,7 @@ int main()
 	DLinkNodeExample();
 	//basicExample();
 	//LinkStNodeExample();
-	//ArithmeticExample();
+	
 	
 	return 0;
 }
