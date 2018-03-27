@@ -111,6 +111,7 @@ bool DListDelete(DLinkNode *&L, int i, ElemType &e)
 }
 
 
+//销毁双链表的两种方法
 void DestroyDList_pre(DLinkNode *L)
 {
 	DLinkNode *pre = L, *p = L->next;
@@ -121,6 +122,18 @@ void DestroyDList_pre(DLinkNode *L)
 		p = pre->next;
 	}
 	delete pre;
+}
+
+
+void DestroyDList_prior(DLinkNode *&L)
+{
+	DLinkNode *p = L->next, *q = p->prior;
+	while (p != 0) {
+		delete q;
+		q = p;
+		p = p->next;
+	}
+	delete q;
 }
 
 
@@ -141,6 +154,12 @@ bool Del_X_Node(DLinkNode *&L, ElemType x)
 	return true;
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////
+/// Cycle list
+////////////////////////////////////////////////////////////////////////////////////
+
+
 void DLinkNodeExample()
 {
 	int c[] = { 1,2,3,4,5,4 };
@@ -150,8 +169,12 @@ void DLinkNodeExample()
 
 	CreateDListF(dlinknode, c, n);
 	DispDList(dlinknode);
+
 	//DestroyDList_pre(dlinknode);
+	DestroyDList_prior(dlinknode);
+
 	CreateDListR(dlinknode, c, n);
+	DispDList(dlinknode);
 
 	if (DListInsert(dlinknode, 3, e)) {
 		DispDList(dlinknode);
