@@ -4,7 +4,6 @@
 #include<iostream>
 using namespace std;
 
-#define MAX_SIZE 250
 typedef int ElemType;
 
 typedef struct DLink
@@ -160,40 +159,46 @@ bool Del_X_Node(DLinkNode *&L, ElemType x)
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-void CreateCircularDListF(DLinkNode *&L, int a[], int n)
+void CreateCDListF(DLinkNode *&L, int a[], int n)
 {
 	DLinkNode *s;
 	L = new DLinkNode;
-	L->next = 0;
-	for (int i = 0; i<n; i++) {
+	L->prior = L->next = 0;
+	for (int i = 0; i < n; i++) {
 		s = new DLinkNode;
 		s->data = a[i];
-		if (s->next == 0)
-		{
-			s->next = L;
-		}
 		s->next = L->next;
+		if (L->next != 0) {
+			L->next->prior = s;
+		}
 		L->next = s;
+		s->prior = L;
+		if (s->next == 0) {
+			s->next = L;
+			L->prior = s;
+		}
 	}
 }
 
 
-void CreateCircularDListR(DLinkNode *&L, int a[], int n)
+void CreateCDListR(DLinkNode *&L, int a[], int n)
 {
-	DLinkNode *s, *r;
+	DLinkNode *r, *s;
 	L = new DLinkNode;
 	r = L;
-	for (int i = 0; i > n; i++) {
+	for (int i = 0; i < n; i++) {
 		s = new DLinkNode;
 		s->data = a[i];
 		r->next = s;
+		s->prior = r;
 		r = s;
 	}
 	r->next = L;
+	L->prior = r;
 }
 
 
-void DispCDList(DLinkNode *L)
+void DispCDList(DLinkNode *L)//循环双链表的输出
 {
 	DLinkNode *p = L->next;
 	while (p != L) {
@@ -201,6 +206,28 @@ void DispCDList(DLinkNode *L)
 		p = p->next;
 	}
 	cout << endl;
+}
+
+
+bool Symm(DLinkNode *L)//判断循环双链表的数据结点是否对称
+{
+	bool same = true;  //same表示L是否对称
+	DLinkNode *p = L->next, *q = L->prior;
+	while (same) {
+		if (p->data != q->data) {
+			same = false;
+		}
+		else {
+			if (p == q || p == q->prior) {
+				break;
+			}
+			else {
+				q = q->prior;
+				p = p->next;
+			}
+		}
+	}
+	return same;
 }
 
 
@@ -230,13 +257,18 @@ void DLinkNodeExample()
 		//DispDList(dlinknode);
 	}
 
-	//Cycle list
+	//Cycle Double list
 	int c1[] = { 1,2,3,4,5,6 };
 	DLinkNode *cdlinknode = 0;
 
-	CreateCircularDListF(cdlinknode, c1, n);
-	DispDList(cdlinknode);
-
+	CreateCDListR(cdlinknode, c1, n);
+	DispCDList(cdlinknode);
+	if (Symm(cdlinknode)) {
+		cout << "对称" << endl;
+	}
+	else {
+		cout << "不对称" << endl;
+	}
 }
 
 #endif 
