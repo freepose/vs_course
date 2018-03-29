@@ -14,7 +14,7 @@ int main()
 	//DLinkNodeExample();
 
 	//SqStackExample();
-	LinkStackNodeExample();
+	//LinkStackNodeExample();
 	
 	return 0;
 }
