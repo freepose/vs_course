@@ -6,13 +6,12 @@
 
 int main()
 {
-	//SqListExample();
+	SqListExample();
 	//LinkNodeExample();
 	//DLinkNodeExample();
-
 	//SqStackExample();
 	//LinkStackNodeExample();
-	mgpath_example();
+	//mgpath_example();
 	
 	return 0;
 }
