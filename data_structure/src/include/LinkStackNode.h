@@ -69,14 +69,14 @@ template <typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 }
 
 
-// Example
+// Example:ÅÐ¶Ï×Ö·û´®ÖÐÀ¨ºÅÊÇ·ñ¶Ô³Æ
 
-bool Match(char exp[], int n)
+void Match(char exp[], int n)
 {
 	int i = 0;
 	char e;
 	bool match = true;
-	LinkStackNode<char> *st = 0;
+	LinkStackNode<char> *st ;
 	InitStack(st);
 	while (i < n&&match) {
 		if (exp[i] == '(') {
@@ -101,20 +101,20 @@ bool Match(char exp[], int n)
 		match = false;
 	}
 	DestroyStack(st);
-	return match;
+	if (match) {
+		cout << "Yes" << endl;
+	}
+	else {
+		cout << "Not" << endl;
+	}
 }
 
 
 void LinkStackNodeExample()
 {
-	char *a = "this is a test.";
-	int n=10;
-	//cout << "ÇëÊäÈë10¸ö×Ö·û";
-	//cin >> a;
-	if (Match(a, n)) {
-		cout << "Yes"<<endl;
-	}
-	else {
-		cout << "Not" << endl;
-	}
+	char *a = "(This is a text)";
+	char *b = "(This is a text";
+	int n = 16, m = 15;
+	Match(a, n);
+	Match(b, m);
 }

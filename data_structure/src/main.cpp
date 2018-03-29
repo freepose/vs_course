@@ -11,8 +11,8 @@ int main()
 	//DLinkNodeExample();
 
 	//SqStackExample();
-	//LinkStackNodeExample();
-	mgpath_example();
+	LinkStackNodeExample();
+	//mgpath_example();
 	
 	return 0;
 }

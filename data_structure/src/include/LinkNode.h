@@ -4,31 +4,31 @@
 #include<iostream>
 using namespace std;
 
-typedef struct LNode {
-	int data;
-	LNode *next;
-}LinkNode;
+template <typename T> struct LinkNode {
+	T data;
+	LinkNode<T> *next;
+};
 
-void CreateListF(LinkNode *&L, int a[], int n)
+template <typename T> void CreateListF(LinkNode<T>  *&L, T a[], int n)
 {
-	LinkNode *s;
-	L = new LinkNode;
+	LinkNode<T> *s;
+	L = new LinkNode<T>;
 	L->next = 0;
 	for (int i = 0; i<n; i++) {
-		s = new LinkNode;
+		s = new LinkNode<T>;
 		s->data = a[i];
 		s->next = L->next;
 		L->next = s;
 	}
 }
 
-void CreateListR(LinkNode *&L, int a[], int n)
+template <typename T> void CreateListR(LinkNode<T>  *&L, T a[], int n)
 {
-	LinkNode *s, *r;
-	L = new LinkNode;
+	LinkNode<T>  *s, *r;
+	L = new LinkNode<T>;
 	r = L;
 	for (int i = 0; i<n; i++) {
-		s = new LinkNode;
+		s = new LinkNode<T>;
 		s->data = a[i];
 		r->next = s;
 		r = s;
@@ -36,22 +36,22 @@ void CreateListR(LinkNode *&L, int a[], int n)
 	r->next = 0;
 }
 
-void ListInsert(LinkNode *&L, int x, int n)
+template <typename T> void ListInsert(LinkNode<T> *&L, T x, int n)
 {
-	LinkNode *p = L, *S;
+	LinkNode<T> *p = L, *S;
 	for (int i = 0; i < n-1; i++)
 	{
 		p = p->next;
 	}
-	S = new LinkNode;
+	S = new LinkNode<T>;
 	S->data = x;
 	S->next = p->next;
 	p->next = S;
 }
 
-void ListDelete(LinkNode *&L, int n)
+template <typename T> void ListDelete(LinkNode<T> *&L, int n)
 {
-	LinkNode *p = L, *pre = L;
+	LinkNode<T> *p = L, *pre = L;
 	for (int i = 0; i < n; i++)
 	{
 		pre = p;
@@ -61,9 +61,9 @@ void ListDelete(LinkNode *&L, int n)
 	delete p;
 }
 
-void DispList(LinkNode *L)
+template <typename T> void DispList(LinkNode<T> *L)
 {
-	LinkNode *p = L->next;
+	LinkNode<T> *p = L->next;
 	while (p != 0) {
 		cout << "\t" << p->data;
 		p = p->next;
@@ -71,9 +71,9 @@ void DispList(LinkNode *L)
 	cout << endl;
 }
 
-void DestroyList(LinkNode *L)
+template <typename T> void DestroyList(LinkNode<T> *L)
 {
-	LinkNode *pre = L, *p = L->next;
+	LinkNode<T> *pre = L, *p = L->next;
 	while (p != 0)
 	{
 		delete pre;
@@ -84,9 +84,9 @@ void DestroyList(LinkNode *L)
 }
 
 
-void delmaxnode(LinkNode *&L)
+template <typename T> void delmaxnode(LinkNode<T> *&L)
 {
-	LinkNode *p = L->next, *pre = L, *maxp = p, *maxpre = p;
+	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = p;
 	while (p != 0) {
 		if (maxp->data < p->data) {
 			maxp = p;
@@ -103,13 +103,13 @@ void delmaxnode(LinkNode *&L)
 /// Cycle list
 ////////////////////////////////////////////////////////////////////////////////////
 
-void CreateCircularListF(LinkNode *&L, int a[], int n)
+template <typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 {
-	LinkNode *s, *r;
-	L = new LinkNode;
+	LinkNode<T> *s, *r;
+	L = new LinkNode<T>;
 	L->next = 0;
 	for (int i = 0; i<n; i++) {
-		s = new LinkNode;
+		s = new LinkNode<T>;
 		s->data = a[i];
 		if (L->next == 0)
 		{
@@ -122,13 +122,13 @@ void CreateCircularListF(LinkNode *&L, int a[], int n)
 }
 
 
-void CreateCircularListR(LinkNode *&L, int a[], int n)
+template <typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 {
-	LinkNode *s, *r;
-	L = new LinkNode;
+	LinkNode<T> *s, *r;
+	L = new LinkNode<T>;
 	r = L;
 	for (int i = 0; i<n; i++) {
-		s = new LinkNode;
+		s = new LinkNode<T>;
 		s->data = a[i];
 		r->next = s;
 		r = s;
@@ -137,9 +137,9 @@ void CreateCircularListR(LinkNode *&L, int a[], int n)
 }
 
 // L, circle list
-void JosephProblem(LinkNode *&L)
+template <typename T> void JosephProblem(LinkNode<T> *&L)
 {
-	LinkNode *p = L, *S;
+	LinkNode<T> *p = L, *S;
 	int times = 0, n;
 	//cin >> n;		// put which number to delete
 	n = 3;
@@ -171,7 +171,7 @@ void LinkNodeExample()
 	const int n = 5;
 
 	// Linked list
-	LinkNode *linkedlist = 0;
+	LinkNode<int> *linkedlist = 0;
 	CreateListF(linkedlist, a, n);
 	DispList(linkedlist);
 	DestroyList(linkedlist);
