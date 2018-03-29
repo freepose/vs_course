@@ -149,7 +149,9 @@
     <ClInclude Include="src\include\array.h" />
     <ClInclude Include="src\include\DLinkNode.h" />
     <ClInclude Include="src\include\LinkNode.h" />
+    <ClInclude Include="src\include\LinkStackNode.h" />
     <ClInclude Include="src\include\SqList.h" />
+    <ClInclude Include="src\include\SqStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

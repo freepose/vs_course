@@ -8,10 +8,10 @@ int main()
 {
 	//SqListExample();
 	//LinkNodeExample();
-	DLinkNodeExample();
+	//DLinkNodeExample();
 	//SqStackExample();
 	//LinkStackNodeExample();
-	//mgpath_example();
+	mgpath_example();
 	
 	return 0;
 }
