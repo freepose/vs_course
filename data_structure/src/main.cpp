@@ -12,6 +12,7 @@ int main()
 
 	//SqStackExample();
 	//LinkStackNodeExample();
+	mgpath_example();
 	
 	return 0;
 }

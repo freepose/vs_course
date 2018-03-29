@@ -4,7 +4,7 @@
 #include<iostream>
 using namespace std;
 
-#define MAX_SIZE 50
+#define MAX_SIZE 250
 typedef int ElemType;
 
 typedef struct DLink
