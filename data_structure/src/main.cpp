@@ -3,17 +3,18 @@
 #include"include/LinkNode.h"
 #include"include/DLinkNode.h"
 #include"include/SqStack.h"
-#include"include/LinkStNode.h"
+#include"include/LinkStackNode.h"
 
 int main()
 {
+	//basicExample();
+
 	//SqListExample();
 	//LinkNodeExample();
-	SqStackExample();
 	//DLinkNodeExample();
-	//basicExample();
-	//LinkStNodeExample();
-	
+
+	//SqStackExample();
+	LinkStackNodeExample();
 	
 	return 0;
 }

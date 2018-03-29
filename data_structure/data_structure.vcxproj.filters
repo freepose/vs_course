@@ -30,7 +30,7 @@
     <ClInclude Include="src\include\SqStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\LinkStNode.h">
+    <ClInclude Include="src\include\LinkStackNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

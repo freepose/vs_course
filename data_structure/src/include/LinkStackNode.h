@@ -1,24 +1,25 @@
 #pragma once
+
 #include<iostream>
 using namespace std;
 
-typedef struct linknode
+template <typename T> struct LinkStackNode
 {
 	ElemType data;
-	struct linknode *next;
-}LinkStNode;
+	LinkStackNode<T> *next;
+};
 
 
-void InitStack(LinkStNode *&s)
+template <typename T> void InitStack(LinkStackNode<typename T> *&s)
 {
-	s = new LinkStNode;
+	s = new LinkStackNode<T>;
 	s->next = 0;
 }
 
 
-void DestroyStack(LinkStNode *&s)
+template <typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 {
-	LinkStNode *pre = s, *p = s->next;
+	LinkStackNode<T> *pre = s, *p = s->next;
 	while (p != 0) {
 		delete pre;
 		pre = p;
@@ -28,25 +29,25 @@ void DestroyStack(LinkStNode *&s)
 }
 
 
-bool StackEmpty(LinkStNode *s)
+template <typename T> bool StackEmpty(LinkStackNode<typename T> *s)
 {
 	return(s->next == 0);
 }
 
 
-void Push(LinkStNode *&s, ElemType e)
+template <typename T> void Push(LinkStackNode<typename T> *&s, T e)
 {
-	LinkStNode *p;
-	p = new LinkStNode;
+	LinkStackNode<T> *p = 0;
+	p = new LinkStackNode<T>;
 	p->data = e;
 	p->next = s->next;
 	s->next = p;
 }
 
 
-bool Pop(LinkStNode *&s, ElemType &e)
+template <typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 {
-	LinkStNode *p;
+	LinkStackNode<T> *p;
 	if (s->next== 0) {
 		return false;
 	}
@@ -58,7 +59,7 @@ bool Pop(LinkStNode *&s, ElemType &e)
 }
 
 
-bool GetTop(LinkStNode *&s, ElemType &e)
+template <typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 {
 	if (s->next == 0) {
 		return false;
@@ -68,12 +69,14 @@ bool GetTop(LinkStNode *&s, ElemType &e)
 }
 
 
+// Example
+
 bool Match(char exp[], int n)
 {
 	int i = 0;
 	char e;
 	bool match = true;
-	LinkStNode *st;
+	LinkStackNode<char> *st = 0;
 	InitStack(st);
 	while (i < n&&match) {
 		if (exp[i] == '(') {
@@ -94,7 +97,7 @@ bool Match(char exp[], int n)
 		}
 		i++;
 	}
-	if (!StackEmpty(st)){//the stack is not empty,so false
+	if (!StackEmpty(st)){	//the stack is not empty,so false
 		match = false;
 	}
 	DestroyStack(st);
@@ -102,12 +105,12 @@ bool Match(char exp[], int n)
 }
 
 
-void LinkStNodeExample()
+void LinkStackNodeExample()
 {
-	ElemType a[20];
+	char *a = "this is a test.";
 	int n=10;
-	cout << "ÇëÊäÈë10¸ö×Ö·û";
-	cin >> a;
+	//cout << "ÇëÊäÈë10¸ö×Ö·û";
+	//cin >> a;
 	if (Match(a, n)) {
 		cout << "Yes"<<endl;
 	}
