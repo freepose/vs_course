@@ -5,13 +5,12 @@ using namespace std;
 
 #define MAX_ARRAY_SIZE 50
 
-//
-//void swap(ElemType &f, ElemType &s)
-//{
-//	ElemType t = f;
-//	f = s;
-//	s = t;
-//}
+template<typename T> void swap2(T &f, T &s)
+{
+	T t = f;
+	f = s;
+	s = t;
+}
 //
 //
 //void read_array(ElemType a[], int n)
