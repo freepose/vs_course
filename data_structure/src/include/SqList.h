@@ -1,10 +1,7 @@
 #ifndef SQ_LIST_H
 #define SQ_LIST_H 1
 
-#include<iostream>
-using namespace std;
-
-#define MAX_SIZE 50
+#include "basic.h"
 
 template <typename T>  struct SqList {
     T data[MAX_SIZE];

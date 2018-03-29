@@ -1,9 +1,6 @@
 #pragma once
 
-#include<iostream>
-using namespace std;
-
-#define MAX_ARRAY_SIZE 50
+#include "basic.h"
 
 template<typename T> void swap2(T &f, T &s)
 {

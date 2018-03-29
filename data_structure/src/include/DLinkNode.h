@@ -1,8 +1,7 @@
 #ifndef DLINK_NODE_H
 #define DLINK_NODE_H 1
 
-#include<iostream>
-using namespace std;
+#include "basic.h"
 
 template <typename T> struct DLinkNode
 {

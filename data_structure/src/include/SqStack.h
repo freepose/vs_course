@@ -1,9 +1,7 @@
 #ifndef STACK_H
 #define STACK_H 1
 
-#include<iostream>
-#include<string>
-using namespace std;
+#include "basic.h"
 
 template <typename T> struct SqStack {
 	T data[MAX_SIZE];

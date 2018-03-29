@@ -1,7 +1,6 @@
 #pragma once
 
-#include<iostream>
-using namespace std;
+#include "basic.h"
 
 template <typename T> struct LinkStackNode
 {
