@@ -11,6 +11,7 @@ template <typename T> struct SqStack {
 };
 
 
+
 template <typename T> void InitStack(SqStack<T> *& S)
 {
 	S = new SqStack<T>;
