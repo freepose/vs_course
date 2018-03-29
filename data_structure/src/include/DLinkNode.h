@@ -174,7 +174,6 @@ void CreateCircularDListF(DLinkNode *&L, int a[], int n)
 		}
 		s->next = L->next;
 		L->next = s;
-		
 	}
 }
 
