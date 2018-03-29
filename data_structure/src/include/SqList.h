@@ -1,6 +1,9 @@
 #ifndef SQ_LIST_H
 #define SQ_LIST_H 1
 
+#include<iostream>
+using namespace std;
+
 typedef int ElemType;
 #define MAX_SIZE 50
 
