@@ -4,23 +4,21 @@
 #include<iostream>
 using namespace std;
 
-typedef int ElemType;
-
-typedef struct DLink
+template <typename T> struct DLinkNode
 {
 	int data;
-	DLink *prior;
-	DLink *next;
-}DLinkNode;
+	DLinkNode<T> *prior;
+	DLinkNode<T> *next;
+};
 
 
-void CreateDListF(DLinkNode *&L, ElemType a[], int n)
+template <typename T> void CreateDListF(DLinkNode<T> *&L, T a[], int n)
 {
-	DLinkNode *s;
-	L = new DLinkNode;
+	DLinkNode<T> *s;
+	L = new DLinkNode<T>;
 	L->prior = L->next = 0;
 	for (int i = 0; i<n; i++) {
-		s = new DLinkNode;
+		s = new DLinkNode<T>;
 		s->data = a[i];
 		s->next = L->next;
 		if (L->next != 0) {
@@ -32,13 +30,13 @@ void CreateDListF(DLinkNode *&L, ElemType a[], int n)
 }
 
 
-void CreateDListR(DLinkNode *&L, ElemType a[], int n)
+template <typename T> void CreateDListR(DLinkNode<T> *&L, T a[], int n)
 {
-	DLinkNode *s ,*r;
-	L = new DLinkNode;
+	DLinkNode<T> *s ,*r;
+	L = new DLinkNode<T>;
 	r = L;
 	for (int i = 0; i < n; i++) {
-		s = new DLinkNode;
+		s = new DLinkNode<T>;
 		s->data = a[i];
 		r->next = s;
 		s->prior = r;
@@ -48,9 +46,9 @@ void CreateDListR(DLinkNode *&L, ElemType a[], int n)
 }
 
 
-void DispDList(DLinkNode *L)
+template <typename T> void DispDList(DLinkNode<T> *L)
 {
-	DLinkNode *p = L->next;
+	DLinkNode<T> *p = L->next;
 	while (p != 0) {
 		cout << p->data << " ";
 		p = p->next;
@@ -59,10 +57,10 @@ void DispDList(DLinkNode *L)
 }
 
 
-bool DListInsert(DLinkNode *&L, int i, ElemType e)
+template <typename T> bool DListInsert(DLinkNode<T> *&L, int i, T e)
 {
 	int j = 0;
-	DLinkNode *p = L, *s;
+	DLinkNode<T> *p = L, *s;
 	if (i <= 0) {
 		return false;
 	}
@@ -74,7 +72,7 @@ bool DListInsert(DLinkNode *&L, int i, ElemType e)
 		return false;
 	}
 	else {
-		s = new DLinkNode;
+		s = new DLinkNode<T>;
 		s->data = e;
 		s->prior = p;
 		s->next = p->next;
@@ -85,9 +83,9 @@ bool DListInsert(DLinkNode *&L, int i, ElemType e)
 }
 
 
-bool DListDelete(DLinkNode *&L, int i, ElemType &e)
+template <typename T> bool DListDelete(DLinkNode<T> *&L, int i, T &e)
 {
-	DLinkNode *p = L, *q;
+	DLinkNode<T> *p = L, *q;
 	if (i <= 0) {
 		return false;
 	}
@@ -111,9 +109,9 @@ bool DListDelete(DLinkNode *&L, int i, ElemType &e)
 
 
 //销毁双链表的两种方法
-void DestroyDList_pre(DLinkNode *L)
+template <typename T> void DestroyDList_pre(DLinkNode<T> *L)
 {
-	DLinkNode *pre = L, *p = L->next;
+	DLinkNode<T> *pre = L, *p = L->next;
 	while (p != 0)
 	{
 		delete pre;
@@ -124,9 +122,9 @@ void DestroyDList_pre(DLinkNode *L)
 }
 
 
-void DestroyDList_prior(DLinkNode *&L)
+template <typename T> void DestroyDList_prior(DLinkNode<T> *&L)
 {
-	DLinkNode *p = L->next, *q = p->prior;
+	DLinkNode<T> *p = L->next, *q = p->prior;
 	while (p != 0) {
 		delete q;
 		q = p;
@@ -136,9 +134,9 @@ void DestroyDList_prior(DLinkNode *&L)
 }
 
 
-bool Del_X_Node(DLinkNode *&L, ElemType x)
+template <typename T> bool Del_X_Node(DLinkNode<T> *&L, T x)
 {
-	DLinkNode *p = L->next;
+	DLinkNode<T> *p = L->next;
 	while (p != 0 && p->data != x) {
 		p = p->next;
 	}
@@ -159,13 +157,13 @@ bool Del_X_Node(DLinkNode *&L, ElemType x)
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-void CreateCDListF(DLinkNode *&L, int a[], int n)
+template <typename T> void CreateCDListF(DLinkNode<T> *&L, T a[], int n)
 {
-	DLinkNode *s;
-	L = new DLinkNode;
+	DLinkNode<T> *s;
+	L = new DLinkNode<T>;
 	L->prior = L->next = 0;
 	for (int i = 0; i < n; i++) {
-		s = new DLinkNode;
+		s = new DLinkNode<T>;
 		s->data = a[i];
 		s->next = L->next;
 		if (L->next != 0) {
@@ -181,13 +179,13 @@ void CreateCDListF(DLinkNode *&L, int a[], int n)
 }
 
 
-void CreateCDListR(DLinkNode *&L, int a[], int n)
+template <typename T> void CreateCDListR(DLinkNode<T> *&L, T a[], int n)
 {
-	DLinkNode *r, *s;
-	L = new DLinkNode;
+	DLinkNode<T> *r, *s;
+	L = new DLinkNode<T>;
 	r = L;
 	for (int i = 0; i < n; i++) {
-		s = new DLinkNode;
+		s = new DLinkNode<T>;
 		s->data = a[i];
 		r->next = s;
 		s->prior = r;
@@ -198,9 +196,9 @@ void CreateCDListR(DLinkNode *&L, int a[], int n)
 }
 
 
-void DispCDList(DLinkNode *L)//循环双链表的输出
+template <typename T> void DispCDList(DLinkNode<T> *L)//循环双链表的输出
 {
-	DLinkNode *p = L->next;
+	DLinkNode<T> *p = L->next;
 	while (p != L) {
 		cout << p->data << " ";
 		p = p->next;
@@ -209,10 +207,10 @@ void DispCDList(DLinkNode *L)//循环双链表的输出
 }
 
 
-bool Symm(DLinkNode *L)//判断循环双链表的数据结点是否对称
+template <typename T> bool Symm(DLinkNode<T> *L)//判断循环双链表的数据结点是否对称
 {
 	bool same = true;  //same表示L是否对称
-	DLinkNode *p = L->next, *q = L->prior;
+	DLinkNode<T> *p = L->next, *q = L->prior;
 	while (same) {
 		if (p->data != q->data) {
 			same = false;
@@ -236,10 +234,10 @@ void DLinkNodeExample()
 	int c[] = { 1,2,3,4,5,4 };
 	const int n = 6;
 	int e=0;
-	DLinkNode *dlinknode;
+	DLinkNode<int> *dlinknode;
 
 	CreateDListF(dlinknode, c, n);
-	//DispDList(dlinknode);
+	DispDList(dlinknode);
 
 	//DestroyDList_pre(dlinknode);
 	DestroyDList_prior(dlinknode);
@@ -259,7 +257,7 @@ void DLinkNodeExample()
 
 	//Cycle Double list
 	int c1[] = { 1,2,3,4,5,6 };
-	DLinkNode *cdlinknode = 0;
+	DLinkNode<int> *cdlinknode = 0;
 
 	CreateCDListR(cdlinknode, c1, n);
 	DispCDList(cdlinknode);

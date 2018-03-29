@@ -6,9 +6,9 @@
 
 int main()
 {
-	SqListExample();
+	//SqListExample();
 	//LinkNodeExample();
-	//DLinkNodeExample();
+	DLinkNodeExample();
 	//SqStackExample();
 	//LinkStackNodeExample();
 	//mgpath_example();
