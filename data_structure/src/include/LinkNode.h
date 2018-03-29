@@ -39,7 +39,7 @@ template <typename T> void CreateListR(LinkNode<T>  *&L, T a[], int n)
 template <typename T> void ListInsert(LinkNode<T> *&L, T x, int n)
 {
 	LinkNode<T> *p = L, *S;
-	for (int i = 0; i < n-1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
 		p = p->next;
 	}
@@ -153,7 +153,7 @@ template <typename T> void JosephProblem(LinkNode<T> *&L)
 			{
 				S = p->next;
 				p->next = p->next->next;
-				cout <<"\t"<< S->data;
+				cout << "\t" << S->data;
 				delete S;
 				times = 0;
 			}
