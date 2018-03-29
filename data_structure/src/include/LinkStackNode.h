@@ -5,7 +5,7 @@ using namespace std;
 
 template <typename T> struct LinkStackNode
 {
-	ElemType data;
+	T data;
 	LinkStackNode<T> *next;
 };
 

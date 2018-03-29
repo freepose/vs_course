@@ -66,6 +66,7 @@ template <class T> bool GetTop(SqStack<T> *s, T &e)
 // 
 // Examples
 //
+
 bool Symmetry(char str[])
 {
 	int i; char e;
@@ -228,7 +229,6 @@ double compvalue(char *postexp)
 	return e;
 }
 
-
 void PostExpressionExample()
 {
 	char exp[] = "(56-20)/(4+2)";
@@ -269,7 +269,6 @@ bool JudgeLegal(const string &s1, const string &s2)
 	return true;
 }
 
-
 void JudgeLegalExample()
 {
 	string s1 = "12345", s2 = "45132";
@@ -280,7 +279,6 @@ void JudgeLegalExample()
 		cout << "input order:" << s1 << ", check order:" << s2 << ", is illegal." << endl;
 	}
 }
-
 
 void SqStackExample()
 {
