@@ -35,11 +35,39 @@ template <typename T> bool enQueue(SqQueue<T> *&q, T e)
 		return false;
 	}
 	q->rear++;
-	e = q->data[q->rear];
+	q->data[q->rear]=e;
 	return true;
 }
 
 
+template <typename T> bool deQueue(SqQueue<T> *&q, T &e)
+{
+	if (q->front == q->rear) {  //¶Ó¿ÕÏÂÒç³ö
+		return false;
+	}
+	q->front++;
+	e = q->data[q->front];
+	return true;
+}
+
+
+void SqQueueExample()
+{
+	int a[] = { 1,2,3,4,5 };
+	const int n = 5;
+	int e,i;
+	SqQueue<int> *sqqueue;
+
+	InitQueue(sqqueue);
+	for (i = 0; i < n; i++) {
+		enQueue(sqqueue, a[i]);
+	}
+	for (i = 0; i < n; i++) {
+		deQueue(sqqueue, e);
+		cout << e << '\t';
+	}
+	cout << endl;
+}
 
 
 #endif
