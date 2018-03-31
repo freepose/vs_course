@@ -35,7 +35,7 @@ template <typename T> bool enQueue(SqQueue<T> *&q, T e)
 		return false;
 	}
 	q->rear++;
-	q->data[q->rear]=e;
+	q->data[q->rear] = e;
 	return true;
 }
 
@@ -55,7 +55,7 @@ void SqQueueExample()
 {
 	int a[] = { 1,2,3,4,5 };
 	const int n = 5;
-	int e,i;
+	int e, i;
 	SqQueue<int> *sqqueue;
 
 	InitQueue(sqqueue);
