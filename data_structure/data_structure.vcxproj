@@ -150,6 +150,7 @@
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\DLinkNode.h" />
     <ClInclude Include="src\include\LinkNode.h" />
+    <ClInclude Include="src\include\LinkQuNode.h" />
     <ClInclude Include="src\include\LinkStackNode.h" />
     <ClInclude Include="src\include\SqList.h" />
     <ClInclude Include="src\include\SqQueue.h" />
