@@ -39,7 +39,7 @@
     <ClInclude Include="src\include\SqQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\LinkQuNode.h">
+    <ClInclude Include="src\include\DLinkQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
