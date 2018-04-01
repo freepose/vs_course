@@ -4,6 +4,7 @@
 #include"include/SqStack.h"
 #include"include/LinkStackNode.h"
 #include"include/SqQueue.h"
+#include"include/DLinkQueue.h"
 
 int main()
 {
@@ -14,8 +15,10 @@ int main()
 	//SqStackExample();
 	//LinkStackNodeExample();
 
-	SqQueueExample();
+	//SqQueueExample();
+	DLinkQueueExamples();
 	//mgpath_example();
+
 	
 	return 0;
 }
