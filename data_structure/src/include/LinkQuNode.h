@@ -1,6 +1,7 @@
 #pragma once
 
 #include "basic.h"
+#include"LinkNode.h"
 
 //单链表
 template <typename T> struct DataNode
@@ -95,4 +96,73 @@ void LinkQuNodeexample()
 		cout << '\t' << e << endl;  //将所有元素出队
 	}
 	DestroyQueue(q);
+	cout << endl;
+}
+
+////////////////////////example/////循环单链表储存队列///////////////////////
+
+
+template <typename T> void InitQueue_S(LinkNode<T> *&rear)
+{
+	rear = NULL;
+}
+
+
+template <typename T> void enQueue_S(LinkNode<T> *&rear, T e)
+{
+	LinkNode<T> *p;
+	p = new LinkNode<T>;
+	p->data = e;
+	if (rear == NULL) {
+		p->next = p;
+		rear = p;
+	}
+	else {
+		p->next = rear->next;
+		rear->next = p;
+		rear = p;
+	}
+}
+
+
+template <typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
+{
+	LinkNode<T> *t;
+	if (rear == NULL) {
+		return false;
+	}
+	else if (rear->next==rear) {
+		e = rear->data;
+		delete rear;
+		rear = NULL;
+	}
+	else {
+		t = rear->next;
+		e = t->data;
+		rear->next = t->next;
+		delete t;
+	}
+	return true;
+}
+
+
+template <typename T> bool queueEmpty_S(LinkNode<T> *rear)
+{
+	return(rear == NULL);
+}
+
+
+void S_LinkQuNodeexample()
+{
+	int i, e;
+	int M[] = { 6,7,8,9 };
+	LinkNode<int> *rear;
+	InitQueue_S(rear);
+	for (i = 0; i < 4; i++) {
+		enQueue_S(rear, M[i]);
+	}
+	for (i = 0; i < 4; i++) {
+		deQueue_S(rear, e);
+		cout << '\t' << e << endl; //将所有元素出队
+	}
 }

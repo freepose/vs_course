@@ -18,5 +18,6 @@ int main()
 	//SqQueueExample();
 	//mgpath_example();
 	LinkQuNodeexample();
+	S_LinkQuNodeexample();
 	return 0;
 }
