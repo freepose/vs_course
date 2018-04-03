@@ -8,6 +8,8 @@
 	[2] Stack
 		SqStack, sequence stack
 		LinkStNode, linked stack
-
+	[3] Queue
+		SqQueue
+		LinkQuNode, linked queue
 
 
