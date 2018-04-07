@@ -15,8 +15,8 @@ int main()
 	//SqStackExample();
 	//LinkStackNodeExample();
 
-	//SqQueueExample();
-	DLinkQueueExamples();
+	SqQueueExample();
+	//DLinkQueueExamples();
 	//mgpath_example();
 
 	
