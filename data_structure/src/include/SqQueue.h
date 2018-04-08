@@ -91,7 +91,7 @@ template <typename T> bool enCQueueR(SqQueue<T> *&q, T e)
 
 
 //从队头进队
-template <typename T> bool enCQueueF(SqQueue<T> *&q, e)
+template <typename T> bool enCQueueF(SqQueue<T> *&q,T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
 		return false;
@@ -187,15 +187,15 @@ void number(int n)
 	SqQueue<int> *q;        //环形队列指针q
 	InitCQueue(q);
 	for (i = 1; i <=n; i++) {
-		enCQueue(q, i);
+		enCQueueR(q, i);
 	}
 	cout << "报数出列顺序：" << endl;
 	while (!CQueueEmpty(q)) {
-		deCQueue(q, e);
+		deCQueueF(q, e);
 		cout << '\t' << e;
 		if (!CQueueEmpty(q)) {
-			deCQueue(q, e);
-			enCQueue(q, e);
+			deCQueueF(q, e);
+			enCQueueR(q, e);
 		}
 	}
 	cout << endl;
