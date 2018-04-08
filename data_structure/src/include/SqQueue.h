@@ -78,7 +78,8 @@ template <typename T> bool CQueueEmpty(SqQueue<T> *q)
 }
 
 
-template <typename T> bool enCQueue(SqQueue<T> *&q, T e)
+//从队尾进队
+template <typename T> bool enCQueueR(SqQueue<T> *&q, T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
 		return false;
@@ -89,7 +90,20 @@ template <typename T> bool enCQueue(SqQueue<T> *&q, T e)
 }
 
 
-template <typename T> bool deCQueue(SqQueue<T> *&q, T &e)
+//从队头进队
+template <typename T> bool enCQueueF(SqQueue<T> *&q, e)
+{
+	if ((q->rear + 1) % MAX_SIZE == q->front) {
+		return false;
+	}
+	q->data[q->front] = e;
+	q->front = (q->front - 1 + MAX_SIZE) % MAX_SIZE;  //修改头指针
+	return true;
+}
+
+
+//从队头删除
+template <typename T> bool deCQueueF(SqQueue<T> *&q, T &e)
 {
 	if (q->front == q->rear) {
 		return false;
@@ -98,6 +112,19 @@ template <typename T> bool deCQueue(SqQueue<T> *&q, T &e)
 	e = q->data[q->front];
 	return true;
 }
+
+
+//从队尾删除
+template <typename T> bool deCQueueR(SqQueue<T> *&q, T &e)
+{
+	if (q->rear == q->front) {
+		return false;
+	}
+	e = q->data[q->rear];
+	q->rear = (q->rear - 1 + MAX_SIZE) % MAX_SIZE;
+	return true;
+}
+
 
 
 //例3.7 count代替队尾指针
