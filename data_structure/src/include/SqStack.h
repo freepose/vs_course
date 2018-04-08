@@ -241,35 +241,66 @@ bool JudgeLegal(const string &s1, const string &s2)
 {
 	SqStack<char> *sc = new SqStack<char>;
 	InitStack(sc);
-
 	int i = 0, j = 0;
 	char e;
-	while (s2[i] != '\0')
+	while (s1[i] != '\0')//入栈序列不为空 
 	{
-		if (s1[j] != s2[i] && s1[j] != '\0')
+		GetTop(sc, e);
+		if (s2[j] !=e  || (StackEmpty(sc)))//判断出栈序列所指元素与sc栈顶是否相同 
 		{
-			Push(sc, s1[j]);
-			j++;
-		}
-		else if (s1[j] == s2[i])
-		{
+			Push(sc, s1[i]);
 			i++;
-			j++;
 		}
-		else
+		else if (s2[j] == e)//相同，则退栈并将出栈序列后移一位，进行下轮判断 
 		{
 			Pop(sc, e);
-			if (e != s2[i])
-				return false;
-			i++;
+			j++;
 		}
+	}
+	while (!StackEmpty(sc)) {//若sc未出栈完，接着判断
+		GetTop(sc, e);
+		if (s2[j] != e) {
+			return false;
+		}
+		Pop(sc, e);
+		j++;
 	}
 	return true;
 }
 
+//bool JudgeLegal(const string &s1, const string &s2)
+//{
+//	SqStack<char> *sc = new SqStack<char>;
+//	InitStack(sc);
+//
+//	int i = 0, j = 0;
+//	char e;
+//	while (s2[i] != '\0')
+//	{
+//		if (s1[j] != s2[i] && s1[j] != '\0')
+//		{
+//			Push(sc, s1[j]);
+//			j++;
+//		}
+//		else if (s1[j] == s2[i])
+//		{
+//			i++;
+//			j++;
+//		}
+//		else
+//		{
+//			Pop(sc, e);
+//			if (e != s2[i])
+//				return false;
+//			i++;
+//		}
+//	}
+//	return true;
+//}
+
 void JudgeLegalExample()
 {
-	string s1 = "12345", s2 = "45132";
+	string s1 = "1234567", s2 = "2175643";
 	if (JudgeLegal(s1, s2)) {
 		cout << "input order:" << s1 << ", check order:" <<s2 << ", is legal." << endl;
 	}		

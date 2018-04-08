@@ -16,9 +16,9 @@ int main()
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
-	DLinkQueueExamples();
+	//DLinkQueueExamples();
 	//mgpath_example();
-
+	JudgeLegalExample();
 	
 	return 0;
 }
