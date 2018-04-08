@@ -1,3 +1,10 @@
+/*
+ *
+ * Create By TangNi,  20180408
+ *
+ */
+ 
+
 #ifndef SQQUEUE_H
 #define SQQUEUE_H 1
 
@@ -82,7 +89,7 @@ template <typename T> bool enCQueue(SqQueue<T> *&q, T e)
 }
 
 
-template <typename T> bool deCQueue(SqQueue<T> *&q, T e)
+template <typename T> bool deCQueue(SqQueue<T> *&q, T &e)
 {
 	if (q->front == q->rear) {
 		return false;
@@ -145,23 +152,127 @@ template <typename T> bool QueueEmpty1(QuType<T>  *qu)
 }
 
 
-void SqQueueExample()
+//求解报数问题 P108
+void number(int n)
 {
-	int a[] = { 1,2,3,4,5 };
-	const int n = 5;
-	int e, i;
-	SqQueue<int> *sqqueue;
-
-	InitQueue(sqqueue);
-	for (i = 0; i < n; i++) {
-		enQueue(sqqueue, a[i]);
+	int i;
+	int e=0;
+	SqQueue<int> *q;        //环形队列指针q
+	InitCQueue(q);
+	for (i = 1; i <=n; i++) {
+		enCQueue(q, i);
 	}
-	for (i = 0; i < n; i++) {
-		deQueue(sqqueue, e);
+	cout << "报数出列顺序：" << endl;
+	while (!CQueueEmpty(q)) {
+		deCQueue(q, e);
 		cout << '\t' << e;
+		if (!CQueueEmpty(q)) {
+			deCQueue(q, e);
+			enCQueue(q, e);
+		}
+	}
+	cout << endl;
+	DestroyCQueue(q);
+}
+
+//求解迷宫问题 P109
+typedef struct {
+	int i;
+	int j;
+	int pre;
+}Box1;
+
+int mg1[8 + 2][8 + 2] =
+{
+	{ 1, 1,1,1,1,1,1,1,1,  1 },
+	{ 1, 0,0,1,0,0,0,1,0,  1 },
+	{ 1, 0,0,1,0,0,0,1,0,  1 },
+	{ 1, 0,0,0,0,1,1,0,0,  1 },
+	{ 1, 0,1,1,1,0,0,0,0,  1 },
+	{ 1, 0,0,0,1,0,0,0,0,  1 },
+	{ 1, 0,1,0,0,0,1,0,0,  1 },
+	{ 1, 0,1,1,1,0,1,1,0,  1 },
+	{ 1, 1,0,0,0,0,0,0,0,  1 },
+	{ 1, 1,1,1,1,1,1,1,1,  1 }
+};
+
+template <typename T> void Disp(SqQueue<T> *qu, int front)
+{
+	int k = front, j, ns = 0;
+	cout << endl;
+	do {
+		j = k;
+		k = qu->data[k].pre;
+		qu->data[j].pre = -1;
+	} while (k != 0);
+	cout << "一条迷宫通路如下：" << endl;
+	k = 0;
+	while (k < MAX_SIZE) {
+		if (qu->data[k].pre == -1) {
+			ns++;
+			cout << '\t' << '(' << qu->data[k].i << ',' << qu->data[k].j << ')';
+			if (ns % 5 == 0) {
+				cout << endl;
+			}
+		}
+		k++;
 	}
 	cout << endl;
 }
+
+bool mgpath1(int xi, int yi, int xe, int ye)
+{
+	Box1 e;
+	int  i,j, di, i1, j1;
+	SqQueue<Box1> *qu;
+	InitQueue(qu);
+	e.i = xi; e.j = yi; e.pre = -1;
+	enQueue(qu, e);
+	mg1[xi][yi] = -1;
+	while (!QueueEmpty(qu)) {
+		deQueue(qu, e);
+		i = e.i;
+		j = e.j;
+		if ( i==xe && j == ye) {
+			Disp(qu, qu->front);
+			DestroyQueue(qu);
+			return true;
+		}
+		for (di = 0; di < 4; di++) {
+			switch (di)
+			{
+			case 0:i1 = i - 1; j1 = j;   break;
+			case 1:i1 = i;   j1 = j + 1; break;
+			case 2:i1 = i + 1; j1 = j;   break;
+			case 3:i1 = i;   j1 = j - 1; break;
+			}
+			if (mg1[i1][j1] == 0) {
+				e.i = i1; e.j = j1;
+				e.pre = qu->front;
+				enQueue(qu, e);
+				mg1[i1][j1] = -1;
+			}
+		}
+	}
+	DestroyQueue(qu);
+	return false;
+}
+
+void SqQueueExample()
+{
+	int n = 8;
+	cout << "初始序列" << endl;
+	for (int i = 1; i <= n; i++) {
+		cout << '\t' << i;
+	}
+	cout << endl;
+	number(n);
+
+	if (!mgpath1(1, 1, 8, 8)) {
+		cout << "该迷宫没有解！" << endl;
+	}
+}
+
 
 
 #endif
