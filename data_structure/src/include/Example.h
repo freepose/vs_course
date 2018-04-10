@@ -1,6 +1,8 @@
 #pragma once
 #include "basic.h"
 #include "SqStack.h"
+#include "LinkNode.h"
+#include "SqQueue.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,3 +196,94 @@ void mgpath_SqQueue()
 		cout << "该迷宫没有解！" << endl;
 	}
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                 JosephProblem                                                     ////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////Solving with LinkNode//////////////////////////////////////////////////
+
+template <typename T> void JosephProblem(LinkNode<T> *&L)
+{
+	LinkNode<T> *p = L, *S;
+	int times = 0, n;
+	//cin >> n;		// put which number to delete
+	n = 3;
+	while (p->next->next != p)
+	{
+		p = p->next;
+		if (p != L)
+		{
+			times++;
+			if (times == n - 1)
+			{
+				S = p->next;
+				p->next = p->next->next;
+				cout << "\t" << S->data;
+				delete S;
+				times = 0;
+			}
+		}
+	}
+	cout << "\t" << p->data << endl;
+	delete p;
+}
+
+
+//////////////////////////////////////////////////Solving with SqQueue//////////////////////////////////////////////////
+
+template <typename T> void JosephProblem1(SqQueue<T> *&q)
+{
+	int cnt = 0, n = 3, e;
+	while (!CQueueEmpty(q)) {
+		cnt++;
+		if (cnt != n) {
+			deCQueueF(q, e);
+			enCQueueR(q, e);
+		}
+		else {
+			deCQueueF(q, e);
+			cout << '\t' << e;
+			cnt = 0;
+		}
+	}
+	cout << endl;
+	DestroyCQueue(q);
+}
+
+
+void JosephProblemExample()
+{
+	int b[] = { 1, 2, 3, 4, 5, 6 };
+	LinkNode<int> *linknode;
+	CreateCircularListR(linknode, b, 6);
+	cout << "Using The LinkNode:";
+	JosephProblem(linknode);
+
+	SqQueue<int> *sqqueue;
+	InitCQueue(sqqueue);
+	for (int i = 1; i <= 6; i++) {
+		enCQueueR(sqqueue, i);
+	}
+	cout << "Using The SqQueue:";
+	JosephProblem1(sqqueue);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

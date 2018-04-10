@@ -5,6 +5,7 @@
 #include"include/LinkStackNode.h"
 #include"include/SqQueue.h"
 #include"include/DLinkQueue.h"
+#include"include/Example.h"
 
 int main()
 {
@@ -18,7 +19,8 @@ int main()
 	//SqQueueExample();
 	//DLinkQueueExamples();
 	//mgpath_example();
-	JudgeLegalExample();
+	//JudgeLegalExample();
+	JosephProblemExample();
 	
 	return 0;
 }

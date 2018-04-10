@@ -135,33 +135,6 @@ template <typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 	r->next = L;	// note
 }
 
-// L, circle list
-template <typename T> void JosephProblem(LinkNode<T> *&L)
-{
-	LinkNode<T> *p = L, *S;
-	int times = 0, n;
-	//cin >> n;		// put which number to delete
-	n = 3;
-	while (p->next->next != p)
-	{
-		p = p->next;
-		if (p != L)
-		{
-			times++;
-			if (times == n - 1)
-			{
-				S = p->next;
-				p->next = p->next->next;
-				cout << "\t" << S->data;
-				delete S;
-				times = 0;
-			}
-		}
-	}
-	cout << "\t" << p->data << endl;
-	delete p;
-}
-
 
 // examples
 void LinkNodeExample()
@@ -186,11 +159,6 @@ void LinkNodeExample()
 
 	delmaxnode(linkedlist);
 	DispList(linkedlist);
-
-	int b[] = { 1, 2, 3, 4, 5, 6 };
-	CreateCircularListF(linkedlist, b, 6);
-	CreateCircularListR(linkedlist, b, 6);
-	JosephProblem(linkedlist);
 }
 
 #endif 
