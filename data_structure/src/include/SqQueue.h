@@ -202,89 +202,6 @@ void number(int n)
 	DestroyCQueue(q);
 }
 
-//求解迷宫问题 P109
-typedef struct {
-	int i;
-	int j;
-	int pre;
-}Box1;
-
-int mg1[8 + 2][8 + 2] =
-{
-	{ 1, 1,1,1,1,1,1,1,1,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,0,0,1,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,0,0,0,  1 },
-	{ 1, 0,0,0,1,0,0,0,0,  1 },
-	{ 1, 0,1,0,0,0,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,1,1,0,  1 },
-	{ 1, 1,0,0,0,0,0,0,0,  1 },
-	{ 1, 1,1,1,1,1,1,1,1,  1 }
-};
-
-template <typename T> void Disp(SqQueue<T> *qu, int front)
-{
-	int k = front, j, ns = 0;
-	cout << endl;
-	do {
-		j = k;
-		k = qu->data[k].pre;
-		qu->data[j].pre = -1;
-	} while (k != 0);
-	cout << "一条迷宫通路如下：" << endl;
-	k = 0;
-	while (k < MAX_SIZE) {
-		if (qu->data[k].pre == -1) {
-			ns++;
-			cout << '\t' << '(' << qu->data[k].i << ',' << qu->data[k].j << ')';
-			if (ns % 5 == 0) {
-				cout << endl;
-			}
-		}
-		k++;
-	}
-	cout << endl;
-}
-
-bool mgpath1(int xi, int yi, int xe, int ye)
-{
-	Box1 e;
-	int  i,j, di, i1, j1;
-	SqQueue<Box1> *qu;
-	InitQueue(qu);
-	e.i = xi; e.j = yi; e.pre = -1;
-	enQueue(qu, e);
-	mg1[xi][yi] = -1;
-	while (!QueueEmpty(qu)) {
-		deQueue(qu, e);
-		i = e.i;
-		j = e.j;
-		if ( i==xe && j == ye) {
-			Disp(qu, qu->front);
-			DestroyQueue(qu);
-			return true;
-		}
-		for (di = 0; di < 4; di++) {
-			switch (di)
-			{
-			case 0:i1 = i - 1; j1 = j;   break;
-			case 1:i1 = i;   j1 = j + 1; break;
-			case 2:i1 = i + 1; j1 = j;   break;
-			case 3:i1 = i;   j1 = j - 1; break;
-			}
-			if (mg1[i1][j1] == 0) {
-				e.i = i1; e.j = j1;
-				e.pre = qu->front;
-				enQueue(qu, e);
-				mg1[i1][j1] = -1;
-			}
-		}
-	}
-	DestroyQueue(qu);
-	return false;
-}
-
 void SqQueueExample()
 {
 	int n = 8;
@@ -294,12 +211,6 @@ void SqQueueExample()
 	}
 	cout << endl;
 	number(n);
-
-	if (!mgpath1(1, 1, 8, 8)) {
-		cout << "该迷宫没有解！" << endl;
-	}
 }
-
-
 
 #endif

@@ -42,6 +42,12 @@
     <ClInclude Include="src\include\DLinkQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\LinkQuNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Example.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
