@@ -6,6 +6,7 @@
 #include"include/SqQueue.h"
 #include"include/DLinkQueue.h"
 #include"include/Example.h"
+#include"include/BTNode.h"
 
 int main()
 {
@@ -20,7 +21,8 @@ int main()
 	//DLinkQueueExamples();
 	//mgpath_example();
 	//JudgeLegalExample();
-	JosephProblemExample();
+	//JosephProblemExample();
+	BTNodeexample();
 	
 	return 0;
 }

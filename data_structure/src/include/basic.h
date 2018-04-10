@@ -7,3 +7,4 @@ using namespace std;
 
 // Max Size of an array
 #define MAX_SIZE 100
+#define MaxSize 100
