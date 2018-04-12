@@ -48,7 +48,7 @@
     <ClInclude Include="src\include\Example.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\BTNode.h">
+    <ClInclude Include="src\include\BTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
