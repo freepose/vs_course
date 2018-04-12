@@ -23,7 +23,7 @@ int main()
 	//mgpath_example();
 	//JudgeLegalExample();
 	//JosephProblemExample();
-	BTreeExample();
+	BTNodeexample();
 	
 	return 0;
 }
