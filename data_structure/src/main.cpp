@@ -7,6 +7,7 @@
 #include"include/DLinkQueue.h"
 #include"include/Example.h"
 #include"include/BTree.h"
+#include"include/BTreeTraversal.h"
 
 
 int main()
@@ -30,7 +31,8 @@ int main()
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	BTNodeexample();
+	//BTNodeexample();
+	BTreeTraversalExample(); 
 	
 	return 0;
 }

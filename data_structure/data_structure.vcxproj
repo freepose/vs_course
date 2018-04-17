@@ -149,6 +149,7 @@
     <ClInclude Include="src\include\array.h" />
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\BTree.h" />
+    <ClInclude Include="src\include\BTreeTraversal.h" />
     <ClInclude Include="src\include\DLinkNode.h" />
     <ClInclude Include="src\include\DLinkQueue.h" />
     <ClInclude Include="src\include\Example.h" />
