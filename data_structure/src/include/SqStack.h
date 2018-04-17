@@ -239,7 +239,7 @@ void PostExpressionExample()
 
 bool JudgeLegal(const string &s1, const string &s2)
 {
-	SqStack<char> *sc = new SqStack<char>;
+	SqStack<char> *sc ;
 	InitStack(sc);
 	int i = 0, j = 0;
 	char e;

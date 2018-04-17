@@ -12,17 +12,24 @@
 int main()
 {
 	//SqListExample();
+
 	//LinkNodeExample();
+
 	//DLinkNodeExample();
 
 	//SqStackExample();
+
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
+
 	//DLinkQueueExamples();
+
 	//mgpath_example();
+
 	//JudgeLegalExample();
 	//JosephProblemExample();
+
 	BTNodeexample();
 	
 	return 0;
