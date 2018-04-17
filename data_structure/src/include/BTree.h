@@ -1,7 +1,12 @@
 #pragma once
 
 #include "basic.h"
-
+char str[] = "A(B(D(,G)),C(E,F))";
+/*
+*
+*Create By ChenXiaodie,20180408
+*
+*/
 template <typename T>  struct BTNode
 {
 	T data;
@@ -113,7 +118,6 @@ template <typename T> void DispBTree(BTNode<T> *b)
 void BTNodeexample()
 {
 	BTNode<char> *b;
-	char str[MaxSize] = "A(B(D(,G)),C(E,F))";
 	CreateBTree(b, str);
 	DispBTree(b);
 }
