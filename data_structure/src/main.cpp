@@ -19,7 +19,7 @@ int main()
 	//SqStackExample();
 	//LinkStackNodeExample();
 
-	//SqQueueExample();
+	SqQueueExample();
 	//LinkQueueNodeexample();
 	//DLinkQueueExamples();
 
@@ -27,6 +27,6 @@ int main()
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	BTreeTraversalExample(); 
+	//BTreeTraversalExample(); 
 	return 0;
 }

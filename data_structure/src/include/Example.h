@@ -253,7 +253,7 @@ template <typename T> void JosephProblem1(SqQueue<T> *&q)
 		}
 	}
 	cout << endl;
-	DestroyCQueue(q);
+	DestroyQueue(q);
 }
 
 

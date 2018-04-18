@@ -66,12 +66,6 @@ template <typename T> void InitCQueue(SqQueue<T> *&q)
 }
 
 
-template <typename T> void DestroyCQueue(SqQueue<T> *&q)
-{
-	delete q;
-}
-
-
 
 //从队尾进队
 template <typename T> bool enCQueueR(SqQueue<T> *&q, T e)
@@ -130,7 +124,7 @@ template <typename T> struct QuType
 	int count;
 };
 
-template <typename T> void InitQueue1(QuType<T> *&qu)
+template <typename T> void InitQueue_count(QuType<T> *&qu)
 {
 	qu = new QuType<T>;
 	qu->front = 0;
@@ -138,7 +132,7 @@ template <typename T> void InitQueue1(QuType<T> *&qu)
 }
 
 
-template <typename T> bool EnQueue1(QuType<T>  *&qu, T x)
+template <typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 {
 	int rear;
 	if (qu->count == MAX_SIZE) {
@@ -154,7 +148,7 @@ template <typename T> bool EnQueue1(QuType<T>  *&qu, T x)
 }
 
 
-template <typename T> bool DeQueue1(QuType<T>  *&qu, T &x)
+template <typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 {
 	if (qu->count == 0) {
 		return false;
@@ -168,7 +162,7 @@ template <typename T> bool DeQueue1(QuType<T>  *&qu, T &x)
 }
 
 
-template <typename T> bool QueueEmpty1(QuType<T>  *qu)
+template <typename T> bool QueueEmpty_count(QuType<T>  *qu)
 {
 	return (qu->count == 0);
 }
@@ -194,7 +188,7 @@ void number(int n)
 		}
 	}
 	cout << endl;
-	DestroyCQueue(q);
+	DestroyQueue(q);
 }
 
 void SqQueueExample()
