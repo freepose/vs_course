@@ -21,14 +21,14 @@ template <typename T> struct LinkQueueNode
 template <typename T> void InitQueue(LinkQueueNode<T> *&q)
 {
 	q = new LinkQueueNode<T>;
-	q->front = q->rear = NULL;
+	q->front = q->rear = 0;
 }
 
 
 template <typename T> void DestroyQueue(LinkQueueNode<T> *&q)
 {
 	DataNode<T> *pre = q->front, *p;
-	if (pre != NULL) {
+	if (pre != 0) {
 		p = pre->next;
 		while (p != NULL) {
 			delete pre;
