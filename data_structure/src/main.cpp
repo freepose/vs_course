@@ -8,7 +8,7 @@
 #include"include\Example.h"
 #include"include\BTree.h"
 
-#include"include\basic.h"
+#include"include\array.h"
 
 
 int main()
@@ -27,7 +27,7 @@ int main()
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	BTreeTraversalExample(); 
-	
+	// BTreeTraversalExample(); 
+
 	return 0;
 }
