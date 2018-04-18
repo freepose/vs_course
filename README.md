@@ -15,7 +15,7 @@
 
 	[3] Queue
 		SqQueue, sequencial queue
-		LinkQuNode, linked queue
+		LinkQueueNode, linked queue
 
 	[4] Tree
 		BTNode, binary tree
