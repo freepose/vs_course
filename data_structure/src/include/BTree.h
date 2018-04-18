@@ -112,7 +112,7 @@ template <typename T> int BTNodeDepth(BTNode<T> *b)
 }
 
 
-/*  traversal methods of a tree  */
+/*  traverse methods of a tree: recursive traverse  */
 
 
 template <typename T> void PreOrder(BTNode<T> *b)	//ÏÈĞò±éÀúµİ¹éËã·¨ 
