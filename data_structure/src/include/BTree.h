@@ -51,6 +51,22 @@ template <typename T> void DestroyBTree(BTNode<T> *&b)
 	}
 }
 
+template <typename T> void DispBTree(BTNode<T> *b)
+{
+	if (b != 0) {
+		cout << b->data;
+		if (b->lchild != 0 || b->rchild != 0) {
+			cout << '(';
+			DispBTree(b->lchild);
+			if (b->rchild != 0) {
+				cout << ',';
+				DispBTree(b->rchild);
+				cout << ')';
+			}
+		}
+	}
+}
+
 template <typename T>  BTNode<T>* FindNode(BTNode<T> *b, const T x)
 {
 	BTNode<T> *p;
@@ -94,24 +110,6 @@ template <typename T> int BTNodeDepth(BTNode<T> *b)
 	}
 
 }
-
-
-template <typename T> void DispBTree(BTNode<T> *b)
-{
-	if (b != 0) {
-		cout << b->data;
-		if (b->lchild != 0 || b->rchild != 0) {
-			cout << '(';
-			DispBTree(b->lchild);
-			if (b->rchild != 0) {
-				cout << ',';
-				DispBTree(b->rchild);
-				cout << ')';
-			}
-		}
-	}
-}
-
 
 
 /*  traversal methods of a tree  */
