@@ -3,9 +3,6 @@
 // #include "basic.h"
 
 
-
-
-
 template<typename T> void read_array(T a[], int n)
 {
 	for (int i = 0; i<n; i++)
@@ -13,8 +10,6 @@ template<typename T> void read_array(T a[], int n)
 		cin >> a[i];
 	}
 }
-
-
 
 
 template<typename T> void print_array(T a[], int n)

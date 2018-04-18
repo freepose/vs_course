@@ -14,7 +14,7 @@
 			Examples: judge a pair of brackets
 
 	[3] Queue
-		SqQueue, sequencial queue
+		SqQueue, sequencial queue, circular queue
 		LinkQueueNode, linked queue
 
 	[4] Tree
