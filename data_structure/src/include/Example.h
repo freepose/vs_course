@@ -234,12 +234,13 @@ template <typename T> void JosephProblem(LinkNode<T> *&L)
 }
 
 
-//////////////////////////////////////////////////Solving with SqQueue//////////////////////////////////////////////////
+/* Solving with SqQueue */
+
 
 template <typename T> void JosephProblem1(SqQueue<T> *&q)
 {
 	int cnt = 0, n = 3, e;
-	while (!CQueueEmpty(q)) {
+	while (!QueueEmpty(q)) {
 		cnt++;
 		if (cnt != n) {
 			deCQueueF(q, e);

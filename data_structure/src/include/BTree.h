@@ -154,16 +154,16 @@ template <typename T> void LevelOrder(BTNode<T> *b)
 {
 	BTNode<T> *p;
 	SqQueue<BTNode<T>* > *qu;                      //定义环形队列指针
-	InitCQueue(qu);
-	enCQueueF(qu, b);
-	while (!CQueueEmpty(qu)) {
-		deCQueueR(qu, p);
+	InitQueue(qu);
+	enQueue(qu, b);
+	while (!QueueEmpty(qu)) {
+		deQueue(qu, p);
 		cout << p->data;
 		if (p->lchild != 0) {
-			enCQueueF(qu, p->lchild);
+			enQueue(qu, p->lchild);
 		}
 		if (p->rchild != 0) {
-			enCQueueF(qu, p->rchild);
+			enQueue(qu, p->rchild);
 		}
 	}
 }

@@ -72,11 +72,6 @@ template <typename T> void DestroyCQueue(SqQueue<T> *&q)
 }
 
 
-template <typename T> bool CQueueEmpty(SqQueue<T> *q)
-{
-	return(q->front == q->rear);
-}
-
 
 //从队尾进队
 template <typename T> bool enCQueueR(SqQueue<T> *&q, T e)
@@ -190,10 +185,10 @@ void number(int n)
 		enCQueueR(q, i);
 	}
 	cout << "报数出列顺序：" << endl;
-	while (!CQueueEmpty(q)) {
+	while (!QueueEmpty(q)) {
 		deCQueueF(q, e);
 		cout << '\t' << e;
-		if (!CQueueEmpty(q)) {
+		if (!QueueEmpty(q)) {
 			deCQueueF(q, e);
 			enCQueueR(q, e);
 		}
