@@ -1,6 +1,8 @@
 #pragma once
 
 #include "basic.h"
+#include "SqQueue.h"
+
 
 template <typename T>  struct BTNode
 {
@@ -145,6 +147,28 @@ template <typename T> void PostOrder(BTNode<T> *b)	//后序遍历递归算法
 	}
 }
 
+/*  traverse methods of a tree: non-recursive traverse  */
+
+
+template <typename T> void LevelOrder(BTNode<T> *b)
+{
+	BTNode<T> *p;
+	SqQueue<BTNode<T>* > *qu;                      //定义环形队列指针
+	InitCQueue(qu);
+	enCQueueF(qu, b);
+	while (!CQueueEmpty(qu)) {
+		deCQueueR(qu, p);
+		cout << p->data;
+		if (p->lchild != 0) {
+			enCQueueF(qu, p->lchild);
+		}
+		if (p->rchild != 0) {
+			enCQueueF(qu, p->rchild);
+		}
+	}
+}
+
+
 template <typename T> int Nodes(BTNode<T> *b)	//结点个数 【例7.11】 
 {
 	if (b == 0) {
@@ -279,6 +303,9 @@ void BTreeTraversalExample()
 	DispLeafL(T);
 	cout << endl << "输出所有叶子结点（从右到左）:";
 	DispLeafR(T);
+
+	cout << endl << "层序遍历：";
+	LevelOrder(T);
 
 	//p215【例7.13】
 	int h;
