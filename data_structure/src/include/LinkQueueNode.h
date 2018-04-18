@@ -127,7 +127,7 @@ template <typename T> void enQueue_S(LinkNode<T> *&rear, T e)
 
 template <typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
 {
-	LinkNode<T> *t;
+	LinkNode<T> *t = 0;
 	if (rear == NULL) {
 		return false;
 	}
