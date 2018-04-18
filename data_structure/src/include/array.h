@@ -4,16 +4,16 @@
 
 template<typename T> void read_array(T a[], int n)
 {
-	for (int i = 0; i<n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		cin >> a[i];
 	}
 }
 
 
-template<typename T> void print_array(T a[], int n)
+template<typename T> void print_array(const T a[], int n)
 {
-	for (int i = 0; i<n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		cout << "\t" << a[i];
 	}
@@ -51,9 +51,9 @@ template<typename T> void buble_sort_array(T a[], int n)
 void  arrayExample()
 {
 	int n = 6;
-	int a[8] = {1, 3, 3, 34, 2, 5};
+	int a[8] = { 1, 3, 3, 34, 2, 5 };
 	// read_array(a,n);
-	buble_sort_array(a,n);//调用冒泡排序
+	buble_sort_array(a, n);//调用冒泡排序
 	print_array(a, n);
 	select_sort_array(a, n);//调用选择排序
 	print_array(a, n);
