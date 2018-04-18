@@ -273,17 +273,3 @@ void JosephProblemExample()
 	JosephProblem1(sqqueue);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

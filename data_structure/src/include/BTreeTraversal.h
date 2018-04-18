@@ -1,12 +1,12 @@
 /*
  *
- *Create By PengHaoyun,20180409
+ * Create By PengHaoyun,20180409
  *
-*/
+ */
 
 #include "basic.h"
 
-int n = 0;	//p216例7.14全局变量 
+int n = 0;	// p216例7.14全局变量 
 char str[] = "A(B(D(,G)),C(E,F))";
 
 template <typename T> void PreOrder(BTNode<T> *b)	//先序遍历递归算法 
