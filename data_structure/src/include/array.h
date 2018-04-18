@@ -1,6 +1,5 @@
 #pragma once
 
-// #include "basic.h"
 
 
 template<typename T> void read_array(T a[], int n)
