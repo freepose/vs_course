@@ -8,10 +8,10 @@
 
 	[2] Stack
 		SqStack, sequencial stack
-			Examples: symmetry string, post expression, mg_path (pp. 93)
+		Examples: symmetry string, post expression, mg_path (pp. 93)
 
 		LinkStNode, linked stack
-			Examples: judge a pair of brackets
+		Examples: judge a pair of brackets
 
 	[3] Queue
 		SqQueue, sequencial queue, circular queue
