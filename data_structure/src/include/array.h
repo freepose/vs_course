@@ -2,12 +2,16 @@
 
 #include "basic.h"
 
-template<typename T> void swap2(T &f, T &s)
+template<typename T> void swap(T &f, T &s)
 {
 	T t = f;
 	f = s;
 	s = t;
 }
+
+
+
+
 //
 //
 //void read_array(ElemType a[], int n)

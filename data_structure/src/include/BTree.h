@@ -9,12 +9,13 @@ template <typename T>  struct BTNode
 	BTNode<T> *rchild;
 };
 
-template <typename T> void CreateBTree(BTNode<T> *&b, T *str)
+
+template <typename T> void CreateBTree(BTNode<T> *& b, char *str)
 {
 	BTNode<T> *St[MAX_SIZE], *p;
 	int top = -1, k, j = 0;
 	T ch;
-	b = NULL;
+	b = 0;
 	ch = str[j];
 	while (ch != '\0') {
 		switch (ch) {
@@ -24,8 +25,8 @@ template <typename T> void CreateBTree(BTNode<T> *&b, T *str)
 		default:
 			p = new BTNode<T>;
 			p->data = ch;
-			p->lchild = p->rchild = NULL;
-			if (b == NULL) {
+			p->lchild = p->rchild = 0;
+			if (b == 0) {
 				b = p;
 			}
 			else {
@@ -43,25 +44,25 @@ template <typename T> void CreateBTree(BTNode<T> *&b, T *str)
 
 template <typename T> void DestroyBTree(BTNode<T> *&b)
 {
-	if (b != NULL) {         /*if b is empty,do nothing*/
+	if (b != 0) {         /* if b is empty, do nothing */
 		DestroyBTree(b->lchild);
 		DestroyBTree(b->rchild);
 		delete b;
 	}
 }
 
-template <typename T>  BTNode<T>* FindNode(BTNode<T> *b, T x)
+template <typename T>  BTNode<T>* FindNode(BTNode<T> *b, const T x)
 {
 	BTNode<T> *p;
-	if (b == NULL) {
-		return NULL;
+	if (b == 0) {
+		return 0;
 	}
 	else if (b->data == x) {
 		return b;
 	}
 	else {
 		p = FindNode(b->lchild, x);
-		if (p != NULL) {
+		if (p != 0) {
 			return p;
 		}
 		else {
@@ -83,7 +84,7 @@ template <typename T> BTNode<T>* RchildNode(BTNode<T> *p)
 template <typename T> int BTNodeDepth(BTNode<T> *b)
 {
 	int lchilddeep, rchilddeep;
-	if (b == NULL) {
+	if (b == 0) {
 		return 0;
 	}
 	else {
@@ -94,14 +95,15 @@ template <typename T> int BTNodeDepth(BTNode<T> *b)
 
 }
 
+
 template <typename T> void DispBTree(BTNode<T> *b)
 {
-	if (b != NULL) {
+	if (b != 0) {
 		cout << b->data;
-		if (b->lchild != NULL || b->rchild != NULL) {
+		if (b->lchild != 0 || b->rchild != 0) {
 			cout << '(';
 			DispBTree(b->lchild);
-			if (b->rchild != NULL) {
+			if (b->rchild != 0) {
 				cout << ',';
 				DispBTree(b->rchild);
 				cout << ')';
@@ -119,7 +121,7 @@ template <typename T> void PreOrder(BTNode<T> *b)	//ÏÈÐò±éÀúµÝ¹éËã·¨
 {
 	if (b != 0)
 	{
-		cout << b->data;
+		cout << b->data << " ";
 		PreOrder(b->lchild);
 		PreOrder(b->rchild);
 	}
@@ -127,83 +129,98 @@ template <typename T> void PreOrder(BTNode<T> *b)	//ÏÈÐò±éÀúµÝ¹éËã·¨
 
 template <typename T> void InOrder(BTNode<T> *b)	//ÖÐÐò±éÀúµÝ¹éËã·¨ 
 {
-	if (b != NULL)
+	if (b != 0)
 	{
 		InOrder(b->lchild);
-		cout << b->data;
+		cout << b->data << " ";
 		InOrder(b->rchild);
 	}
 }
 
 template <typename T> void PostOrder(BTNode<T> *b)	//ºóÐò±éÀúµÝ¹éËã·¨ 
 {
-	if (b != NULL)
+	if (b != 0)
 	{
 		PostOrder(b->lchild);
 		PostOrder(b->rchild);
-		cout << b->data;
+		cout << b->data << " ";
 	}
 }
 
 template <typename T> int Nodes(BTNode<T> *b)	//½áµã¸öÊý ¡¾Àý7.11¡¿ 
 {
-	if (b == NULL)
+	if (b == 0) {
 		return 0;
-	else
+	}
+	else {
 		return Nodes(b->lchild) + Nodes(b->rchild) + 1;
+	}		
 }
 
-template <typename T> void DispLeaf(BTNode<T> *b)	//Êä³öËùÓÐÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©¡¾Àý7.12¡¿ 
+// Display node value from left to right
+template <typename T> void DispLeafL(BTNode<T> *b)	//Êä³öËùÓÐÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©¡¾Àý7.12¡¿ 
 {
-	if (b != NULL)
+	if (b != 0)
 	{
-		if (b->lchild == NULL && b->rchild == NULL)
+		if (b->lchild == 0 && b->rchild == 0) {
 			cout << b->data;
-		DispLeaf(b->lchild);
-		DispLeaf(b->rchild);
+		}
+		DispLeafL(b->lchild);
+		DispLeafL(b->rchild);
 	}
 }
 
-template <typename T> void DispLeaf1(BTNode<T> *b)	//Êä³öËùÓÐÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©¡¾Àý7.12¡¿ 
+
+// Display node value from right to left
+template <typename T> void DispLeafR(BTNode<T> *b)	//Êä³öËùÓÐÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©¡¾Àý7.12¡¿ 
 {
-	if (b != NULL)
+	if (b != 0)
 	{
-		if (b->lchild == NULL && b->rchild == NULL)
+		if (b->lchild == 0 && b->rchild == 0) {
 			cout << b->data;
-		DispLeaf(b->rchild);
-		DispLeaf(b->lchild);
+		}			
+		DispLeafR(b->rchild);
+		DispLeafR(b->lchild);
 	}
 }
 
-template<typename T> int Level(BTNode<T> *b, char x, int h)	//ÊäÈëµÄ½áµãÖµËùÔÚµÄ²ã´Î 
+
+template<typename T> int Level(BTNode<T> *b, char x, int h)	// ÊäÈëµÄ½áµãÖµËùÔÚµÄ²ã´Î 
 {
 	int l;
-	if (b == NULL)
+	if (b == 0) {
 		return 0;
-	else if (b->data == x)
+	}		
+	else if (b->data == x) {
 		return h;
+	}		
 	else
 	{
 		l = Level(b->lchild, x, h + 1);
-		if (l != 0)
+		if (l != 0) {
 			return (l);
-		else
+		}
+		else {
 			return(Level(b->rchild, x, h + 1));
+		}			
 	}
 }
 
-template <typename T> void Lnodenum1(BTNode<T> *b, int h, int k, int &n)
+// h = 1, n = 0
+template <typename T> void Lnodenum(BTNode<T> *b, int h, int k, int &n)
 {
-	if (b == NULL)
+	if (b == 0){
 		return;
+	}		
 	else
 	{
-		if (h == k)
+		if (h == k) {
 			n++;
-		else if (h<k)
+		}			
+		else if (h < k)
 		{
-			Lnodenum1(b->lchild, h + 1, k, n);
-			Lnodenum1(b->rchild, h + 1, k, n);
+			Lnodenum(b->lchild, h + 1, k, n);
+			Lnodenum(b->rchild, h + 1, k, n);
 		}
 	}
 }
@@ -211,10 +228,12 @@ template <typename T> void Lnodenum1(BTNode<T> *b, int h, int k, int &n)
 template <typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217¡¾Àý7.15¡¿ Á½¿Å¶þ²æÊ÷ÊÇ·ñÏàËÆ 
 {
 	bool like1, like2;
-	if (b1 == NULL && b2 == NULL)
+	if (b1 == 0 && b2 == 0) {
 		return true;
-	else if (b1 == NULL || b2 == NULL)
+	}		
+	else if (b1 == 0 || b2 == 0) {
 		return false;
+	}		
 	else
 	{
 		like1 = Like(b1->lchild, b2->lchild);
@@ -223,22 +242,25 @@ template <typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217¡¾Àý7.15¡¿ Á
 	}
 }
 
-template <typename T> bool ancestor(BTNode<T> *b, T x)	//p218¡¾Àý7.15¡¿Êä³öÖµÎªx½áµãµÄËùÓÐ×æÏÈ 
+
+template <typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àý7.15¡¿Êä³öÖµÎªx½áµãµÄËùÓÐ×æÏÈ 
 {
-	if (b == NULL)
+	if (b == 0) {
 		return false;
-	else if (b->lchild != NULL && b->lchild->data == x || b->rchild != NULL && b->rchild->data == x)
+	}		
+	else if (b->lchild != 0 && b->lchild->data == x || b->rchild != 0 && b->rchild->data == x)
 	{
 		cout << b->data;
 		return true;
 	}
-	else if (ancestor(b->lchild, x) || ancestor(b->rchild, x))
+	else if (Ancestor(b->lchild, x) || Ancestor(b->rchild, x))
 	{
 		cout << b->data;
 		return true;
 	}
-	else
+	else {
 		return false;
+	}		
 }
 
 void BTreeTraversalExample()
@@ -246,25 +268,24 @@ void BTreeTraversalExample()
 	BTNode<char> *T = 0;
 	char str[] = "A(B(D(,G)),C(E,F))";
 	CreateBTree(T, str);
-	cout << "ÏÔÊ¾¶þ²æÊ÷£º" << endl;
+	cout << "ÏÔÊ¾¶þ²æÊ÷£º";
 	DispBTree(T);
-	cout << endl << "ÏÈÐò±éÀúµÝ¹é£º" << endl;
+	cout << endl << "ÏÈÐò±éÀúµÝ¹é£º";
 	PreOrder(T);
-	cout << endl << "ÖÐÐò±éÀúµÝ¹é£º" << endl;
+	cout << endl << "ÖÐÐò±éÀúµÝ¹é£º";
 	InOrder(T);
-	cout << endl << "ºóÐò±éÀúµÝ¹é£º" << endl;
+	cout << endl << "ºóÐò±éÀúµÝ¹é£º";
 	PostOrder(T);
-	cout << endl << "½áµã¸öÊý:" << endl;
-	cout << Nodes<char>(T) << endl;
-	cout << "Êä³öËùÓÐÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©" << endl;
-	DispLeaf(T);
-	cout << endl << "Êä³öËùÓÐÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©" << endl;
-	DispLeaf1(T);
-	cout << endl;
+	cout << endl << "½áµã¸öÊý:" << Nodes<char>(T) << endl;
+	cout << "Êä³öËùÓÐÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©:";
+	DispLeafL(T);
+	cout << endl << "Êä³öËùÓÐÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©:";
+	DispLeafR(T);
+
 	//p215¡¾Àý7.13¡¿
 	int h;
 	char x;
-	cout << "½áµãÖµ£º" << endl;
+	cout << endl << "½áµãÖµ£º";
 	cin >> x;
 	h = Level<char>(T, x, 1);
 	if (h == 0)
@@ -276,7 +297,7 @@ void BTreeTraversalExample()
 	cout << "µÚ¼¸²ã£¿" << endl;
 	cin >> k;
 	int  n = 0;	// p216Àý7.14È«¾Ö±äÁ¿ 
-	Lnodenum1(T, 1, k, n);
+	Lnodenum(T, 1, k, n);
 	cout << n << endl;
 	//p217¡¾Àý7.15¡¿
 	BTNode<char> *G;
@@ -289,21 +310,5 @@ void BTreeTraversalExample()
 	char y;
 	cout << "ÊäÈëÖµy" << endl;
 	cin >> y;
-	ancestor<char>(T, y);
-
+	Ancestor<char>(T, y);
 }
-
-void BTNodeexample()
-{
-	BTNode<char> *b;
-	char str[MAX_SIZE] = "A(B(D(,G)),C(E,F))";
-	CreateBTree(b, str);
-	DispBTree(b);
-}
-
-
-
-
-
-
-
