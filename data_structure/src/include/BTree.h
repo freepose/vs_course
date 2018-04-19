@@ -153,7 +153,7 @@ template <typename T> void PostOrder(BTNode<T> *b)	//ºóĞò±éÀúµİ¹éËã·¨
 template <typename T> void LevelOrder(BTNode<T> *b)
 {
 	BTNode<T> *p;
-	SqQueue<BTNode<T>* > *qu;                      //¶¨Òå»·ĞÎ¶ÓÁĞÖ¸Õë
+	SqQueue<BTNode<T>* > *qu;                      
 	InitQueue(qu);
 	enQueue(qu, b);
 	while (!QueueEmpty(qu)) {
@@ -229,7 +229,7 @@ template<typename T> int Level(BTNode<T> *b, char x, int h)	// ÊäÈëµÄ½áµãÖµËùÔÚµ
 }
 
 // h = 1, n = 0
-template <typename T> void Lnodenum(BTNode<T> *b, int h, int k, int &n)
+template <typename T> void Lnodenum(BTNode<T> *b, int h, int k, int &n) //Êä³öÄ³¸ö²ã´ÎµÄ½áµãÊı
 {
 	if (b == 0){
 		return;
@@ -265,7 +265,7 @@ template <typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217¡¾Àı7.15¡¿ Á
 }
 
 
-template <typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àı7.15¡¿Êä³öÖµÎªx½áµãµÄËùÓĞ×æÏÈ 
+template <typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àı7.16¡¿Êä³öÖµÎªx½áµãµÄËùÓĞ×æÏÈ 
 {
 	if (b == 0) {
 		return false;
@@ -303,10 +303,8 @@ void BTreeTraversalExample()
 	DispLeafL(T);
 	cout << endl << "Êä³öËùÓĞÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©:";
 	DispLeafR(T);
-
 	cout << endl << "²ãĞò±éÀú£º";
 	LevelOrder(T);
-
 	//p215¡¾Àı7.13¡¿
 	int h;
 	char x;
@@ -321,9 +319,9 @@ void BTreeTraversalExample()
 	int k;
 	cout << "µÚ¼¸²ã£¿" << endl;
 	cin >> k;
-	int  n = 0;	// p216Àı7.14È«¾Ö±äÁ¿ 
+	int  n = 0;	// p216Àı7.14 
 	Lnodenum(T, 1, k, n);
-	cout << n << endl;
+	cout << "½áµã¸öÊıÎª£º"<<n << endl;
 	//p217¡¾Àı7.15¡¿
 	BTNode<char> *G;
 	CreateBTree(G, str);
@@ -335,5 +333,6 @@ void BTreeTraversalExample()
 	char y;
 	cout << "ÊäÈëÖµy" << endl;
 	cin >> y;
+	cout << "×æÏÈÎª£º";
 	Ancestor<char>(T, y);
 }
