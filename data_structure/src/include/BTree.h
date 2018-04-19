@@ -285,6 +285,48 @@ template <typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218°æ¿˝7.16°ø ‰≥
 	}		
 }
 
+
+/*≤…”√≤„¥Œ±È¿˙∑Ω∑®…Ëº∆7.17µƒÀ„∑®*/
+template <typename T> struct NodeType {
+	T pt;
+	int parent;
+};
+
+template <typename T> void AllPath2(BTNode<T> *b)
+{
+	int k;
+	BTNode<T> *p;
+	NodeType<BTNode<T>*> qelem;
+	SqQueue<NodeType<BTNode<T>*>> *qu;
+	InitQueue(qu);                     //∑«ª∑–Œ∂”¡–
+	qelem.pt = b;
+	qelem.parent = -1;                 //¥¥Ω®∏˙Ω·µ„∂‘”¶µƒ∂”¡–‘™Àÿ
+	enQueue(qu, qelem);                //∏˘Ω⁄µ„Ω¯∂”
+	while (!QueueEmpty(qu)) {
+		deQueue(qu, qelem);            //≥ˆ∂”‘™Àÿqelem £¨‘⁄∂”÷–µƒœ¬±ÍŒ™qu->front
+		p = qelem.pt;
+		if (p->lchild == 0 && p->rchild == 0) {
+			k = qu->front;
+			while (qu->data[k].parent != -1) {
+				cout << qu->data[k].pt->data <<" ";
+				k = qu->data[k].parent ;
+			}
+			cout << qu->data[k].pt->data << endl;;
+		}
+		if (p->lchild != 0) {
+			qelem.pt = p->lchild;
+			qelem.parent = qu->front;
+			enQueue(qu, qelem);
+		}
+		if (p->rchild != 0) {
+			qelem.pt = p->rchild;
+			qelem.parent = qu->front;
+			enQueue(qu, qelem);
+		}
+	}
+}
+
+
 void BTreeTraversalExample()
 {
 	BTNode<char> *T = 0;
@@ -335,4 +377,8 @@ void BTreeTraversalExample()
 	cin >> y;
 	cout << "◊Êœ»Œ™£∫";
 	Ancestor<char>(T, y);
+
+	cout << "ƒÊ¬∑æ∂”–£∫" << endl; AllPath2(T);
+
+	DestroyBTree(T);
 }
