@@ -17,16 +17,16 @@ template <typename T> struct DLinkQueue		//双端链队节点类型
 template <typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//初始化队列
 {
 	dq = new DLinkQueue<T>;
-	dq->front = dq->rear = NULL;
+	dq->front = dq->rear = 0;
 }
 
 template <typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//销毁队列
 {
 	DDataNode<T> *dpre = dq->front, *p;
-	while (dpre != NULL)
+	while (dpre != 0)
 	{
 		p = dpre->next;
-		while (p != NULL)
+		while (p != 0)
 		{
 			delete dpre;
 			dpre = p;
@@ -39,7 +39,7 @@ template <typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//销毁队列
 
 template <typename T> bool DLinkQueueEmpty(DLinkQueue<T> *dq)		//判断队列是否为空
 {
-	return (dq->rear == NULL);
+	return (dq->rear == 0);
 }
 
 template <typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//头入队
@@ -47,8 +47,8 @@ template <typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//头入队
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
 	p->data = e;
-	p->next = p->prear = NULL;
-	if (dq->rear == NULL)		//如果原队列为空
+	p->next = p->prear = 0;
+	if (dq->rear == 0)		//如果原队列为空
 		dq->front = dq->rear = p;
 	else
 	{
@@ -63,9 +63,9 @@ template <typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//尾入队
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
 	p->data = e;
-	p->next = NULL;
+	p->next = 0;
 	p->prear = dq->rear;		//p的前结点指向尾节点
-	if (dq->rear == NULL)		//如果原队列为空
+	if (dq->rear == 0)		//如果原队列为空
 		dq->front = dq->rear = p;
 	else
 	{
@@ -77,11 +77,11 @@ template <typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//尾入队
 template <typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//头出队
 {
 	DDataNode<T> *t;
-	if (dq->front == NULL)		//如果原队列为空
+	if (dq->front == 0)		//如果原队列为空
 		return false;
 	t = dq->front;
 	if (dq->front == dq->rear)		//队列中只有一个结点
-		dq->front = dq->rear = NULL;
+		dq->front = dq->rear = 0;
 	else
 		dq->front = dq->front->next;
 	e = t->data;
@@ -92,11 +92,11 @@ template <typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//头出队
 template <typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//尾出队
 {
 	DDataNode<T> *t;
-	if (dq->rear == NULL)		//如果原队列为空
+	if (dq->rear == 0)		//如果原队列为空
 		return false;
 	t = dq->rear;
 	if (dq->front == dq->rear)		//队列中只有一个结点
-		dq->front = dq->rear = NULL;
+		dq->front = dq->rear = 0;
 	else
 		dq->rear = dq->rear->prear;
 	e = t->data;

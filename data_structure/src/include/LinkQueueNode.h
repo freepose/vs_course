@@ -1,7 +1,7 @@
 #pragma once
 
 #include "basic.h"
-#include"LinkNode.h"
+#include "LinkNode.h"
 
 //单链表
 template <typename T> struct DataNode
@@ -11,24 +11,24 @@ template <typename T> struct DataNode
 };
 
 //链队
-template <typename T> struct LinkQuNode
+template <typename T> struct LinkQueueNode
 {
 	DataNode<T> *front;
 	DataNode<T> *rear;
 };
 
 
-template <typename T> void InitQueue(LinkQuNode<T> *&q)
+template <typename T> void InitQueue(LinkQueueNode<T> *&q)
 {
-	q = new LinkQuNode<T>;
-	q->front = q->rear = NULL;
+	q = new LinkQueueNode<T>;
+	q->front = q->rear = 0;
 }
 
 
-template <typename T> void DestroyQueue(LinkQuNode<T> *&q)
+template <typename T> void DestroyQueue(LinkQueueNode<T> *&q)
 {
 	DataNode<T> *pre = q->front, *p;
-	if (pre != NULL) {
+	if (pre != 0) {
 		p = pre->next;
 		while (p != NULL) {
 			delete pre;
@@ -41,13 +41,13 @@ template <typename T> void DestroyQueue(LinkQuNode<T> *&q)
 }
 
 
-template <typename T> bool QueueEmpty(LinkQuNode<T> *q)
+template <typename T> bool QueueEmpty(LinkQueueNode<T> *q)
 {
 	return(q->rear == NULL);
 }
 
 
-template <typename T> void enQueue(LinkQuNode<T> *&q, T e)
+template <typename T> void enQueue(LinkQueueNode<T> *&q, T e)
 {
 	DataNode<T> *p;
 	p = new DataNode<T>;//创建新的结点
@@ -62,7 +62,7 @@ template <typename T> void enQueue(LinkQuNode<T> *&q, T e)
 	}
 }
 
-template <typename T> bool deQueue(LinkQuNode<T> *&q, T &e)
+template <typename T> bool deQueue(LinkQueueNode<T> *&q, T &e)
 {
 	DataNode<T> *t;
 	if (q->rear == NULL) {
@@ -82,11 +82,11 @@ template <typename T> bool deQueue(LinkQuNode<T> *&q, T &e)
 
 ///////////////////////////////////////text///////////////////////////////////
 
-void LinkQuNodeexample()
+void LinkQueueNodeexample()
 {
 	int i, e;
 	int Q[] = { 1,2,3,4,5 };
-	LinkQuNode<int> *q;
+	LinkQueueNode<int> *q;
 	InitQueue(q);
 	for (i = 0; i < 5; i++) {
 		enQueue(q, Q[i]);
@@ -127,7 +127,7 @@ template <typename T> void enQueue_S(LinkNode<T> *&rear, T e)
 
 template <typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
 {
-	LinkNode<T> *t;
+	LinkNode<T> *t = 0;
 	if (rear == NULL) {
 		return false;
 	}
@@ -152,7 +152,7 @@ template <typename T> bool queueEmpty_S(LinkNode<T> *rear)
 }
 
 
-void S_LinkQuNodeexample()
+void S_LinkQueueNodeexample()
 {
 	int i, e;
 	int M[] = { 6,7,8,9 };
