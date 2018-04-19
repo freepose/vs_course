@@ -229,21 +229,19 @@ template<typename T> int Level(BTNode<T> *b, char x, int h)	// ÊäÈëµÄ½áµãÖµËùÔÚµ
 }
 
 // h = 1, n = 0
-template <typename T> void Lnodenum(BTNode<T> *b, int h, int k, int &n) //Êä³öÄ³¸ö²ã´ÎµÄ½áµãÊı
+template <typename T> int Lnodenum(BTNode<T> *b, int h, int k) //Êä³öÄ³¸ö²ã´ÎµÄ½áµãÊı
 {
-	if (b == 0){
-		return;
-	}		
-	else
-	{
+	int n = 0;
+	if (b != 0) {
 		if (h == k) {
-			n++;
-		}			
-		else if (h < k)
-		{
-			Lnodenum(b->lchild, h + 1, k, n);
-			Lnodenum(b->rchild, h + 1, k, n);
+			return 1;
 		}
+		else if (h < k) {
+			return Lnodenum(b->lchild, h + 1, k) + Lnodenum(b->rchild, h + 1, k);
+		}
+	}
+	else {
+		return 0;
 	}
 }
 
@@ -361,8 +359,8 @@ void BTreeTraversalExample()
 	int k;
 	cout << "µÚ¼¸²ã£¿" << endl;
 	cin >> k;
-	int  n = 0;	// p216Àı7.14 
-	Lnodenum(T, 1, k, n);
+	int n = 0;
+	n=Lnodenum(T, 1, k);	// p216Àı7.14 
 	cout << "½áµã¸öÊıÎª£º"<<n << endl;
 	//p217¡¾Àı7.15¡¿
 	BTNode<char> *G;
