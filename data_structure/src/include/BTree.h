@@ -286,7 +286,7 @@ template <typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àı7.15¡¿Êä³
 }
 
 
-/*²ÉÓÃ²ã´Î±éÀú·½·¨Éè¼Æ7.17µÄËã·¨*/
+/*´Ó¸ù½Úµãµ½Ã¿¸öÒ¶×Ó½áµãµÄÂ·¾¶ÄæĞòÁĞ*/
 template <typename T> struct NodeType {
 	T pt;
 	int parent;
