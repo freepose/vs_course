@@ -1,26 +1,26 @@
 #pragma once
 #include"basic.h"
 
-template <typename T> struct DDataNode		//双端链队数据结点类型
+template<typename T> struct DDataNode		//双端链队数据结点类型
 {
 	T data;
 	DDataNode<T> *next;
 	DDataNode<T> *prear;
 };
 
-template <typename T> struct DLinkQueue		//双端链队节点类型
+template<typename T> struct DLinkQueue		//双端链队节点类型
 {
 	DDataNode<T> *front;
 	DDataNode<T> *rear;
 };
 
-template <typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//初始化队列
+template<typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//初始化队列
 {
 	dq = new DLinkQueue<T>;
 	dq->front = dq->rear = 0;
 }
 
-template <typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//销毁队列
+template<typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//销毁队列
 {
 	DDataNode<T> *dpre = dq->front, *p;
 	while (dpre != 0)
@@ -37,12 +37,12 @@ template <typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//销毁队列
 	delete dq;
 }
 
-template <typename T> bool DLinkQueueEmpty(DLinkQueue<T> *dq)		//判断队列是否为空
+template<typename T> bool DLinkQueueEmpty(DLinkQueue<T> *dq)		//判断队列是否为空
 {
 	return (dq->rear == 0);
 }
 
-template <typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//头入队
+template<typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//头入队
 {
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
@@ -58,7 +58,7 @@ template <typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//头入队
 	}
 }
 
-template <typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//尾入队
+template<typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//尾入队
 {
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
@@ -74,7 +74,7 @@ template <typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//尾入队
 	}
 }
 
-template <typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//头出队
+template<typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//头出队
 {
 	DDataNode<T> *t;
 	if (dq->front == 0)		//如果原队列为空
@@ -89,7 +89,7 @@ template <typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//头出队
 	return true;
 }
 
-template <typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//尾出队
+template<typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//尾出队
 {
 	DDataNode<T> *t;
 	if (dq->rear == 0)		//如果原队列为空

@@ -131,7 +131,7 @@ int mg1[8 + 2][8 + 2] =
 	{ 1, 1,1,1,1,1,1,1,1,  1 }
 };
 
-template <typename T> void Disp(SqQueue<T> *qu, int front)
+template<typename T> void Disp(SqQueue<T> *qu, int front)
 {
 	int k = front, j, ns = 0;
 	cout << endl;
@@ -206,7 +206,7 @@ void mgpath_SqQueue()
  */
 
 // using linked list (LinkNode)
-template <typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
+template<typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
 {
 	LinkNode<T> *p = L, *S;
 	int times = 0, n;
@@ -233,7 +233,7 @@ template <typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
 }
 
 // using sequence queue (SqQueue). how -> the process?
-template <typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q)
+template<typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q)
 {
 	int cnt = 0, n = 3, e;
 	while (!QueueEmpty(q)) {

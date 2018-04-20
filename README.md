@@ -23,5 +23,5 @@
 
 ### todo list
 	- KMP
-	- ¹¹Ôì¶ş²æÊ÷
+	- construct a binary tree
 	-

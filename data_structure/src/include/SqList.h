@@ -7,19 +7,19 @@
 #include "basic.h"
 
 
-template <typename T>  struct SqList {
+template<typename T>  struct SqList {
     T data[MAX_SIZE];
 	int length;
 };
 
 
-template <typename T> void InitList(SqList<T> *&L)
+template<typename T> void InitList(SqList<T> *&L)
 {
 	L = new SqList<T>;
 	L->length = 0;
 }
 
-template <typename T> void CreateList(SqList<T> *&L,T a[],int n)
+template<typename T> void CreateList(SqList<T> *&L,T a[],int n)
 {
 	for(int i=0;i<n;i++){		
 		L->data[i]=a[i];
@@ -27,7 +27,7 @@ template <typename T> void CreateList(SqList<T> *&L,T a[],int n)
 	L->length = n;
 }
 
-template <typename T> void DisplayList(SqList<T> *&L)
+template<typename T> void DisplayList(SqList<T> *&L)
 {
 	for(int i=0;i<L->length;i++){		
 		cout<<"\t"<<L->data[i];
@@ -35,24 +35,24 @@ template <typename T> void DisplayList(SqList<T> *&L)
 	cout<<endl;
 }
 
-template <typename T> void DestoryList(SqList<T> *&L)
+template<typename T> void DestoryList(SqList<T> *&L)
 {
 	delete L;
 	L = 0;
 }
 
-template <typename T> bool ListEmpty(SqList<T> *L)
+template<typename T> bool ListEmpty(SqList<T> *L)
 {
 	return (L->length == 0);
 }
 
-template <typename T> int ListLength(SqList<T> *L)
+template<typename T> int ListLength(SqList<T> *L)
 {
 	return (L->length);
 }
 
 // 1-based
-template <typename T> bool GetElem(SqList<T> *L, int i, T &e)
+template<typename T> bool GetElem(SqList<T> *L, int i, T &e)
 {
 	if (i < 1 || i > L->length) {
 		return false;
@@ -62,7 +62,7 @@ template <typename T> bool GetElem(SqList<T> *L, int i, T &e)
 }
 
 // 1-based
-template <typename T> int LocateElem(SqList<T> *L, T e)
+template<typename T> int LocateElem(SqList<T> *L, T e)
 {
 	int i = 0;
 	while (i<L->length && L->data[i] != e)
@@ -71,7 +71,7 @@ template <typename T> int LocateElem(SqList<T> *L, T e)
 	else  return i + 1;
 }
 
-template <typename T> bool ListInsert(SqList<T> *&L, int i, T e)
+template<typename T> bool ListInsert(SqList<T> *&L, int i, T e)
 {
 	int j;
 	if (i<1 || i>L->length + 1) {
@@ -87,7 +87,7 @@ template <typename T> bool ListInsert(SqList<T> *&L, int i, T e)
 	return true;   //成功插入返回true
 }
 
-template <typename T> bool ListDelete(SqList<T> *&L, int i, T &e)
+template<typename T> bool ListDelete(SqList<T> *&L, int i, T &e)
 {
 	int j;
 	if (i<1 || i>L->length) //参数错误时返回false
@@ -105,7 +105,7 @@ template <typename T> bool ListDelete(SqList<T> *&L, int i, T &e)
 	return true;     //成功删除返回true
 }
 
-template <typename T> void DeleteAllXNode(SqList<T> *&L, T x)
+template<typename T> void DeleteAllXNode(SqList<T> *&L, T x)
 {
 	int i = 0, j = 0;
 	for (i = 0; i<L->length; i++) {

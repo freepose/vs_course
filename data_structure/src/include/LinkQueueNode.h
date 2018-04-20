@@ -4,28 +4,28 @@
 #include "LinkNode.h"
 
 //单链表
-template <typename T> struct DataNode
+template<typename T> struct DataNode
 {
 	T data;
 	DataNode<T> *next;
 };
 
 //链队
-template <typename T> struct LinkQueueNode
+template<typename T> struct LinkQueueNode
 {
 	DataNode<T> *front;
 	DataNode<T> *rear;
 };
 
 
-template <typename T> void InitQueue(LinkQueueNode<T> *&q)
+template<typename T> void InitQueue(LinkQueueNode<T> *&q)
 {
 	q = new LinkQueueNode<T>;
 	q->front = q->rear = 0;
 }
 
 
-template <typename T> void DestroyQueue(LinkQueueNode<T> *&q)
+template<typename T> void DestroyQueue(LinkQueueNode<T> *&q)
 {
 	DataNode<T> *pre = q->front, *p;
 	if (pre != 0) {
@@ -41,13 +41,13 @@ template <typename T> void DestroyQueue(LinkQueueNode<T> *&q)
 }
 
 
-template <typename T> bool QueueEmpty(LinkQueueNode<T> *q)
+template<typename T> bool QueueEmpty(LinkQueueNode<T> *q)
 {
 	return(q->rear == NULL);
 }
 
 
-template <typename T> void enQueue(LinkQueueNode<T> *&q, T e)
+template<typename T> void enQueue(LinkQueueNode<T> *&q, T e)
 {
 	DataNode<T> *p;
 	p = new DataNode<T>;//创建新的结点
@@ -62,7 +62,7 @@ template <typename T> void enQueue(LinkQueueNode<T> *&q, T e)
 	}
 }
 
-template <typename T> bool deQueue(LinkQueueNode<T> *&q, T &e)
+template<typename T> bool deQueue(LinkQueueNode<T> *&q, T &e)
 {
 	DataNode<T> *t;
 	if (q->rear == NULL) {
@@ -102,13 +102,13 @@ void LinkQueueNodeexample()
 ////////////////////////example/////循环单链表储存队列///////////////////////
 
 
-template <typename T> void InitQueue_S(LinkNode<T> *&rear)
+template<typename T> void InitQueue_S(LinkNode<T> *&rear)
 {
 	rear = NULL;
 }
 
 
-template <typename T> void enQueue_S(LinkNode<T> *&rear, T e)
+template<typename T> void enQueue_S(LinkNode<T> *&rear, T e)
 {
 	LinkNode<T> *p;
 	p = new LinkNode<T>;
@@ -125,7 +125,7 @@ template <typename T> void enQueue_S(LinkNode<T> *&rear, T e)
 }
 
 
-template <typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
+template<typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
 {
 	LinkNode<T> *t = 0;
 	if (rear == NULL) {
@@ -146,7 +146,7 @@ template <typename T> bool deQueue_S(LinkNode<T> *&rear, T &e)
 }
 
 
-template <typename T> bool queueEmpty_S(LinkNode<T> *rear)
+template<typename T> bool queueEmpty_S(LinkNode<T> *rear)
 {
 	return(rear == NULL);
 }

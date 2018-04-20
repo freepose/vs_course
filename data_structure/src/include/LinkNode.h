@@ -3,12 +3,12 @@
 
 #include "basic.h"
 
-template <typename T> struct LinkNode {
+template<typename T> struct LinkNode {
 	T data;
 	LinkNode<T> *next;
 };
 
-template <typename T> void CreateListF(LinkNode<T>  *&L, T a[], int n)
+template<typename T> void CreateListF(LinkNode<T>  *&L, T a[], int n)
 {
 	LinkNode<T> *s;
 	L = new LinkNode<T>;
@@ -21,7 +21,7 @@ template <typename T> void CreateListF(LinkNode<T>  *&L, T a[], int n)
 	}
 }
 
-template <typename T> void CreateListR(LinkNode<T>  *&L, T a[], int n)
+template<typename T> void CreateListR(LinkNode<T>  *&L, T a[], int n)
 {
 	LinkNode<T>  *s, *r;
 	L = new LinkNode<T>;
@@ -35,7 +35,7 @@ template <typename T> void CreateListR(LinkNode<T>  *&L, T a[], int n)
 	r->next = 0;
 }
 
-template <typename T> void ListInsert(LinkNode<T> *&L, T x, int n)
+template<typename T> void ListInsert(LinkNode<T> *&L, T x, int n)
 {
 	LinkNode<T> *p = L, *S;
 	for (int i = 0; i < n - 1; i++)
@@ -48,7 +48,7 @@ template <typename T> void ListInsert(LinkNode<T> *&L, T x, int n)
 	p->next = S;
 }
 
-template <typename T> void ListDelete(LinkNode<T> *&L, int n)
+template<typename T> void ListDelete(LinkNode<T> *&L, int n)
 {
 	LinkNode<T> *p = L, *pre = L;
 	for (int i = 0; i < n; i++)
@@ -60,7 +60,7 @@ template <typename T> void ListDelete(LinkNode<T> *&L, int n)
 	delete p;
 }
 
-template <typename T> void DispList(LinkNode<T> *L)
+template<typename T> void DispList(LinkNode<T> *L)
 {
 	LinkNode<T> *p = L->next;
 	while (p != 0) {
@@ -70,7 +70,7 @@ template <typename T> void DispList(LinkNode<T> *L)
 	cout << endl;
 }
 
-template <typename T> void DestroyList(LinkNode<T> *L)
+template<typename T> void DestroyList(LinkNode<T> *L)
 {
 	LinkNode<T> *pre = L, *p = L->next;
 	while (p != 0)
@@ -83,7 +83,7 @@ template <typename T> void DestroyList(LinkNode<T> *L)
 }
 
 
-template <typename T> void delmaxnode(LinkNode<T> *&L)
+template<typename T> void delmaxnode(LinkNode<T> *&L)
 {
 	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = p;
 	while (p != 0) {
@@ -102,7 +102,7 @@ template <typename T> void delmaxnode(LinkNode<T> *&L)
 /// Cycle list
 ////////////////////////////////////////////////////////////////////////////////////
 
-template <typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 {
 	LinkNode<T> *s, *r;
 	L = new LinkNode<T>;
@@ -121,7 +121,7 @@ template <typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 }
 
 
-template <typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 {
 	LinkNode<T> *s, *r;
 	L = new LinkNode<T>;

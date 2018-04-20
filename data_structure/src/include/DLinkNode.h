@@ -3,7 +3,7 @@
 
 #include "basic.h"
 
-template <typename T> struct DLinkNode
+template<typename T> struct DLinkNode
 {
 	int data;
 	DLinkNode<T> *prior;
@@ -11,7 +11,7 @@ template <typename T> struct DLinkNode
 };
 
 
-template <typename T> void CreateDListF(DLinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateDListF(DLinkNode<T> *&L, T a[], int n)
 {
 	DLinkNode<T> *s;
 	L = new DLinkNode<T>;
@@ -29,7 +29,7 @@ template <typename T> void CreateDListF(DLinkNode<T> *&L, T a[], int n)
 }
 
 
-template <typename T> void CreateDListR(DLinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateDListR(DLinkNode<T> *&L, T a[], int n)
 {
 	DLinkNode<T> *s ,*r;
 	L = new DLinkNode<T>;
@@ -45,7 +45,7 @@ template <typename T> void CreateDListR(DLinkNode<T> *&L, T a[], int n)
 }
 
 
-template <typename T> void DispDList(DLinkNode<T> *L)
+template<typename T> void DispDList(DLinkNode<T> *L)
 {
 	DLinkNode<T> *p = L->next;
 	while (p != 0) {
@@ -56,7 +56,7 @@ template <typename T> void DispDList(DLinkNode<T> *L)
 }
 
 
-template <typename T> bool DListInsert(DLinkNode<T> *&L, int i, T e)
+template<typename T> bool DListInsert(DLinkNode<T> *&L, int i, T e)
 {
 	int j = 0;
 	DLinkNode<T> *p = L, *s;
@@ -82,7 +82,7 @@ template <typename T> bool DListInsert(DLinkNode<T> *&L, int i, T e)
 }
 
 
-template <typename T> bool DListDelete(DLinkNode<T> *&L, int i, T &e)
+template<typename T> bool DListDelete(DLinkNode<T> *&L, int i, T &e)
 {
 	DLinkNode<T> *p = L, *q;
 	if (i <= 0) {
@@ -108,7 +108,7 @@ template <typename T> bool DListDelete(DLinkNode<T> *&L, int i, T &e)
 
 
 //销毁双链表的两种方法
-template <typename T> void DestroyDList_pre(DLinkNode<T> *L)
+template<typename T> void DestroyDList_pre(DLinkNode<T> *L)
 {
 	DLinkNode<T> *pre = L, *p = L->next;
 	while (p != 0)
@@ -121,7 +121,7 @@ template <typename T> void DestroyDList_pre(DLinkNode<T> *L)
 }
 
 
-template <typename T> void DestroyDList_prior(DLinkNode<T> *&L)
+template<typename T> void DestroyDList_prior(DLinkNode<T> *&L)
 {
 	DLinkNode<T> *p = L->next, *q = p->prior;
 	while (p != 0) {
@@ -133,7 +133,7 @@ template <typename T> void DestroyDList_prior(DLinkNode<T> *&L)
 }
 
 
-template <typename T> bool Del_X_Node(DLinkNode<T> *&L, T x)
+template<typename T> bool Del_X_Node(DLinkNode<T> *&L, T x)
 {
 	DLinkNode<T> *p = L->next;
 	while (p != 0 && p->data != x) {
@@ -156,7 +156,7 @@ template <typename T> bool Del_X_Node(DLinkNode<T> *&L, T x)
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-template <typename T> void CreateCDListF(DLinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateCDListF(DLinkNode<T> *&L, T a[], int n)
 {
 	DLinkNode<T> *s;
 	L = new DLinkNode<T>;
@@ -178,7 +178,7 @@ template <typename T> void CreateCDListF(DLinkNode<T> *&L, T a[], int n)
 }
 
 
-template <typename T> void CreateCDListR(DLinkNode<T> *&L, T a[], int n)
+template<typename T> void CreateCDListR(DLinkNode<T> *&L, T a[], int n)
 {
 	DLinkNode<T> *r, *s;
 	L = new DLinkNode<T>;
@@ -195,7 +195,7 @@ template <typename T> void CreateCDListR(DLinkNode<T> *&L, T a[], int n)
 }
 
 
-template <typename T> void DispCDList(DLinkNode<T> *L)//循环双链表的输出
+template<typename T> void DispCDList(DLinkNode<T> *L)//循环双链表的输出
 {
 	DLinkNode<T> *p = L->next;
 	while (p != L) {
@@ -206,7 +206,7 @@ template <typename T> void DispCDList(DLinkNode<T> *L)//循环双链表的输出
 }
 
 
-template <typename T> bool Symm(DLinkNode<T> *L)//判断循环双链表的数据结点是否对称
+template<typename T> bool Symm(DLinkNode<T> *L)//判断循环双链表的数据结点是否对称
 {
 	bool same = true;  //same表示L是否对称
 	DLinkNode<T> *p = L->next, *q = L->prior;

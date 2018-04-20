@@ -9,30 +9,30 @@
 #include "basic.h"
 
 
-template <typename T> struct SqQueue {
+template<typename T> struct SqQueue {
 	T data[MAX_SIZE];
 	int front;
 	int rear;
 };
 
 
-template <typename T> void InitQueue(SqQueue<T> *&q)
+template<typename T> void InitQueue(SqQueue<T> *&q)
 {
 	q = new SqQueue<T>;
 	q->front = q->rear = -1;
 }
 
-template <typename T> void DestroyQueue(SqQueue<T> *&q)
+template<typename T> void DestroyQueue(SqQueue<T> *&q)
 {
 	delete q;
 }
 
-template <typename T> bool QueueEmpty(SqQueue<T> *q)
+template<typename T> bool QueueEmpty(SqQueue<T> *q)
 {
 	return(q->front == q->rear);
 }
 
-template <typename T> bool enQueue(SqQueue<T> *&q, T e)
+template<typename T> bool enQueue(SqQueue<T> *&q, T e)
 {
 	if (q->front == MAX_SIZE - 1) {  //队满上溢出
 		return false;
@@ -42,7 +42,7 @@ template <typename T> bool enQueue(SqQueue<T> *&q, T e)
 	return true;
 }
 
-template <typename T> bool deQueue(SqQueue<T> *&q, T &e)
+template<typename T> bool deQueue(SqQueue<T> *&q, T &e)
 {
 	if (q->front == q->rear) {  //队空下溢出
 		return false;
@@ -53,14 +53,14 @@ template <typename T> bool deQueue(SqQueue<T> *&q, T &e)
 }
 
 //circular queue
-template <typename T> void InitCycleQueue(SqQueue<T> *&q)
+template<typename T> void InitCycleQueue(SqQueue<T> *&q)
 {
 	q = new SqQueue<T>;
 	q->front = q->rear = 0;
 }
 
 //从队尾进队
-template <typename T> bool enCycleQueueR(SqQueue<T> *&q, T e)
+template<typename T> bool enCycleQueueR(SqQueue<T> *&q, T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
 		return false;
@@ -71,7 +71,7 @@ template <typename T> bool enCycleQueueR(SqQueue<T> *&q, T e)
 }
 
 //从队头进队
-template <typename T> bool enCycleQueueF(SqQueue<T> *&q,T e)
+template<typename T> bool enCycleQueueF(SqQueue<T> *&q,T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
 		return false;
@@ -82,7 +82,7 @@ template <typename T> bool enCycleQueueF(SqQueue<T> *&q,T e)
 }
 
 //从队头删除
-template <typename T> bool deCycleQueueF(SqQueue<T> *&q, T &e)
+template<typename T> bool deCycleQueueF(SqQueue<T> *&q, T &e)
 {
 	if (q->front == q->rear) {
 		return false;
@@ -93,7 +93,7 @@ template <typename T> bool deCycleQueueF(SqQueue<T> *&q, T &e)
 }
 
 //从队尾删除
-template <typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
+template<typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
 {
 	if (q->rear == q->front) {
 		return false;
@@ -104,14 +104,14 @@ template <typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
 }
 
 //例3.7 count代替队尾指针
-template <typename T> struct QuType
+template<typename T> struct QuType
 {
 	T data[MAX_SIZE];
 	int front;
 	int count;
 };
 
-template <typename T> void InitQueue_count(QuType<T> *&qu)
+template<typename T> void InitQueue_count(QuType<T> *&qu)
 {
 	qu = new QuType<T>;
 	qu->front = 0;
@@ -119,7 +119,7 @@ template <typename T> void InitQueue_count(QuType<T> *&qu)
 }
 
 
-template <typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
+template<typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 {
 	int rear;
 	if (qu->count == MAX_SIZE) {
@@ -135,7 +135,7 @@ template <typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 }
 
 
-template <typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
+template<typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 {
 	if (qu->count == 0) {
 		return false;
@@ -149,7 +149,7 @@ template <typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 }
 
 
-template <typename T> bool QueueEmpty_count(QuType<T>  *qu)
+template<typename T> bool QueueEmpty_count(QuType<T>  *qu)
 {
 	return (qu->count == 0);
 }

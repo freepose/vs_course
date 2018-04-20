@@ -2,21 +2,21 @@
 
 #include "basic.h"
 
-template <typename T> struct LinkStackNode
+template<typename T> struct LinkStackNode
 {
 	T data;
 	LinkStackNode<T> *next;
 };
 
 
-template <typename T> void InitStack(LinkStackNode<typename T> *&s)
+template<typename T> void InitStack(LinkStackNode<typename T> *&s)
 {
 	s = new LinkStackNode<T>;
 	s->next = 0;
 }
 
 
-template <typename T> void DestroyStack(LinkStackNode<typename T> *&s)
+template<typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 {
 	LinkStackNode<T> *pre = s, *p = s->next;
 	while (p != 0) {
@@ -28,13 +28,13 @@ template <typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 }
 
 
-template <typename T> bool StackEmpty(LinkStackNode<typename T> *s)
+template<typename T> bool StackEmpty(LinkStackNode<typename T> *s)
 {
 	return(s->next == 0);
 }
 
 
-template <typename T> void Push(LinkStackNode<typename T> *&s, T e)
+template<typename T> void Push(LinkStackNode<typename T> *&s, T e)
 {
 	LinkStackNode<T> *p = 0;
 	p = new LinkStackNode<T>;
@@ -44,7 +44,7 @@ template <typename T> void Push(LinkStackNode<typename T> *&s, T e)
 }
 
 
-template <typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
+template<typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 {
 	LinkStackNode<T> *p;
 	if (s->next== 0) {
@@ -58,7 +58,7 @@ template <typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 }
 
 
-template <typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
+template<typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 {
 	if (s->next == 0) {
 		return false;
