@@ -20,7 +20,6 @@ int main()
 	//DLinkNodeExample();
 
 	//SqStackExample();
-	//JudgeLegalExample();
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
