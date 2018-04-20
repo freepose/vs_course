@@ -68,7 +68,7 @@ template<typename T> bool GetTop(SqStack<T> *s, T &e)
 }
 
 /* 
- *Examples: comments, code styles
+ *Examples
  */
 
 //P82 Àý¡¾3.4¡¿Whether the string is symmetric.

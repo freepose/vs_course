@@ -151,7 +151,6 @@ template<typename T> bool QueueEmpty_count(QuType<T>  *qu)
 	return (qu->count == 0);
 }
 
-
 //P108 The number problem
 void number(int n)
 {
