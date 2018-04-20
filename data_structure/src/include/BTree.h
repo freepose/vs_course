@@ -112,7 +112,7 @@ template<typename T> int BTNodeDepth(BTNode<T> *b)
 }
 
 
-/*  traverse methods of a tree: recursive traverse  */
+/* traverse methods of a tree: recursive traverse */
 
 template<typename T> void PreOrderRecursively(BTNode<T> *b)	
 {
@@ -270,6 +270,11 @@ template<typename T> void LevelOrder(BTNode<T> *b)
 	}
 }
 
+
+/*
+ *  Examples
+ */
+
 // P225【例7.17】输出从根节点到每个叶子结点的路径逆序列 
 template<typename T> void AllPath1(BTNode<T> *b)	
 {
@@ -310,7 +315,7 @@ template<typename T> void AllPath1(BTNode<T> *b)
 	} while (!StackEmpty(st));
 }
 
-//结点个数 【例7.11】 
+//【例7.11】结点个数 
 template<typename T> int Nodes(BTNode<T> *b)	
 {
 	if (b == 0) {
@@ -347,7 +352,8 @@ template<typename T> void DispLeafR(BTNode<T> *b)	//输出所有叶子结点（从右到左）
 	}
 }
 
-template<typename T> int Level(BTNode<T> *b, char x, int h)	// 输入的结点值所在的层次 
+// 输入的结点值所在的层次 
+template<typename T> int Level(BTNode<T> *b, char x, int h)	
 {
 	int l;
 	if (b == 0) {

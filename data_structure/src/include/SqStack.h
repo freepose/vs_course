@@ -5,9 +5,7 @@
 */
 
 
-#ifndef STACK_H
-#define STACK_H 1
-
+#pragma once
 #include "basic.h"
 
 
@@ -293,5 +291,3 @@ void SqStackExample()
 	PostExpressionExample();
 	JudgeLegalExample();
 }
-
-#endif
