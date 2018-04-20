@@ -378,6 +378,8 @@ template<typename T> int Level(BTNode<T> *b, char x, int h)	// ÊäÈëµÄ½áµãÖµËùÔÚµ
 }
 
 // h = 1, n = 0
+// h: variable of level, k: given level
+// return: #nodes of k-th level
 template <typename T> int Lnodenum(BTNode<T> *b, int h, int k) //Êä³öÄ³¸ö²ã´ÎµÄ½áµãÊı
 {
 	int n = 0;
