@@ -14,7 +14,7 @@ int main()
 {
 	//SqListExample();
 	//LinkNodeExample();
-	//DLinkNodeExample();
+	DLinkNodeExample();
 
 	//SqStackExample();
 	//LinkStackNodeExample();
@@ -23,7 +23,7 @@ int main()
 	//LinkQueueNodeexample();
 	//DLinkQueueExamples();
 
-	mgpath_SqStack();
+	//mgpath_SqStack();
 	//JudgeLegalExample();
 	//JosephProblemExample();
 

@@ -1,5 +1,13 @@
+/*
+*
+* Create By TangNi,  20180420
+*
+*/
+
+
 #pragma once
 #include"basic.h"
+
 
 template<typename T> struct DDataNode		//双端链队数据结点类型
 {
@@ -13,6 +21,7 @@ template<typename T> struct DLinkQueue		//双端链队节点类型
 	DDataNode<T> *front;
 	DDataNode<T> *rear;
 };
+
 
 template<typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//初始化队列
 {
@@ -103,6 +112,7 @@ template<typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//尾出队
 	delete t;
 	return true;
 }
+
 
 void DLinkQueueExamples()
 {
