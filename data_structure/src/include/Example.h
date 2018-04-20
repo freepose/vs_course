@@ -4,13 +4,14 @@
 #include "LinkNode.h"
 #include "SqQueue.h"
 
+/*
+* maze path
+*/
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                 √‘π¨«ÛΩ‚                                                          ////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-/////////////////////////////////////////////Solving with  SqStack////////////////////////////////////////////////
+/*
+ * Using SqStack to solve a maze path
+ */
 
 typedef struct
 {
@@ -106,7 +107,9 @@ void mgpath_SqStack()
 	}
 }
 
-//////////////////////////////////////////Solving with  SqQueue///////////////////////////////////////
+/*
+ * Using SqQueue to solve a maze path
+ */
 
 typedef struct {
 	int i;
@@ -198,16 +201,12 @@ void mgpath_SqQueue()
 }
 
 
+/* 
+ * JosephProblem
+ */
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                 JosephProblem                                                     ////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////Solving with LinkNode//////////////////////////////////////////////////
-
-template <typename T> void JosephProblem(LinkNode<T> *&L)
+// using linked list (LinkNode)
+template <typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
 {
 	LinkNode<T> *p = L, *S;
 	int times = 0, n;
@@ -233,21 +232,18 @@ template <typename T> void JosephProblem(LinkNode<T> *&L)
 	delete p;
 }
 
-
-/* Solving with SqQueue */
-
-
-template <typename T> void JosephProblem1(SqQueue<T> *&q)
+// using sequence queue (SqQueue). how -> the process?
+template <typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q)
 {
 	int cnt = 0, n = 3, e;
 	while (!QueueEmpty(q)) {
 		cnt++;
 		if (cnt != n) {
-			deCQueueF(q, e);
-			enCQueueR(q, e);
+			deCycleQueueF(q, e);			
+			enCycleQueueR(q, e);
 		}
 		else {
-			deCQueueF(q, e);
+			deCycleQueueF(q, e);
 			cout << '\t' << e;
 			cnt = 0;
 		}
@@ -263,14 +259,14 @@ void JosephProblemExample()
 	LinkNode<int> *linknode;
 	CreateCircularListR(linknode, b, 6);
 	cout << "Using The LinkNode:";
-	JosephProblem(linknode);
+	JosephProblemUsingLinkNode(linknode);
 
 	SqQueue<int> *sqqueue;
-	InitCQueue(sqqueue);
+	InitCycleQueue(sqqueue);
 	for (int i = 1; i <= 6; i++) {
-		enCQueueR(sqqueue, i);
+		enCycleQueueR(sqqueue, i);
 	}
 	cout << "Using The SqQueue:";
-	JosephProblem1(sqqueue);
+	JosephProblemUsingSqQueue(sqqueue);
 }
 

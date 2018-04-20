@@ -388,6 +388,7 @@ template <typename T> int Lnodenum(BTNode<T> *b, int h, int k) //Êä³öÄ³¸ö²ã´ÎµÄ½
 		else if (h < k) {
 			return Lnodenum(b->lchild, h + 1, k) + Lnodenum(b->rchild, h + 1, k);
 		}
+		return 0;
 	}
 	else {
 		return 0;

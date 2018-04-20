@@ -1,7 +1,11 @@
-#ifndef SQ_LIST_H
-#define SQ_LIST_H 1
-
+/*
+*
+* Create By Kaijin Cui,  20180401
+*
+*/
+#pragma once
 #include "basic.h"
+
 
 template <typename T>  struct SqList {
     T data[MAX_SIZE];
@@ -15,7 +19,6 @@ template <typename T> void InitList(SqList<T> *&L)
 	L->length = 0;
 }
 
-
 template <typename T> void CreateList(SqList<T> *&L,T a[],int n)
 {
 	for(int i=0;i<n;i++){		
@@ -24,7 +27,6 @@ template <typename T> void CreateList(SqList<T> *&L,T a[],int n)
 	L->length = n;
 }
 
-
 template <typename T> void DisplayList(SqList<T> *&L)
 {
 	for(int i=0;i<L->length;i++){		
@@ -32,7 +34,6 @@ template <typename T> void DisplayList(SqList<T> *&L)
 	}
 	cout<<endl;
 }
-
 
 template <typename T> void DestoryList(SqList<T> *&L)
 {
@@ -90,16 +91,21 @@ template <typename T> bool ListDelete(SqList<T> *&L, int i, T &e)
 {
 	int j;
 	if (i<1 || i>L->length) //参数错误时返回false
+	{
 		return false;
+	}
+		
 	i--;    //将顺序表逻辑序号转化为物理序号
 	e = L->data[i];
-	for (j = i; j<L->length - 1; j++)   //将data[i..n-1]元素前移
+	for (j = i; j < L->length - 1; j++)   //将data[i..n-1]元素前移
+	{
 		L->data[j] = L->data[j + 1];
+	}		
 	L->length--;     //顺序表长度减1
 	return true;     //成功删除返回true
 }
 
-template <typename T> void Del_All_XNode(SqList<T> *&L, T x)
+template <typename T> void DeleteAllXNode(SqList<T> *&L, T x)
 {
 	int i = 0, j = 0;
 	for (i = 0; i<L->length; i++) {
@@ -137,8 +143,6 @@ void SqListExample()
 	InitList(sqlist2);
 	CreateList(sqlist2, b, 7);
 	DisplayList(sqlist2);
-	Del_All_XNode(sqlist2, 3);
+	DeleteAllXNode(sqlist2, 3);
 	DisplayList(sqlist2);
 }
-
-#endif 

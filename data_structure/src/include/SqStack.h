@@ -1,7 +1,15 @@
+/*
+*
+* Create By TangNi,  20180408
+*
+*/
+
+
 #ifndef STACK_H
 #define STACK_H 1
 
 #include "basic.h"
+
 
 template <typename T> struct SqStack {
 	T data[MAX_SIZE];
@@ -62,7 +70,7 @@ template <typename T> bool GetTop(SqStack<T> *s, T &e)
 }
 
 // 
-// Examples
+// Examples: comments, code styles
 //
 
 bool Symmetry(char str[])
@@ -267,36 +275,6 @@ bool JudgeLegal(const string &s1, const string &s2)
 	}
 	return true;
 }
-
-//bool JudgeLegal(const string &s1, const string &s2)
-//{
-//	SqStack<char> *sc = new SqStack<char>;
-//	InitStack(sc);
-//
-//	int i = 0, j = 0;
-//	char e;
-//	while (s2[i] != '\0')
-//	{
-//		if (s1[j] != s2[i] && s1[j] != '\0')
-//		{
-//			Push(sc, s1[j]);
-//			j++;
-//		}
-//		else if (s1[j] == s2[i])
-//		{
-//			i++;
-//			j++;
-//		}
-//		else
-//		{
-//			Pop(sc, e);
-//			if (e != s2[i])
-//				return false;
-//			i++;
-//		}
-//	}
-//	return true;
-//}
 
 void JudgeLegalExample()
 {
