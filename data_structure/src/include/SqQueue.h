@@ -159,15 +159,15 @@ void number(int n)
 	SqQueue<int> *q;        //环形队列指针q
 	InitCycleQueue(q);
 	for (i = 1; i <=n; i++) {
-		enCycleQueueR(q, i);
+		enCycleQueueF(q, i);
 	}
 	cout << "报数出列顺序：" << endl;
 	while (!QueueEmpty(q)) {
-		enCycleQueueF(q, e);
+		deCycleQueueR(q, e);
 		cout << '\t' << e;
 		if (!QueueEmpty(q)) {
 			deCycleQueueR(q, e);
-			enCycleQueueR(q, e);
+			enCycleQueueF(q, e);
 		}
 	}
 	cout << endl;
@@ -183,5 +183,6 @@ void SqQueueExample()
 		cout << '\t' << i;
 	}
 	cout << endl;
-	number(n);
+	
+	number(3);
 }

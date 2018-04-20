@@ -14,12 +14,12 @@ int main()
 {
 	//SqListExample();
 	//LinkNodeExample();
-	DLinkNodeExample();
+	//DLinkNodeExample();
 
 	//SqStackExample();
 	//LinkStackNodeExample();
 
-	//SqQueueExample();
+	SqQueueExample();
 	//LinkQueueNodeexample();
 	//DLinkQueueExamples();
 
