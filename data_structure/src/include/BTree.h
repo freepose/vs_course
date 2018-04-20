@@ -149,6 +149,155 @@ template <typename T> void PostOrder(BTNode<T> *b)	//后序遍历递归算法
 
 /*  traverse methods of a tree: non-recursive traverse  */
 
+/////////////////////////////////////////////////////////////////////////
+////先序、中序和后序遍历非递归算法		              Create by CuiKaijin
+/////////////////////////////////////////////////////////////////////////
+
+template <typename T> void PreOrder1(BTNode<T> *b)	//先序遍历非递归算法1
+{
+	BTNode<T> *p;
+	SqStack<BTNode<T>*> *st;
+	InitStack(st);
+	if (b != 0)
+	{
+		Push(st, b);
+		while (!StackEmpty(st))
+		{
+			Pop(st, p);
+			cout << p->data;
+			if (p->rchild != 0)
+				Push(st, p->rchild);
+			if (p->lchild != 0)
+				Push(st, p->lchild);
+		}
+		cout << endl;
+	}
+	DestroyStack(st);
+}
+
+template <typename T> void PreOrder2(BTNode<T> *b)	//先序遍历非递归算法2
+{
+	BTNode<T> *p;
+	SqStack<BTNode<T>*> *st;
+	InitStack(st);
+	p = b;
+	while (!SqStackExample(st) || p != 0)
+	{
+		while (p != 0)
+		{
+			cout << p->data;
+			Push(st, p);
+			p = p->lchild;
+		}
+		if (!StackEmpty(st))
+		{
+			Pop(st, p);
+			p = p->rchild;
+		}
+	}
+	cout << endl;
+	DestroyStack(st);
+}
+
+template <typename T> void InOrder1(BTNode<T> *b)	//中序遍历非递归算法
+{
+	BTNode<T> *p;
+	SqStack<BTNode<T>*> *st;
+	InitStack(st);
+	p = b;
+	while (!StackEmpty(st) || p != 0)
+	{
+		while (p != 0)
+		{
+			Push(st, p);
+			p = p->lchild;
+		}
+		if (!StackEmpty(st))
+		{
+			Pop(st, p);
+			cout << p->data;
+			p = p->rchild;
+		}
+	}
+	cout << endl;
+	DestroyStack(st);
+}
+
+template <typename T> void PostOrder1(BTNode<T> *b)	//后序遍历非递归算法
+{
+	BTNode<T> *p, *r;
+	bool flag;
+	SqStack<BTNode<T>*> *st;
+	InitStack(st);
+	p = b;
+	do
+	{
+		while (p != 0)
+		{
+			Push(st, p);
+			p = p->lchild;
+		}
+		r = 0;
+		flag = true;
+		while (!StackEmpty(st) && flag)
+		{
+			GetTop(st, p);
+			if (p->rchild == r)
+			{
+				cout << p->data;
+				Pop(st, p);
+				r = p;
+			}
+			else
+			{
+				p = p->rchild;
+				flag = false;
+			}
+		}
+	} while (!StackEmpty(st));
+	cout << endl;
+	DestroyStack(st);
+}
+
+template <typename T> void AllPath1(BTNode<T> *b)	//P225【例7.17】输出从根节点到每个叶子结点的路径逆序列 
+{
+	BTNode<T> *p, *r;
+	bool flag;
+	SqStack<BTNode<T>*> *st;
+	InitStack(st);
+	p = b;
+	do
+	{
+		while (p != 0)
+		{
+			Push(st, p);
+			p = p->lchild;
+		}
+		r = 0;
+		flag = true;
+		while (!StackEmpty(st) && flag)
+		{
+			GetTop(st, p);
+			if (p->rchild == r)
+			{
+				if (p->lchild == 0 && p->rchild == 0)
+				{
+					for (int i = st->top; i > 0; i--)
+						cout << st->data[i]->data << "->";
+					cout << st->data[0]->data << endl;
+				}
+				Pop(st, p);
+				r = p;
+			}
+			else
+			{
+				p = p->rchild;
+				flag = false;
+			}
+		}
+	} while (!StackEmpty(st));
+}
+///////////////////↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑///////////////////
 
 template <typename T> void LevelOrder(BTNode<T> *b)
 {
@@ -333,11 +482,11 @@ void BTreeTraversalExample()
 	cout << "显示二叉树：";
 	DispBTree(T);
 	cout << endl << "先序遍历递归：";
-	PreOrder(T);
+	PreOrder1(T);
 	cout << endl << "中序遍历递归：";
-	InOrder(T);
+	InOrder1(T);
 	cout << endl << "后序遍历递归：";
-	PostOrder(T);
+	PostOrder1(T);
 	cout << endl << "结点个数:" << Nodes<char>(T) << endl;
 	cout << "输出所有叶子结点（从左到右）:";
 	DispLeafL(T);
@@ -377,6 +526,7 @@ void BTreeTraversalExample()
 	Ancestor<char>(T, y);
 
 	cout << "逆路径有：" << endl; AllPath2(T);
-
+	//P226 【例7.17】
+	cout << endl; AllPath1(T);
 	DestroyBTree(T);
 }
