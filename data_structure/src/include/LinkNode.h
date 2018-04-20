@@ -120,7 +120,6 @@ template<typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 
 }
 
-
 template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 {
 	LinkNode<T> *s, *r;

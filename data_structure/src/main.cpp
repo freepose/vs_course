@@ -13,21 +13,20 @@
 
 int main()
 {
-	arrayExample();
+	//arrayExample();
 
 	//SqListExample();
 	//LinkNodeExample();
 	//DLinkNodeExample();
 
 	//SqStackExample();
+	//JudgeLegalExample();
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
 	//LinkQueueNodeexample();
-	//DLinkQueueExamples();
 
-	//mgpath_SqStack();
-	//JudgeLegalExample();
+	//MgpathExample();
 	//JosephProblemExample();
 
 	//BTreeTraversalExample(); 
