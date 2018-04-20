@@ -8,24 +8,23 @@
 #include"include\LinkQueueNode.h"
 #include"include\BTree.h"
 #include"include\Example.h"
-#include"include\array.h"
 
 
 int main()
 {
-	//arrayExample();
-
 	//SqListExample();
 	//LinkNodeExample();
-	//DLinkNodeExample();
+	DLinkNodeExample();
 
 	//SqStackExample();
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
 	//LinkQueueNodeexample();
+	//DLinkQueueExamples();
 
-	//MgpathExample();
+	//mgpath_SqStack();
+	//JudgeLegalExample();
 	//JosephProblemExample();
 
 	//BTreeTraversalExample(); 
