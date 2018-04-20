@@ -12,13 +12,13 @@
 #include "SqQueue.h"
 
 /*
- * maze path
- */
+* maze path
+*/
 
 
 /*
- * Using SqStack to solve a maze path
- */
+* Using SqStack to solve a maze path
+*/
 
 typedef struct
 {
@@ -114,8 +114,8 @@ bool MgpathSqStack(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 
 
 /*
- * Using SqQueue to solve a maze path
- */
+* Using SqQueue to solve a maze path
+*/
 
 typedef struct {
 	int i;
@@ -200,8 +200,8 @@ void MgpathExample()
 
 
 /* 
- * JosephProblem
- */
+* JosephProblem
+*/
 
 // using linked list (LinkNode)
 template<typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L,int n)

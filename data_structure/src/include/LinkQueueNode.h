@@ -5,7 +5,6 @@
 */
 
 
-
 #pragma once
 #include "basic.h"
 #include "LinkNode.h"
@@ -82,7 +81,10 @@ template<typename T> bool deQueue(LinkQueueNode<T> *&q, T &e)
 	return true;
 }
 
-/*Circular LinkQueueNode */
+
+/*
+* Circular LinkQueueNode
+*/
 
 template<typename T> void InitQueue_S(LinkNode<T> *&rear)
 {
@@ -132,8 +134,8 @@ template<typename T> bool queueEmpty_S(LinkNode<T> *rear)
 
 
 /*
- *  examples
- */
+*  examples
+*/
 
 void LinkQueueNodeexample()
 {

@@ -88,7 +88,6 @@ template<typename T> void DestroyList(LinkNode<T> *L)
 	delete pre;
 }
 
-//P53 Àý¡¾2.7¡¿
 template<typename T> void deletemaxnode(LinkNode<T> *&L)
 {
 	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = p;
@@ -106,8 +105,8 @@ template<typename T> void deletemaxnode(LinkNode<T> *&L)
 
 
 /*
- * Cycle List
- */
+* Cycle List
+*/
 
 template<typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 {
@@ -143,8 +142,8 @@ template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 
 
 /*
- *  examples
- */
+*  examples
+*/
 
 void LinkNodeExample()
 {
@@ -165,6 +164,7 @@ void LinkNodeExample()
 	ListDelete(linkedlist, 6);
 	DispList(linkedlist);
 
+	//P53 Àý¡¾2.7¡¿
 	deletemaxnode(linkedlist);
 	DispList(linkedlist);
 }
