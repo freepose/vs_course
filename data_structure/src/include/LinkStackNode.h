@@ -1,6 +1,14 @@
+/*
+*
+* Create By Kaijin Cui
+*
+*/
+
+
 #pragma once
 
 #include "basic.h"
+
 
 template<typename T> struct LinkStackNode
 {
@@ -8,13 +16,11 @@ template<typename T> struct LinkStackNode
 	LinkStackNode<T> *next;
 };
 
-
 template<typename T> void InitStack(LinkStackNode<typename T> *&s)
 {
 	s = new LinkStackNode<T>;
 	s->next = 0;
 }
-
 
 template<typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 {
@@ -27,12 +33,10 @@ template<typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 	delete pre;
 }
 
-
 template<typename T> bool StackEmpty(LinkStackNode<typename T> *s)
 {
 	return(s->next == 0);
 }
-
 
 template<typename T> void Push(LinkStackNode<typename T> *&s, T e)
 {
@@ -42,7 +46,6 @@ template<typename T> void Push(LinkStackNode<typename T> *&s, T e)
 	p->next = s->next;
 	s->next = p;
 }
-
 
 template<typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 {
@@ -57,7 +60,6 @@ template<typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 	return true;
 }
 
-
 template<typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 {
 	if (s->next == 0) {
@@ -67,8 +69,9 @@ template<typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 	return true;
 }
 
-
-// Example:ÅÐ¶Ï×Ö·û´®ÖÐÀ¨ºÅÊÇ·ñ¶Ô³Æ
+/*
+ *P86 Àý¡¾3.5¡¿Determine whether the parentheses in the string are symmetric.
+ */ 
 
 void Match(char exp[], int n)
 {

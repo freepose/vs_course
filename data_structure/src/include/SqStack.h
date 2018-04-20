@@ -67,10 +67,11 @@ template<typename T> bool GetTop(SqStack<T> *s, T &e)
 	return true;
 }
 
-// 
-// Examples: comments, code styles
-//
+/* 
+ *Examples: comments, code styles
+ */
 
+//P82 例【3.4】Whether the string is symmetric.
 bool Symmetry(char str[])
 {
 	int i; char e;
@@ -112,6 +113,7 @@ void SymmetryExample()
 	DestroyStack(S);
 }
 
+//The postfix expression evaluates
 void trans(char *exp, char postexp[])
 {
 	char e;
@@ -243,6 +245,7 @@ void PostExpressionExample()
 	cout << "表达式的值：" << compvalue(postexp) << endl;
 }
 
+//Determine whether the stack sequence is legal.
 bool JudgeLegal(const string &s1, const string &s2)
 {
 	SqStack<char> *sc ;
@@ -284,6 +287,7 @@ void JudgeLegalExample()
 		cout << "input order:" << s1 << ", check order:" << s2 << ", is illegal." << endl;
 	}
 }
+
 
 void SqStackExample()
 {

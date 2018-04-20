@@ -20,19 +20,24 @@ typedef struct
 	int di;	//di是下一可走相邻方位的方位号
 } Box;		//定义方块类型
 
-int mg[8 + 2][8 + 2] =
+void Initmgpath(int mg[][10])
 {
-	{ 1, 1,1,1,1,1,1,1,1,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,0,0,1,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,0,0,0,  1 },
-	{ 1, 0,0,0,1,0,0,0,0,  1 },
-	{ 1, 0,1,0,0,0,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,1,1,0,  1 },
-	{ 1, 1,0,0,0,0,0,0,0,  1 },
-	{ 1, 1,1,1,1,1,1,1,1,  1 }
-};
+	int mgpath[8 + 2][8 + 2] =
+	{
+		{ 1, 1,1,1,1,1,1,1,1,  1 },
+		{ 1, 0,0,1,0,0,0,1,0,  1 },
+		{ 1, 0,0,1,0,0,0,1,0,  1 },
+		{ 1, 0,0,0,0,1,1,0,0,  1 },
+		{ 1, 0,1,1,1,0,0,0,0,  1 },
+		{ 1, 0,0,0,1,0,0,0,0,  1 },
+		{ 1, 0,1,0,0,0,1,0,0,  1 },
+		{ 1, 0,1,1,1,0,1,1,0,  1 },
+		{ 1, 1,0,0,0,0,0,0,0,  1 },
+		{ 1, 1,1,1,1,1,1,1,1,  1 }
+	};
+	memcpy(mg, mgpath, 10 * 10 * sizeof(int));
+}
+
 
 bool mgpath1(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 {
@@ -41,6 +46,8 @@ bool mgpath1(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 	InitStack(st);				//初始化栈顶指针
 	e.i = xi; e.j = yi; e.di = -1;			//设置e为入口
 	Push(st, e);				//方块e进栈
+	int mg[8+2][8+2];
+	Initmgpath(mg);
 	mg[xi][yi] = -1;	//入口的迷宫值置为-1避免重复走到该方块
 
 	while (!StackEmpty(st))		//栈不空时循环
@@ -117,20 +124,6 @@ typedef struct {
 	int pre;
 }Box1;
 
-int mg1[8 + 2][8 + 2] =
-{
-	{ 1, 1,1,1,1,1,1,1,1,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,1,0,0,0,1,0,  1 },
-	{ 1, 0,0,0,0,1,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,0,0,0,  1 },
-	{ 1, 0,0,0,1,0,0,0,0,  1 },
-	{ 1, 0,1,0,0,0,1,0,0,  1 },
-	{ 1, 0,1,1,1,0,1,1,0,  1 },
-	{ 1, 1,0,0,0,0,0,0,0,  1 },
-	{ 1, 1,1,1,1,1,1,1,1,  1 }
-};
-
 template<typename T> void Disp(SqQueue<T> *qu, int front)
 {
 	int k = front, j, ns = 0;
@@ -163,7 +156,9 @@ bool mgpath2(int xi, int yi, int xe, int ye)
 	InitQueue(qu);
 	e.i = xi; e.j = yi; e.pre = -1;
 	enQueue(qu, e);
-	mg1[xi][yi] = -1;
+	int mg[8 + 2][8 + 2];
+	Initmgpath(mg);
+	mg[xi][yi] = -1;
 	while (!QueueEmpty(qu)) {
 		deQueue(qu, e);
 		i = e.i;
@@ -181,11 +176,11 @@ bool mgpath2(int xi, int yi, int xe, int ye)
 			case 2:i1 = i + 1; j1 = j;   break;
 			case 3:i1 = i;   j1 = j - 1; break;
 			}
-			if (mg1[i1][j1] == 0) {
+			if (mg[i1][j1] == 0) {
 				e.i = i1; e.j = j1;
 				e.pre = qu->front;
 				enQueue(qu, e);
-				mg1[i1][j1] = -1;
+				mg[i1][j1] = -1;
 			}
 		}
 	}
