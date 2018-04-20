@@ -17,14 +17,13 @@ int main()
 	//DLinkNodeExample();
 
 	//SqStackExample();
+	//JudgeLegalExample();
 	//LinkStackNodeExample();
 
 	//SqQueueExample();
-	//LinkQueueNodeexample();
-	//DLinkQueueExamples();
+	LinkQueueNodeexample();
 
-	mgpath_SqStack();
-	//JudgeLegalExample();
+	//MgpathExample();
 	//JosephProblemExample();
 
 	//BTreeTraversalExample(); 

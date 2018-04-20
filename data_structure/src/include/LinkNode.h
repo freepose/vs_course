@@ -1,7 +1,6 @@
-#ifndef LINK_NODE_H
-#define LINK_NODE_H 1
-
+#pragma once
 #include "basic.h"
+
 
 template<typename T> struct LinkNode {
 	T data;
@@ -82,8 +81,8 @@ template<typename T> void DestroyList(LinkNode<T> *L)
 	delete pre;
 }
 
-
-template<typename T> void delmaxnode(LinkNode<T> *&L)
+//P53 Àý¡¾2.7¡¿
+template<typename T> void deletemaxnode(LinkNode<T> *&L)
 {
 	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = p;
 	while (p != 0) {
@@ -98,9 +97,10 @@ template<typename T> void delmaxnode(LinkNode<T> *&L)
 	delete maxp;
 }
 
-////////////////////////////////////////////////////////////////////////////////////
-/// Cycle list
-////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Cycle List
+ */
 
 template<typename T> void CreateCircularListF(LinkNode<T> *&L, T a[], int n)
 {
@@ -132,17 +132,19 @@ template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
 		r->next = s;
 		r = s;
 	}
-	r->next = L;	// note
+	r->next = L;
 }
 
 
-// examples
+/*
+ *  examples
+ */
+
 void LinkNodeExample()
 {
 	int a[] = { 1, 2, 3, 4, 5 };
 	const int n = 5;
 
-	// Linked list
 	LinkNode<int> *linkedlist = 0;
 	CreateListF(linkedlist, a, n);
 	DispList(linkedlist);
@@ -157,8 +159,7 @@ void LinkNodeExample()
 	ListDelete(linkedlist, 6);
 	DispList(linkedlist);
 
-	delmaxnode(linkedlist);
+	deletemaxnode(linkedlist);
 	DispList(linkedlist);
 }
 
-#endif 

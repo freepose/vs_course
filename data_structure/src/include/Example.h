@@ -5,8 +5,8 @@
 #include "SqQueue.h"
 
 /*
-* maze path
-*/
+ * maze path
+ */
 
 
 /*
@@ -18,7 +18,7 @@ typedef struct
 	int i;	//当前方块的行号
 	int j;	//当前方块的列号
 	int di;	//di是下一可走相邻方位的方位号
-} Box;		//定义方块类型
+} Box;		
 
 void Initmgpath(int mg[][10])
 {
@@ -35,13 +35,10 @@ void Initmgpath(int mg[][10])
 		{ 1, 1,0,0,0,0,0,0,0,  1 },
 		{ 1, 1,1,1,1,1,1,1,1,  1 }
 	};
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < 10; j++)
-			mg[i][j] = mgpath[i][j];
+	memcpy(mg, mgpath, 10 * 10 * sizeof(int));
 }
 
-
-bool mgpath1(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
+bool MgpathSqStack(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 {
 	Box path[MAX_SIZE], e;  int i, j, di, i1, j1, k;   bool find;
 	SqStack<Box> *st = 0;			//定义栈st
@@ -51,7 +48,6 @@ bool mgpath1(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 	int mg[8+2][8+2];
 	Initmgpath(mg);
 	mg[xi][yi] = -1;	//入口的迷宫值置为-1避免重复走到该方块
-
 	while (!StackEmpty(st))		//栈不空时循环
 	{
 		GetTop(st, e);		//取栈顶方块e
@@ -109,12 +105,6 @@ bool mgpath1(int xi, int yi, int xe, int ye)	//求解路径为:(xi,yi)->(xe,ye)
 	return false;		//表示没有可走路径
 }
 
-void mgpath_SqStack()
-{
-	if (!mgpath1(1, 1, 8, 8)) {
-		printf("该迷宫问题没有解!");
-	}
-}
 
 /*
  * Using SqQueue to solve a maze path
@@ -150,7 +140,7 @@ template<typename T> void Disp(SqQueue<T> *qu, int front)
 	cout << endl;
 }
 
-bool mgpath2(int xi, int yi, int xe, int ye)
+bool MgpathSqQueue(int xi, int yi, int xe, int ye)
 {
 	Box1 e;
 	int  i, j, di, i1, j1;
@@ -190,9 +180,13 @@ bool mgpath2(int xi, int yi, int xe, int ye)
 	return false;
 }
 
-void mgpath_SqQueue()
+
+void MgpathExample()
 {
-	if (!mgpath2(1, 1, 8, 8)) {
+	if (!MgpathSqStack(1, 1, 8, 8)) {
+		cout << "该迷宫没有解！" << endl;
+	}
+	if (!MgpathSqStack(1, 1, 8, 8)) {
 		cout << "该迷宫没有解！" << endl;
 	}
 }
@@ -203,12 +197,10 @@ void mgpath_SqQueue()
  */
 
 // using linked list (LinkNode)
-template<typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
+template<typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L,int n)
 {
 	LinkNode<T> *p = L, *S;
-	int times = 0, n;
-	//cin >> n;		// put which number to delete
-	n = 3;
+	int times = 0;
 	while (p->next->next != p)
 	{
 		p = p->next;
@@ -229,10 +221,10 @@ template<typename T> void JosephProblemUsingLinkNode(LinkNode<T> *&L)
 	delete p;
 }
 
-// using sequence queue (SqQueue). how -> the process?
-template<typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q)
+// using sequence queue (SqQueue). 
+template<typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q,int n)
 {
-	int cnt = 0, n = 3, e;
+	int cnt = 0, e;
 	while (!QueueEmpty(q)) {
 		cnt++;
 		if (cnt != n) {
@@ -253,10 +245,12 @@ template<typename T> void JosephProblemUsingSqQueue(SqQueue<T> *&q)
 void JosephProblemExample()
 {
 	int b[] = { 1, 2, 3, 4, 5, 6 };
+	int n;
+	n = 3;// put which number to delete
 	LinkNode<int> *linknode;
 	CreateCircularListR(linknode, b, 6);
 	cout << "Using The LinkNode:";
-	JosephProblemUsingLinkNode(linknode);
+	JosephProblemUsingLinkNode(linknode,n);
 
 	SqQueue<int> *sqqueue;
 	InitCycleQueue(sqqueue);
@@ -264,6 +258,6 @@ void JosephProblemExample()
 		enCycleQueueR(sqqueue, i);
 	}
 	cout << "Using The SqQueue:";
-	JosephProblemUsingSqQueue(sqqueue);
+	JosephProblemUsingSqQueue(sqqueue,n);
 }
 
