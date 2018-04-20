@@ -19,14 +19,14 @@ int main()
 	//SqStackExample();
 	//LinkStackNodeExample();
 
-	SqQueueExample();
+	//SqQueueExample();
 	//LinkQueueNodeexample();
 	//DLinkQueueExamples();
 
-	//mgpath_SqStack();
+	//MgpathExample();
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	//BTreeTraversalExample(); 
+	//BTreeTraversalExample();
 	return 0;
 }
