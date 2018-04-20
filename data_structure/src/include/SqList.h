@@ -1,6 +1,6 @@
 /*
 *
-* Create By Kaijin Cui,  20180401
+* Create By Kaijin Cui
 *
 */
 #pragma once

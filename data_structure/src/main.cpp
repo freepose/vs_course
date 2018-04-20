@@ -23,10 +23,10 @@ int main()
 	//LinkQueueNodeexample();
 	//DLinkQueueExamples();
 
-	//mgpath_example();
+	mgpath_SqStack();
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	BTreeTraversalExample(); 
+	//BTreeTraversalExample(); 
 	return 0;
 }
