@@ -101,7 +101,7 @@ template<typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
 	return true;
 }
 
-//例3.7 count代替队尾指针
+//P102 例【3.7】Count instead of p->rear;
 template<typename T> struct QuType
 {
 	T data[MAX_SIZE];
@@ -115,7 +115,6 @@ template<typename T> void InitQueue_count(QuType<T> *&qu)
 	qu->front = 0;
 	qu->count = 0;
 }
-
 
 template<typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 {
@@ -132,7 +131,6 @@ template<typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 	}
 }
 
-
 template<typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 {
 	if (qu->count == 0) {
@@ -146,14 +144,13 @@ template<typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 	}
 }
 
-
 template<typename T> bool QueueEmpty_count(QuType<T>  *qu)
 {
 	return (qu->count == 0);
 }
 
 
-//求解报数问题 P108
+//P108 The number problem
 void number(int n)
 {
 	int i;
@@ -175,6 +172,7 @@ void number(int n)
 	cout << endl;
 	DestroyQueue(q);
 }
+
 
 void SqQueueExample()
 {

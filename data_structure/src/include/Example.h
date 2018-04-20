@@ -35,9 +35,7 @@ void Initmgpath(int mg[][10])
 		{ 1, 1,0,0,0,0,0,0,0,  1 },
 		{ 1, 1,1,1,1,1,1,1,1,  1 }
 	};
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < 10; j++)
-			mg[i][j] = mgpath[i][j];
+	memcpy(mg, mgpath, 10 * 10 * sizeof(int));
 }
 
 
