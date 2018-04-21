@@ -13,7 +13,7 @@ template<typename T>  struct BTNode
 
 /* The basic operation of the tree (by PHY) */
 
-template <typename T> void CreateBTree(BTNode<T> *&b, char *str)
+template<typename T> void CreateBTree(BTNode<T> *&b, char *str)
 {
 	BTNode<T> *St[MAX_SIZE], *p;       //St数组作为顺序栈
 	int top = -1, k, j = 0;            //top为栈顶指针
@@ -340,11 +340,10 @@ template<typename T> int Level(BTNode<T> *b, char x, int h)
 	}
 }
 
-/* P216【例7.14】Display the level of X node
- * h = 1, n = 0
- * h: variable of level, k: given level
- * return: #nodes of k-th level
- */
+// P216【例7.14】Display the level of X node
+// h = 1, n = 0
+// h: variable of level, k: given level
+// return: #nodes of k-th level
 template<typename T> int Lnodenum(BTNode<T> *b, int h, int k) //输出某个层次的结点数
 {
 	int n = 0;
@@ -482,6 +481,54 @@ template<typename T> void AllPath2(BTNode<T> *b)
 }
 
 
+
+// 已知先序、中序序列构造二叉树
+// pre存放先序序列，in存放中序序列，n为结点数，执行完返回根节点
+template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
+{
+	BTNode<T> *b;
+	T *p;
+	int k;
+	if (n <= 0) return NULL;
+	b = new BTNode<T>;     //创建二叉树结点*s
+	b->data = *pre;
+	for (p = in; p < in + n; p++) {           //在中序序列中找等于*ppos的位置k
+		if (*p == *pre) {                    //pre指向根结点
+			break;                             //在in中找到后退出循环
+		}
+	}
+	k = p - in;                                 //确定根结点在in中的位置
+	b->lchild = CreateBT1(pre + 1, in, k);        //递归构造左子树
+	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //递归构造右子树
+	return b;
+}
+
+
+// 已知后序、中序序列构造二叉树
+// pre存放后序序列，in存放中序序列，n为结点数，执行完返回根节点
+template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
+{
+	BTNode<T> *b;
+	char r, *p;
+	int k;
+	if (n <= 0) {
+		return 0;
+	}
+	r = *(post + n - 1);
+	b = new BTNode<T>;
+	b->data = r;
+	for (p = in; p < in + n; p++) {
+		if (*p == r) {
+			break;
+		}
+	}
+	k = p - in;
+	b->lchild = CreateBT2(post, in, k);
+	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);
+	return b;
+}
+
+
 void BTreeTraversalExample()
 {
 	BTNode<char> *T = 0;
@@ -546,5 +593,18 @@ void BTreeTraversalExample()
 	cout << "Using BTNode display node value from leaf to root：" << endl; AllPath1(T);
 	// P226 【例7.18】
 	cout << "Using SqQueue display node value from leaf to root：" << endl; AllPath2(T);
+	
+
+	char pre[] = "ABDGCEF", in[] = "DGBAECF", post[] = "GDBEFCA";
+	BTNode<char> *b1;
+	b1 = CreateBT1(pre, in, 7);
+	DispBTree(b1); cout << endl;
+
+	BTNode<char> *b2;
+	b2 = CreateBT1(post, in, 7);
+	DispBTree(b1); cout << endl;
+
+
 	DestroyBTree(T);
 }
+

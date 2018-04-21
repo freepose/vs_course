@@ -27,6 +27,6 @@ int main()
 	//JudgeLegalExample();
 	//JosephProblemExample();
 
-	//BTreeTraversalExample();
+	BTreeTraversalExample();
 	return 0;
 }
