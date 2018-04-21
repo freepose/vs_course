@@ -21,10 +21,8 @@ int main()
 
 	//SqQueueExample();
 	//LinkQueueNodeexample();
-	//DLinkQueueExamples();
 
 	//MgpathExample();
-	//JudgeLegalExample();
 	//JosephProblemExample();
 
 	BTreeTraversalExample();
