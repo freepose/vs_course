@@ -18,10 +18,13 @@
 		LinkQueueNode, linked queue
 
 	[4] Tree
-		BTNode, binary tree
+		BTNode
+		binary tree,  threaded tree
+
+	[5] Algorithm
+	    KMP
 
 
 ### todo list
-	- KMP
 	- construct a binary tree
 	-

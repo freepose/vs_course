@@ -25,6 +25,6 @@ int main()
 	//MgpathExample();
 	//JosephProblemExample();
 
-	//BTreeTraversalExample();
+	BTreeTraversalExample();
 	return 0;
 }

@@ -10,6 +10,15 @@ template<typename T>  struct BTNode
 	BTNode<T> *rchild;
 };
 
+template<typename T> struct TBTNode
+{
+	T data;
+	int ltag;
+	int rtag;
+	TBTNode<T> *lchild;
+	TBTNode<T> *rchild;
+};
+
 
 /* The basic operation of the tree (by PHY) */
 
@@ -147,6 +156,7 @@ template<typename T> void PostOrderRecursively(BTNode<T> *b)
 	}
 }
 
+
 /* traverse methods of a tree: non-recursive traverse (by CuiKaijin) */
 
 template<typename T> void PreOrder(BTNode<T> *b)	
@@ -219,7 +229,7 @@ template<typename T> void InOrder(BTNode<T> *b)
 	DestroyStack(st);
 }
 
-template<typename T> void PostOrder(BTNode<T> *b)	//后序遍历非递归算法
+template<typename T> void PostOrder(BTNode<T> *b)	
 {
 	BTNode<T> *p, *r;
 	bool flag;
@@ -274,10 +284,107 @@ template<typename T> void LevelOrder(BTNode<T> *b)
 }
 
 
+/* Cue methodThe of a tree (by ChenXiaodie) */
+
+TBTNode<char> *pre;//全局变量
+
+template <typename T> void TCreateBTree(TBTNode<T> *&b, char *str)
+{
+	TBTNode<T> *St[MAX_SIZE], *p;       //St数组作为顺序栈
+	int top = -1, k, j = 0;            //top为栈顶指针
+	T ch;
+	b = 0;                             //初始二叉树为空
+	ch = str[j];
+	while (ch != '\0')                 //循环扫描str中的每个字符
+	{
+		switch (ch)                    //A(B(D(,G)),C(E,F))
+		{
+		case'(':top++; St[top] = p; k = 1; break;    //开始处理左孩子结点
+		case')':top--; break;                        //栈顶结点的子树处理完毕
+		case',':k = 2; break;                        //开始处理右孩子结点
+		default:p = new TBTNode<T>;
+			p->data = ch;
+			p->lchild = p->rchild = 0;
+			if (b == 0) {                           //若尚未建立根节点，p就为根节点
+				b = p;
+			}
+			else {
+				switch (k)
+				{
+				case 1:St[top]->lchild = p; break;
+				case 2:St[top]->rchild = p; break;
+				}
+			}
+		}
+		j++;
+		ch = str[j];
+	}
+}
+
+template<typename T> void Thread(TBTNode<T> *&p)
+{
+	if (p != 0) {
+		Thread(p->lchild);
+		if (p->lchild == 0) {
+			p->lchild = pre;
+			p->ltag = 1;
+		}
+		else {
+			p->ltag = 0;
+		}
+		if (pre->rchild == 0) {
+			pre->rchild = p;
+			pre->rtag = 1;
+		}
+		else {
+			pre->rtag = 0;
+		}
+		pre = p;
+		Thread(p->rchild);
+	}
+}
+
+template<typename T> TBTNode<T>* CreateThread(TBTNode<T> *b)
+{
+	TBTNode<T> *root;
+	root = new TBTNode<T>;//create the head of the tree
+	root->ltag = 0;root->rtag = 1;
+	root->rchild = b;
+	if (b == 0) {
+		root->lchild = root;
+	}
+	else {
+		root->lchild = b;
+		pre = root;
+		Thread(b);
+		pre->rtag = 1;
+		pre->rchild = root;
+		root->rchild = pre;
+	}
+	return root;
+}
+
+template<typename T> void InOderThread(TBTNode<T> *tb)
+{
+	TBTNode<T> *p = tb->lchild;//Point to the root node
+	while (p != tb) {
+		while (p->ltag == 0) {
+			p = p->lchild;//find the first node
+		}
+		cout << p->data << " ";
+		while (p->rtag == 1&&p->rchild!=tb) {
+			p = p->rchild;
+			cout << p->data << " ";
+		}
+		p = p->rchild;
+	}
+	cout << endl;
+}
+
+
 /*
  *  Examples
  */
-
 
 
 //P213【例7.11】The number of a tree
@@ -500,10 +607,14 @@ void BTreeTraversalExample()
 	cout << "Postorder non-recursive Traversal："; PostOrder(T);
 	cout << "Levelorder non-recursive Traversal: "; LevelOrder(T);
 
+	TBTNode<char> *b;
+	TCreateBTree(b, str);
+	cout << endl << "InOrderThread Recursive Traversal："; InOderThread(CreateThread(b));
+
 	cout << endl << "Num Of Nodes Is " << Nodes(T);
 	cout << endl << "Display leaf node（form left to right）:"; DispLeafL(T);
 	cout << endl << "Display leaf node（form right to left）:"; DispLeafR(T);
-	
+
 	// P215【例7.13】
 	int h;
 	char x;
@@ -547,4 +658,5 @@ void BTreeTraversalExample()
 	// P226 【例7.18】
 	cout << "Using SqQueue display node value from leaf to root：" << endl; AllPath2(T);
 	DestroyBTree(T);
+
 }
