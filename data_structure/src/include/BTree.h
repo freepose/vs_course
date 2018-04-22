@@ -714,7 +714,7 @@ void BTreeTraversalExample()
 
 	BTNode<char> *b2;
 	b2 = CreateBT2(post, in, 7);
-	DispBTree(b1); cout << endl;
+	DispBTree(b2); cout << endl;
 
 
 	DestroyBTree(T);
