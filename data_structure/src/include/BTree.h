@@ -383,9 +383,8 @@ template<typename T> void InOderThread(TBTNode<T> *tb)
 
 
 /*
- *  Examples
- */
-
+*Example
+*/
 
 //P213【例7.11】The number of a tree
 template<typename T> int Nodes(BTNode<T> *b)	
@@ -588,15 +587,18 @@ template<typename T> void AllPath2(BTNode<T> *b)
 }
 
 
+/*Create a tree (by TangNi)*/
 
-// 已知先序、中序序列构造二叉树
-// pre存放先序序列，in存放中序序列，n为结点数，执行完返回根节点
+//Create a tree  by the known preorder and middle sequence sequence
+// pre save preorder sequence,in save midlle sequence，n is node number，return the root node
 template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
 {
 	BTNode<T> *b;
 	T *p;
 	int k;
-	if (n <= 0) return NULL;
+	if (n <= 0) {
+		return 0;
+	}
 	b = new BTNode<T>;     //创建二叉树结点*s
 	b->data = *pre;
 	for (p = in; p < in + n; p++) {           //在中序序列中找等于*ppos的位置k
@@ -610,13 +612,12 @@ template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
 	return b;
 }
 
-
-// 已知后序、中序序列构造二叉树
-// pre存放后序序列，in存放中序序列，n为结点数，执行完返回根节点
+//Create a tree  by the known preorder and postorder  sequence sequence
+// pre save postorder sequence,in save midlle sequence，n is node number，return the root node
 template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
 {
 	BTNode<T> *b;
-	char r, *p;
+	T r, *p;
 	int k;
 	if (n <= 0) {
 		return 0;
@@ -712,7 +713,7 @@ void BTreeTraversalExample()
 	DispBTree(b1); cout << endl;
 
 	BTNode<char> *b2;
-	b2 = CreateBT1(post, in, 7);
+	b2 = CreateBT2(post, in, 7);
 	DispBTree(b1); cout << endl;
 
 
