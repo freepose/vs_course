@@ -19,14 +19,13 @@
 
 	[4] Tree
 		BTNode
-		binary tree, threaded tree
+		binary tree, threaded tree, construct a binary tree
 
 	[5] Algorithm
 	    KMP
 
 
 ### todo list
-	- construct a binary tree by TN
 	- Huffman tree by CKJ p233-236
 	- UFSTree by PHY p241-243
 

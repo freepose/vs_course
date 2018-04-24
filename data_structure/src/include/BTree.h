@@ -382,6 +382,73 @@ template<typename T> void InOderThread(TBTNode<T> *tb)
 }
 
 
+/*Create a tree (by TangNi)*/
+
+//Create a tree  by the known preorder and middle sequence sequence
+// pre save preorder sequence,in save midlle sequence，n is node number，return the root node
+template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
+{
+	BTNode<T> *b;
+	T *p;
+	int k;
+	if (n <= 0) {
+		return 0;
+	}
+	b = new BTNode<T>;     //创建二叉树结点*s
+	b->data = *pre;
+	for (p = in; p < in + n; p++) {           //在中序序列中找等于*ppos的位置k
+		if (*p == *pre) {                    //pre指向根结点
+			break;                             //在in中找到后退出循环
+		}
+	}
+	k = p - in;                                 //确定根结点在in中的位置
+	b->lchild = CreateBT1(pre + 1, in, k);        //递归构造左子树
+	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //递归构造右子树
+	return b;
+}
+
+//Create a tree  by the known preorder and postorder  sequence sequence
+// pre save postorder sequence,in save midlle sequence，n is node number，return the root node
+template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
+{
+	BTNode<T> *b;
+	T r, *p;
+	int k;
+	if (n <= 0) {
+		return 0;
+	}
+	r = *(post + n - 1);
+	b = new BTNode<T>;
+	b->data = r;
+	for (p = in; p < in + n; p++) {
+		if (*p == r) {
+			break;
+		}
+	}
+	k = p - in;
+	b->lchild = CreateBT2(post, in, k);
+	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);
+	return b;
+}
+
+// P216【例7.19】change the sequence binary tree to chian binary tree
+template<typename T> BTNode<T> *transStoL(T *a, int i)
+{
+	BTNode<T> *b;
+	if (i > MAX_SIZE) {
+		return 0;
+	}
+	if (a[i] == '#') {
+		return 0;
+	}
+	b = new BTNode<T>;
+	b->data = a[i];
+	b->lchild = transStoL(a, 2 * i);
+	b->rchild = transStoL(a, 2 * i + 1);
+	return b;
+}
+
+
 /*
 *Example
 */
@@ -584,73 +651,6 @@ template<typename T> void AllPath2(BTNode<T> *b)
 			enQueue(qu, qelem);
 		}
 	}
-}
-
-
-/*Create a tree (by TangNi)*/
-
-//Create a tree  by the known preorder and middle sequence sequence
-// pre save preorder sequence,in save midlle sequence，n is node number，return the root node
-template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
-{
-	BTNode<T> *b;
-	T *p;
-	int k;
-	if (n <= 0) {
-		return 0;
-	}
-	b = new BTNode<T>;     //创建二叉树结点*s
-	b->data = *pre;
-	for (p = in; p < in + n; p++) {           //在中序序列中找等于*ppos的位置k
-		if (*p == *pre) {                    //pre指向根结点
-			break;                             //在in中找到后退出循环
-		}
-	}
-	k = p - in;                                 //确定根结点在in中的位置
-	b->lchild = CreateBT1(pre + 1, in, k);        //递归构造左子树
-	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //递归构造右子树
-	return b;
-}
-
-//Create a tree  by the known preorder and postorder  sequence sequence
-// pre save postorder sequence,in save midlle sequence，n is node number，return the root node
-template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
-{
-	BTNode<T> *b;
-	T r, *p;
-	int k;
-	if (n <= 0) {
-		return 0;
-	}
-	r = *(post + n - 1);
-	b = new BTNode<T>;
-	b->data = r;
-	for (p = in; p < in + n; p++) {
-		if (*p == r) {
-			break;
-		}
-	}
-	k = p - in;
-	b->lchild = CreateBT2(post, in, k);
-	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);
-	return b;
-}
-
-// P216【例7.19】change the sequence binary tree to chian binary tree
-template<typename T> BTNode<T> *transStoL(T *a, int i)
-{
-	BTNode<T> *b;
-	if (i > MAX_SIZE) {
-		return 0;
-	}
-	if (a[i] == '#') {
-		return 0;
-	}
-	b = new BTNode<T>;
-	b->data = a[i];
-	b->lchild = transStoL(a, 2 * i);
-	b->rchild = transStoL(a, 2 * i + 1);
-	return b;
 }
 
 
