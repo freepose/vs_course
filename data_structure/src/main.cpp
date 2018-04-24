@@ -8,7 +8,7 @@
 #include"include\LinkQueueNode.h"
 #include"include\BTree.h"
 #include"include\Example.h"
-
+#include"include\SqString.h"
 
 int main()
 {
@@ -25,6 +25,8 @@ int main()
 	//MgpathExample();
 	//JosephProblemExample();
 
-	BTreeTraversalExample();
+	//BTreeTraversalExample();
+
+	SqStringexample();
 	return 0;
 }

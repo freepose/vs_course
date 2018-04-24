@@ -158,6 +158,7 @@
     <ClInclude Include="src\include\SqList.h" />
     <ClInclude Include="src\include\SqQueue.h" />
     <ClInclude Include="src\include\SqStack.h" />
+    <ClInclude Include="src\include\SqString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

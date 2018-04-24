@@ -21,14 +21,15 @@
 		BTNode
 		binary tree, threaded tree, construct a binary tree, Huffman tree
 
-	[5] Algorithm
-	    KMP
+	[5] SqString
+	    Brute-Force, KMP
 
 
 ### todo list
 	- UFSTree by PHY p241-243
 
-	- SpString,LinkStrNode, Brute-Force by CKJ p123-134
+	- SpString by TN
+	-LinkStrNode, Brute-Force by CKJ p123-134
 
 	- Graph Storage Structures, Basic algorithms of Graphs by CXD p256-262
 	- traverse of graphs by TN p264-269
