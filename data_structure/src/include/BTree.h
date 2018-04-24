@@ -73,9 +73,9 @@ template<typename T> void DispBTree(BTNode<T> *b)
 			DispBTree(b->lchild);
 			if (b->rchild != 0) {
 				cout << ',';
-				DispBTree(b->rchild);
-				cout << ')';
 			}
+			DispBTree(b->rchild);
+			cout << ')';
 		}
 	}
 }
