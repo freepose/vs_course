@@ -636,6 +636,23 @@ template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
 	return b;
 }
 
+// P216¡¾Àý7.19¡¿change the sequence binary tree to chian binary tree
+template<typename T> BTNode<T> *transStoL(T *a, int i)
+{
+	BTNode<T> *b;
+	if (i > MAX_SIZE) {
+		return 0;
+	}
+	if (a[i] == '#') {
+		return 0;
+	}
+	b = new BTNode<T>;
+	b->data = a[i];
+	b->lchild = transStoL(a, 2 * i);
+	b->rchild = transStoL(a, 2 * i + 1);
+	return b;
+}
+
 
 void BTreeTraversalExample()
 {
@@ -700,6 +717,7 @@ void BTreeTraversalExample()
 	cin >> y;
 	cout << "Parent's node is £º";
 	Ancestor(T, y);
+	cout << endl;
 
 	// P226 ¡¾Àý7.17¡¿
 	cout << "Using BTNode display node value from leaf to root£º" << endl; AllPath1(T);
@@ -715,6 +733,10 @@ void BTreeTraversalExample()
 	BTNode<char> *b2;
 	b2 = CreateBT2(post, in, 7);
 	DispBTree(b2); cout << endl;
+
+	// P216¡¾Àý7.19¡¿
+	char a[] = " ABCD#EF#G#############";
+	DispBTree(transStoL(a, 1)); cout << endl;
 
 
 	DestroyBTree(T);
