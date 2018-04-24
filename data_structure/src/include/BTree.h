@@ -19,6 +19,20 @@ template<typename T> struct TBTNode
 	TBTNode<T> *rchild;
 };
 
+template <typename T> struct HTNode
+{
+	T data;
+	double weight;
+	int parent;
+	int lchild;
+	int rchild;
+};
+
+template <typename T> struct HCode
+{
+	T cd[MAX_SIZE];//用来储存每个叶子结点的哈尔曼编码路径
+	int start;
+};
 
 /* The basic operation of the tree (by PHY) */
 
@@ -449,6 +463,64 @@ template<typename T> BTNode<T> *transStoL(T *a, int i)
 }
 
 
+/*Huffman tree and Huffman coding by CXD */
+
+template<typename T> void CreateHT(HTNode<T> *ht, int n0)
+{
+	int lnode, rnode, k, i;
+	double min1, min2;
+	for (i = 0; i < 2 * n0 - 1; i++) {
+		ht[i].parent = ht[i].lchild = ht[i].rchild = -1;
+	}
+	for (i = n0; i < 2 * n0 - 1; i++)
+	{
+		min1 = min2 = 32767;//赋予最小值新的初值，寻找每次的最小值
+		lnode = rnode = -1;
+		for (k = 0; k <= i - 1; k++) {//在i-1里面找,当有新的结点后，树逐渐扩大
+			if (ht[k].parent == -1) {
+				if (ht[k].weight < min1) {
+					min2 = min1;
+					rnode = lnode;
+					min1 = ht[k].weight;
+					lnode = k;
+				}
+				else if (ht[k].weight < min2) {
+					min2 = ht[k].weight;
+					rnode = k;
+				}
+			}
+		}
+		ht[i].weight = min1 + min2;
+		ht[i].lchild = lnode;ht[i].rchild = rnode;
+		ht[lnode].parent = ht[rnode].parent = i;
+	}
+}
+
+template<typename T> void CreateHCode(HTNode<T> *ht, HCode<T> *hcd, int n0)
+{
+	HCode<char> hc;
+	int i, f, c;//f用来存储parent位置,c用来存储结点的位置
+	for (i = 0; i < n0; i++) {
+		hc.start = n0;//从n0开始递减，依次储存哈尔曼编码
+		c = i;
+		f = ht[i].parent;
+		while (f != -1) {
+			if (ht[f].lchild == c) {
+				hc.cd[hc.start--] = '0';
+			}
+			else {
+				hc.cd[hc.start--] = '1';
+			}
+			c = f;
+			f = ht[f].parent;
+		}
+		hc.start++;//当f=-1时，start指的是根结点，要++，指向哈夫曼编码的开头结点
+		hcd[i] = hc;
+	}
+}
+
+
+
 /*
 *Example
 */
@@ -737,6 +809,29 @@ void BTreeTraversalExample()
 	// P216【例7.19】
 	char a[] = " ABCD#EF#G#############";
 	DispBTree(transStoL(a, 1)); cout << endl;
+
+	//P240【例7.20】
+	HTNode<char> ht[MAX_SIZE];
+	HCode<char> hcd[50], p;
+	int i, j, n0 = 8;
+	char H[9] = "abcdefgh";
+	double weight[9] = { 0.07,0.19,0.02,0.06,0.32,0.03,0.21,0.10 };
+	for (i = 0; i < n0; i++) {
+		ht[i].data = H[i];
+		ht[i].weight = weight[i];
+	}
+	CreateHT(ht, n0);
+	CreateHCode(ht, hcd, n0);
+	cout<< "every leaf node's Huffman coding is:" << endl;
+	for (i = 0; i < 8; i++) {
+		cout<< ht[i].data << ':';
+		p = hcd[i];
+		for (j = p.start; j <= n0; j++) {
+			cout << p.cd[j] << " ";
+		}
+		cout << endl;
+	}
+
 
 
 	DestroyBTree(T);
