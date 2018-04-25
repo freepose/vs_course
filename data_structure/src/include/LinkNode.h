@@ -145,6 +145,22 @@ template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
  *  examples
  */
 
+//返回带头结点的逆转单链表
+template<typename T> LinkNode<T>* ListReverse(LinkNode<T> *L)
+{
+	LinkNode<T> *New_head, *Old_head,*temp;
+	New_head = 0;          //第一项元素为逆置后的最后一个元素，其next的值为NULL
+	Old_head = L->next;
+	while (Old_head) {
+		temp = Old_head->next;
+		Old_head->next = New_head;   //翻转指针，由后一个元素指向前一个元素
+		New_head = Old_head;        //向后移到一个元素
+		Old_head = temp;           //向后移到一个元素
+	}
+	L->next = New_head;          //将头指针指向最后的元素
+	return L;
+}
+
 void LinkNodeExample()
 {
 	int a[] = { 1, 2, 3, 4, 5 };
@@ -167,5 +183,9 @@ void LinkNodeExample()
 	//P53 例【2.7】
 	deletemaxnode(linkedlist);
 	DispList(linkedlist);
+
+	CreateListR(linkedlist, a, n);
+	DispList(ListReverse(linkedlist));
+
 }
 
