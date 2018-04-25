@@ -125,7 +125,6 @@ void trans(char *exp, char postexp[])
 		switch (*exp)
 		{
 		case'(':
-			//cout << "(";
 			Push(Optr, '(');
 			exp++;
 			break;
@@ -151,6 +150,9 @@ void trans(char *exp, char postexp[])
 				else
 					break;
 			}
+			Push(Optr, *exp);
+			exp++;
+			break;
 		case'*':
 		case'/':
 			while (!StackEmpty(Optr))
