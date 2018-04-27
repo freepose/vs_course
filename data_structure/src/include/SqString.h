@@ -1,17 +1,20 @@
 #pragma once
 #include "basic.h"
+#include "SqList.h"
 
-typedef struct
-{
-	char data[MAX_SIZE];
-	int length;
-}SqString;
+//typedef struct
+//{
+//	char data[MAX_SIZE];
+//	int length;
+//} SqString;
+
+typedef SqList<char> SqString;
 
 
 /*Algorithm by CXD*/
 
-//Brute-Force
-int index(SqString s, SqString t)
+// Brute-Force
+int BruteForce(SqString s, SqString t)
 {
 	int j = 0, i = 0;
 	while (i<s.length&&j < t.length) {
@@ -32,7 +35,7 @@ int index(SqString s, SqString t)
 	}
 }
 
-//KMP
+// KMP
 void GetNext(SqString t, int *next)
 {
 	int  j = 0, k = -1;
@@ -71,7 +74,7 @@ int KMPIndex(SqString s, SqString t)
 	}
 }
 
-//better KMP
+// better KMP
 void GetNextval(SqString t, int *nextval)
 {
 	int j = 0, k = -1;
@@ -130,7 +133,7 @@ void SqStringexample()
 	}
 	s.length = 12;
 	cout << "The position of the substring is:"<<endl;
-	cout << index(s, t)<< endl;
+	cout << BruteForce(s, t)<< endl;
 	cout << KMPIndex(s, t)<< endl;
 	cout << KMPIndex1(s, t)<< endl;
 }
