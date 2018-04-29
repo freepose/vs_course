@@ -1,20 +1,156 @@
 #pragma once
 #include "basic.h"
-#include "SqList.h"
 
-//typedef struct
-//{
-//	char data[MAX_SIZE];
-//	int length;
-//} SqString;
+typedef struct 
+{
+	char data[MAX_SIZE];
+	int length;
+} SqString;
 
-typedef SqList<char> SqString;
+void StrAssign(SqString &s, char cstr[])
+{
 
+	int i;
+	for (i = 0; cstr[i] != '\0'; i++)
+	{
+		s.data[i] = cstr[i];
+	}
+	s.length = i;
+}
+
+void StrCopy(SqString &s, SqString t)
+{
+	int i;
+	for (i = 0; i < t.length; i++)
+	{
+		s.data[i] = t.data[i];
+	}
+	s.length = t.length;
+}
+
+bool StrEqual(SqString s, SqString t)
+{
+	if (s.length != t.length)
+		return false;
+	else
+	{
+		for (int i = 0; i < s.length; i++)
+		{
+			if (s.data[i] != t.data[i])
+				return false;
+		}
+	}
+	return true;
+}
+
+int StrLength(SqString s)
+{
+	return s.length;
+}
+
+SqString Concat(SqString s, SqString t)
+{
+	SqString str;
+	str.length = s.length + t.length;
+	for (int i = 0; i < s.length; i++)
+	{
+		str.data[i] = s.data[i];
+	}
+	for (int i = 0; i < t.length; i++)
+	{
+		str.data[i + s.length] = t.data[i];
+	} 
+	return str;
+}
+
+SqString SubStr(SqString s, int i, int j)
+{
+	int k;
+	SqString str;
+	str.length = 0;
+	if (i <= 0 || i > s.length || j < 0 || i + j - 1 > s.length)
+		return str;
+	for (k = i - 1; k < i + j - 1; k++)
+	{
+		str.data[k - i + 1] = s.data[k];
+	}
+	str.length = j;
+	return str;
+}
+
+SqString InsStr(SqString s1, int i, SqString s2)
+{
+	int j;
+	SqString str;
+	str.length = 0;
+	if (i <= 0 || i > s1.length + 1)
+	{
+		return str;
+	}
+	for (j = 0; j < i - 1; j++)
+	{
+		str.data[j] = s1.data[j];
+	}
+	for (j = 0; j < s2.length; j++)
+	{
+		str.data[i + j - 1] = s2.data[j];
+	}
+	for (j = i - 1; j < s1.length; j++)
+	{
+		str.data[s2.length + 1] = s1.data[j];
+	}
+	str.length = s1.length + s1.length;
+	return str;
+}
+
+SqString DelStr(SqString s, int i, int j)
+{
+	int k;
+	SqString str;
+	str.length = 0;
+	if (i < 0 || i > s.length || i + j > s.length + 1)
+		return str;
+	for (k = 0; k < i - 1; k++)
+	{
+		str.data[k] = s.data[k];
+	}
+	for (k = i + j - 1; k < s.length; k++)
+	{
+		str.data[k - j] = s.data[k];
+	}
+	str.length = s.length - j;
+	return str;
+}
+
+SqString RepStr(SqString s, int i, int j, SqString t)
+{
+	int k;
+	SqString str;
+	str.length = 0;
+	if (i <= 0 || i > s.length || i + j - 1 > s.length)
+	{
+		return str;
+	}
+	for (k = 0; k < i - 1; k++)
+	{
+		str.data[k] = s.data[k];
+	}
+	for (k = 0; k < t.length; k++)
+	{
+		str.data[i + k - 1] = t.data[k];
+	}
+	for (k = i + j - 1; k < s.length; k++)
+	{
+		str.data[t.length + k - j] = s.data[k];
+	}
+	str.length = s.length - j + t.length;
+	return str;
+}
 
 /*Algorithm by CXD*/
 
-// Brute-Force
-int BruteForce(SqString s, SqString t)
+//Brute-Force
+int index(SqString s, SqString t)
 {
 	int j = 0, i = 0;
 	while (i<s.length&&j < t.length) {
@@ -35,7 +171,7 @@ int BruteForce(SqString s, SqString t)
 	}
 }
 
-// KMP
+//KMP
 void GetNext(SqString t, int *next)
 {
 	int  j = 0, k = -1;
@@ -74,7 +210,7 @@ int KMPIndex(SqString s, SqString t)
 	}
 }
 
-// better KMP
+//better KMP
 void GetNextval(SqString t, int *nextval)
 {
 	int j = 0, k = -1;
@@ -133,7 +269,7 @@ void SqStringexample()
 	}
 	s.length = 12;
 	cout << "The position of the substring is:"<<endl;
-	cout << BruteForce(s, t)<< endl;
+	cout << index(s, t)<< endl;
 	cout << KMPIndex(s, t)<< endl;
 	cout << KMPIndex1(s, t)<< endl;
 }

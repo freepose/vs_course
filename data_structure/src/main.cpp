@@ -13,7 +13,7 @@
 int main()
 {
 	//SqListExample();
-	LinkNodeExample();
+	//LinkNodeExample();
 	//DLinkNodeExample();
 
 	//SqStackExample();
@@ -27,6 +27,6 @@ int main()
 
 	//BTreeTraversalExample();
 
-	//SqStringexample();
+	SqStringexample();
 	return 0;
 }

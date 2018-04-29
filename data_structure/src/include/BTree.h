@@ -400,15 +400,15 @@ template<typename T> void InOderThread(TBTNode<T> *tb)
 
 //Create a tree  by the known preorder and middle sequence sequence
 // pre save preorder sequence,in save midlle sequence，n is node number，return the root node
-template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
+BTNode<char> *CreateBT1(char *pre, char *in, int n)
 {
-	BTNode<T> *b;
-	T *p;
+	BTNode<char> *b;
+	char *p;
 	int k;
 	if (n <= 0) {
 		return 0;
 	}
-	b = new BTNode<T>;     //创建二叉树结点*s
+	b = new BTNode<char>;     //创建二叉树结点*s
 	b->data = *pre;
 	for (p = in; p < in + n; p++) {           //在中序序列中找等于*ppos的位置k
 		if (*p == *pre) {                    //pre指向根结点
@@ -423,16 +423,16 @@ template<typename T> BTNode<T> *CreateBT1(T *pre, T *in, int n)
 
 //Create a tree  by the known preorder and postorder  sequence sequence
 // pre save postorder sequence,in save midlle sequence，n is node number，return the root node
-template<typename T> BTNode<T> *CreateBT2(T *post, T *in, int n)
+BTNode<char> *CreateBT2(char *post, char *in, int n)
 {
-	BTNode<T> *b;
-	T r, *p;
+	BTNode<char> *b;
+	char r, *p;
 	int k;
 	if (n <= 0) {
 		return 0;
 	}
 	r = *(post + n - 1);
-	b = new BTNode<T>;
+	b = new BTNode<char>;
 	b->data = r;
 	for (p = in; p < in + n; p++) {
 		if (*p == r) {
@@ -797,7 +797,7 @@ void BTreeTraversalExample()
 	cout << "Using SqQueue display node value from leaf to root：" << endl; AllPath2(T);
 	
 
-	char pre[] = "ABDGCEF", in[] = "DGBAECF", post[] = "GDBEFCA";
+	char *pre = "ABDGCEF", *in = "DGBAECF", *post = "GDBEFCA";
 	BTNode<char> *b1;
 	b1 = CreateBT1(pre, in, 7);
 	DispBTree(b1); cout << endl;
