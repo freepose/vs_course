@@ -30,6 +30,6 @@ int main()
 
 	//BTreeTraversalExample();
 
-	//SqStringexample();
+	SqStringexample();
 	return 0;
 }
