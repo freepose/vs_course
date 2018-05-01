@@ -90,7 +90,7 @@ template<typename T> void DestroyList(LinkNode<T> *L)
 
 template<typename T> void deletemaxnode(LinkNode<T> *&L)
 {
-	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = p;
+	LinkNode<T> *p = L->next, *pre = L, *maxp = p, *maxpre = pre;
 	while (p != 0) {
 		if (maxp->data < p->data) {
 			maxp = p;

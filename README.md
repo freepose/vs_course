@@ -26,8 +26,6 @@
 
 
 ### todo list
-	- UFSTree by PHY p241-243
-
 	- SpString by TN
 	-LinkStrNode, Brute-Force by CKJ p123-134
 
