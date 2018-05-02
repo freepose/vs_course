@@ -9,10 +9,13 @@
 #include"include\BTree.h"
 #include"include\Example.h"
 #include"include\SqString.h"
+#include"include\array.h"
 
 
 int main()
 {
+	arrayExample();
+
 	//SqListExample();
 	//LinkNodeExample();
 	//DLinkNodeExample();
