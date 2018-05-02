@@ -7,18 +7,12 @@
 
 #pragma once
 #include "basic.h"
+#include"SqList.h"
+#include"LinkNode.h"
 
-typedef struct 
-{
-	char data[MAX_SIZE];
-	int length;
-} SqString;
+typedef struct SqList<char> SqString;
+typedef struct LinkNode<char> LinkStrNode;
 
-typedef struct snode
-{
-	char data;
-	snode *next;
-}LinkStrNode;
 
 void StrAssign(SqString &s, char cstr[])
 {
