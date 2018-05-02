@@ -10,6 +10,7 @@
 #include"include\Example.h"
 #include"include\SqString.h"
 
+
 int main()
 {
 	//SqListExample();
@@ -27,6 +28,7 @@ int main()
 
 	//BTreeTraversalExample();
 
-	SqStringexample();
+	//SqStringexample();
+
 	return 0;
 }
