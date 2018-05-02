@@ -14,7 +14,7 @@
 
 int main()
 {
-	arrayExample();
+	//arrayExample();
 
 	//SqListExample();
 	//LinkNodeExample();
@@ -31,7 +31,7 @@ int main()
 
 	//BTreeTraversalExample();
 
-	//SqStringexample();
+	SqStringexample();
 
 	return 0;
 }

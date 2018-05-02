@@ -110,7 +110,7 @@ SqString InsStr(SqString s1, int i, SqString s2)
 	}
 	for (j = i - 1; j < s1.length; j++)
 	{
-		str.data[s2.length + 1] = s1.data[j];
+		str.data[s2.length + j] = s1.data[j];
 	}
 	str.length = s1.length + s1.length;
 	return str;
@@ -256,7 +256,7 @@ LinkStrNode *ConcatLink(LinkStrNode *s, LinkStrNode *t)
 		r = q;
 		p = p->next;
 	}
-	p = p->next;
+	p = t->next;
 	while (p != NULL)
 	{
 		q = new LinkStrNode;
@@ -595,9 +595,107 @@ int KMPIndex1(SqString s, SqString t) {
 
 void SqStringexample()
 {
+	SqString s1, s2;
+	char str1[] = "abcdefg", str2[] = "123";
+	StrAssign(s1, str1);
+	DispStr(s1);
 	
+	StrAssign(s2, str2);
+	StrCopy(s1, s2);
+	DispStr(s1);
 	
-	int i;
+	if (StrEqual(s1, s2))
+		cout << "Yes";
+	else
+		cout << "No";
+	cout << endl << "s1->length = " << StrLength(s1) << endl;
+	
+	DispStr(s1);
+	s1 = Concat(s1, s2);
+	DispStr(s1);
+	
+	DispStr(s1);
+	s1 = SubStr(s1, 1, 5);
+	DispStr(s1);
+	
+	StrAssign(s2, str1);
+	DispStr(s1);
+	DispStr(s2);
+	s1 = InsStr(s1, 1, s2);
+	DispStr(s1);
+	
+	DispStr(s1);
+	s1 = DelStr(s1, 2, 4);
+	DispStr(s1);
+
+	DispStr(s1);
+	DispStr(s2);
+	s1 = RepStr(s1, 2, 2, s2);
+	DispStr(s1);
+
+	cout << "s1 = "; 
+	DispStr(s1);
+	cout << "s2 = ";
+	DispStr(s2);
+	if (Strcmp(s1, s2) == 0)
+		cout << "s1 = s2" << endl;
+	else if (Strcmp(s1, s2) < 0)
+		cout << "s1 < s2" << endl;
+	else
+		cout << "s1 > s2" << endl;
+
+	int index, maxlen;
+	LongestString(s1, index, maxlen);
+	DispStr(s1);
+	cout << "最长子串起始位置为：" << index << endl 
+		<< "长度为:" << maxlen << endl;
+
+	/*LinkStrNode *s1, *s2;
+	char str1[] = "abcdefg", str2[] = "123";
+	StrAssignLink(s1, str1);
+	DispStrLink(s1);
+
+	StrAssignLink(s2, str2);
+	StrCopyLink(s1, s2);
+	DispStrLink(s1);
+
+	if (StrEqualLink(s1, s2))
+		cout << "Yes";
+	else
+		cout << "No";
+	cout << endl << "s1->length = " << StrLengthLink(s1) << endl;
+
+	DispStrLink(s1);
+	s1 = ConcatLink(s1, s2);
+	DispStrLink(s1);
+
+	DispStrLink(s1);
+	s1 = SubStrLink(s1, 1, 5);
+	DispStrLink(s1);
+
+	StrAssignLink(s2, str1);
+	DispStrLink(s1);
+	DispStrLink(s2);
+	s1 = InsStrLink(s1, 3, s2);
+	DispStrLink(s1);
+
+	DispStrLink(s1);
+	s1 = DelStrLink(s1, 2, 4);
+	DispStrLink(s1);
+
+	DispStrLink(s1);
+	DispStrLink(s2);
+	s1 = RepStr(s1, 2, 2, s2);
+	DispStrLink(s1);
+	
+	DispStrLink(s1);
+	Repl(s1);
+	DispStrLink(s1);
+
+	DestroyStrLink(s1);
+	DestroyStrLink(s2);*/
+
+	/*int i;
 	SqString t, s;
 	char a[5] = "abab";
 	char b[13] = "abbaababbaab";
@@ -612,5 +710,5 @@ void SqStringexample()
 	cout << "The position of the substring is:"<<endl;
 	cout << index(s, t)<< endl;
 	cout << KMPIndex(s, t)<< endl;
-	cout << KMPIndex1(s, t)<< endl;
+	cout << KMPIndex1(s, t)<< endl;*/
 }

@@ -415,7 +415,7 @@ BTNode<char> *CreateBT1(char *pre, char *in, int n)
 			break;                             //在in中找到后退出循环
 		}
 	}
-	k = p - in;                                 //确定根结点在in中的位置
+	k = int(p - in);                               //确定根结点在in中的位置
 	b->lchild = CreateBT1(pre + 1, in, k);        //递归构造左子树
 	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //递归构造右子树
 	return b;
@@ -439,7 +439,7 @@ BTNode<char> *CreateBT2(char *post, char *in, int n)
 			break;
 		}
 	}
-	k = p - in;
+	k = int(p - in);
 	b->lchild = CreateBT2(post, in, k);
 	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);
 	return b;
