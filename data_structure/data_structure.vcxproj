@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\AdjGraph.h" />
     <ClInclude Include="src\include\array.h" />
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\BTree.h" />
