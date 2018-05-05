@@ -32,10 +32,10 @@ int main()
 
 	//BTreeTraversalExample();
 
-	//SqStringexample();
+	SqStringexample();
 	//LinkStringExample();
 
-	GraphExample();
+	//GraphExample();
 
 	return 0;
 }

@@ -214,6 +214,7 @@ void LongestString(SqString s, int &index, int &maxlen)
 	}
 }
 
+
 /*Algorithm by CXD*/
 
 //Brute-Force
@@ -372,14 +373,13 @@ void SqStringexample()
 	else
 		cout << "s1 > s2" << endl;
 
-	int index, maxlen;
-	LongestString(s1, index, maxlen);
+	int indem, maxlen;
+	LongestString(s1, indem, maxlen);
 	DispStr(s1);
-	cout << "最长子串起始位置为：" << index << endl 
+	cout << "最长子串起始位置为：" << indem << endl 
 		<< "长度为:" << maxlen << endl;
 
-
-	/*int i;
+	int i;
 	SqString t, s;
 	char a[5] = "abab";
 	char b[13] = "abbaababbaab";
@@ -394,5 +394,5 @@ void SqStringexample()
 	cout << "The position of the substring is:"<<endl;
 	cout << index(s, t)<< endl;
 	cout << KMPIndex(s, t)<< endl;
-	cout << KMPIndex1(s, t)<< endl;*/
+	cout << KMPIndex1(s, t)<< endl;
 }

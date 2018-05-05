@@ -256,6 +256,7 @@ void DispStrLink(LinkStrNode *s)
 	cout << endl;
 }
 
+
 /*
 *Examples
 */
