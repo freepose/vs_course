@@ -10,8 +10,7 @@
 #include"include\Example.h"
 #include"include\SqString.h"
 #include"include\array.h"
-#include"include\Graph.h"
-
+#include"include\LinkString.h"
 
 int main()
 {
@@ -33,8 +32,7 @@ int main()
 	//BTreeTraversalExample();
 
 	//SqStringexample();
-
-	GraphExample();
+	LinkStringExample();
 
 	return 0;
 }
