@@ -54,7 +54,7 @@
     <ClInclude Include="src\include\SqString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\AdjGraph.h">
+    <ClInclude Include="src\include\Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

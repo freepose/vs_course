@@ -10,6 +10,7 @@
 #include"include\Example.h"
 #include"include\SqString.h"
 #include"include\array.h"
+#include"include\Graph.h"
 
 
 int main()
@@ -31,7 +32,9 @@ int main()
 
 	//BTreeTraversalExample();
 
-	SqStringexample();
+	//SqStringexample();
+
+	GraphExample();
 
 	return 0;
 }
