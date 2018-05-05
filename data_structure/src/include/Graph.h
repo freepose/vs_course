@@ -23,15 +23,15 @@ template<typename T> struct MatGraph
 /* adjacency list*/
 
 //Side node storage structure
-template <typename T> struct ArcNode    
+template <typename T> struct ArcNode
 {
 	int adjvex;  //Terminal number 
-	ArcNode<T> *nextarc; 
+	ArcNode<T> *nextarc;
 	T weight; //information
 };
 
 //Head node storage structure 
-template <typename T> struct VNode        
+template <typename T> struct VNode
 {
 	T info;
 	ArcNode<T> *firstarc; //Point to the first side node 
@@ -41,7 +41,7 @@ template <typename T> struct VNode
 template <typename T> struct AdjGraph
 {
 	VNode<T> adjlist[MAX_SIZE];  //The number group of Head node 
-	int n, e;              
+	int n, e;
 };
 
 
@@ -78,7 +78,7 @@ template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE],
 			}
 		}
 	}
-	G->n = n; 
+	G->n = n;
 	G->e = e;
 }
 
@@ -129,7 +129,7 @@ template <typename T> void MatToList(MatGraph<T> g, AdjGraph<T> *&G)
 		G->adjlist[i].firstarc = 0;
 	}
 	for (i = 0; i < g.n; i++) {
-		for (j = g.n-1; j>=0; j--) {      //检查邻接矩阵的每个元素
+		for (j = g.n - 1; j >= 0; j--) {      //检查邻接矩阵的每个元素
 			if (g.edges[i][j] != 0 && g.edges[i][j] != INF) {         //存在一条边
 				p = new ArcNode<T>;                       //创建一个结点P
 				p->adjvex = j;                          //存放邻接点
@@ -168,7 +168,7 @@ void GraphExample()
 		{ 1,0,1,1,0 },
 		{ 0,1,0,1,1 },
 		{ 1,1,1,0,1 },
-		{ 1,0,1,1,0 } 
+		{ 1,0,1,1,0 }
 	};
 	CreateAdj(G, A, n, e);
 	DispAdj(G);
@@ -184,7 +184,6 @@ void GraphExample()
 	ListToMat(G, g);
 	DispMatGraph(g);
 
-	
+
 
 }
-

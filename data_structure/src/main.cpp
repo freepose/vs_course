@@ -11,6 +11,7 @@
 #include"include\SqString.h"
 #include"include\array.h"
 #include"include\LinkString.h"
+#include"include\Graph.h"
 
 int main()
 {
@@ -32,7 +33,9 @@ int main()
 	//BTreeTraversalExample();
 
 	//SqStringexample();
-	LinkStringExample();
+	//LinkStringExample();
+
+	GraphExample();
 
 	return 0;
 }
