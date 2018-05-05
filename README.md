@@ -17,19 +17,22 @@
 		SqQueue, sequencial queue, circular queue
 		LinkQueueNode, linked queue
 
-	[4] Tree
+	[4] String
+	    SqString,  Brute-Force, KMP
+		LinkString
+
+	[5] Tree
 		BTNode
 		binary tree, threaded tree, construct a binary tree, Huffman tree
 
-	[5] SqString
-	    Brute-Force, KMP
+	[6] Graph
+	    adjacency matrix, adjacency list
+	
+
 
 
 ### todo list
-	- SpString by TN
-	-LinkStrNode, Brute-Force by CKJ p123-134
-
-	- Graph Storage Structures, Basic algorithms of Graphs by CXD p256-262
+	
 	- traverse of graphs by TN p264-269
 	- Spanning tree, minimum spanning tree by CKJ p279-285
 	- optimal path by PHY p290-296
