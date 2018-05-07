@@ -157,6 +157,62 @@ template <typename T> void ListToMat(AdjGraph<T> *&G, MatGraph<T> &g)
 	g.n = G->n; g.e = G->e;
 }
 
+//Depth First Search
+int visited[MAX_SIZE] = { 0 };
+template<typename T> void DFS(AdjGraph<T> *G, int v)
+{
+	ArcNode<T> *p;
+	visited[v] = 1;                //置以访问标记
+	cout << v << " ";                     //输出被访问顶点的编号
+	p = G->adjlist[v].firstarc;    //p指向顶点v的第一个邻接点
+	while (p != 0) {
+		if (visited[p->adjvex] == 0) {
+			DFS(G, p->adjvex);     //若p->adjvex顶点未被访问，递归访问它
+		}
+		p = p->nextarc;            //p指向顶点v的下一个邻接点
+	}
+}
+
+//Breadth First Search
+template<typename T> void BFS(AdjGraph<T> *G, int v)
+{
+	int w, i;
+	ArcNode<T> *p;
+	SqQueue<T> *qu;          //定义环形队列指针
+	InitQueue(qu);          //初始化队列
+	int visited[MAX_SIZE];   //定义顶点访问标记数组
+	for (i = 0; i < G->n; i++) {
+		visited[i] = 0;
+	}
+	cout << v << " ";
+	enQueue(qu, v);
+	while (!QueueEmpty(qu)) {
+		deQueue(qu, w);         //出队一个顶点w
+		p = G->adjlist[w].firstarc;  //指向w的第一个邻接点
+		while (p != 0) {             //查找w的所有邻接点
+			if (visited[p->adjvex] == 0) {
+				cout << p->adjvex << " ";
+				visited[p->adjvex] = 1;
+				enQueue(qu, p->adjvex); //该顶点进队
+			}
+			p = p->nextarc;
+		}
+	}
+}
+
+//Non-connected graph Depth First Search, visited every vertex
+template<typename T> void N_Con_DFS(AdjGraph<T> *G)
+{
+	int i;
+	int visited[MAX_SIZE] = { 0 };
+	for (i = 0; i < G->n; i++) {
+		if (visited[i] == 0) {
+			DFS(G, i);
+		}
+	}
+}
+
+
 
 void GraphExample()
 {
@@ -184,6 +240,8 @@ void GraphExample()
 	ListToMat(G, g);
 	DispMatGraph(g);
 
-
+	cout << "Depth First Search: "; DFS(G, 0);
+	cout << endl << "Breadth First Search: "; BFS(G, 0);
+	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G);
 
 }
