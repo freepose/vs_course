@@ -94,7 +94,7 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 			cout << setw(3) << setfill('0') << p->adjvex << "[" << p->weight << "]->";
 			p = p->nextarc;
 		}
-		cout << endl;
+		cout << '/' << "\\" << endl;
 	}
 	cout << endl;
 }
@@ -211,7 +211,6 @@ template<typename T> void N_Con_DFS(AdjGraph<T> *G)
 		}
 	}
 }
-
 
 
 void GraphExample()
