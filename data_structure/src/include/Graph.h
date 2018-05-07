@@ -158,8 +158,7 @@ template <typename T> void ListToMat(AdjGraph<T> *&G, MatGraph<T> &g)
 }
 
 //Depth First Search
-int visited[MAX_SIZE] = { 0 };
-template<typename T> void DFS(AdjGraph<T> *G, int v)
+template<typename T> void DFS(AdjGraph<T> *G, int v, int visited[])
 {
 	ArcNode<T> *p;
 	visited[v] = 1;                //置以访问标记
@@ -167,24 +166,24 @@ template<typename T> void DFS(AdjGraph<T> *G, int v)
 	p = G->adjlist[v].firstarc;    //p指向顶点v的第一个邻接点
 	while (p != 0) {
 		if (visited[p->adjvex] == 0) {
-			DFS(G, p->adjvex);     //若p->adjvex顶点未被访问，递归访问它
+			DFS(G, p->adjvex, visited);     //若p->adjvex顶点未被访问，递归访问它
 		}
 		p = p->nextarc;            //p指向顶点v的下一个邻接点
 	}
 }
 
 //Breadth First Search
-template<typename T> void BFS(AdjGraph<T> *G, int v)
+template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 {
 	int w, i;
 	ArcNode<T> *p;
 	SqQueue<T> *qu;          //定义环形队列指针
 	InitQueue(qu);          //初始化队列
-	int visited[MAX_SIZE];   //定义顶点访问标记数组
+	cout << v << " ";
 	for (i = 0; i < G->n; i++) {
 		visited[i] = 0;
 	}
-	cout << v << " ";
+	visited[v] = 1;
 	enQueue(qu, v);
 	while (!QueueEmpty(qu)) {
 		deQueue(qu, w);         //出队一个顶点w
@@ -201,13 +200,29 @@ template<typename T> void BFS(AdjGraph<T> *G, int v)
 }
 
 //Non-connected graph Depth First Search, visited every vertex
-template<typename T> void N_Con_DFS(AdjGraph<T> *G)
+template<typename T> void N_Con_DFS(AdjGraph<T> *G, int visited[])
 {
 	int i;
-	int visited[MAX_SIZE] = { 0 };
+	for (i = 0; i < G->n; i++) {   //标记置零
+		visited[i] = 0;
+	}
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
-			DFS(G, i);
+			DFS(G, i, visited);
+		}
+	}
+}
+
+//Non-connected graph Breadth First Search, visited every vertex
+template<typename T> void N_Con_BFS(AdjGraph<T> *G, int visited[])
+{
+	int i;
+	for (i = 0; i < G->n; i++) {   //标记置零
+		visited[i] = 0;
+	}
+	for (i = 0; i < G->n; i++) {
+		if (visited[i] == 0) {
+			BFS(G, i, visited);
 		}
 	}
 }
@@ -240,8 +255,10 @@ void GraphExample()
 	ListToMat(G, g);
 	DispMatGraph(g);
 
-	cout << "Depth First Search: "; DFS(G, 0);
-	cout << endl << "Breadth First Search: "; BFS(G, 0);
-	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G);
+	int visited[MAX_SIZE] = { 0 };
+	cout << "Depth First Search: "; DFS(G, 0, visited);
+	cout << endl << "Breadth First Search: "; BFS(G, 0, visited);
+	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G, visited);
+	cout << endl << "Non-connected graph Breadth First Search: "; N_Con_BFS(G, visited);
 
 }
