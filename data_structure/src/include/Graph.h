@@ -103,7 +103,7 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 				cout << "¦«";
 			p = p->nextarc;
 		}
-		cout << '/' << "\\" << endl;
+		cout << endl;
 	}
 }
 
