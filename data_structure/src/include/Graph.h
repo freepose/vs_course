@@ -103,7 +103,7 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 				cout << "¦«";
 			p = p->nextarc;
 		}
-		cout << endl;
+		cout << '/' << "\\" << endl;
 	}
 }
 
@@ -449,7 +449,6 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 	}
 	Dispath(g, dist, path, S, v);//Êä³ö×î¶ÌÂ·¾¶
 }
-
 
 
 void GraphExample()
