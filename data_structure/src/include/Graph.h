@@ -157,9 +157,16 @@ template <typename T> void ListToMat(AdjGraph<T> *&G, MatGraph<T> &g)
 	g.n = G->n; g.e = G->e;
 }
 
+//Zero the tag
+template<typename T> void Zero(AdjGraph<T> *G, int visited[])
+{
+	for (int i = 0; i < G->n; i++) {
+		visited[i] = 0;
+	}
+}
+
 //Depth First Search
-int visited[MAX_SIZE] = { 0 };
-template<typename T> void DFS(AdjGraph<T> *G, int v)
+template<typename T> void DFS(AdjGraph<T> *G, int v, int visited[])
 {
 	ArcNode<T> *p;
 	visited[v] = 1;                //置以访问标记
@@ -167,24 +174,22 @@ template<typename T> void DFS(AdjGraph<T> *G, int v)
 	p = G->adjlist[v].firstarc;    //p指向顶点v的第一个邻接点
 	while (p != 0) {
 		if (visited[p->adjvex] == 0) {
-			DFS(G, p->adjvex);     //若p->adjvex顶点未被访问，递归访问它
+			DFS(G, p->adjvex, visited);     //若p->adjvex顶点未被访问，递归访问它
 		}
 		p = p->nextarc;            //p指向顶点v的下一个邻接点
 	}
 }
 
 //Breadth First Search
-template<typename T> void BFS(AdjGraph<T> *G, int v)
+template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 {
-	int w, i;
+	int w;
 	ArcNode<T> *p;
 	SqQueue<T> *qu;          //定义环形队列指针
 	InitQueue(qu);          //初始化队列
-	int visited[MAX_SIZE];   //定义顶点访问标记数组
-	for (i = 0; i < G->n; i++) {
-		visited[i] = 0;
-	}
 	cout << v << " ";
+	Zero(G, visited);         //标记置零
+	visited[v] = 1;
 	enQueue(qu, v);
 	while (!QueueEmpty(qu)) {
 		deQueue(qu, w);         //出队一个顶点w
@@ -201,15 +206,239 @@ template<typename T> void BFS(AdjGraph<T> *G, int v)
 }
 
 //Non-connected graph Depth First Search, visited every vertex
-template<typename T> void N_Con_DFS(AdjGraph<T> *G)
+template<typename T> void N_Con_DFS(AdjGraph<T> *G, int visited[])
 {
 	int i;
-	int visited[MAX_SIZE] = { 0 };
+	Zero(G, visited);         //标记置零
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
-			DFS(G, i);
+			DFS(G, i, visited);
 		}
 	}
+}
+
+//Non-connected graph Breadth First Search, visited every vertex
+template<typename T> void N_Con_BFS(AdjGraph<T> *G, int visited[])
+{
+	int i;
+	Zero(G, visited);         //标记置零
+	for (i = 0; i < G->n; i++) {
+		if (visited[i] == 0) {
+			BFS(G, i, visited);
+		}
+	}
+}
+
+// P269【例8.3】Determine whether the undirected graph is connected
+template<typename T> bool Connect(AdjGraph<T> *G, int visited[])
+{
+	int i;
+	bool flag = true;
+	Zero(G, visited);         //标记置零
+	DFS(G, 0, visited);        //从顶点0开始深度优先遍历
+	for (i = 0; i < G->n; i++) {
+		if (visited[i] == 0) {
+			flag = false;     //若有顶点没有被访问到，说明是不连通的
+			break;
+		}
+	}
+	return flag;
+}
+
+
+/*Application based on Depth First Search*/
+
+
+// P269【例8.4】Find simple path of u to v
+template<typename T> void ExistPath(AdjGraph<T> *G, int u, int v, bool &has, int visited[])
+{
+	int w;
+	ArcNode<T> *p;
+	visited[u] = 1;        //置以访问标记
+	if (u == v) {
+		has = true;
+		return;
+	}
+	p = G->adjlist[u].firstarc;  //p指向顶点u的第一个邻接点
+	while (p != 0) {
+		w = p->adjvex;                //w为顶点u的第一个邻接点
+		if (visited[w] == 0) {       //若w顶点为访问，递归访问他
+			ExistPath(G, w, v, has, visited);
+		}
+		p = p->nextarc;
+	}
+}
+
+// P270【例8.5】Disp simple path of u to v, d is the length of path
+template<typename T> void FindaPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
+{
+	int w, i;
+	ArcNode<T> *p;
+	visited[u] = 1;
+	d++;
+	path[d] = u;        //路径长度d增加1，顶点u加入到路径中
+	if (u == v) {
+		for (i = 0; i <= d; i++) {
+			cout << path[i] << " ";
+		}
+		cout << endl;
+		return;
+	}
+	p = G->adjlist[u].firstarc;  //p指向顶点u的第一个邻接点
+	while (p != 0) {
+		w = p->adjvex;                //w为顶点u的邻接点
+		if (visited[w] == 0) {       //若w顶点为访问，递归访问他
+			FindaPath(G, w, v, path, d, visited);
+		}
+		p = p->nextarc;
+	}
+}
+
+// P271【例8.6】Disp all the simple pathes of u to v.
+template<typename T> void FindAllPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
+{
+	int w, i;
+	ArcNode<T> *p;
+	d++;
+	path[d] = u;
+	visited[u] = 1;
+	if (u == v && d >= 0) {
+		for (i = 0; i <= d; i++) {
+			cout << path[i] << " ";
+		}
+		cout << endl;
+	}
+	p = G->adjlist[u].firstarc;
+	while (p != 0) {
+		w = p->adjvex;
+		if (visited[w] == 0) {
+			FindAllPath(G, w, v, path, d, visited);
+		}
+		p = p->nextarc;
+	}
+	visited[u] = 0;    //恢复环境，使该顶点可重新使用
+}
+
+// P272【例8.7】Disp all paths of length l from u to v
+template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int path[], int d, int visited[])
+{
+	int w, i;
+	ArcNode<T> *p;
+	visited[u] = 1;
+	d++;
+	path[d] = u;
+	if (v == u && d == l) {              //长度为l时输出路径
+		for (i = 0; i <= d; i++) {
+			cout << path[i] << " ";
+		}
+		cout << endl;
+	}
+	p = G->adjlist[u].firstarc;
+	while (p != 0) {
+		w = p->adjvex;
+		if (visited[w] == 0) {
+			PathLenAll(G, w, v, l, path, d, visited);
+		}
+		p = p->nextarc;
+	}
+	visited[u] = 0;
+}
+
+//P274【例8.8】Disp all the simple cycle which through k
+template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
+{
+	int w, i;
+	ArcNode<T> *p;
+	visited[u] = 1;
+	d++;
+	path[d] = u;
+	p = G->adjlist[u].firstarc;
+	while (p != 0) {
+		w = p->adjvex;
+		if (w == v && d > 0) {
+			for (i = 0; i <= d; i++) {
+				cout << path[i] << " ";
+			}
+			cout << v << endl;
+		}
+		if (visited[w] == 0) {
+			FindCyclePath(G, w, v, path, d, visited);
+		}
+		p = p->nextarc;
+	}
+	visited[u] = 0;
+}
+
+
+//Display the shotest path
+template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], int v)
+{
+	int i, j, k;
+	int apath[MAX_SIZE], d;//存放一条最短路路径（逆向）及其顶点个数
+	for(i=0;i<g.n;i++)//循环输出从顶点v到i的路径
+		if (S[i] == 1 && i != v)
+		{
+			cout << "从顶点" << v << "到顶点" << i << "的路径长度为：" << dist[i] << '\t' << "路径为：";
+			d = 0;
+			apath[d] = i;//添加路径上的终点
+			k = path[i];
+			if (k == -1)//没有路径的情况
+				cout << "无路径" << endl;
+			else//存在路径时输出该路径
+			{
+				while (k != v)
+				{
+					d++;
+					apath[d] = k;
+					k = path[k];
+				}
+				d++;
+				apath[d] = v;//添加路径上的起点
+				cout << apath[d];//先输出起点
+				for (j = d - 1; j >= 0; j--)//再输出其他顶点
+					cout << "," << apath[j];
+				cout << endl;
+			}
+		}
+}
+
+
+//Display the shotest path by Dijkstra
+template<typename T> void Dijkstra(MatGraph<T> g, int v)
+{
+	int dist[MAX_SIZE], path[MAX_SIZE];
+	int S[MAX_SIZE];//S[i]=1表示顶点i在S中，S[i]=0表示顶点i在U中
+	int MINdis, i, j, u;
+	for (i = 0; i < g.n; i++)
+	{
+		dist[i] = g.edges[v][i];//距离初始化
+		S[i] = 0;//S[]置空
+		if (g.edges[v][i] < INF)//路径初始化
+			path[i] = v;//顶点v到顶点i有边时，置顶点i的前一个顶点为v
+		else
+			path[i] = -1;//顶点v到顶点i没边时，置顶点i的前一个顶点为-1
+	}
+	S[v] = 1;
+	path[v] = 0;//源点编号v放入S中
+	for (i = 0; i < g.n - 1; i++)//循环直到所有顶点的最短路径都求出
+	{
+		MINdis = INF;//MINdis置最大长度初值
+		for(j=0;j<g.n;j++)//选取不在S中（即U中）且具有最小最短路径长度的顶点v
+			if (S[j] == 0 && dist[j] < MINdis)
+			{
+				u = j;
+				MINdis = dist[j];
+			}
+		S[u] = 1;//顶点u加入S中
+		for(j=0;j<g.n;j++)//修改不在S中（即U中）的顶点的最短路径
+			if(S[j]==0)
+				if (g.edges[u][j] < INF&&dist[u] + g.edges[u][j] < dist[j])
+				{
+					dist[j] = dist[u] + g.edges[u][j];
+					path[j] = u;
+				}
+	}
+	Dispath(g, dist, path, S, v);//输出最短路径
 }
 
 
@@ -239,8 +468,43 @@ void GraphExample()
 	ListToMat(G, g);
 	DispMatGraph(g);
 
-	cout << "Depth First Search: "; DFS(G, 0);
-	cout << endl << "Breadth First Search: "; BFS(G, 0);
-	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G);
+	int visited[MAX_SIZE] = { 0 };
+	cout << "Depth First Search: "; DFS(G, 0, visited);
+	cout << endl << "Breadth First Search: "; BFS(G, 0, visited);
+	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G, visited);
+	cout << endl << "Non-connected graph Breadth First Search: "; N_Con_BFS(G, visited);
+	
+	// P269【例8.3】
+	cout << endl;
+	if (Connect(G, visited)) {
+		cout << " is connected graph. " << endl;
+	}
 
+	// P269【例8.4】 P270【例8.5】 P271【例8.6】
+	int d = -1, path[MAX_SIZE] = { 0 };
+	int u = 1, v = 4;
+	bool has = false;
+	Zero(G, visited);         //标记置零
+	ExistPath(G, u, v, has,visited);
+	if (has) {
+		cout << "Can find the simple path of u to v. " << endl;
+		Zero(G, visited);
+		cout << "A simple path of u to v is: "; FindaPath(G, u, v, path, d, visited);
+		Zero(G, visited);  //置问初始值
+		d = -1;
+		cout << "All simple path of u to v is: "<<endl; FindAllPath(G, u, v, path, d, visited);
+	}
+
+	// P272【例8.7】
+	Zero(G, visited);  //置问初始值
+	d = -1;
+	int l = 2;
+	cout << "All l length simple path of u to v is: " << endl; PathLenAll(G, u, v, l, path, d, visited);
+
+	//P274【例8.8】
+	int k = 1;
+	cout << "All the cycle path through k is :" << endl; FindCyclePath(G, k, k, path, d, visited);
+
+	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0);
+	
 }
