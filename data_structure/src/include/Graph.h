@@ -1,3 +1,10 @@
+/*
+*
+* Create By ChenXiaodie, TangNi, CKj, PengHaoyun, 2018
+*
+*/
+
+
 #pragma once
 #define INF 0x3f3f3f3f
 #include "basic.h"
@@ -91,12 +98,13 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 		p = G->adjlist[i].firstarc;
 		cout << setw(3) << setfill('0') << i << ": ";   //输出顶点编号
 		while (p != 0) {
-			cout << setw(3) << setfill('0') << p->adjvex << "[" << p->weight << "]->";
+			cout << setw(3) << setfill('0') << p->adjvex << "[" << p->weight << "] ->";
+			if (p->nextarc == 0)
+				cout << "Λ";
 			p = p->nextarc;
 		}
 		cout << endl;
 	}
-	cout << endl;
 }
 
 //Destroy adjacency list
@@ -187,7 +195,7 @@ template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 	ArcNode<T> *p;
 	SqQueue<T> *qu;          //定义环形队列指针
 	InitQueue(qu);          //初始化队列
-	cout << v << " ";
+	cout << v << " ";	
 	Zero(G, visited);         //标记置零
 	visited[v] = 1;
 	enQueue(qu, v);
@@ -206,10 +214,10 @@ template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 }
 
 //Non-connected graph Depth First Search, visited every vertex
-template<typename T> void N_Con_DFS(AdjGraph<T> *G, int visited[])
+template<typename T> void N_Con_DFS(AdjGraph<T> *G)
 {
 	int i;
-	Zero(G, visited);         //标记置零
+	int visited[MAX_SIZE] = { 0 };        //标记置零
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
 			DFS(G, i, visited);
@@ -218,10 +226,10 @@ template<typename T> void N_Con_DFS(AdjGraph<T> *G, int visited[])
 }
 
 //Non-connected graph Breadth First Search, visited every vertex
-template<typename T> void N_Con_BFS(AdjGraph<T> *G, int visited[])
+template<typename T> void N_Con_BFS(AdjGraph<T> *G)
 {
 	int i;
-	Zero(G, visited);         //标记置零
+	int visited[MAX_SIZE] = { 0 };         //标记置零
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
 			BFS(G, i, visited);
@@ -230,11 +238,11 @@ template<typename T> void N_Con_BFS(AdjGraph<T> *G, int visited[])
 }
 
 // P269【例8.3】Determine whether the undirected graph is connected
-template<typename T> bool Connect(AdjGraph<T> *G, int visited[])
+template<typename T> bool Connect(AdjGraph<T> *G)
 {
 	int i;
 	bool flag = true;
-	Zero(G, visited);         //标记置零
+	int visited[MAX_SIZE] = { 0 };         //标记置零
 	DFS(G, 0, visited);        //从顶点0开始深度优先遍历
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
@@ -332,6 +340,7 @@ template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int pa
 			cout << path[i] << " ";
 		}
 		cout << endl;
+		
 	}
 	p = G->adjlist[u].firstarc;
 	while (p != 0) {
@@ -446,7 +455,7 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 void GraphExample()
 {
 	AdjGraph<int> *G;
-	int n = 5, e = 7;
+	int n = 5, e = 8;
 	int A[MAX_SIZE][MAX_SIZE] =  //无向图
 	{
 		{ 0,1,0,1,1 },
@@ -457,6 +466,7 @@ void GraphExample()
 	};
 	CreateAdj(G, A, n, e);
 	DispAdj(G);
+	cout << endl;
 
 	//p261 例【8.2】
 	MatGraph<int> g;
@@ -472,14 +482,15 @@ void GraphExample()
 	int visited[MAX_SIZE] = { 0 };
 	cout << "Depth First Search: "; DFS(G, 0, visited);
 	cout << endl << "Breadth First Search: "; BFS(G, 0, visited);
-	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G, visited);
-	cout << endl << "Non-connected graph Breadth First Search: "; N_Con_BFS(G, visited);
+	cout << endl << "Non-connected graph Depth First Search: "; N_Con_DFS(G);
+	cout << endl << "Non-connected graph Breadth First Search: "; N_Con_BFS(G);
+	cout << endl;
 	
 	// P269【例8.3】
-	cout << endl;
-	if (Connect(G, visited)) {
+	if (Connect(G)) {
 		cout << " is connected graph. " << endl;
 	}
+	cout << endl;
 
 	// P269【例8.4】 P270【例8.5】 P271【例8.6】
 	int d = -1, path[MAX_SIZE] = { 0 };
@@ -488,24 +499,35 @@ void GraphExample()
 	Zero(G, visited);         //标记置零
 	ExistPath(G, u, v, has,visited);
 	if (has) {
-		cout << "Can find the simple path of u to v. " << endl;
+		cout << "Can find the simple path of " << u << " to " << v << endl;
 		Zero(G, visited);
-		cout << "A simple path of u to v is: "; FindaPath(G, u, v, path, d, visited);
+		cout << "A simple path of " << u << " to " << v << " is: "; 
+		FindaPath(G, u, v, path, d, visited);
 		Zero(G, visited);  //置问初始值
 		d = -1;
-		cout << "All simple path of u to v is: "<<endl; FindAllPath(G, u, v, path, d, visited);
+		cout << "All simple path of " << u << " to " << v << " is: "<<endl; 
+		FindAllPath(G, u, v, path, d, visited);
 	}
+	cout << endl;
 
 	// P272【例8.7】
 	Zero(G, visited);  //置问初始值
-	d = -1;
-	int l = 2;
-	cout << "All l length simple path of u to v is: " << endl; PathLenAll(G, u, v, l, path, d, visited);
+	int Path[MAX_SIZE] = { 0 };
+	u = 1, v = 4;
+	int l = 3;
+	cout << "图G:\n";
+	DispAdj(G);
+	cout << "All " << l << " length simple path of " << u << " to " << v << " is: " << endl;
+	PathLenAll(G, u, v, l, Path, -1, visited);
+	cout << endl;
 
 	//P274【例8.8】
 	int k = 1;
-	cout << "All the cycle path through k is :" << endl; FindCyclePath(G, k, k, path, d, visited);
-
+	cout << "图G:\n";
+	DispAdj(G);
+	cout << "All the cycle path through " << k << " is :" << endl; FindCyclePath(G, k, k, path, d, visited);
 	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0);
-	
+	cout << endl;
+
+	DestroyAdj(G);
 }
