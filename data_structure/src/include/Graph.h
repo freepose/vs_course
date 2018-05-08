@@ -3,6 +3,13 @@
 #include "basic.h"
 
 
+/*
+*
+* Create By ChenXiaodie,2018
+*
+*/
+
+
 /*adjacency matrix */
 
 template<typename T> struct VertexType
@@ -156,6 +163,13 @@ template <typename T> void ListToMat(AdjGraph<T> *&G, MatGraph<T> &g)
 	}
 	g.n = G->n; g.e = G->e;
 }
+
+
+/*
+*
+* Create By TangNi,2018
+*
+*/
 
 //Zero the tag
 template<typename T> void Zero(AdjGraph<T> *G, int visited[])
@@ -370,21 +384,27 @@ template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[]
 }
 
 
+/*
+*
+* Create By PHY,2018
+*
+*/
+
 //Display the shotest path
 template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], int v)
 {
 	int i, j, k;
-	int apath[MAX_SIZE], d;//存放一条最短路路径（逆向）及其顶点个数
-	for(i=0;i<g.n;i++)//循环输出从顶点v到i的路径
+	int apath[MAX_SIZE], d;   //存放一条最短路路径（逆向）及其顶点个数
+	for(i=0;i<g.n;i++)       //循环输出从顶点v到i的路径
 		if (S[i] == 1 && i != v)
 		{
 			cout << "从顶点" << v << "到顶点" << i << "的路径长度为：" << dist[i] << '\t' << "路径为：";
 			d = 0;
-			apath[d] = i;//添加路径上的终点
+			apath[d] = i;  //添加路径上的终点
 			k = path[i];
-			if (k == -1)//没有路径的情况
+			if (k == -1)  //没有路径的情况
 				cout << "无路径" << endl;
-			else//存在路径时输出该路径
+			else       //存在路径时输出该路径
 			{
 				while (k != v)
 				{
@@ -393,9 +413,9 @@ template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], 
 					k = path[k];
 				}
 				d++;
-				apath[d] = v;//添加路径上的起点
-				cout << apath[d];//先输出起点
-				for (j = d - 1; j >= 0; j--)//再输出其他顶点
+				apath[d] = v;   //添加路径上的起点
+				cout << apath[d];   //先输出起点
+				for (j = d - 1; j >= 0; j--)   //再输出其他顶点
 					cout << "," << apath[j];
 				cout << endl;
 			}
@@ -407,30 +427,30 @@ template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], 
 template<typename T> void Dijkstra(MatGraph<T> g, int v)
 {
 	int dist[MAX_SIZE], path[MAX_SIZE];
-	int S[MAX_SIZE];//S[i]=1表示顶点i在S中，S[i]=0表示顶点i在U中
+	int S[MAX_SIZE];     //S[i]=1表示顶点i在S中，S[i]=0表示顶点i在U中
 	int MINdis, i, j, u;
 	for (i = 0; i < g.n; i++)
 	{
-		dist[i] = g.edges[v][i];//距离初始化
+		dist[i] = g.edges[v][i];    //距离初始化
 		S[i] = 0;//S[]置空
-		if (g.edges[v][i] < INF)//路径初始化
-			path[i] = v;//顶点v到顶点i有边时，置顶点i的前一个顶点为v
+		if (g.edges[v][i] < INF)    //路径初始化
+			path[i] = v;    //顶点v到顶点i有边时，置顶点i的前一个顶点为v
 		else
-			path[i] = -1;//顶点v到顶点i没边时，置顶点i的前一个顶点为-1
+			path[i] = -1;    //顶点v到顶点i没边时，置顶点i的前一个顶点为-1
 	}
 	S[v] = 1;
-	path[v] = 0;//源点编号v放入S中
-	for (i = 0; i < g.n - 1; i++)//循环直到所有顶点的最短路径都求出
+	path[v] = 0;    //源点编号v放入S中
+	for (i = 0; i < g.n - 1; i++)   //循环直到所有顶点的最短路径都求出
 	{
-		MINdis = INF;//MINdis置最大长度初值
-		for(j=0;j<g.n;j++)//选取不在S中（即U中）且具有最小最短路径长度的顶点v
+		MINdis = INF;   //MINdis置最大长度初值
+		for(j=0;j<g.n;j++)    //选取不在S中（即U中）且具有最小最短路径长度的顶点v
 			if (S[j] == 0 && dist[j] < MINdis)
 			{
 				u = j;
 				MINdis = dist[j];
 			}
-		S[u] = 1;//顶点u加入S中
-		for(j=0;j<g.n;j++)//修改不在S中（即U中）的顶点的最短路径
+		S[u] = 1;   //顶点u加入S中
+		for(j=0;j<g.n;j++)   //修改不在S中（即U中）的顶点的最短路径
 			if(S[j]==0)
 				if (g.edges[u][j] < INF&&dist[u] + g.edges[u][j] < dist[j])
 				{
@@ -438,7 +458,7 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 					path[j] = u;
 				}
 	}
-	Dispath(g, dist, path, S, v);//输出最短路径
+	Dispath(g, dist, path, S, v);   //输出最短路径
 }
 
 
