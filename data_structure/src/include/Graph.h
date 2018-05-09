@@ -51,10 +51,18 @@ template <typename T> struct VNode
 	ArcNode<T> *firstarc; //Point to the first side node 
 };
 
+//use for topological sorting
+template <typename T> struct NewVNode
+{
+	VertexType<T> data;  //information
+	int count;   //The degree of entry of the vertex.
+	ArcNode<T> *firstarc;
+};
+
 //The storage structure of adjacency list
 template <typename T> struct AdjGraph
 {
-	VNode<T> adjlist[MAX_SIZE];  //The number group of Head node 
+	T adjlist[MAX_SIZE];  //The number group of Head node 
 	int n, e;
 };
 
@@ -76,7 +84,7 @@ template <typename T> void DispMatGraph(MatGraph<T> g)
 template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE], int n, int e)
 {
 	int i, j;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	G = new AdjGraph<T>;
 	for (i = 0; i < n; i++) {
 		G->adjlist[i].firstarc = 0;        //将所有头结点的指针域置初值
@@ -84,7 +92,7 @@ template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE],
 	for (i = 0; i < n; i++) {
 		for (j = n - 1; j >= 0; j--) {      //检查邻接矩阵的每个元素
 			if (A[i][j] != 0 && A[i][j] != INF) {         //存在一条边
-				p = new ArcNode<T>;                       //创建一个结点P
+				p = new ArcNode<int>;                       //创建一个结点P
 				p->adjvex = j;                          //存放邻接点
 				p->weight = A[i][j];                      //存放权
 				p->nextarc = G->adjlist[i].firstarc;            //采用头插法插入结点p
@@ -100,7 +108,7 @@ template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE],
 template <typename T> void DispAdj(AdjGraph<T> *&G)
 {
 	int i;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	for (i = 0; i < G->n; i++) {
 		p = G->adjlist[i].firstarc;
 		cout << setw(3) << setfill('0') << i << ": ";   //输出顶点编号
@@ -112,13 +120,14 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 
 //Destroy adjacency list
 template <typename T> void DestroyAdj(AdjGraph<T> *&G)
 {
 	int i;
-	ArcNode<T> *p, *pre;
+	ArcNode<int> *p, *pre;
 	for (i = 0; i < G->n; i++) {
 		pre = G->adjlist[i].firstarc;
 		if (pre != 0) {
@@ -135,18 +144,18 @@ template <typename T> void DestroyAdj(AdjGraph<T> *&G)
 
 
 //p261 例【8.2】 Converting the adjacency matrix into a adjacency list 
-template <typename T> void MatToList(MatGraph<T> g, AdjGraph<T> *&G)
+template <typename T1, typename T2> void MatToList(MatGraph<T1> g, AdjGraph<T2> *&G)
 {
 	int i, j;
-	ArcNode<T> *p;
-	G = new AdjGraph<T>;
+	ArcNode<T1> *p;
+	G = new AdjGraph<T2>;
 	for (i = 0; i < g.n; i++) {
 		G->adjlist[i].firstarc = 0;
 	}
 	for (i = 0; i < g.n; i++) {
 		for (j = g.n - 1; j >= 0; j--) {      //检查邻接矩阵的每个元素
 			if (g.edges[i][j] != 0 && g.edges[i][j] != INF) {         //存在一条边
-				p = new ArcNode<T>;                       //创建一个结点P
+				p = new ArcNode<T1>;                       //创建一个结点P
 				p->adjvex = j;                          //存放邻接点
 				p->weight = g.edges[i][j];                      //存放权
 				p->nextarc = G->adjlist[i].firstarc;            //采用头插法插入结点p
@@ -158,10 +167,10 @@ template <typename T> void MatToList(MatGraph<T> g, AdjGraph<T> *&G)
 }
 
 //p261 例【8.2】 Converting adjacency tables into adjacency matrices 
-template <typename T> void ListToMat(AdjGraph<T> *&G, MatGraph<T> &g)
+template <typename T1, typename T2> void ListToMat(AdjGraph<T2> *&G, MatGraph<T1> &g)
 {
 	int i;
-	ArcNode<T> *p;
+	ArcNode<T1> *p;
 	for (i = 0; i < G->n; i++) {
 		p = G->adjlist[i].firstarc;
 		while (p != 0) {
@@ -190,7 +199,7 @@ template<typename T> void Zero(AdjGraph<T> *G, int visited[])
 //Depth First Search
 template<typename T> void DFS(AdjGraph<T> *G, int v, int visited[])
 {
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	visited[v] = 1;                //置以访问标记
 	cout << v << " ";                     //输出被访问顶点的编号
 	p = G->adjlist[v].firstarc;    //p指向顶点v的第一个邻接点
@@ -206,8 +215,8 @@ template<typename T> void DFS(AdjGraph<T> *G, int v, int visited[])
 template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 {
 	int w;
-	ArcNode<T> *p;
-	SqQueue<T> *qu;          //定义环形队列指针
+	ArcNode<int> *p;
+	SqQueue<int> *qu;          //定义环形队列指针
 	InitQueue(qu);          //初始化队列
 	cout << v << " ";	
 	Zero(G, visited);         //标记置零
@@ -275,7 +284,7 @@ template<typename T> bool Connect(AdjGraph<T> *G)
 template<typename T> void ExistPath(AdjGraph<T> *G, int u, int v, bool &has, int visited[])
 {
 	int w;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	visited[u] = 1;        //置以访问标记
 	if (u == v) {
 		has = true;
@@ -295,7 +304,7 @@ template<typename T> void ExistPath(AdjGraph<T> *G, int u, int v, bool &has, int
 template<typename T> void FindaPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	visited[u] = 1;
 	d++;
 	path[d] = u;        //路径长度d增加1，顶点u加入到路径中
@@ -320,7 +329,7 @@ template<typename T> void FindaPath(AdjGraph<T> *G, int u, int v, int path[], in
 template<typename T> void FindAllPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	d++;
 	path[d] = u;
 	visited[u] = 1;
@@ -345,7 +354,7 @@ template<typename T> void FindAllPath(AdjGraph<T> *G, int u, int v, int path[], 
 template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int path[], int d, int visited[])
 {
 	int w, i;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	visited[u] = 1;
 	d++;
 	path[d] = u;
@@ -371,7 +380,7 @@ template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int pa
 template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
-	ArcNode<T> *p;
+	ArcNode<int> *p;
 	visited[u] = 1;
 	d++;
 	path[d] = u;
@@ -391,7 +400,6 @@ template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[]
 	}
 	visited[u] = 0;
 }
-
 
 /*
 *
@@ -471,9 +479,55 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 }
 
 
+/*
+*
+* Create By CXD,2018
+*
+*/
+
+//topological sorting
+template <typename T> void TopSort(AdjGraph<T> *G)
+{
+	int i, j;
+	int St[MAX_SIZE];  //用顺序栈存放入度为0的顶点
+	int top = -1;     //栈顶指针
+	ArcNode<int> *p;
+	for (i = 0; i < G->n; i++) {
+		G->adjlist[i].count = 0;      //入度置初值0
+	}
+	for (i = 0; i < G->n; i++) {     //求所有顶点的入度
+		p = G->adjlist[i].firstarc;
+		while (p != 0) {
+			G->adjlist[p->adjvex].count++;
+			p = p->nextarc;
+		}
+	}
+	for (i = 0; i < G->n; i++) {      //将入度为0的顶点入栈
+		if (G->adjlist[i].count == 0) {
+			top++;
+			St[top] = i;
+		}
+	}
+	while (top > -1) {   //栈不空时循环
+		i = St[top]; top--;    //出栈一个顶点
+		cout << i;            //输出该顶点
+		p = G->adjlist[i].firstarc;       //找第一个邻接点
+		while (p != 0) {       //将顶点i的出边邻接点的入度减1
+			j = p->adjvex;
+			G->adjlist[j].count--;
+			if (G->adjlist[j].count == 0) {   //将入度为0的邻接点进栈
+				top++;
+				St[top] = j;
+			}
+			p = p->nextarc;       //找下一个邻接点
+		}
+	}
+	cout << endl;
+}
+
 void GraphExample()
 {
-	AdjGraph<int> *G;
+	AdjGraph<VNode<int>> *G;
 	int n = 5, e = 8;
 	int A[MAX_SIZE][MAX_SIZE] =  //无向图
 	{
@@ -484,18 +538,18 @@ void GraphExample()
 		{ 1,0,1,1,0 }
 	};
 	CreateAdj(G, A, n, e);
-	DispAdj(G);
-	cout << endl;
 
 	//p261 例【8.2】
 	MatGraph<int> g;
 	memcpy(g.edges, A, MAX_SIZE * MAX_SIZE * sizeof(int));
 	g.n = n; g.e = e;
 	MatToList(g, G);
+	cout << "图G:\n";
 	DispAdj(G);
 
 	memset(g.edges, 0, MAX_SIZE * MAX_SIZE * sizeof(int));
 	ListToMat(G, g);
+	cout << "图g:\n";
 	DispMatGraph(g);
 
 	int visited[MAX_SIZE] = { 0 };
@@ -547,6 +601,24 @@ void GraphExample()
 	cout << "All the cycle path through " << k << " is :" << endl; FindCyclePath(G, k, k, path, d, visited);
 	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0);
 	cout << endl;
+
+	//P303 例【8.14】
+	AdjGraph<NewVNode<int>> *M;
+	int C[MAX_SIZE][MAX_SIZE] =
+	{
+		{ 0,1,INF,INF,INF,INF },
+		{ INF,0,1,INF,INF,INF },
+		{ INF,INF,0,1,INF,INF },
+		{ INF,INF,INF,0,INF,INF },
+		{ INF,1,INF,INF,0 ,1 },
+		{ INF ,INF ,INF ,1,INF ,0 }
+	};
+	n = 6; e = 6;
+	CreateAdj(M, C, n, e);
+	cout << "图M:\n"; 
+	DispAdj(M);
+	cout << "A topological sort of M:";  TopSort(M); 
+	DestroyAdj(M);
 
 	DestroyAdj(G);
 }
