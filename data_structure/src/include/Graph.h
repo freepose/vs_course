@@ -599,8 +599,7 @@ void GraphExample()
 	cout << "Í¼G:\n";
 	DispAdj(G);
 	cout << "All the cycle path through " << k << " is :" << endl; FindCyclePath(G, k, k, path, d, visited);
-	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0);
-	cout << endl;
+	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0); cout << endl;
 
 	//P303 Àý¡¾8.14¡¿
 	AdjGraph<NewVNode<int>> *M;
