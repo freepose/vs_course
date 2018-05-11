@@ -704,6 +704,7 @@ template <typename T> void Kruskal(MatGraph<T> *g)
 	}
 }
 
+
 void GraphExample()
 {
 	AdjGraph<VNode<int>> *G;
@@ -817,7 +818,7 @@ void GraphExample()
 	cout << endl;
 
 	//P284 Prim arithmatic
-	int A1[MAX_SIZE][MAX_SIZE] = {
+	int A2[MAX_SIZE][MAX_SIZE] = {
 		{ 0, 28, INF, INF, INF, 10, INF },
 		{ 28, 0, 16, INF, INF, INF, 14 },
 		{ INF, 16, 0, 12, INF, INF, INF },
@@ -827,7 +828,7 @@ void GraphExample()
 		{ INF, 14, INF, 18, 24, INF, 0 }
 	};
 	MatGraph<int> *Q;
-	CreateMatGraph(Q, A1, 7, 9);
+	CreateMatGraph(Q, A2, 7, 9);
 	Prim(Q, 0);
 
 	//P288 Kruskal algrethm

@@ -34,6 +34,13 @@ template <typename T> struct HCode
 	int start;
 };
 
+typedef struct node
+{
+	int data;		//结点对应人的编号
+	int rank;		//结点对应秩
+	int parent;		//结点对应双亲下标
+}UFSTree;		//并查集树的结点类型
+
 /* The basic operation of the tree (by PHY) */
 
 template<typename T> void CreateBTree(BTNode<T> *&b, char *str)
@@ -519,6 +526,37 @@ template<typename T> void CreateHCode(HTNode<T> *ht, HCode<T> *hcd, int n0)
 	}
 }
 
+void MAKE_SET(UFSTree t[], int n)		//初始化并查集树
+{
+	for (int i = 0; i <= n; i++)
+	{
+		t[i].data = i;		//数据为该人的编号
+		t[i].rank = 0;		//秩初始化为0
+		t[i].parent = i;	//双亲初始化指向自己
+	}
+}
+
+int FIND_SET(UFSTree t[], int x)		//在x所在的子树中查找集合编号
+{
+	if (x != t[x].parent)		//双亲不是自己
+		return(FIND_SET(t, t[x].parent));		//递归在双亲中找x
+	else
+		return x;		//双亲是自己，返回x
+}
+
+void UNION(UFSTree t[], int x, int y)		//将x和y所在的子树合并
+{
+	x = FIND_SET(t, x);			//查找x所在分离集合数的编号
+	y = FIND_SET(t, y);			//查找y所在分离集合数的编号
+	if (t[x].rank > t[y].rank)	//y结点的秩小于x结点的秩
+		t[y].parent = x;		//将y连到x结点上，x作为y的双亲结点
+	else						//y结点的秩大于x结点的秩
+	{
+		t[x].parent = y;		//将x连到y结点上，y作为x的双亲结点
+		if (t[x].rank == t[y].rank)	//x和y的结点秩相同
+			t[y].rank++;		//y的结点秩增加1
+	}
+}
 
 
 /*
@@ -725,6 +763,35 @@ template<typename T> void AllPath2(BTNode<T> *b)
 	}
 }
 
+//P241 Kinship question
+/*
+  第一部分以N, M开始。N为问题涉及的人的个数（1 <= N <= 20,000）。这些人的编号为1，2，3，…，N。
+  下面有M行（1 <= M <= 1,000,000），每行有两个数x，y，表示已知x 和 y是亲戚。
+  第二部分以Q开始。以下Q行对应Q个询问（1 <= Q <= 1,000,000），每行为x，y，表示询问x和y是否为亲戚
+*/
+void KinshipQuestion()
+{
+	UFSTree t[MAX_SIZE];
+	int N, M, x, y;
+	cin >> N >> M;
+	MAKE_SET(t, N);
+	for (int i = 0; i < M; i++)
+	{
+		cin >> x >> y;
+		UNION(t, x, y);
+	}
+	int Q;
+	cin >> Q;
+	for (int i = 0; i < Q; i++)
+	{
+		cin >> x >> y;
+		if (FIND_SET(t, x) == FIND_SET(t, y))
+			cout << "Yes, they are relatives.\n";
+		else
+			cout << "NO\n";
+	}
+}
+
 
 void BTreeTraversalExample()
 {
@@ -832,7 +899,7 @@ void BTreeTraversalExample()
 		cout << endl;
 	}
 
-
+	//KinshipQuestion();
 
 	DestroyBTree(T);
 

@@ -35,7 +35,8 @@ int main()
 	//SqStringexample();
 	//LinkStringExample();
 
-	GraphExample();
+	//GraphExample();
+	test();
 
 	return 0;
 }
