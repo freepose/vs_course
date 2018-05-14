@@ -45,3 +45,9 @@
 	- exchange sort by CKJ p374-376
 	- choose sort by PHY p380-382
 	- merge sort, radix sorting by TN p386-389
+
+
+# some suggestions for students who get the course
+	[-] Get a blank paper, and a pen, writen down the logical structure.
+	[-] Prepare examples for each data structure, details examples please see header files. start at main function.
+	[-] Try more exercise and be skilled on those data structure.
