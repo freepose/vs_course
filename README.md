@@ -48,6 +48,6 @@
 
 
 ### some suggestions for beginners
-	[-] Get a blank paper, and a pen, writen down the logical structure.
-	[-] Prepare examples for each data structure, details examples please see header files. start at main function.
-	[-] Try more exercise and be skilled on those data structure.
+	- Get a blank paper, and a pen, writen down the logical structure.
+	- Prepare examples for each data structure, details examples please see header files. start at main function.
+	- Try more exercise and be skilled on those data structure.
