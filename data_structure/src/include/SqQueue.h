@@ -16,6 +16,14 @@ template<typename T> struct SqQueue {
 };
 
 
+//using in Graph P276¡¾Àý8.9¡¿
+template<typename T> struct Quere
+{
+	int data;
+	int parent;
+};
+
+
 template<typename T> void InitQueue(SqQueue<T> *&q)
 {
 	q = new SqQueue<T>;

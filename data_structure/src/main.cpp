@@ -36,6 +36,5 @@ int main()
 	//LinkStringExample();
 
 	GraphExample();
-
 	return 0;
 }

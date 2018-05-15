@@ -8,6 +8,7 @@
 #pragma once
 #define INF 0x3f3f3f3f
 #include "basic.h"
+#include "SqQueue.h"
 
 
 /*
@@ -66,6 +67,13 @@ template <typename T> struct AdjGraph
 	int n, e;
 };
 
+//use for Kruskal's algrithm
+typedef struct
+{
+	int u;	//边的起始顶点
+	int v;	//边的终止顶点
+	int w;	//边的权值
+}Edge;
 
 //Print adjacency matrix 
 template <typename T> void DispMatGraph(MatGraph<T> g)
@@ -102,6 +110,20 @@ template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE],
 	}
 	G->n = n;
 	G->e = e;
+}
+
+template <typename T> void CreateMatGraph(MatGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE], int n, int e)
+{
+	G = new MatGraph<T>;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			G->edges[i][j] = A[i][j];
+		}
+		G->ves[i].no = i;
+	}
+	G->e = e; G->n = n;
 }
 
 //Print adjacency list
@@ -401,6 +423,70 @@ template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[]
 	visited[u] = 0;
 }
 
+
+/*Application based on Breadth First Search*/
+
+
+// P276【例8.9】Inverse disp the shortest path from u to v
+template<typename T> void ShortPath(AdjGraph<T> *G, int u, int v, int visited[])
+{
+	ArcNode<int> *p;
+	int w, i;
+	Quere<T> qu[MAX_SIZE];       //非环形队列
+	int front = -1, rear = -1;   //队列的头指针、尾指针
+	rear++;
+	qu[rear].data = u;           //顶点u进队
+	qu[rear].parent = -1;
+	visited[u] = 1;
+	while (front != rear) {     //队不空循环
+		front++;                //出队顶点w
+		w = qu[front].data;
+		if (w == v) {            //遇到v时输出逆路径，退出
+			i = front;
+			while (qu[i].parent != -1) {    //通过队列输出逆路径
+				cout << qu[i].data << " ";
+				i = qu[i].parent;
+			}
+			cout << qu[i].data << endl;
+			break;
+		}
+		p = G->adjlist[w].firstarc;     //w的第一个邻接点
+		while (p != 0) {
+			if (visited[p->adjvex] == 0) {  //将w未访问过的邻接点进队
+				rear++;
+				qu[rear].data = p->adjvex;
+				qu[rear].parent = front;
+			}
+			p = p->nextarc;        //找w的下一个邻接点
+		}
+	}
+}
+
+
+// P277【例8.10】Find the furthest vertex from v, using SqQueue instead of Qu[]
+template<typename T> int Maxdist(AdjGraph<T> *G, int v, int visited[])
+{
+	ArcNode<int> *p;
+	SqQueue<int> *qu;
+	InitCycleQueue(qu);
+	int i, j, k;
+	enCycleQueueF(qu, v);    //顶点v进队
+	visited[v] = 1;      //标记v已访问
+	while (!QueueEmpty(qu)) {
+		deCycleQueueR(qu, k);   //顶点k出队
+		p = G->adjlist[k].firstarc;     //找第一个邻接点
+		while (p != 0) {                //所有未被访问过的邻接点进队
+			j = p->adjvex;              //邻接点为顶点j
+			if (visited[j] == 0) {
+				visited[j] = 1;
+				enCycleQueueF(qu, j);
+			}
+			p = p->nextarc;
+		}
+	}
+	return k;
+}
+
 /*
 *
 * Create By PHY,2018
@@ -525,6 +611,100 @@ template <typename T> void TopSort(AdjGraph<T> *G)
 	cout << endl;
 }
 
+
+/*
+*
+* Create By CKJ,2018
+*
+*/
+
+template <typename T> void Prim(MatGraph<T> *g, int v)
+{
+	int lowcost[MAX_SIZE];
+	int MIN;
+	int closest[MAX_SIZE], i, j, k;
+	for (i = 0; i < g->n; i++)		//给lowcost[]和closest[]置初值
+	{
+		lowcost[i] = g->edges[v][i];
+		closest[i] = v;
+	}
+	for (i = 1; i < g->n; i++)		//找出(n-1)个结点
+	{
+		MIN = INF;
+		for (j = 0; j < g->n; j++)		//在(V-U)中找出离U最近的顶点k
+		{
+			if (lowcost[j] != 0 && lowcost[j] < MIN)
+			{
+				MIN = lowcost[j];
+				k = j;		//记录最近顶点的编号
+			}
+		}
+		cout << "边（" << closest[k] << "," << k << "）权为：" << MIN << endl;	//输出最小生成树的一条边
+		lowcost[k] = 0;		//标记k已经加入到U
+		for (j = 0; j < g->n; j++)		//对(V-U)中的顶点j进行调整
+		{
+			if (lowcost[j] != 0 && g->edges[k][j] < lowcost[j])
+			{
+				lowcost[j] = g->edges[k][j];
+				closest[j] = k;		//修改数组lowcost和closest
+			}
+		}
+	}
+}
+
+void InserSort(Edge a[], int n)
+{
+	for (int i = 1; i < n; i++) {
+		for (int j = 0; j < n - i; j++) {
+			if (a[j].w > a[j + 1].w) {
+				swap(a[j], a[j + 1]);
+			}
+		}
+	}
+}
+
+template <typename T> void Kruskal(MatGraph<T> *g)
+{
+	int i, j, u1, v1, sn1, sn2, k;
+	int vset[MAX_SIZE];
+	Edge E[MAX_SIZE];		//存放图中的所有边
+	k = 0;					//e数组的下标从0开始计
+	for (i = 0; i < g->n; i++)		//由g产生边集E，不重复选取同一条边
+	{
+		for (j = 0; j <= i; j++)
+		{
+			if (g->edges[i][j] != 0 && g->edges[i][j] != INF)
+			{
+				E[k].u = i; E[k].v = j; E[k].w = g->edges[i][j];
+				k++;
+			}
+		}
+	}
+	InserSort(E, g->e);		//采用直接插入排序对E数组按权值递增排序
+	for (i = 0; i < g->e; i++)		//初始化辅助数组
+	{
+		vset[i] = i;
+	}
+	k = 1;		//k表示当前构造生成树的第几条边，初值为1
+	j = 0;		//E中边的下标，初值为0
+	while (k < g->n)
+	{
+		u1 = E[j].u; v1 = E[j].v;		//取一条边的两个顶点
+		sn1 = vset[u1];
+		sn2 = vset[v1];		//分别得到两个顶点所属的集合编号
+		if (sn1 != sn2)		//两个顶点属于不同的集合，该边是最小生成树的一条边
+		{
+			cout << "(" << u1 << "," << v1 << "): " << E[j].w << endl;		//输出最小生成树的一条边
+			k++;		//生成边数增1
+			for (i = 0; i < g->n; i++)		//两个集合统一编号
+				if (vset[i] == sn2)			//集合编号为sn2的改为sn1
+					vset[i] = sn1;
+		}
+		j++;		//扫描下一条边
+	}
+}
+
+
 void GraphExample()
 {
 	AdjGraph<VNode<int>> *G;
@@ -595,11 +775,28 @@ void GraphExample()
 	cout << endl;
 
 	//P274【例8.8】
+	AdjGraph<VNode<int>>  *G1;
+	int A1[MAX_SIZE][MAX_SIZE] =
+	{
+		{ 0,1,1,0,0 },
+		{ 0,0,1,0,0 },
+		{ 0,0,0,1,1 },
+		{ 0,0,0,0,1 },
+		{ 1,0,0,0,0 }
+	};
+	CreateAdj(G1, A1, 5, 7);
 	int k = 1;
-	cout << "图G:\n";
-	DispAdj(G);
-	cout << "All the cycle path through " << k << " is :" << endl; FindCyclePath(G, k, k, path, d, visited);
-	cout << endl << "Shortest path"<<endl; Dijkstra(g, 0); cout << endl;
+	cout << "All the cycle path through "<<k <<" is :" << endl; FindCyclePath(G1, k, k, path, d, visited);
+
+	// P276【例8.9】
+	Zero(G1, visited);
+	cout << "Inverse disp the shortest path from "<<u <<" to " <<v <<" : "; ShortPath(G1, u, v, visited);
+
+	// P277【例8.10】
+	Zero(G1, visited);
+	int ver;
+	ver = Maxdist(G1, v, visited);
+	cout << "The furthest vertex from " <<v<<" is " << k << endl;
 
 	//P303 例【8.14】
 	AdjGraph<NewVNode<int>> *M;
@@ -618,6 +815,24 @@ void GraphExample()
 	DispAdj(M);
 	cout << "A topological sort of M:";  TopSort(M); 
 	DestroyAdj(M);
+	cout << endl;
+
+	//P284 Prim arithmatic
+	int A2[MAX_SIZE][MAX_SIZE] = {
+		{ 0, 28, INF, INF, INF, 10, INF },
+		{ 28, 0, 16, INF, INF, INF, 14 },
+		{ INF, 16, 0, 12, INF, INF, INF },
+		{ INF, INF, 12, 0, 22, INF, 18 },
+		{ INF, INF, INF, 22, 0, 25, 24 },
+		{ 10, INF, INF, INF, 25, 0, INF },
+		{ INF, 14, INF, 18, 24, INF, 0 }
+	};
+	MatGraph<int> *Q;
+	CreateMatGraph(Q, A2, 7, 9);
+	Prim(Q, 0);
+
+	//P288 Kruskal algrethm
+	Kruskal(Q);
 
 	DestroyAdj(G);
 }
