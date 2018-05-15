@@ -28,14 +28,13 @@
 	[6] Graph
 	    adjacency matrix, adjacency list
 		traverse of graphs
+		Spanning tree£¬ minimum spanning
 		optimal path, topological sort
 	
 
 
 
 ### todo list
-	
-	- Spanning tree, minimum spanning tree by CKJ p279-285
 
 	- lookup linear table by CKJ p316-321
 	- lookup tree table by CXD p324-345
