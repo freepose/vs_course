@@ -469,7 +469,7 @@ template<typename T> int Maxdist(AdjGraph<T> *G, int v, int visited[])
 	ArcNode<int> *p;
 	SqQueue<int> *qu;
 	InitCycleQueue(qu);
-	int i, j, k;
+	int j, k;
 	enCycleQueueF(qu, v);    //顶点v进队
 	visited[v] = 1;      //标记v已访问
 	while (!QueueEmpty(qu)) {
