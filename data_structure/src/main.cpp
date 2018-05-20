@@ -12,6 +12,7 @@
 #include"include\array.h"
 #include"include\LinkString.h"
 #include"include\Graph.h"
+#include"include\SeqSearch.h"
 
 int main()
 {
@@ -35,6 +36,8 @@ int main()
 	//SqStringexample();
 	//LinkStringExample();
 
-	GraphExample();
+	//GraphExample();
+
+	SeqSearchExample();
 	return 0;
 }
