@@ -469,7 +469,7 @@ template<typename T> int Maxdist(AdjGraph<T> *G, int v, int visited[])
 	ArcNode<int> *p;
 	SqQueue<int> *qu;
 	InitCycleQueue(qu);
-	int i, j, k;
+	int j, k;
 	enCycleQueueF(qu, v);    //顶点v进队
 	visited[v] = 1;      //标记v已访问
 	while (!QueueEmpty(qu)) {
@@ -704,6 +704,60 @@ template <typename T> void Kruskal(MatGraph<T> *g)
 	}
 }
 
+template <typename T> void DisMatGraphPath(MatGraph<T> *g, int A[][MAX_SIZE], int path[][MAX_SIZE])
+{
+	int i, j, k, s;
+	int apath[MAX_SIZE], d;		//存放一条最短路径中间顶点（反向）及其顶点个数
+	for (i = 0; i < g->n; i++)
+	{
+		for (j = 0; j < g->n; j++)
+		{
+			if (A[i][j] != INF && i != j)	//若顶点i和j之间存在路径
+			{
+				cout << "从" << i << "到" << j << "之间的路径为：";
+				k = path[i][j];
+				d = 0; apath[d] = j;	//路径上添加终点
+				while (k != -1 && k != i)	//路径上添加中间点
+				{
+					d++; apath[d] = k;
+					k = path[i][k];
+				}
+				d++; apath[d] = i;		//路径上添加起点
+				cout << apath[d];		//输出起点
+				for (s = d - 1; s >= 0; s--)		//输出路径上的中间顶点
+					cout << "," << apath[s];
+				cout << "\t路径长度为：" << A[i][j] << endl;
+			}
+		}
+	}
+}
+
+template <typename T> void Floyd(MatGraph<T> *g)
+{
+	int A[MAX_SIZE][MAX_SIZE], path[MAX_SIZE][MAX_SIZE];
+	int i, j, k;
+	for (i = 0; i < g->n; i++)
+		for (j = 0; j < g->n; j++)
+		{
+			A[i][j] = g->edges[i][j];
+			if (i != j && g->edges[i][j] < INF)
+				path[i][j] = i;		//顶点i到j有边时
+			else
+				path[i][j] = -1;	//顶点i到j没有边时
+		}
+	for (k = 0; k < g->n; k++)		//依次考察所有顶点
+	{
+		for(i = 0; i < g->n; i++)
+			for(j = 0; j < g->n; j++)
+				if (A[i][j] > A[i][k] + A[k][j])
+				{
+					A[i][j] = A[i][k] + A[k][j];	//修改最短路径长度
+					path[i][j] = path[k][j];		//修改最短路径
+				}
+	}
+	DisMatGraphPath(g, A, path);	//输出最短路径
+}
+
 
 void GraphExample()
 {
@@ -833,6 +887,18 @@ void GraphExample()
 
 	//P288 Kruskal algrethm
 	Kruskal(Q);
+	int A3[MAX_SIZE][MAX_SIZE] =
+	{
+		{ 0, 5, INF, 7, INF, INF },
+		{ INF, 0, 4, INF, INF, INF },
+		{ 8, INF, 0, INF, INF, 9 },
+		{ INF, INF, 5, 0, INF, 6 },
+		{ INF, INF, INF, 5, 0, INF },
+		{ 3, INF, INF, INF, 1, 0 },
+	};
+	MatGraph<int> *g1;
+	CreateMatGraph(g1, A3, 6, 10);
+	Floyd(g1);
 
 	DestroyAdj(G);
 }
