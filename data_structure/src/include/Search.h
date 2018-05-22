@@ -1,6 +1,44 @@
+/*
+*
+* Create By Kaijin Cui,2018
+*
+*/
+
+
 #pragma once
-#include"BTree.h"
 #include"basic.h"
+#include"BTree.h"
+
+
+template <typename T, typename K>struct RecType
+{
+	K key;	//关键字项
+	T data;		//其他数据项
+};		//查找元素的类型
+
+template <typename T, typename K>int SeqSreach(RecType<T, K> R[], int n, K k)
+{
+	int i = 0;
+	while (i < n && R[i].key != k)		//从表头往后找
+		i++;
+	if (i > n)							//未找到返回0
+		return 0;
+	else
+		return i + 1;					//找到返回逻辑序号i + 1
+}
+
+template <typename T, typename K>int SeqSreach1(RecType<T, K> R[], int n, K k)
+{
+	int i = 0;
+	R[n].key = k;
+	while (R[i].key != k)		//从表头往后找
+		i++;
+	if (i == n)
+		return 0;				//未找到返回零
+	else
+		return i + 1;			//找到返回逻辑序号i + 1
+}
+
 
 /*
 *  Binary search tree, by CXD, 2018
@@ -116,8 +154,8 @@ template<typename T> bool DeleteBST(BTNode<T> *&bt, T k)
 template<typename T> void Delete(BTNode<T> *&p)
 {
 	BTNode<T> *q;
-	if (p->lchild==0) {     //结点P没有左孩子
-		q = p;     
+	if (p->lchild == 0) {     //结点P没有左孩子
+		q = p;
 		p = p->rchild;              //用结点P的右孩子代替它
 		delete q;
 	}
@@ -142,7 +180,7 @@ template<typename T> void Deletel(BTNode<T> *p, BTNode<T> *&r)
 		q = r;                    //删除结点r
 		r = r->lchild;            //用结点r的左孩子替代它
 		delete q;                 //释放结点q的空间
-	} 
+	}
 }
 
 
@@ -182,29 +220,39 @@ template<typename T> T Minrnode(BTNode<T>* bt)
 
 void SearchExample()
 {
+	RecType<int, int> R[MAX_SIZE];
+	for (int i = 0; i < 6; i++)
+	{
+		R[i].key = i;
+	}
+
+	cout << "The position of the order finding 2 is: " << SeqSreach(R, 6, 2) << endl;
+	cout << "The position of the order finding 3 is: " << SeqSreach(R, 6, 3) << endl;
+
+
 	BTNode<int> *bt;
 	BTNode<char> *bf;
 
 	//P329 例【9.3】
 	int A[MAX_SIZE] = { 25,18,46,2,53,39,32,4,74,67,60,11 };
-	bt=CreateBST(A, 12);
-	cout << "The Binary search tree is: ";
+	bt = CreateBST(A, 12);
+	cout << endl << "The Binary search tree is: ";
 	DispBTree(bt); cout << endl;
 
 	//P329 例【9.4】 
-	MaxMinnode(bt); 
+	MaxMinnode(bt);
 
 	DeleteBST(bt, 25);
 	cout << "Delete the 25 node: ";
 	DispBTree(bt); cout << endl;
-	DestroyBTree(bt); 
+	DestroyBTree(bt);
 
 	//P332 图【9.13】
 	char k = '1';
 	char B[MAX_SIZE] = "3(1(,2))";
 	CreateBTree(bf, B);
-	cout <<endl<< "The Binary search tree is: "; DispBTree(bf); 
+	cout << endl << "The Binary search tree is: "; DispBTree(bf);
 	deletek(bf, k);
-	cout <<endl<< "Delete the 1 node: "; DispBTree(bf);
+	cout << endl << "Delete the 1 node: "; DispBTree(bf);
 	DestroyBTree(bf);
 }

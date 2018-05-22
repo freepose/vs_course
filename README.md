@@ -30,14 +30,16 @@
 		traverse of graphs
 		Spanning tree£¬ minimum spanning
 		optimal path, topological sort
+
+	[7] Search
+	    lookup linear table
+		lookup tree table
 	
 
 
 
 ### todo list
 
-	- lookup linear table by CKJ p316-321
-	- lookup tree table by CXD p324-345
 	- Find a hash table by PHY p346-352
 
 	- insertion sort by TN p368-371

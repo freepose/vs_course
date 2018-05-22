@@ -60,7 +60,7 @@
     <ClInclude Include="src\include\LinkString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\SeqSearch.h">
+    <ClInclude Include="src\include\Search.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

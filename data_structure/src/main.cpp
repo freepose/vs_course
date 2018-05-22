@@ -12,7 +12,7 @@
 #include"include\array.h"
 #include"include\LinkString.h"
 #include"include\Graph.h"
-#include"include\SeqSearch.h"
+#include"include\Search.h"
 
 int main()
 {
@@ -38,6 +38,6 @@ int main()
 
 	//GraphExample();
 
-	SeqSearchExample();
+	SearchExample();
 	return 0;
 }
