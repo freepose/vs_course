@@ -16,6 +16,20 @@ template <typename T, typename K>struct RecType
 	T data;		//其他数据项
 };		//查找元素的类型
 
+
+//HashTable
+#define NULLKEY -1//定义空关键字值
+#define DELKEY -2//定义被删关键字值
+
+
+template <typename T>struct HashTable
+{
+	T key;//关键字域
+	int count;//探测次数域
+};
+
+
+
 template <typename T, typename K>int SeqSreach(RecType<T, K> R[], int n, K k)
 {
 	int i = 0;
@@ -218,6 +232,128 @@ template<typename T> T Minrnode(BTNode<T>* bt)
 }
 
 
+//Insert k to HashTable
+template <typename T> void InsertHT(HashTable<T> ha[], int &n, int m, int p, T k)
+{
+	int i, adr;
+	adr = k%p;//计算哈希函数值
+	if (ha[adr].key == NULLKEY || ha[adr].key == DELKEY)
+	{
+		ha[adr].key = k; //k可以直接放在哈希表中
+		ha[adr].count = 1;
+	}
+	else//发生冲突时采用线性探测法解决冲突
+	{
+		i = 1;//i记录k发生冲突的次数
+		do
+		{
+			adr = (adr + 1) % m;//线性探测
+			i++;
+		} while (ha[adr].key != NULLKEY && ha[adr].key != DELKEY);
+		ha[adr].key = k;//在adr处放置k
+		ha[adr].count = i;//设置探测次数
+	}
+	n++;//哈希表中总元素个数增1
+}
+
+
+//Create HashTable
+template<typename T> void CreateHT1(HashTable<T> ha[], int &n, int m, int p, T keys[])
+{
+	int n1 = n, i;
+	for (i = 0; i < m; i++)//哈希表置空的初值
+	{
+		ha[i].key = NULLKEY;
+		ha[i].count = 0;
+	}
+	n = 0;//哈希表中总元素个数从0开始递增
+	for (i = 0; i < n1; i++)
+		InsertHT(ha, n, m, p, keys[i]);//插入n个关键字
+}
+//Delete k in HashTable
+template <typename T> bool DeleteHT(HashTable<T> ha[], int &n, int m, int p, T k)
+{
+	int adr;
+	adr = k%p;//计算哈希函数值
+	while (ha[adr].key != NULLKEY&&ha[adr].key != k)
+		adr = (adr + 1) % m;//线性探测
+	if (ha[adr].key == k)//查找成功
+	{
+		ha[adr].key = DELKEY;//删除关键字k
+		return true;
+	}
+	else//查找失败
+		return false;//返回假
+}
+
+
+
+//Search k in HashTable
+template <typename T> void SearchHT(HashTable <T> ha[], int m, int p, T k)
+{
+	int i = 1, adr;
+	adr = k%p;
+	while (ha[adr].key != NULLKEY&& ha[adr].key != k)
+	{
+		i++;
+		adr = (adr + 1) % m;
+	}
+	if (ha[adr].key == k)
+		cout << "成功：关键字" << k << "，比较" << i << "次" << endl;
+	else
+		cout << "失败：关键字" << k << "，比较" << i << "次" << endl;
+
+}
+
+template<typename T> void ASL(HashTable<T> ha[], int n, int m, int p)
+{
+	int i, j;
+	int succ = 0, unsucc = 0, s;
+	for (i = 0; i < m; i++)
+		if (ha[i].key != NULLKEY)
+			succ += ha[i].count;
+	cout << "成功情况下ASL(" << n << ")=" << succ*1.0 / n << endl;
+
+	for (i = 0; i < p; i++)
+	{
+		s = 1; j = i;
+		while (ha[i].key != NULLKEY)
+		{
+			s++;
+			j = (j + 1) % m;
+		}
+		unsucc += s;
+	}
+	cout << "不成功情况下ASL(" << n << ")=" << unsucc*1.0 / p << endl;
+}
+
+
+template <typename T>void DispHT(HashTable<T> ha[], int n, int m)    //输出哈希表  
+{
+	int i;
+	cout << " 哈希表地址:" << "\t";
+	for (i = 0; i < m; i++)
+		cout << setw(3) << setfill(' ') << i;
+	cout << endl;
+	cout << " 哈希表关键字:" << "\t";
+	for (i = 0; i<m; i++)
+		if (ha[i].key == NULLKEY || ha[i].key == DELKEY)
+			cout << "    ";         //输出3个空格  
+		else
+			cout << setw(3) << setfill(' ') << ha[i].key;
+	cout << endl;
+	printf(" 搜索次数:\t");
+	for (i = 0; i<m; i++)
+		if (ha[i].key == NULLKEY || ha[i].key == DELKEY)
+			cout << "    ";         //输出3个空格  
+		else
+			cout << setw(3) << setfill(' ') << ha[i].count;
+	cout << endl;
+
+}
+
+
+
 void SearchExample()
 {
 	RecType<int, int> R[MAX_SIZE];
@@ -255,4 +391,25 @@ void SearchExample()
 	deletek(bf, k);
 	cout << endl << "Delete the 1 node: "; DispBTree(bf);
 	DestroyBTree(bf);
+
+	//HashTable
+	int x[] = { 16,74,60,43,54,90,46,31,29,88,77 };
+	int n = 11, m = 13, p = 13, t = 29;
+	HashTable<int> ha1[MAX_SIZE];
+	CreateHT1(ha1, n, m, p, x);
+	cout << endl;
+	DispHT(ha1, n, m);
+	SearchHT(ha1, m, p, t);
+	k = 77;
+	cout << " 删除关键字" << t << endl;
+	DeleteHT(ha1, n, m, p, t);
+	DispHT(ha1, n, m);
+	SearchHT(ha1, m, p, t);
+	cout << " 插入关键字" << t << endl;
+	InsertHT(ha1, n, m, p, t);
+	DispHT(ha1, n, m);
+	cout << endl;
+	ASL(ha1, n, m, p);
+
+
 }
