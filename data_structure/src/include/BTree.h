@@ -792,7 +792,6 @@ void KinshipQuestion()
 	}
 }
 
-
 void BTreeTraversalExample()
 {
 	BTNode<char> *T = 0;
@@ -810,7 +809,6 @@ void BTreeTraversalExample()
 	cout << "Inorder non-recursive Traversal£º"; InOrder(T);
 	cout << "Postorder non-recursive Traversal£º"; PostOrder(T);
 	cout << "Levelorder non-recursive Traversal: "; LevelOrder(T);
-
 	TBTNode<char> *b;
 	TCreateBTree(b, str);
 	cout << endl << "InOrderThread Recursive Traversal£º"; InOderThread(CreateThread(b));
