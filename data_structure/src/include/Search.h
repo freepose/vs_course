@@ -18,8 +18,8 @@ template <typename T, typename K>struct RecType
 
 
 //HashTable
-#define NULLKEY -1//定义空关键字值
-#define DELKEY -2//定义被删关键字值
+#define NULLKEY -1	//定义空关键字值
+#define DELKEY -2	//定义被删关键字值
 
 
 template <typename T>struct HashTable
