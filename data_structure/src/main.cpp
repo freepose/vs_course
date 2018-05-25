@@ -13,6 +13,7 @@
 #include"include\LinkString.h"
 #include"include\Graph.h"
 #include"include\Search.h"
+#include"include\InternalSort.h"
 
 int main()
 {
@@ -38,6 +39,9 @@ int main()
 
 	//GraphExample();
 
-	SearchExample();
+	//SearchExample();
+
+	InternalSortExmaple();
+
 	return 0;
 }
