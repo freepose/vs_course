@@ -29,7 +29,6 @@ template <typename T>struct HashTable
 };
 
 
-
 template <typename T, typename K>int SeqSreach(RecType<T, K> R[], int n, K k)
 {
 	int i = 0;
@@ -256,7 +255,6 @@ template <typename T> void InsertHT(HashTable<T> ha[], int &n, int m, int p, T k
 	n++;//¹şÏ£±íÖĞ×ÜÔªËØ¸öÊıÔö1
 }
 
-
 //Create HashTable
 template<typename T> void CreateHT1(HashTable<T> ha[], int &n, int m, int p, T keys[])
 {
@@ -270,6 +268,7 @@ template<typename T> void CreateHT1(HashTable<T> ha[], int &n, int m, int p, T k
 	for (i = 0; i < n1; i++)
 		InsertHT(ha, n, m, p, keys[i]);//²åÈën¸ö¹Ø¼ü×Ö
 }
+
 //Delete k in HashTable
 template <typename T> bool DeleteHT(HashTable<T> ha[], int &n, int m, int p, T k)
 {
@@ -285,8 +284,6 @@ template <typename T> bool DeleteHT(HashTable<T> ha[], int &n, int m, int p, T k
 	else//²éÕÒÊ§°Ü
 		return false;//·µ»Ø¼Ù
 }
-
-
 
 //Search k in HashTable
 template <typename T> void SearchHT(HashTable <T> ha[], int m, int p, T k)
@@ -327,7 +324,6 @@ template<typename T> void ASL(HashTable<T> ha[], int n, int m, int p)
 	cout << "²»³É¹¦Çé¿öÏÂASL(" << n << ")=" << unsucc*1.0 / p << endl;
 }
 
-
 template <typename T>void DispHT(HashTable<T> ha[], int n, int m)    //Êä³ö¹şÏ£±í  
 {
 	int i;
@@ -351,7 +347,6 @@ template <typename T>void DispHT(HashTable<T> ha[], int n, int m)    //Êä³ö¹şÏ£±
 	cout << endl;
 
 }
-
 
 
 void SearchExample()

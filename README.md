@@ -34,15 +34,15 @@
 	[7] Search
 	    lookup linear table
 		lookup tree table
-	
+	    Find a hash table
+
+	[8] InternalSort
+	    insertion sort
 
 
 
 ### todo list
 
-	- Find a hash table by PHY p346-352
-
-	- insertion sort by TN p368-371
 	- exchange sort by CKJ p374-376
 	- choose sort by PHY p380-382
 	- merge sort, radix sorting by TN p386-389
