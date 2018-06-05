@@ -16,6 +16,11 @@ template <typename T, typename K>struct RecType
 	T data;		//其他数据项
 };		//查找元素的类型
 
+template <typename K>struct IdxType
+{
+	K key;
+	int link;
+};
 
 //HashTable
 #define NULLKEY -1	//定义空关键字值
@@ -52,6 +57,43 @@ template <typename T, typename K>int SeqSreach1(RecType<T, K> R[], int n, K k)
 		return i + 1;			//找到返回逻辑序号i + 1
 }
 
+template <typename T, typename K>int BinSearch(RecType<T, K> R[], int n, K k)	//折半查找算法
+{
+	int low = 0, high = n - 1, mid;
+	while (low <= high)		//当前区间存在元素时循环
+	{
+		mid = (low + high) / 2;
+		if (k == R[mid].key)		//查找成功返回其逻辑序号 mid + 1
+			return mid + 1;
+		if (k < R[mid].key)			//继续在R[low..mid - 1]中查找
+			high = mid - 1;
+		else						//k > R[mid].key
+			low = mid + 1;			//继续在R[mid + 1..high]中查找
+	}
+	return 0;						//未找到时返回0（查找失败）
+}
+
+template <typename K, typename T>int IdxSearch(IdxType<K> I[], int b, RecType<T, K> R[], int n, K k)
+{
+	int s = (n + b - 1) / b;		
+	int low = 0, high = n - 1, mid, i;
+	while (low <= high)			//在索引表中进行折半查找，找到的位置为high + 1
+	{
+		mid = (low + high) / 2;
+		if (I[mid].key >= k)
+			high = mid - 1;
+		else
+			low = mid + 1;
+	}
+	//应先在索引表的high + 1块中查找，再在主数据表中进行顺序查找
+	i = I[high + 1].link;
+	while (i <= I[high + 1].link + s - 1 && R[i].key != k)
+		i++;
+	if (i <= I[high + 1].link + s - 1)
+		return i + 1;		//查找成功，返回该元素的逻辑序号
+	else
+		return 0;			//查找失败，返回0
+}
 
 /*
 *  Binary search tree, by CXD, 2018
@@ -359,7 +401,7 @@ void SearchExample()
 
 	cout << "The position of the order finding 2 is: " << SeqSreach(R, 6, 2) << endl;
 	cout << "The position of the order finding 3 is: " << SeqSreach(R, 6, 3) << endl;
-
+	cout << "The position of the order finding 3 is(BinSearch): " << BinSearch(R, 6, 3) << endl;
 
 	BTNode<int> *bt;
 	BTNode<char> *bf;

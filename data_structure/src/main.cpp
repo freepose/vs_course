@@ -39,9 +39,9 @@ int main()
 
 	//GraphExample();
 
-	//SearchExample();
+	SearchExample();
 
-	InternalSortExmaple();
+	//InternalSortExmaple();
 
 	return 0;
 }
