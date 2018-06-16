@@ -39,7 +39,7 @@ int main()
 
 	//GraphExample();
 
-	//SearchExample();
+	SearchExample();
 
 	//InternalSortExmaple();
 
