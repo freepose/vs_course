@@ -290,10 +290,43 @@ void JudgeLegalExample()
 	}
 }
 
+//行编辑问题：假设#代表消除前一个数，@代表消除这一行
+void Edit()
+{
+	SqStack<char>  *S,*Sq;
+	InitStack(S);
+	InitStack(Sq);
+	char ch,e;
+	cout << "请输入字符串:";
+	ch=cin.get();
+	while (ch != 'EOF'&&ch != '\n') {  //标志文件结束
+		switch (ch) {
+		case '#':Pop(S, e); break;
+		case '@':
+			while (!StackEmpty(S)) {
+				Pop(S, e);
+			}
+			break;
+		default:Push(S, ch); break;
+		}
+		ch = cin.get();
+	}             //否则输出这一行的字符
+	while (!StackEmpty(S)) {
+		Pop(S, e);
+		Push(Sq, e);
+	}
+	while (!StackEmpty(Sq)) {  //输出正序
+		Pop(Sq, e);
+		cout << e;
+	}
+	  cout << endl;
+}
+
 
 void SqStackExample()
 {
 	SymmetryExample();
 	PostExpressionExample();
 	JudgeLegalExample();
+	Edit();
 }

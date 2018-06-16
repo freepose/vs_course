@@ -191,7 +191,7 @@ template<typename T> void Deletel(BTNode<T> *p, BTNode<T> *&r)
 	else {                        //找到了最右下结点r（它没有右子树）
 		p->data = r->data;        //将结点r的值存放到结点p中（结点值替代）
 		q = r;                    //删除结点r
-		r = r->lchild;            //用结点r的左孩子替代它
+		r = r->lchild;            //用结点r的左孩子替代它，此时r的右孩子一定为空
 		delete q;                 //释放结点q的空间
 	}
 }

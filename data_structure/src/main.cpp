@@ -32,7 +32,7 @@ int main()
 	//MgpathExample();
 	//JosephProblemExample();
 
-	//BTreeTraversalExample();
+	BTreeTraversalExample();
 
 	//SqStringexample();
 	//LinkStringExample();
@@ -41,7 +41,7 @@ int main()
 
 	//SearchExample();
 
-	InternalSortExmaple();
+	//InternalSortExmaple();
 
 	return 0;
 }
