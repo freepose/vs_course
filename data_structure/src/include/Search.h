@@ -173,6 +173,7 @@ template<typename T> bool deletek(BTNode<T> *&bt, T k)
 		else {
 			deletek(bt->rchild, k);  //дкгвзгЪїВщев
 		}
+		return false; // note
 	}
 	else return false;
 }

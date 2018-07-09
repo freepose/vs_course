@@ -26,7 +26,7 @@ template<typename T> void print_array(const T a[], int n)
 	cout << endl;
 }
 
-template<typename T> void select_sort_array(T a[], int n)
+template<typename T> void select_sort(T a[], int n)
 {
 	for (int i = 0; i < n - 1; i++)
 	{
@@ -40,7 +40,7 @@ template<typename T> void select_sort_array(T a[], int n)
 	}
 }
 
-template<typename T> void buble_sort_array(T a[], int n)
+template<typename T> void buble_sort(T a[], int n)
 {
 	for (int i = 1; i < n; i++) {
 		for (int j = 0; j < n - i; j++) {
@@ -84,9 +84,9 @@ void  arrayExample()
 	int a[8] = { 1, 3, 3, 34, 2, 5 };
 	int b[10] = { 1,2,3,4,5,6,7,8 };
 	// read_array(a,n);
-	//buble_sort_array(a, n);//调用冒泡排序
+	//buble_sort(a, n);//调用冒泡排序
 	//print_array(a, n);
-	//select_sort_array(a, n);//调用选择排序
+	//select_sort(a, n);//调用选择排序
 	//print_array(a, n);
 	leftShift(b, 8, 4);
 }
