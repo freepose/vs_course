@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "normal_education", "..\normal_education\normal_education\normal_education.vcxproj", "{75A8EE7E-3528-44B6-A14D-3435D74C22E2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -28,19 +26,8 @@ Global
 		{CAAEF943-5C1C-4B8F-9C75-583A094C14AB}.Release|x64.Build.0 = Release|x64
 		{CAAEF943-5C1C-4B8F-9C75-583A094C14AB}.Release|x86.ActiveCfg = Release|Win32
 		{CAAEF943-5C1C-4B8F-9C75-583A094C14AB}.Release|x86.Build.0 = Release|Win32
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Debug|x64.ActiveCfg = Debug|x64
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Debug|x64.Build.0 = Debug|x64
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Debug|x86.ActiveCfg = Debug|Win32
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Debug|x86.Build.0 = Debug|Win32
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Release|x64.ActiveCfg = Release|x64
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Release|x64.Build.0 = Release|x64
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Release|x86.ActiveCfg = Release|Win32
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{75A8EE7E-3528-44B6-A14D-3435D74C22E2} = {C35C7A90-F1EA-4EF8-89EF-63485A2B27FE}
 	EndGlobalSection
 EndGlobal
