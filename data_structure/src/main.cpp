@@ -32,14 +32,14 @@ int main()
 	//MgpathExample();
 	//JosephProblemExample();
 
-	BTreeTraversalExample();
+	// BTreeTraversalExample();
 
 	//SqStringexample();
 	//LinkStringExample();
 
-	//GraphExample();
+	GraphExample();
 
-	SearchExample();
+	// SearchExample();
 
 	//InternalSortExmaple();
 
