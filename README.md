@@ -52,9 +52,10 @@
 	- Switch 
 
 ### Chapter 4 Loops
-	- Char data type
-	- Decompose an interger to numbers (recursive and do / while)
-
+	- Introduce *char* data type
+	- Decompose an interger to numbers using *recursive* function
+	- Decompose an interger to numbers using *do {} while ();* structure
+	- Factorial number using *for* structure
 
 
 ## Some suggestions for beginners
