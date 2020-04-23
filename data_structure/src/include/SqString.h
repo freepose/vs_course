@@ -1,4 +1,4 @@
-/*
+ /*
 *
 * Create By Kaijin Cui
 *
@@ -252,7 +252,7 @@ void GetNext(SqString t, int *next)
 		}
 		else {
 			k = next[k];
-		}
+		} 
 	}
 }
 

@@ -139,11 +139,43 @@ template<typename T> int BTNodeDepth(BTNode<T> *b)
 	}
 	else {
 		lchilddeep = BTNodeDepth(b->lchild);
-		rchilddeep = BTNodeDepth(b->rchild);;
+		rchilddeep = BTNodeDepth(b->rchild);
 		return (lchilddeep > rchilddeep) ? (lchilddeep + 1) : (rchilddeep + 1);
 	}
 }
 
+template<typename T> int BTNodeWidth(BTNode<T> *b)
+{
+	BTNode<T> *q;
+	SqQueue<BTNode<T>*> *Q;   //栈用来存储节点
+	int last, temp_width=0, max_width=0;
+	InitQueue(Q);
+	last = Q->rear;      //last标记队尾下标
+	if (b == 0) {
+		return 0;
+	}
+	else {
+		enQueue(Q, b);
+		while (!QueueEmpty(Q)) {
+			deQueue(Q, q);
+			temp_width++;       //出队这层节点++
+			if (q->lchild != 0) {
+				enQueue(Q, q->lchild);
+			}
+			if (q->rchild != 0) {
+				enQueue(Q, q->rchild);
+			}
+			if (Q->front > last) {    //即上一层节点已数完
+				last = Q->rear;
+				if (temp_width > max_width) {
+					max_width = temp_width;
+				}
+				temp_width = 0;
+			}
+		}
+	}
+	return max_width;
+}
 
 /* traverse methods of a tree: recursive traverse (by PHY) */
 
@@ -792,7 +824,6 @@ void KinshipQuestion()
 	}
 }
 
-
 void BTreeTraversalExample()
 {
 	BTNode<char> *T = 0;
@@ -801,6 +832,7 @@ void BTreeTraversalExample()
 	cout << "Display the tree ："; DispBTree(T);
 	
 	cout << endl <<"Height Of The Tree Is " << BTNodeDepth(T) << endl;
+	cout  << "Width Of The Tree Is " << BTNodeWidth(T) << endl;
 
 	cout << "Preorder Recursive Traversal："; PreOrderRecursively(T);
 	cout << endl << "Inorder Recursive Traversal："; InOrderRecursively(T);
@@ -810,7 +842,6 @@ void BTreeTraversalExample()
 	cout << "Inorder non-recursive Traversal："; InOrder(T);
 	cout << "Postorder non-recursive Traversal："; PostOrder(T);
 	cout << "Levelorder non-recursive Traversal: "; LevelOrder(T);
-
 	TBTNode<char> *b;
 	TCreateBTree(b, str);
 	cout << endl << "InOrderThread Recursive Traversal："; InOderThread(CreateThread(b));
