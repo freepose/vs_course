@@ -1,53 +1,44 @@
 ## Basic computer science courses for undergraduate students coding visual studio
 
-### ¡¤¡¤Data structure", 2018 spring semester
+### Data structure, 2018 spring
 
-#### 
-	[1] List
-		SqList, sequencial list
-		LinkNode, linked list, circular linked list
-		DLinkNode, double linked list
+#### chapter 1 List
+	SqList, sequencial list
+	LinkNode, linked list, circular linked list
+	DLinkNode, double linked list
 
-	[2] Stack
-		SqStack, sequencial stack
-		Examples: symmetry string, post expression, mg_path (pp. 93)
+#### chapter 2 Stack
+	SqStack, sequencial stack
+	Examples: symmetry string, post expression, mg_path (pp. 93)
 
-		LinkStNode, linked stack
-		Examples: judge a pair of brackets
+	LinkStNode, linked stack
+	Examples: judge a pair of brackets
 
-	[3] Queue
-		SqQueue, sequencial queue, circular queue
-		LinkQueueNode, linked queue
+#### chapter 3 Queue
+	SqQueue, sequencial queue, circular queue
+	LinkQueueNode, linked queue
 
-	[4] String
-	    SqString,  Brute-Force, KMP
-		LinkString
+#### chapter 4 String
+	SqString,  Brute-Force, KMP
+	LinkString
 
-	[5] Tree
-		BTNode
-		binary tree, threaded tree, construct a binary tree, Huffman tree
+#### chapter 5 Tree
+	BTNode
+	binary tree, threaded tree, construct a binary tree, Huffman tree
 
-	[6] Graph
-	    adjacency matrix, adjacency list
-		traverse of graphs
-		Spanning tree£¬ minimum spanning
-		optimal path, topological sort
+#### chapter 6 Graph
+	adjacency matrix, adjacency list
+	traverse of graphs
+	Spanning tree£¬ minimum spanning
+	optimal path, topological sort
 
-	[7] Search
-	    lookup linear table
-		lookup tree table
-	    Find a hash table
+#### chapter 7 Search
+	lookup linear table
+	lookup tree table
+	Find a hash table
 
-	[8] InternalSort
-	    insertion sort
-
-
-
-### todo list
-
-	- exchange sort by CKJ p374-376
-	- choose sort by PHY p380-382
-	- merge sort, radix sorting by TN p386-389
+#### chapter 8 InternalSort
+	insertion sort
 
 
 ### some suggestions for beginners
