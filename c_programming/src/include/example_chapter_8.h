@@ -4,7 +4,7 @@
 
 void pointer_as_variable()
 {
-	int n, n2;
+	int n2;
 	int *p = 0;
 	p = &n2;
 	scanf("%d", p); // store a number by its pointer?
@@ -64,7 +64,6 @@ void get_month_day(int year, int day_of_year, int *month, int *day)
 	}
 	*month = i;
 	*day = day_of_year;
-
 	// printf("%d-%d-%d", year, i, day);
 }
 
@@ -135,4 +134,53 @@ void pointer_array_test()
 	printf("%d variable(s).\n", q - p);
 	printf("%d bytes\n", (int)q - (int)p);
 	printf("%d %d\n", *p, *q);
+}
+
+void show_sizeof_pointers()
+{
+	char *p1 = 0; // sizeof(p1)
+	int *p2 = 0;
+	double *p3 = 0;
+	long *p4 = 0;
+	char **p5 = 0;
+
+	printf("%d\n", sizeof(p1));
+	printf("%d\n", sizeof(p2));
+	printf("%d\n", sizeof(p3));
+	printf("%d\n", sizeof(p4));
+	printf("%d\n", sizeof(p5));
+}
+
+// using a pointer to access an array
+void pointer_to_arrary(int *arr, int n)
+{
+	int a[10] = { 0 };
+	int *p = 0;	// pointer to a integer variable
+
+	p = &n;	// note
+	p = &a[2];
+}
+
+void print_char_array(char *s, int n)
+{
+	int i = 0;
+	for (i = 0 ; i < n; i++)
+	{
+		printf("%c", s[i]);
+	}
+}
+
+// 如何去传递一个二维数组到函数
+void print_2d_array(int a[][3], int m, int n)
+{
+	// s
+	int i, j;
+	for (i = 0; i < m; i++)
+	{
+		for (j = 0; j < n;j++)
+		{
+			printf("%4d", a[i][j]);
+		}
+		printf("\n");
+	}
 }

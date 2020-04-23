@@ -99,8 +99,11 @@ int main()
 	//printf("sum = %d\n", sum_of_array(a, 10));
 	//printf("sum = %d\n", sum_of_array_using_pointer(a, &a[9]));
 
+	// pointer_array_test();
+	// show_sizeof_pointers();
 
-	pointer_array_test();
+	int array2d[2][3] = { {1, 2, 3}, {4, 5, 6}};
+	print_2d_array(array2d, 2, 3);
 
 	return 0;
 }

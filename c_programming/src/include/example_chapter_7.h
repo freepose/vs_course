@@ -261,9 +261,9 @@ void array2d_find_max()
 	int row = 0, col = 0;
 	int a_t[3][2];
 
-	for (int i = 0; i < 2; i++)
+	for (i = 0; i < 2; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (j = 0; j < 3; j++)
 		{
 			printf("%4d", a[i][j]);
 		}
@@ -271,9 +271,9 @@ void array2d_find_max()
 	}
 
 	// sequential pass 小标标记法
-	for (int i = 0; i < 2; i++)
+	for (i = 0; i < 2; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (j = 0; j < 3; j++)
 		{
 			if (a[i][j] > a[row][col])
 			{
@@ -285,18 +285,18 @@ void array2d_find_max()
 	printf("max is a[%d][%d] = %d\n", row, col, a[row][col]);
 
 	// transpose
-	for (int i = 0; i < 2; i++)
+	for (i = 0; i < 2; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (j = 0; j < 3; j++)
 		{
 			a_t[j][i] = a[i][j];
 		}
 	}
 
 	// 
-	for (int i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 2; j++)
+		for (j = 0; j < 2; j++)
 		{
 			printf("%4d", a_t[i][j]);
 		}
@@ -335,7 +335,7 @@ void char_array()
 	char buffer[20] = {0};
 	char buffer2[20] = { 0 };
 
-	int i;
+	unsigned int i;
 
 	printf("%s\n", t);
 	printf("%s\n", s);
