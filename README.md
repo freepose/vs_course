@@ -1,6 +1,6 @@
 ## Basic computer science courses for undergraduate students coding visual studio
 
-### Data structure, 2018 spring
+### *Data Structure*, 2018 spring
 
 #### chapter 1 List
 	SqList, sequencial list
@@ -41,11 +41,14 @@
 	insertion sort
 
 
+### *C Programming Language*, 2020 spring
+
+
+
 ### some suggestions for beginners
 	- Get a blank paper, and a pen, write down the logical structure.
 	- Prepare examples for each data structure, details examples please see header files. start at main function.
 	- Try more exercise and be skilled on those data structure.
-
 
 ### license
 	free.
