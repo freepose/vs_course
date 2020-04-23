@@ -1,6 +1,8 @@
-## basic computer science courses for undergraduate students in visual studio
+## Basic computer science courses for undergraduate students coding visual studio
 
-### data structure, 2018 spring semester
+### ¡¤¡¤Data structure", 2018 spring semester
+
+#### 
 	[1] List
 		SqList, sequencial list
 		LinkNode, linked list, circular linked list
