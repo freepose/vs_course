@@ -91,7 +91,6 @@
 ### Chapter 8 InternalSort
 	Insertion sort
 
-
 ## Some suggestions for beginners
 	- Get a blank paper, and a pen, write down the logical structure.
 	- Prepare examples for each data structure, details examples please see header files. start at main function.
