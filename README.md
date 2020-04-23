@@ -2,53 +2,62 @@
 
 ## *Data Structure*, 2018 spring
 
-### chapter 1 List
+### Chapter 1 List
 	SqList, sequencial list
 	LinkNode, linked list, circular linked list
 	DLinkNode, double linked list
 
-### chapter 2 Stack
+### Chapter 2 Stack
 	SqStack, sequencial stack
 	Examples: symmetry string, post expression, mg_path (pp. 93)
 
 	LinkStNode, linked stack
 	Examples: judge a pair of brackets
 
-### chapter 3 Queue
+### Chapter 3 Queue
 	SqQueue, sequencial queue, circular queue
 	LinkQueueNode, linked queue
 
-### chapter 4 String
+### Chapter 4 String
 	SqString,  Brute-Force, KMP
 	LinkString
 
-### chapter 5 Tree
+### Chapter 5 Tree
 	BTNode
-	binary tree, threaded tree, construct a binary tree, Huffman tree
+	Binary tree, threaded tree, construct a binary tree, Huffman tree
 
-### chapter 6 Graph
-	adjacency matrix, adjacency list
-	traverse of graphs
+### Chapter 6 Graph
+	Adjacency matrix, adjacency list
+	Traverse of graphs
 	Spanning tree£¬ minimum spanning
-	optimal path, topological sort
+	Optimal path, topological sort
 
-### chapter 7 Search
-	lookup linear table
-	lookup tree table
+### Chapter 7 Search
+	Lookup linear table
+	Lookup tree table
 	Find a hash table
 
-### chapter 8 InternalSort
-	insertion sort
+### Chapter 8 InternalSort
+	Insertion sort
 
 
 ## *C Programming Language*, 2020 spring
 
+### Chapter 3 Branches
+	- Guesse number
+	- Water charge
+	- Is Odd / Even number?
+	- Logical operations
+	- If / else
+	- Switch 
+
+### Chapter 4 Loops
 
 
-## some suggestions for beginners
+## Some suggestions for beginners
 	- Get a blank paper, and a pen, write down the logical structure.
 	- Prepare examples for each data structure, details examples please see header files. start at main function.
 	- Try more exercise and be skilled on those data structure.
 
-## license
-	free.
+## License
+	Free.
