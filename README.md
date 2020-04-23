@@ -52,6 +52,9 @@
 	- Switch 
 
 ### Chapter 4 Loops
+	- Char data type
+	- Decompose an interger to numbers (recursive and do / while)
+
 
 
 ## Some suggestions for beginners
