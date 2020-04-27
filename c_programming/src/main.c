@@ -6,6 +6,7 @@
 #include"include/example_chapter_6.h"
 #include"include/example_chapter_7.h"
 #include"include/example_chapter_8.h"
+#include"include/example_chapter_9.h"
 
 int main()
 {
@@ -102,8 +103,17 @@ int main()
 	// pointer_array_test();
 	// show_sizeof_pointers();
 
-	int array2d[2][3] = { {1, 2, 3}, {4, 5, 6}};
-	print_2d_array(array2d, 2, 3);
+	// int array2d[2][3] = { {1, 2, 3}, {4, 5, 6}};
+	// print_2d_array(&array2d[0][0], 2, 3);
+
+	// 指针和数组的配合
+	// dynamic_allocation_example();
+	// dynamic_allocation_2d_array_example();
+
+	// chapter 9
+	Student *pStudents = 0;
+	int n_students = 92;
+	initialize_students(pStudents, n_students);
 
 	return 0;
 }

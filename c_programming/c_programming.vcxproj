@@ -152,6 +152,7 @@
     <ClInclude Include="src\include\example_chapter_6.h" />
     <ClInclude Include="src\include\example_chapter_7.h" />
     <ClInclude Include="src\include\example_chapter_8.h" />
+    <ClInclude Include="src\include\example_chapter_9.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c" />

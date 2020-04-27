@@ -1,6 +1,7 @@
 #pragma once
 
 #include<stdio.h>
+#include<memory.h>
 
 void pointer_as_variable()
 {
@@ -170,8 +171,34 @@ void print_char_array(char *s, int n)
 	}
 }
 
-// 如何去传递一个二维数组到函数
-void print_2d_array(int a[][3], int m, int n)
+void initialize_2d_array(int **a, int m, int n)
+{
+	int i, j;
+	for (i = 0; i < m; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			a[i][j] = 0;
+		}
+	}
+}
+
+void free_2d_array(int **p, int m, int n)
+{
+	int i;
+	for (i = 0; i < m; i++)
+	{
+		free(p[i]);
+	}
+	free(p);
+	// p = 0;
+}
+
+
+// 如何去传递一个二维数组到函数：不可以用二级指针来串数二维数组
+// void print_2d_array(int a[][3], int m, int n)	// 可以用二维数组变量传递，指定低维长度
+// void print_2d_array(int (*a)[3], int m, int n)		// 可以用数组指针来传递，指定低维长度
+void print_2d_array(int **a, int m, int n)
 {
 	// s
 	int i, j;
@@ -183,4 +210,48 @@ void print_2d_array(int a[][3], int m, int n)
 		}
 		printf("\n");
 	}
+}
+
+
+// dynamic allocation example
+void dynamic_allocation_example()
+{
+	int *a = 0;
+	int size = 1024 * 1024;	// 系统无法一次性各一个程序开辟1G * 4B的空间
+
+	a = (int *)malloc(sizeof(int) * size);
+	memset(a, 0, sizeof(int) * size);
+
+	print_array(a, size);
+
+	// free memory
+	free(a);
+	a = 0;
+}
+
+// 内存模型：它的内存长什么样子
+void dynamic_allocation_2d_array_example()
+{
+	int m = 1024 * 10;
+	int n = 1024;
+
+	int **p = 0;	// 二级指针：指向指针的指针
+	int i = 0;
+
+	p = (int **)malloc(sizeof(int *) * m);
+	for (i = 0; i < m; i++)
+	{
+		p[i] = (int *)malloc(sizeof(int) * n);
+	}
+
+	initialize_2d_array(p, m, n);
+	p[0][0] = 55;
+	p[0][1] = 23;
+	p[0][2] = 8;
+	p[1][0] = 11;
+	p[1][1] = 22;
+	p[1][2] = 89;
+	print_2d_array(p, m, n);
+	free_2d_array(p, m, n);
+	p = 0;
 }
