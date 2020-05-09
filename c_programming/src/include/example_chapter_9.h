@@ -4,11 +4,11 @@
 #include<memory.h>
 
 // typedef类型重定义
-typedef struct  {
+typedef struct {
 	char number[15];
 	char name[10 * 2];
 	char gender;	// {'M', 'F'}
-	char address[256];
+	
 
 	// scores
 	double math;
@@ -17,9 +17,20 @@ typedef struct  {
 	
 	double average;
 
-	// POI
-	//double longitude;
-	//double latitude;
+	// 嵌入的结构体，嵌入定义
+	struct 
+	{
+		double longitude;
+		double latitude;
+		char address_description[256];
+
+		struct
+		{
+			int member1;
+			int member2;
+		} ThirdLevelStruct;
+
+	} Address;
 
 	//char bank_number[20];	
 	//char bank_number_bak[20];
