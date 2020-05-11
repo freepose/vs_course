@@ -115,8 +115,7 @@ int main()
 	//int n_students = 92;
 	//initialize_students(pStudents, n_students);
 
-	Student student = {"201921145006", "易欣雅", 'F', "Guizhou, China",
-						95, 98, 99};
+	Student student = {"201921145006", "易欣雅", 'F', "Guizhou, China", 95, 98, 99};
 
 	print_a_student(&student);	// 只复制地址4个字节
 	// print_a_student_v2(student);	// 复制了sizeof(Student)字节？292 bytes
@@ -130,10 +129,8 @@ int main()
 	//amend_gender(&student, 'M');
 	//print_a_student(&student);
 	//amend_gender(&student, 'F');
-	average_scores(&student);
-	print_a_student(&student);
-
-	// 更容易管理
+	// average_scores(&student);
+	// print_a_student(&student);
 
 	return 0;
 }
