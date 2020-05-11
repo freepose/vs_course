@@ -68,7 +68,7 @@ void find_array()
 		printf("%d ", a[i]);	// 存一个数据到变量，就是存数据到内存中
 	}
 
-	// sequential acess
+	// sequential access
 	for (i = 4; i >= 0; i--)
 	{
 		if (a[i] == x)

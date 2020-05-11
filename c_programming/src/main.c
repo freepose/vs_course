@@ -115,24 +115,17 @@ int main()
 	//int n_students = 92;
 	//initialize_students(pStudents, n_students);
 
-	Student student = {"201921145006", "易欣雅", 'F', "Guizhou, China", 95, 98, 99};
-
-	print_a_student(&student);	// 只复制地址4个字节
-	// print_a_student_v2(student);	// 复制了sizeof(Student)字节？292 bytes
-
-	// 我们有92个同学：效率对比
-	// 4 * 92 vs. 292 * 92：输出效率边忙
-	// 为什么感觉不到相差73 * 92倍数：因为计算机运行速度太快了。73 * 92ms, 1 *92ms
-	// 当我们要计算10000被
-
-	// 保证：我们每次操作的是同一个对象
-	//amend_gender(&student, 'M');
-	//print_a_student(&student);
-	//amend_gender(&student, 'F');
-	// average_scores(&student);
-	// print_a_student(&student);
-
-	// this is a test
+	// Student student = {"201921145006", "易欣雅", 'F', "Guizhou, China", 95, 98, 99};
+	int sel;
+	while (1)
+	{
+		show_tips();
+		scanf("%d", &sel);
+		if (sel == 0) {
+			break;
+		}
+		menu(sel);
+	}
 
 	return 0;
 }
