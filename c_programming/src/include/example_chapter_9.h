@@ -74,6 +74,8 @@ void show_tips()
 	printf("2. 显示若干个学生信息\n");
 	printf("3. 按学号查找并显示学生信息\n");
 	printf("4. 插入一个学生信息\n");
+	printf("5. 按学号排序所有学生信息\n");
+	printf("6. 按姓名排序所有学生信息\n");
 	printf("0. 退出程序\n");
 }
 
