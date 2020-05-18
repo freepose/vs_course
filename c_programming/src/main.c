@@ -115,16 +115,15 @@ int main()
 	//int n_students = 92;
 	//initialize_students(pStudents, n_students);
 
-	// Student student = {"201921145006", "Ò×ÐÀÑÅ", 'F', "Guizhou, China", 95, 98, 99};
-	int sel;
-	while (1)
+	Student students[200];
+	int choice = 1, n = 0;
+	show_tips();
+
+	while (choice != 0)
 	{
+		menu(students, &n, choice);
 		show_tips();
-		scanf("%d", &sel);
-		if (sel == 0) {
-			break;
-		}
-		menu(sel);
+		scanf("%d", &choice);
 	}
 
 	return 0;

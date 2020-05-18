@@ -1,6 +1,6 @@
-#pragma once
 
 #include<stdio.h>
+#include<stdlib.h>
 #include<memory.h>
 
 void pointer_as_variable()
