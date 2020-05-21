@@ -95,7 +95,6 @@ void sort_sutdent_by_number(Student *students, int n)
 	}
 }
 
-
 void sort_sutdent_by_name(Student *students, int n)
 {
 	int i; // 当前第i个数最小
