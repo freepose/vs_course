@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\example_chapter_11.h" />
     <ClInclude Include="src\include\example_chapter_3.h" />
     <ClInclude Include="src\include\example_chapter_4.h" />
     <ClInclude Include="src\include\example_chapter_5.h" />
