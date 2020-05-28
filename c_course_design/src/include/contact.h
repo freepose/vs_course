@@ -10,8 +10,9 @@
 
 
 typedef struct {
-	char number[12 + 1];
-	char name[6 * 2 + 1];
+	char number[20 + 1];
+	char name[10 * 2 + 1];
+	char gender[1 * 2 + 1];
 	char phone[20 + 1];
 	char email[20 + 1];
 	char qq_id[20 + 1];
@@ -40,6 +41,29 @@ void initial_filename(Filename *p)
 	strcpy(p->target_contact_file, target_file);
 }
 
+void split(char *src, const char *separator, char **dest, int *num) 
+{
+	/*
+	src 源字符串的首地址(buf的地址)
+	separator 指定的分割字符
+	dest 接收子字符串的数组
+	num 分割后子字符串的个数
+	*/
+	char *pNext;
+	int count = 0;
+	if (src == NULL || strlen(src) == 0) //如果传入的地址为空或长度为0，直接终止 
+		return;
+	if (separator == NULL || strlen(separator) == 0) //如未指定分割的字符串，直接终止 
+		return;
+	pNext = (char *)strtok(src, separator); //必须使用(char *)进行强制类型转换(虽然不写有的编译器中不会出现指针错误)
+	while (pNext != NULL) {
+		*dest++ = pNext;
+		++count;
+		pNext = (char *)strtok(NULL, separator);  //必须使用(char *)进行强制类型转换
+	}
+	*num = count;
+}
+
 StudentArray* read_students(char *filename)
 {
 	FILE *fp = 0;
@@ -61,11 +85,24 @@ StudentArray* read_students(char *filename)
 		// read lines and parse
 		Student *pStudent = pArray->students + counter;
 
-		fscanf(fp, "%s,%s,%s,%s,%s,%s,%s,", pStudent->number, 
-			pStudent->name, pStudent->phone, pStudent->email, 
-			pStudent->qq_id, pStudent->wechat_id, pStudent->address);
+		char *revbuf[9] = { 0 };
+		int num = 0;
+		fgets(buffer, 1024, fp);
 
-		counter++;
+		split(buffer, ",", revbuf, &num); //调用函数进行分割
+		if (num == 9)
+		{
+			strcpy(pStudent->number, revbuf[0]);
+			strcpy(pStudent->name, revbuf[1]);
+			strcpy(pStudent->gender, revbuf[2]);
+			strcpy(pStudent->phone, revbuf[3]);
+			strcpy(pStudent->email, revbuf[4]);
+			strcpy(pStudent->qq_id, revbuf[5]);
+			strcpy(pStudent->wechat_id, revbuf[6]);
+			strcpy(pStudent->address, revbuf[7]);
+			counter++;
+		}
+		
 	}
 	pArray->num_student = counter;
 
@@ -82,8 +119,8 @@ void print_students(StudentArray* pArray)
 	for (int i = 0; i < pArray->num_student; i++)
 	{
 		Student *pStudent = pArray->students + i;
-		printf("%s,%s,%s,%s,%s,%s,%s\n", pStudent->number,
-			pStudent->name, pStudent->phone, pStudent->email,
+		printf("%s,%s,%s,%s,%s,%s,%s,%s\n", pStudent->number,
+			pStudent->name, pStudent->gender, pStudent->phone, pStudent->email,
 			pStudent->qq_id, pStudent->wechat_id, pStudent->address);
 	}
 }
