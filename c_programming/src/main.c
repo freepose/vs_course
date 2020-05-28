@@ -8,8 +8,9 @@
 #include"include/example_chapter_8.h"
 #include"include/example_chapter_9.h"
 #include"include/example_chapter_11.h"
+#include"include/example_chapter_12.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 	// chapter 3
 	// guess_number();
@@ -52,7 +53,7 @@ int main()
 
 	// chapter 7
 
-	// printf("%d", heighs_3[1]);	//第二位同学的身高
+	// printf("%d", heighs_3[1]);	
 	// output_average();
 	// fibonacci_array();
 	// find_array();
@@ -129,7 +130,26 @@ int main()
 	
 	// chapter 11
 	// Olympic_rings();
-	sort_Olympic_rings_example();
+	// Olympic_rings_v2();
+	// Olympic_rings_v3();
+	// sort_Olympic_rings_example();
+	// jiemi();
+	// strings_reverse_output();
+	// print_rings(argv, argc);
+
+	//print_func(func, 3, 5);
+	//print_func(func_B, 3, 5);
+	//struct StudentLinkNode * head = create_students();
+	//print_linked_students(head);
+	//struct StudentLinkNode *p = find_StudentLinkNode(head, 3);
+
+	//printf("%p", p);
+
+	// chapter 12
+	// read_file_example();
+	// read_and_write_file_example();
+
+	// contact
 
 	return 0;
 }

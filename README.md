@@ -1,5 +1,7 @@
 # Basic computer science courses
 
+Take the code for free.
+
 ## *C Programming Language*, 2020 spring
 
 ### Chapter 3 Branches

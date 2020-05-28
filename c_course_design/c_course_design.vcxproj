@@ -18,10 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\contact.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8132656C-9CAF-4354-826A-4453B69884D8}</ProjectGuid>
+    <ProjectGuid>{3D806808-4B66-4959-978F-DFA6F6E8A0AC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>c_programming</RootNamespace>
+    <RootNamespace>c_course_design</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,20 +151,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="src\include\example_chapter_11.h" />
-    <ClInclude Include="src\include\example_chapter_12.h" />
-    <ClInclude Include="src\include\example_chapter_3.h" />
-    <ClInclude Include="src\include\example_chapter_4.h" />
-    <ClInclude Include="src\include\example_chapter_5.h" />
-    <ClInclude Include="src\include\example_chapter_6.h" />
-    <ClInclude Include="src\include\example_chapter_7.h" />
-    <ClInclude Include="src\include\example_chapter_8.h" />
-    <ClInclude Include="src\include\example_chapter_9.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.c" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
