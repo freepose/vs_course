@@ -35,7 +35,8 @@ typedef struct
 
 void initial_filename(Filename *p)
 {
-	char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
+	// char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
+	char source_file[] = "D:/data/contacts.csv";
 	char target_file[] = "D:/study/teaching/2020春 C语言-理学院19级/target.csv";
 	strcpy(p->source_contact_file, source_file);
 	strcpy(p->target_contact_file, target_file);
@@ -109,18 +110,93 @@ StudentArray* read_students(char *filename)
 	return pArray;
 }
 
-void print_students(StudentArray* pArray)
+void print_students(StudentArray* p)
 {
-	if (pArray->num_student <= 0)
+	if (p->num_student <= 0)
 	{
 		printf("No student information.\n");
 		return;
 	}
-	for (int i = 0; i < pArray->num_student; i++)
+	for (int i = 0; i < p->num_student; i++)
 	{
-		Student *pStudent = pArray->students + i;
-		printf("%s,%s,%s,%s,%s,%s,%s,%s\n", pStudent->number,
-			pStudent->name, pStudent->gender, pStudent->phone, pStudent->email,
-			pStudent->qq_id, pStudent->wechat_id, pStudent->address);
+		Student *student = p->students + i;
+		printf("%s,%s,%s,%s,%s,%s,%s,%s\n", student->number,
+			student->name, student->gender, student->phone, student->email,
+			student->qq_id, student->wechat_id, student->address);
 	}
+}
+
+void sort_student_by_number(StudentArray* p)
+{
+	int i, j;
+	Student t;
+	for (i = 0; i < p->num_student - 1; i++)
+	{
+		for (j = 0; j < p->num_student - i - 1; j++)
+		{
+			if (strcmp(p->students[j].number, p->students[j + 1].number) < 0)
+			{
+				t = p->students[j];
+				p->students[j] = p->students[j + 1];
+				p->students[j + 1] = t;
+			}
+		}
+	}
+}
+
+void sort_student_by_name(StudentArray* p)
+{
+	int i, j;
+	Student t;
+	for (i = 0; i < p->num_student - 1; i++)
+	{
+		for (j = 0; j < p->num_student - i - 1; j++)
+		{
+			if (strcmp(p->students[j].name, p->students[j + 1].name) > 0)
+			{
+				t = p->students[j];
+				p->students[j] = p->students[j + 1];
+				p->students[j + 1] = t;
+			}
+		}
+	}
+}
+
+Student* binary_search_by_number(StudentArray* sorted_list, char* target_number)
+{
+	int low = 0, high = sorted_list->num_student - 1;
+	int mid = (low + high) / 2;
+
+	while (low <= high)
+	{
+		if (strcmp(sorted_list->students[mid].number, target_number) > 0)
+		{
+			high = mid - 1;
+		}
+		else if (strcmp(sorted_list->students[mid].number, target_number) < 0)
+		{
+			low = mid + 1;
+		}
+		else
+		{
+			return sorted_list->students + mid;
+		}
+		mid = (low + high) / 2;
+	}
+	return 0;
+}
+
+int update_student_by_number(StudentArray* list, Student *to_update)
+{
+	Student *student = binary_search_by_number(list, to_update->number);
+	if (0 == student)
+	{
+		return 0;	// can't find the target number
+	}
+
+	*student = *to_update;	// hard copy
+
+	//
+
+	return 1;	// update success
 }
