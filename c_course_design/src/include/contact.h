@@ -37,7 +37,7 @@ void initial_filename(Filename *p)
 {
 	// char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
 	char source_file[] = "D:/data/contacts.csv";
-	char target_file[] = "D:/study/teaching/2020春 C语言-理学院19级/target.csv";
+	char target_file[] = "D:/data/contacts.target.csv";
 	strcpy(p->source_contact_file, source_file);
 	strcpy(p->target_contact_file, target_file);
 }
@@ -134,7 +134,7 @@ void sort_student_by_number(StudentArray* p)
 	{
 		for (j = 0; j < p->num_student - i - 1; j++)
 		{
-			if (strcmp(p->students[j].number, p->students[j + 1].number) < 0)
+			if (strcmp(p->students[j].number, p->students[j + 1].number) > 0)
 			{
 				t = p->students[j];
 				p->students[j] = p->students[j + 1];
@@ -162,6 +162,41 @@ void sort_student_by_name(StudentArray* p)
 	}
 }
 
+
+bool insert_student(StudentArray* L, int i, Student e)
+{
+	int j;
+	if (i < 0 || i > L->num_student) {
+		return false;
+	}
+
+	i--;    // 将顺序表逻辑序号转化为物理序号
+	for (j = L->num_student; j > i; j--) {
+		L->students[j] = L->students[j - 1];	//将data[i..n]元素后移一个位置
+	}
+	L->students[i] = e;  //插入元素e
+	L->num_student++;  //顺序表长度增1
+	return true;   //成功插入返回true
+}
+
+bool delete_student(StudentArray* L, int i, Student &e)
+{
+	int j;
+	if (i<0 || i > L->num_student - 1) //参数错误时返回false
+	{
+		return false;
+	}
+
+	e = L->students[i];	// backup the student
+	for (j = i; j < L->num_student - 1; j++)   //将data[i..n-1]元素前移
+	{
+		L->students[j] = L->students[j + 1];
+	}
+	L->num_student--;     //顺序表长度减1
+	return true;     //成功删除返回true
+}
+
+
 Student* binary_search_by_number(StudentArray* sorted_list, char* target_number)
 {
 	int low = 0, high = sorted_list->num_student - 1;
@@ -186,6 +221,30 @@ Student* binary_search_by_number(StudentArray* sorted_list, char* target_number)
 	return 0;
 }
 
+int binary_search_by_number_v2(StudentArray* sorted_list, char* target_number)
+{
+	int low = 0, high = sorted_list->num_student - 1;
+	int mid = (low + high) / 2;
+
+	while (low <= high)
+	{
+		if (strcmp(sorted_list->students[mid].number, target_number) > 0)
+		{
+			high = mid - 1;
+		}
+		else if (strcmp(sorted_list->students[mid].number, target_number) < 0)
+		{
+			low = mid + 1;
+		}
+		else
+		{
+			return mid;
+		}
+		mid = (low + high) / 2;
+	}
+	return -1;
+}
+
 int update_student_by_number(StudentArray* list, Student *to_update)
 {
 	Student *student = binary_search_by_number(list, to_update->number);
@@ -196,7 +255,27 @@ int update_student_by_number(StudentArray* list, Student *to_update)
 
 	*student = *to_update;	// hard copy
 
-	//
-
 	return 1;	// update success
+}
+
+void write_student(StudentArray* list, char * target_file)
+{
+	FILE *fp = 0;
+	if ((fp = fopen(target_file, "w")) == 0)
+	{
+		printf("directory not exist: %s\n", target_file);
+		return ;
+	}
+
+	for (int i = 0; i < list->num_student; i++)
+	{
+		Student *student = list->students + i;
+		fprintf(fp, "%s,%s,%s,%s,%s,%s,%s,%s\n", student->number,
+			student->name, student->gender, student->phone, student->email,
+			student->qq_id, student->wechat_id, student->address);
+
+		//fputs(student->number, fp);
+		//fputs("\n", fp);
+	}
+	fclose(fp);
 }

@@ -208,7 +208,7 @@ struct StudentLinkNode
 {
 	int data;	// 可以放更多数据
 	
-	struct StudentLinkNode *next;
+	struct StudentLinkNode *next;	// 结构体指针
 };
 
 struct StudentLinkNode *create_students()

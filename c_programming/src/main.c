@@ -149,7 +149,5 @@ int main(int argc, char* argv[])
 	// read_file_example();
 	// read_and_write_file_example();
 
-	// contact
-
 	return 0;
 }
