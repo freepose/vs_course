@@ -4,6 +4,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include<memory.h>
+
+
 // windows (default): D:\\study\\teaching\\2020春 C语言-理学院19级\\contacts.csv
 // macos or linux: "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv"
 // 字段："学号,姓名,性别,联系电话,邮箱（必填）,QQ号,微信号,家庭住址,"
