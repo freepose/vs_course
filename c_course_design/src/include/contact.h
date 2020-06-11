@@ -38,8 +38,8 @@ typedef struct
 void initial_filename(Filename *p)
 {
 	// char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
-	char source_file[] = "D:/data/contacts.csv";
-	char target_file[] = "D:/data/contacts.target.csv";
+	char source_file[] = "D:/data/c_course/contacts.csv";
+	char target_file[] = "D:/data/c_course/contacts.target.csv";
 	strcpy(p->source_contact_file, source_file);
 	strcpy(p->target_contact_file, target_file);
 }
@@ -260,7 +260,7 @@ int update_student_by_number(StudentArray* list, Student *to_update)
 	return 1;	// update success
 }
 
-void write_student(StudentArray* list, char * target_file)
+void write_students(StudentArray* list, char * target_file)
 {
 	FILE *fp = 0;
 	if ((fp = fopen(target_file, "w")) == 0)
@@ -280,4 +280,17 @@ void write_student(StudentArray* list, char * target_file)
 		//fputs("\n", fp);
 	}
 	fclose(fp);
+}
+
+void contact_example()
+{
+	Filename files;
+	initial_filename(&files);
+	StudentArray* list = read_students(files.source_contact_file);
+
+	sort_student_by_number(list);
+	printf("#(students) = %d\n", list->num_student);
+	print_students(list);
+
+	write_students(list, files.target_contact_file);
 }

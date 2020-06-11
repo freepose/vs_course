@@ -264,3 +264,4 @@ void add_StudentLinkNode(struct StudentLinkNode *tail, int data)
 {
 	// add to tail or add to head
 }
+
