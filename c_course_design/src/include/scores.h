@@ -204,7 +204,7 @@ void student_scores_average(StudentList* list)
 
 void scores_example()
 {
-	// 1. read score information from given file.
+	// 1. read score information from a given file.
 	char *filename = "D:/data/c_course/scores.csv";
 	char *target_filename = "D:/data/c_course/scores.target.csv";
 
