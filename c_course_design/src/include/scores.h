@@ -8,6 +8,7 @@
 typedef struct {
 	float scores[100];
 	int num_scores;
+	float average;
 } ScoreList;
 
 typedef struct {
@@ -197,8 +198,9 @@ void student_scores_average(StudentList* list)
 	for (int i = 0; i < list->num_students; i++)
 	{
 		Student *student = list->students + i;
-		float average = student->scores.scores[0] + student->scores.scores[1] + student->scores.scores[2] + student->scores.scores[3];
-		printf("%s, %s, average = %.1f\n", student->number, student->name, average / 4.0);
+		student->scores.average = student->scores.scores[0] + student->scores.scores[1] + student->scores.scores[2] + student->scores.scores[3];
+		student->scores.average /= 4.0;
+		printf("%s, %s, average = %.1f\n", student->number, student->name, student->scores.average);
 	}
 }
 
@@ -219,7 +221,6 @@ void scores_example()
 	}
 
 	display_scores_by_classroom(list, "¹âµç1912");
-
 
 	student_scores_average(list);
 
