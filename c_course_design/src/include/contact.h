@@ -105,7 +105,6 @@ StudentArray* read_students(char *filename)
 			strcpy(pStudent->address, revbuf[7]);
 			counter++;
 		}
-		
 	}
 	pArray->num_student = counter;
 
