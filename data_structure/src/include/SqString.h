@@ -171,13 +171,13 @@ void DispStr(SqString s)
 *Examples
 */
 
-//P127 Àı¡¾4.1¡¿Compare the size of two strings in a dictionary order.
+//P127 ä¾‹ã€4.1ã€‘Compare the size of two strings in a dictionary order.
 int Strcmp(SqString s, SqString t)
 {
 	int i, comlen;
-	if (s.length < t.length) comlen = s.length;		//ÇósºÍtµÄ¹²Í¬³¤¶È
+	if (s.length < t.length) comlen = s.length;		//æ±‚så’Œtçš„å…±åŒé•¿åº¦
 	else comlen = t.length;
-	for (i = 0; i < comlen; i++)		//ÔÚ¹²Í¬³¤¶ÈÄÚÖğ¸ö±È½Ï
+	for (i = 0; i < comlen; i++)		//åœ¨å…±åŒé•¿åº¦å†…é€ä¸ªæ¯”è¾ƒ
 	{
 		if (s.data[i] > t.data[i])
 			return 1;
@@ -191,21 +191,22 @@ int Strcmp(SqString s, SqString t)
 	else return -1;					//s < t
 }
 
-//P127 Àı¡¾4.2¡¿A platform for the first longest continuous same character in a string.
+//P127 ä¾‹ã€4.2ã€‘A platform for the first longest continuous same character in a string.
 void LongestString(SqString s, int &index, int &maxlen)
 {
-	int length, i = 1, start;		//length±£´æ¾Ö²¿Æ½Ì¨µÄ³¤¶È
-	index = 0, maxlen = 1;			//index±£´æ×î³¤Æ½Ì¨ÔÚsÖĞµÄ¿ªÊ¼Î»ÖÃ£¬maxlen±£´æÆä³¤¶È
+	int length, i = 1, start;		//lengthä¿å­˜å±€éƒ¨å¹³å°çš„é•¿åº¦
+    index = 0;
+    maxlen = 1;			//indexä¿å­˜æœ€é•¿å¹³å°åœ¨sä¸­çš„å¼€å§‹ä½ç½®ï¼Œmaxlenä¿å­˜å…¶é•¿åº¦
 	while (i < s.length)
 	{
-		start = i - 1;				//²éÕÒ¾Ö²¿ÖØ¸´×Ó´®
+		start = i - 1;				//æŸ¥æ‰¾å±€éƒ¨é‡å¤å­ä¸²
 		length = 1;
 		while (i < s.length && s.data[i] == s.data[i - 1])
 		{
 			i++;
 			length++;
 		}
-		if (maxlen < length)		//µ±Ç°Æ½Ì¨³¤¶È´ó£¬Ôò¸üĞÂmaxlen
+		if (maxlen < length)		//å½“å‰å¹³å°é•¿åº¦å¤§ï¼Œåˆ™æ›´æ–°maxlen
 		{
 			maxlen = length;
 			index = start;
@@ -227,12 +228,12 @@ int index(SqString s, SqString t)
 			j++;
 		}
 		else {
-			i = i - j + 1;//ÒÆµ½iµÄÏÂÒ»¸ö
+			i = i - j + 1;//ç§»åˆ°içš„ä¸‹ä¸€ä¸ª
 			j = 0;
 		}
 	}
 	if (j >= t.length) {
-		return (i - t.length);//ËùÔÚiµÄÏÂ±ê¼õÈ¥Ä£Ê½´®³¤¶È£¬µÈÓÚµÚÒ»¸ö×Ö·ûËùÔÚµÄÏÂ±ê
+		return (i - t.length);//æ‰€åœ¨içš„ä¸‹æ ‡å‡å»æ¨¡å¼ä¸²é•¿åº¦ï¼Œç­‰äºç¬¬ä¸€ä¸ªå­—ç¬¦æ‰€åœ¨çš„ä¸‹æ ‡
 	}
 	else {
 		return -1;
@@ -243,8 +244,8 @@ int index(SqString s, SqString t)
 void GetNext(SqString t, int *next)
 {
 	int  j = 0, k = -1;
-	next[0] = -1;//next[j]´ú±íjÇ°ÓĞ¼¸¸öÓë¿ªÍ·ÏàÍ¬µÄÊı
-	while (j < t.length - 1) {//µ±j=length-1Ê±£¬ÒÑ¾­°ÑÃ¿¸ö×Ö·ûµÄnext±ê×¢Íê
+	next[0] = -1;//next[j]ä»£è¡¨jå‰æœ‰å‡ ä¸ªä¸å¼€å¤´ç›¸åŒçš„æ•°
+	while (j < t.length - 1) {//å½“j=length-1æ—¶ï¼Œå·²ç»æŠŠæ¯ä¸ªå­—ç¬¦çš„nextæ ‡æ³¨å®Œ
 		if (k == -1 || t.data[k] == t.data[j]) {
 			j++;
 			k++;
@@ -376,8 +377,8 @@ void SqStringexample()
 	int indem, maxlen;
 	LongestString(s1, indem, maxlen);
 	DispStr(s1);
-	cout << "×î³¤×Ó´®ÆğÊ¼Î»ÖÃÎª£º" << indem << endl 
-		<< "³¤¶ÈÎª:" << maxlen << endl;
+	cout << "æœ€é•¿å­ä¸²èµ·å§‹ä½ç½®ä¸ºï¼š" << indem << endl 
+		<< "é•¿åº¦ä¸º:" << maxlen << endl;
 
 	int i;
 	SqString t, s;

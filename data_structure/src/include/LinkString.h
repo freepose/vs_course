@@ -261,7 +261,7 @@ void DispStrLink(LinkStrNode *s)
 *Examples
 */
 
-//P133 Àý¡¾4.3¡¿Change the first substring "ab" in the string s to "xyz"
+//P133 Ã€Æ°Â¡Â¾4.3Â¡Â¿Change the first substring "ab" in the string s to "xyz"
 void Repl(LinkStrNode *&s)
 {
 	LinkStrNode *p = s->next, *q;

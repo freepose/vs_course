@@ -16,13 +16,13 @@ template<typename T> struct LinkStackNode
 	LinkStackNode<T> *next;
 };
 
-template<typename T> void InitStack(LinkStackNode<typename T> *&s)
+template<typename T> void InitStack(LinkStackNode<T> *&s)
 {
 	s = new LinkStackNode<T>;
 	s->next = 0;
 }
 
-template<typename T> void DestroyStack(LinkStackNode<typename T> *&s)
+template<typename T> void DestroyStack(LinkStackNode<T> *&s)
 {
 	LinkStackNode<T> *pre = s, *p = s->next;
 	while (p != 0) {
@@ -33,12 +33,12 @@ template<typename T> void DestroyStack(LinkStackNode<typename T> *&s)
 	delete pre;
 }
 
-template<typename T> bool StackEmpty(LinkStackNode<typename T> *s)
+template<typename T> bool StackEmpty(LinkStackNode<T> *s)
 {
 	return(s->next == 0);
 }
 
-template<typename T> void Push(LinkStackNode<typename T> *&s, T e)
+template<typename T> void Push(LinkStackNode<T> *&s, T e)
 {
 	LinkStackNode<T> *p = 0;
 	p = new LinkStackNode<T>;
@@ -47,7 +47,7 @@ template<typename T> void Push(LinkStackNode<typename T> *&s, T e)
 	s->next = p;
 }
 
-template<typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
+template<typename T> bool Pop(LinkStackNode<T>  *&s, T &e)
 {
 	LinkStackNode<T> *p;
 	if (s->next== 0) {
@@ -60,7 +60,7 @@ template<typename T> bool Pop(LinkStackNode<typename T>  *&s, T &e)
 	return true;
 }
 
-template<typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
+template<typename T> bool GetTop(LinkStackNode<T>  *&s, T &e)
 {
 	if (s->next == 0) {
 		return false;
@@ -70,10 +70,10 @@ template<typename T> bool GetTop(LinkStackNode<typename T>  *&s, T &e)
 }
 
 /*
- *P86 Àý¡¾3.5¡¿Determine whether the parentheses in the string are symmetric.
+ *P86 Determine whether the parentheses in the string are symmetric.
  */ 
 
-void Match(char exp[], int n)
+void Match(char const* exp, int n)
 {
 	int i = 0;
 	char e;
@@ -114,8 +114,8 @@ void Match(char exp[], int n)
 
 void LinkStackNodeExample()
 {
-	char *a = "(This is a text)";
-	char *b = "(This is a text";
+	char const* a = "(This is a text)";
+	char const* b = "(This is a text";
 	int n = 16, m = 15;
 	Match(a, n);
 	Match(b, m);

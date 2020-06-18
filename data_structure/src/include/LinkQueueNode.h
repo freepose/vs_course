@@ -38,9 +38,9 @@ template<typename T> void DestroyQueue(LinkQueueNode<T> *&q)
 			pre = p;
 			p = p->next;
 		}
-		delete pre;//ÊÍ·Å×îºóÒ»¸öÊı¾İ½áµã
+		delete pre;//é‡Šæ”¾æœ€åä¸€ä¸ªæ•°æ®ç»“ç‚¹
 	}
-	delete q;//ÊÍ·ÅÁ´¶Ó½áµã
+	delete q;//é‡Šæ”¾é“¾é˜Ÿç»“ç‚¹
 }
 
 template<typename T> bool QueueEmpty(LinkQueueNode<T> *q)
@@ -58,7 +58,7 @@ template<typename T> void enQueue(LinkQueueNode<T> *&q, T e)
 		q->rear = q->front = p;
 	}
 	else {
-		q->rear->next = p;//½«½áµãÁ´µ½¶ÓÎ²£¬²¢ÓÃrearÖ¸ÏòËü
+		q->rear->next = p;//å°†ç»“ç‚¹é“¾åˆ°é˜Ÿå°¾ï¼Œå¹¶ç”¨rearæŒ‡å‘å®ƒ
 		q->rear = p;
 	}
 }
@@ -70,7 +70,7 @@ template<typename T> bool deQueue(LinkQueueNode<T> *&q, T &e)
 		return false;
 	}
 	t = q->front;
-	if (q->front == q->rear) {//Ö»ÓĞÒ»¸öÊı¾İ½áµãÊ±
+	if (q->front == q->rear) {//åªæœ‰ä¸€ä¸ªæ•°æ®ç»“ç‚¹æ—¶
 		q->front = q->rear = 0;
 	}
 	else {

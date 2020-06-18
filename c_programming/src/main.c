@@ -108,18 +108,18 @@ int main(int argc, char* argv[])
 	// int array2d[2][3] = { {1, 2, 3}, {4, 5, 6}};
 	// print_2d_array(&array2d[0][0], 2, 3);
 
-	// 指针和数组的配合
+	// 鎸囬拡鍜屾暟缁勭殑閰嶅悎
 	// dynamic_allocation_example();
 	// dynamic_allocation_2d_array_example();
 
 	// chapter 9
-	//Student *pStudents = 0;
-	//int n_students = 92;
-	//initialize_students(pStudents, n_students);
+//	Student *pStudents = 0;
+//	int n_students = 92;
+//	initialize_students(pStudents, n_students);
 
-	//Student students[200];
-	//int choice = 1, n = 0;
-	//show_tips();
+	Student students[200];
+	int choice = 1, n = 0;
+	show_tips();
 
 	//while (choice != 0)
 	//{
@@ -129,8 +129,8 @@ int main(int argc, char* argv[])
 	//}
 	
 	// chapter 11
-	// Olympic_rings();
-	// Olympic_rings_v2();
+//    Olympic_rings();
+//    Olympic_rings_v2();
 	// Olympic_rings_v3();
 	// sort_Olympic_rings_example();
 	// jiemi();

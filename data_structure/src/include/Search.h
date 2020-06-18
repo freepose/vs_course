@@ -12,9 +12,9 @@
 
 template <typename T, typename K>struct RecType
 {
-	K key;	//¹Ø¼ü×ÖÏî
-	T data;		//ÆäËûÊı¾İÏî
-};		//²éÕÒÔªËØµÄÀàĞÍ
+	K key;	//å…³é”®å­—é¡¹
+	T data;		//å…¶ä»–æ•°æ®é¡¹
+};		//æŸ¥æ‰¾å…ƒç´ çš„ç±»å‹
 
 template <typename K>struct IdxType
 {
@@ -23,61 +23,61 @@ template <typename K>struct IdxType
 };
 
 //HashTable
-#define NULLKEY -1	//¶¨Òå¿Õ¹Ø¼ü×ÖÖµ
-#define DELKEY -2	//¶¨Òå±»É¾¹Ø¼ü×ÖÖµ
+#define NULLKEY -1	//å®šä¹‰ç©ºå…³é”®å­—å€¼
+#define DELKEY -2	//å®šä¹‰è¢«åˆ å…³é”®å­—å€¼
 
 
 template <typename T>struct HashTable
 {
-	T key;//¹Ø¼ü×ÖÓò
-	int count;//Ì½²â´ÎÊıÓò
+	T key;//å…³é”®å­—åŸŸ
+	int count;//æ¢æµ‹æ¬¡æ•°åŸŸ
 };
 
 
 template <typename T, typename K>int SeqSreach(RecType<T, K> R[], int n, K k)
 {
 	int i = 0;
-	while (i < n && R[i].key != k)		//´Ó±íÍ·ÍùºóÕÒ
+	while (i < n && R[i].key != k)		//ä»è¡¨å¤´å¾€åæ‰¾
 		i++;
-	if (i > n)							//Î´ÕÒµ½·µ»Ø0
+	if (i > n)							//æœªæ‰¾åˆ°è¿”å›0
 		return 0;
 	else
-		return i + 1;					//ÕÒµ½·µ»ØÂß¼­ĞòºÅi + 1
+		return i + 1;					//æ‰¾åˆ°è¿”å›é€»è¾‘åºå·i + 1
 }
 
 template <typename T, typename K>int SeqSreach1(RecType<T, K> R[], int n, K k)
 {
 	int i = 0;
 	R[n].key = k;
-	while (R[i].key != k)		//´Ó±íÍ·ÍùºóÕÒ
+	while (R[i].key != k)		//ä»è¡¨å¤´å¾€åæ‰¾
 		i++;
 	if (i == n)
-		return 0;				//Î´ÕÒµ½·µ»ØÁã
+		return 0;				//æœªæ‰¾åˆ°è¿”å›é›¶
 	else
-		return i + 1;			//ÕÒµ½·µ»ØÂß¼­ĞòºÅi + 1
+		return i + 1;			//æ‰¾åˆ°è¿”å›é€»è¾‘åºå·i + 1
 }
 
-template <typename T, typename K>int BinSearch(RecType<T, K> R[], int n, K k)	//ÕÛ°ë²éÕÒËã·¨
+template <typename T, typename K>int BinSearch(RecType<T, K> R[], int n, K k)	//æŠ˜åŠæŸ¥æ‰¾ç®—æ³•
 {
 	int low = 0, high = n - 1, mid;
-	while (low <= high)		//µ±Ç°Çø¼ä´æÔÚÔªËØÊ±Ñ­»·
+	while (low <= high)		//å½“å‰åŒºé—´å­˜åœ¨å…ƒç´ æ—¶å¾ªç¯
 	{
 		mid = (low + high) / 2;
-		if (k == R[mid].key)		//²éÕÒ³É¹¦·µ»ØÆäÂß¼­ĞòºÅ mid + 1
+		if (k == R[mid].key)		//æŸ¥æ‰¾æˆåŠŸè¿”å›å…¶é€»è¾‘åºå· mid + 1
 			return mid + 1;
-		if (k < R[mid].key)			//¼ÌĞøÔÚR[low..mid - 1]ÖĞ²éÕÒ
+		if (k < R[mid].key)			//ç»§ç»­åœ¨R[low..mid - 1]ä¸­æŸ¥æ‰¾
 			high = mid - 1;
 		else						//k > R[mid].key
-			low = mid + 1;			//¼ÌĞøÔÚR[mid + 1..high]ÖĞ²éÕÒ
+			low = mid + 1;			//ç»§ç»­åœ¨R[mid + 1..high]ä¸­æŸ¥æ‰¾
 	}
-	return 0;						//Î´ÕÒµ½Ê±·µ»Ø0£¨²éÕÒÊ§°Ü£©
+	return 0;						//æœªæ‰¾åˆ°æ—¶è¿”å›0ï¼ˆæŸ¥æ‰¾å¤±è´¥ï¼‰
 }
 
 template <typename K, typename T>int IdxSearch(IdxType<K> I[], int b, RecType<T, K> R[], int n, K k)
 {
 	int s = (n + b - 1) / b;		
 	int low = 0, high = n - 1, mid, i;
-	while (low <= high)			//ÔÚË÷Òı±íÖĞ½øĞĞÕÛ°ë²éÕÒ£¬ÕÒµ½µÄÎ»ÖÃÎªhigh + 1
+	while (low <= high)			//åœ¨ç´¢å¼•è¡¨ä¸­è¿›è¡ŒæŠ˜åŠæŸ¥æ‰¾ï¼Œæ‰¾åˆ°çš„ä½ç½®ä¸ºhigh + 1
 	{
 		mid = (low + high) / 2;
 		if (I[mid].key >= k)
@@ -85,14 +85,14 @@ template <typename K, typename T>int IdxSearch(IdxType<K> I[], int b, RecType<T,
 		else
 			low = mid + 1;
 	}
-	//Ó¦ÏÈÔÚË÷Òı±íµÄhigh + 1¿éÖĞ²éÕÒ£¬ÔÙÔÚÖ÷Êı¾İ±íÖĞ½øĞĞË³Ğò²éÕÒ
+	//åº”å…ˆåœ¨ç´¢å¼•è¡¨çš„high + 1å—ä¸­æŸ¥æ‰¾ï¼Œå†åœ¨ä¸»æ•°æ®è¡¨ä¸­è¿›è¡Œé¡ºåºæŸ¥æ‰¾
 	i = I[high + 1].link;
 	while (i <= I[high + 1].link + s - 1 && R[i].key != k)
 		i++;
 	if (i <= I[high + 1].link + s - 1)
-		return i + 1;		//²éÕÒ³É¹¦£¬·µ»Ø¸ÃÔªËØµÄÂß¼­ĞòºÅ
+		return i + 1;		//æŸ¥æ‰¾æˆåŠŸï¼Œè¿”å›è¯¥å…ƒç´ çš„é€»è¾‘åºå·
 	else
-		return 0;			//²éÕÒÊ§°Ü£¬·µ»Ø0
+		return 0;			//æŸ¥æ‰¾å¤±è´¥ï¼Œè¿”å›0
 }
 
 /*
@@ -122,7 +122,7 @@ template<typename T> BTNode<T>*  CreateBST(T *A, int n)
 	BTNode<T> *bt = 0;
 	int i;
 	for (i = 0; i<n; i++) {
-		InsertBST(bt, A[i]);   //½«A[i]²åÈë¶ş²æÅÅĞòÊ÷btÖĞ
+		InsertBST(bt, A[i]);   //å°†A[i]æ’å…¥äºŒå‰æ’åºæ ‘btä¸­
 	}
 	return bt;
 }
@@ -163,15 +163,15 @@ template<typename T> BTNode<T>* SearchBSTf(BTNode<T> *bt, T k, BTNode<T> *f1, BT
 template<typename T> bool deletek(BTNode<T> *&bt, T k)
 {
 	if (bt != 0) {
-		if (k == bt->data) {     //²éÕÒµ½ÁË±»É¾½áµãbt
-			deletep(bt);         //µ÷ÓÃdeletepº¯ÊıÉ¾³ı½áµãP
+		if (k == bt->data) {     //æŸ¥æ‰¾åˆ°äº†è¢«åˆ ç»“ç‚¹bt
+			deletep(bt);         //è°ƒç”¨deletepå‡½æ•°åˆ é™¤ç»“ç‚¹P
 			return true;
 		}
 		else if (k < bt->data) {
-			deletek(bt->lchild, k);  //ÔÚ×ó×ÓÊ÷ÖĞ²éÕÒ
+			deletek(bt->lchild, k);  //åœ¨å·¦å­æ ‘ä¸­æŸ¥æ‰¾
 		}
 		else {
-			deletek(bt->rchild, k);  //ÔÚÓÒ×ÓÊ÷²éÕÒ
+			deletek(bt->rchild, k);  //åœ¨å³å­æ ‘æŸ¥æ‰¾
 		}
 		return false; // note
 	}
@@ -182,8 +182,8 @@ template<typename T> bool deletek(BTNode<T> *&bt, T k)
 template<typename T> void deletep(BTNode<T> *&p)
 {
 	BTNode<T> *q;
-	q = p;   //ÈÃqÖ¸Ïòp½áµã
-	p = p->rchild;    //pÖ¸ÏòÓÒº¢×Ó
+	q = p;   //è®©qæŒ‡å‘pç»“ç‚¹
+	p = p->rchild;    //pæŒ‡å‘å³å­©å­
 	delete q;
 }
 
@@ -194,15 +194,15 @@ template<typename T> bool DeleteBST(BTNode<T> *&bt, T k)
 		return false;
 	}
 	else {
-		if (k < bt->data) {         // //µİ¹éÔÚ×ó×ÓÊ÷ÖĞÉ¾³ıÎªkµÄ½áµã
+		if (k < bt->data) {         // //é€’å½’åœ¨å·¦å­æ ‘ä¸­åˆ é™¤ä¸ºkçš„ç»“ç‚¹
 			return DeleteBST(bt->lchild, k);
 		}
-		else if (k > bt->data) {    //µİ¹éÔÚÓÒ×ÓÊ÷ÖĞÉ¾³ıÎªkµÄ½áµã
+		else if (k > bt->data) {    //é€’å½’åœ¨å³å­æ ‘ä¸­åˆ é™¤ä¸ºkçš„ç»“ç‚¹
 			return DeleteBST(bt->rchild, k);
 		}
-		else {             //ÕÒµ½ÁËÒªÉ¾³ıµÄ½áµãbt
-			Delete(bt);    //µ÷ÓÃDeleteº¯ÊıÉ¾³ı½áµãbt
-			return true;   //É¾³ı³É¹¦£¬·µ»ØÕæ
+		else {             //æ‰¾åˆ°äº†è¦åˆ é™¤çš„ç»“ç‚¹bt
+			Delete(bt);    //è°ƒç”¨Deleteå‡½æ•°åˆ é™¤ç»“ç‚¹bt
+			return true;   //åˆ é™¤æˆåŠŸï¼Œè¿”å›çœŸ
 		}
 	}
 }
@@ -210,18 +210,18 @@ template<typename T> bool DeleteBST(BTNode<T> *&bt, T k)
 template<typename T> void Delete(BTNode<T> *&p)
 {
 	BTNode<T> *q;
-	if (p->lchild == 0) {     //½áµãPÃ»ÓĞ×óº¢×Ó
+	if (p->lchild == 0) {     //ç»“ç‚¹Pæ²¡æœ‰å·¦å­©å­
 		q = p;
-		p = p->rchild;              //ÓÃ½áµãPµÄÓÒº¢×Ó´úÌæËü
+		p = p->rchild;              //ç”¨ç»“ç‚¹Pçš„å³å­©å­ä»£æ›¿å®ƒ
 		delete q;
 	}
-	else if (p->rchild == 0) {  //½áµãPÃ»ÓĞÓÒº¢×Ó
+	else if (p->rchild == 0) {  //ç»“ç‚¹Pæ²¡æœ‰å³å­©å­
 		q = p;
-		p = p->lchild;                  //ÓÃ½áµãPµÄÓÒº¢×Ó´úÌæËü
+		p = p->lchild;                  //ç”¨ç»“ç‚¹Pçš„å³å­©å­ä»£æ›¿å®ƒ
 		delete q;
 	}
 	else {
-		Deletel(p, p->lchild);    //½áµãP¼ÈÓĞ×óº¢×ÓÓÖÓĞÓÒº¢×Ó
+		Deletel(p, p->lchild);    //ç»“ç‚¹Pæ—¢æœ‰å·¦å­©å­åˆæœ‰å³å­©å­
 	}
 }
 
@@ -229,13 +229,13 @@ template<typename T> void Deletel(BTNode<T> *p, BTNode<T> *&r)
 {
 	BTNode<T> *q;
 	if (r->rchild != 0) {
-		Deletel(p, r->rchild);    //µİ¹éÕÒ½áµãrµÄ×îÓÒÏÂ½áµã
+		Deletel(p, r->rchild);    //é€’å½’æ‰¾ç»“ç‚¹rçš„æœ€å³ä¸‹ç»“ç‚¹
 	}
-	else {                        //ÕÒµ½ÁË×îÓÒÏÂ½áµãr£¨ËüÃ»ÓĞÓÒ×ÓÊ÷£©
-		p->data = r->data;        //½«½áµãrµÄÖµ´æ·Åµ½½áµãpÖĞ£¨½áµãÖµÌæ´ú£©
-		q = r;                    //É¾³ı½áµãr
-		r = r->lchild;            //ÓÃ½áµãrµÄ×óº¢×ÓÌæ´úËü£¬´ËÊ±rµÄÓÒº¢×ÓÒ»¶¨Îª¿Õ
-		delete q;                 //ÊÍ·Å½áµãqµÄ¿Õ¼ä
+	else {                        //æ‰¾åˆ°äº†æœ€å³ä¸‹ç»“ç‚¹rï¼ˆå®ƒæ²¡æœ‰å³å­æ ‘ï¼‰
+		p->data = r->data;        //å°†ç»“ç‚¹rçš„å€¼å­˜æ”¾åˆ°ç»“ç‚¹pä¸­ï¼ˆç»“ç‚¹å€¼æ›¿ä»£ï¼‰
+		q = r;                    //åˆ é™¤ç»“ç‚¹r
+		r = r->lchild;            //ç”¨ç»“ç‚¹rçš„å·¦å­©å­æ›¿ä»£å®ƒï¼Œæ­¤æ—¶rçš„å³å­©å­ä¸€å®šä¸ºç©º
+		delete q;                 //é‡Šæ”¾ç»“ç‚¹qçš„ç©ºé—´
 	}
 }
 
@@ -244,7 +244,7 @@ template<typename T> void Deletel(BTNode<T> *p, BTNode<T> *&r)
 *Example
 */
 
-//P329 Àı¡¾9.4¡¿ find the maxlnode and the minrnode
+//P329 ä¾‹ã€9.4ã€‘ find the maxlnode and the minrnode
 template<typename T> void MaxMinnode(BTNode<T>* bt)
 {
 	if (bt != 0) {
@@ -278,54 +278,54 @@ template<typename T> T Minrnode(BTNode<T>* bt)
 template <typename T> void InsertHT(HashTable<T> ha[], int &n, int m, int p, T k)
 {
 	int i, adr;
-	adr = k%p;//¼ÆËã¹şÏ£º¯ÊıÖµ
+	adr = k%p;//è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
 	if (ha[adr].key == NULLKEY || ha[adr].key == DELKEY)
 	{
-		ha[adr].key = k; //k¿ÉÒÔÖ±½Ó·ÅÔÚ¹şÏ£±íÖĞ
+		ha[adr].key = k; //kå¯ä»¥ç›´æ¥æ”¾åœ¨å“ˆå¸Œè¡¨ä¸­
 		ha[adr].count = 1;
 	}
-	else//·¢Éú³åÍ»Ê±²ÉÓÃÏßĞÔÌ½²â·¨½â¾ö³åÍ»
+	else//å‘ç”Ÿå†²çªæ—¶é‡‡ç”¨çº¿æ€§æ¢æµ‹æ³•è§£å†³å†²çª
 	{
-		i = 1;//i¼ÇÂ¼k·¢Éú³åÍ»µÄ´ÎÊı
+		i = 1;//iè®°å½•kå‘ç”Ÿå†²çªçš„æ¬¡æ•°
 		do
 		{
-			adr = (adr + 1) % m;//ÏßĞÔÌ½²â
+			adr = (adr + 1) % m;//çº¿æ€§æ¢æµ‹
 			i++;
 		} while (ha[adr].key != NULLKEY && ha[adr].key != DELKEY);
-		ha[adr].key = k;//ÔÚadr´¦·ÅÖÃk
-		ha[adr].count = i;//ÉèÖÃÌ½²â´ÎÊı
+		ha[adr].key = k;//åœ¨adrå¤„æ”¾ç½®k
+		ha[adr].count = i;//è®¾ç½®æ¢æµ‹æ¬¡æ•°
 	}
-	n++;//¹şÏ£±íÖĞ×ÜÔªËØ¸öÊıÔö1
+	n++;//å“ˆå¸Œè¡¨ä¸­æ€»å…ƒç´ ä¸ªæ•°å¢1
 }
 
 //Create HashTable
 template<typename T> void CreateHT1(HashTable<T> ha[], int &n, int m, int p, T keys[])
 {
 	int n1 = n, i;
-	for (i = 0; i < m; i++)//¹şÏ£±íÖÃ¿ÕµÄ³õÖµ
+	for (i = 0; i < m; i++)//å“ˆå¸Œè¡¨ç½®ç©ºçš„åˆå€¼
 	{
 		ha[i].key = NULLKEY;
 		ha[i].count = 0;
 	}
-	n = 0;//¹şÏ£±íÖĞ×ÜÔªËØ¸öÊı´Ó0¿ªÊ¼µİÔö
+	n = 0;//å“ˆå¸Œè¡¨ä¸­æ€»å…ƒç´ ä¸ªæ•°ä»0å¼€å§‹é€’å¢
 	for (i = 0; i < n1; i++)
-		InsertHT(ha, n, m, p, keys[i]);//²åÈën¸ö¹Ø¼ü×Ö
+		InsertHT(ha, n, m, p, keys[i]);//æ’å…¥nä¸ªå…³é”®å­—
 }
 
 //Delete k in HashTable
 template <typename T> bool DeleteHT(HashTable<T> ha[], int &n, int m, int p, T k)
 {
 	int adr;
-	adr = k%p;//¼ÆËã¹şÏ£º¯ÊıÖµ
+	adr = k%p;//è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
 	while (ha[adr].key != NULLKEY&&ha[adr].key != k)
-		adr = (adr + 1) % m;//ÏßĞÔÌ½²â
-	if (ha[adr].key == k)//²éÕÒ³É¹¦
+		adr = (adr + 1) % m;//çº¿æ€§æ¢æµ‹
+	if (ha[adr].key == k)//æŸ¥æ‰¾æˆåŠŸ
 	{
-		ha[adr].key = DELKEY;//É¾³ı¹Ø¼ü×Ök
+		ha[adr].key = DELKEY;//åˆ é™¤å…³é”®å­—k
 		return true;
 	}
-	else//²éÕÒÊ§°Ü
-		return false;//·µ»Ø¼Ù
+	else//æŸ¥æ‰¾å¤±è´¥
+		return false;//è¿”å›å‡
 }
 
 //Search k in HashTable
@@ -339,9 +339,9 @@ template <typename T> void SearchHT(HashTable <T> ha[], int m, int p, T k)
 		adr = (adr + 1) % m;
 	}
 	if (ha[adr].key == k)
-		cout << "³É¹¦£º¹Ø¼ü×Ö" << k << "£¬±È½Ï" << i << "´Î" << endl;
+		cout << "æˆåŠŸï¼šå…³é”®å­—" << k << "ï¼Œæ¯”è¾ƒ" << i << "æ¬¡" << endl;
 	else
-		cout << "Ê§°Ü£º¹Ø¼ü×Ö" << k << "£¬±È½Ï" << i << "´Î" << endl;
+		cout << "å¤±è´¥ï¼šå…³é”®å­—" << k << "ï¼Œæ¯”è¾ƒ" << i << "æ¬¡" << endl;
 
 }
 
@@ -352,7 +352,7 @@ template<typename T> void ASL(HashTable<T> ha[], int n, int m, int p)
 	for (i = 0; i < m; i++)
 		if (ha[i].key != NULLKEY)
 			succ += ha[i].count;
-	cout << "³É¹¦Çé¿öÏÂASL(" << n << ")=" << succ*1.0 / n << endl;
+	cout << "æˆåŠŸæƒ…å†µä¸‹ASL(" << n << ")=" << succ*1.0 / n << endl;
 
 	for (i = 0; i < p; i++)
 	{
@@ -364,27 +364,27 @@ template<typename T> void ASL(HashTable<T> ha[], int n, int m, int p)
 		}
 		unsucc += s;
 	}
-	cout << "²»³É¹¦Çé¿öÏÂASL(" << n << ")=" << unsucc*1.0 / p << endl;
+	cout << "ä¸æˆåŠŸæƒ…å†µä¸‹ASL(" << n << ")=" << unsucc*1.0 / p << endl;
 }
 
-template <typename T>void DispHT(HashTable<T> ha[], int n, int m)    //Êä³ö¹şÏ£±í  
+template <typename T>void DispHT(HashTable<T> ha[], int n, int m)    //è¾“å‡ºå“ˆå¸Œè¡¨  
 {
 	int i;
-	cout << " ¹şÏ£±íµØÖ·:" << "\t";
+	cout << " å“ˆå¸Œè¡¨åœ°å€:" << "\t";
 	for (i = 0; i < m; i++)
 		cout << setw(3) << setfill(' ') << i;
 	cout << endl;
-	cout << " ¹şÏ£±í¹Ø¼ü×Ö:" << "\t";
+	cout << " å“ˆå¸Œè¡¨å…³é”®å­—:" << "\t";
 	for (i = 0; i<m; i++)
 		if (ha[i].key == NULLKEY || ha[i].key == DELKEY)
-			cout << "    ";         //Êä³ö3¸ö¿Õ¸ñ  
+			cout << "    ";         //è¾“å‡º3ä¸ªç©ºæ ¼  
 		else
 			cout << setw(3) << setfill(' ') << ha[i].key;
 	cout << endl;
-	printf(" ËÑË÷´ÎÊı:\t");
+	printf(" æœç´¢æ¬¡æ•°:\t");
 	for (i = 0; i<m; i++)
 		if (ha[i].key == NULLKEY || ha[i].key == DELKEY)
-			cout << "    ";         //Êä³ö3¸ö¿Õ¸ñ  
+			cout << "    ";         //è¾“å‡º3ä¸ªç©ºæ ¼  
 		else
 			cout << setw(3) << setfill(' ') << ha[i].count;
 	cout << endl;
@@ -407,13 +407,13 @@ void SearchExample()
 	BTNode<int> *bt;
 	BTNode<char> *bf;
 
-	//P329 Àı¡¾9.3¡¿
+	//P329 ä¾‹ã€9.3ã€‘
 	int A[MAX_SIZE] = { 25,18,46,2,53,39,32,4,74,67,60,11 };
 	bt = CreateBST(A, 12);
 	cout << endl << "The Binary search tree is: ";
 	DispBTree(bt); cout << endl;
 
-	//P329 Àı¡¾9.4¡¿ 
+	//P329 ä¾‹ã€9.4ã€‘ 
 	MaxMinnode(bt);
 
 	DeleteBST(bt, 25);
@@ -421,7 +421,7 @@ void SearchExample()
 	DispBTree(bt); cout << endl;
 	DestroyBTree(bt);
 
-	//P332 Í¼¡¾9.13¡¿
+	//P332 å›¾ã€9.13ã€‘
 	char k = '1';
 	char B[MAX_SIZE] = "3(1(,2))";
 	CreateBTree(bf, B);
@@ -439,11 +439,11 @@ void SearchExample()
 	DispHT(ha1, n, m);
 	SearchHT(ha1, m, p, t);
 	k = 77;
-	cout << " É¾³ı¹Ø¼ü×Ö" << t << endl;
+	cout << " åˆ é™¤å…³é”®å­—" << t << endl;
 	DeleteHT(ha1, n, m, p, t);
 	DispHT(ha1, n, m);
 	SearchHT(ha1, m, p, t);
-	cout << " ²åÈë¹Ø¼ü×Ö" << t << endl;
+	cout << " æ’å…¥å…³é”®å­—" << t << endl;
 	InsertHT(ha1, n, m, p, t);
 	DispHT(ha1, n, m);
 	cout << endl;

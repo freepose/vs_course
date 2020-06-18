@@ -34,15 +34,15 @@ template<typename T, typename K> void InsertSort(RecType<T, K> R[], int n)
 {
 	int i, j;
 	RecType<T, K> tmp;
-	for (i = 1; i < n; i++) {             //³õÊ¼Ê±ÓĞĞòÇøÖ»ÓĞR[0]
-		if (R[i].key < R[i - 1].key) {    //·´ĞòÊ±
+	for (i = 1; i < n; i++) {             //åˆå§‹æ—¶æœ‰åºåŒºåªæœ‰R[0]
+		if (R[i].key < R[i - 1].key) {    //ååºæ—¶
 			tmp = R[i];
 			j = i - 1;
-			do {                         //Ñ°ÕÒR[i]µÄ²åÈëÎ»ÖÃ
-				R[j + 1] = R[j];         //ºóÒÆ
+			do {                         //å¯»æ‰¾R[i]çš„æ’å…¥ä½ç½®
+				R[j + 1] = R[j];         //åç§»
 				j--;
 			} while (j >= 0 && R[j].key>tmp.key);
-			R[j + 1] = tmp;             //j+1´¦²åÈë
+			R[j + 1] = tmp;             //j+1å¤„æ’å…¥
 		}
 	}
 }
@@ -54,11 +54,11 @@ template<typename T, typename K> void BinInsertSort(RecType<T, K> R[], int n)
 	int i, j, low, high, mid;
 	RecType<T, K> tmp;
 	for (i = 1; i < n; i++) {
-		if (R[i].key < R[i - 1].key) {        //·´ĞòÊ±
+		if (R[i].key < R[i - 1].key) {        //ååºæ—¶
 			tmp = R[i];
 			low = 0;
 			high = i - 1;
-			while (low <= high) {           //ÕÛ°ë²éÕÒ²åÈëÎ»ÖÃ
+			while (low <= high) {           //æŠ˜åŠæŸ¥æ‰¾æ’å…¥ä½ç½®
 				mid = (low + high) / 2;
 				if (tmp.key < R[mid].key) {
 					high = mid - 1;
@@ -67,10 +67,10 @@ template<typename T, typename K> void BinInsertSort(RecType<T, K> R[], int n)
 					low = mid + 1;
 				}
 			}
-			for (j = i - 1; j >= high + 1; j--) {  //ÕÒµ½Î»ÖÃhigh£¬ºóÒÆ
+			for (j = i - 1; j >= high + 1; j--) {  //æ‰¾åˆ°ä½ç½®highï¼Œåç§»
 				R[j + 1] = R[j];
 			}
-			R[high + 1] = tmp;          //²åÈëtmp
+			R[high + 1] = tmp;          //æ’å…¥tmp
 		}
 	}
 }
@@ -80,9 +80,9 @@ template<typename T, typename K> void ShellSort(RecType<T, K> R[], int n)
 {
 	int i, j, d;
 	RecType<T, K> tmp;
-	d = n / 2;           //ÔöÁ¿ÖÃ³õÖµ
+	d = n / 2;           //å¢é‡ç½®åˆå€¼
 	while (d > 0) {
-		for (i = d; i < n; i++) {     //¶ÔÃ¿Ò»Ğ¡×é²ÉÓÃÖ±½Ó²åÈëÅÅĞò
+		for (i = d; i < n; i++) {     //å¯¹æ¯ä¸€å°ç»„é‡‡ç”¨ç›´æ¥æ’å…¥æ’åº
 			tmp = R[i];
 			j = i - d;
 			while (j >= 0 && tmp.key < R[j].key) {
@@ -91,7 +91,7 @@ template<typename T, typename K> void ShellSort(RecType<T, K> R[], int n)
 			}
 			R[j + d] = tmp;
 		}
-		d = d / 2;     //¼õĞ¡ÔöÁ¿
+		d = d / 2;     //å‡å°å¢é‡
 	}
 }
 

@@ -134,7 +134,7 @@ template <typename T> void DestroyDListUsingPrior(DLinkNode<T> *&L)
 	delete q;
 }
 
-// P60 ¡¾Àı2.12¡¿Delete X Node
+// P60 ã€ä¾‹2.12ã€‘Delete X Node
 template <typename T> bool Del_X_Node(DLinkNode<T> *&L, T x)
 {
 	DLinkNode<T> *p = L->next;
@@ -192,7 +192,7 @@ template <typename T> void CreateCycleDListR(DLinkNode<T> *&L, T a[], int n)
 	L->prior = r;
 }
 
-template <typename T> void DispCycleDList(DLinkNode<T> *L)//Ñ­»·Ë«Á´±íµÄÊä³ö
+template <typename T> void DispCycleDList(DLinkNode<T> *L)//å¾ªç¯åŒé“¾è¡¨çš„è¾“å‡º
 {
 	DLinkNode<T> *p = L->next;
 	while (p != L) {
@@ -202,10 +202,10 @@ template <typename T> void DispCycleDList(DLinkNode<T> *L)//Ñ­»·Ë«Á´±íµÄÊä³ö
 	cout << endl;
 }
 
-// P60 ¡¾Àı2.13¡¿Jugde the double linked list is symmetry£¿
-template <typename T> bool Symm(DLinkNode<T> *L)//ÅĞ¶ÏÑ­»·Ë«Á´±íµÄÊı¾İ½áµãÊÇ·ñ¶Ô³Æ
+// P60 ã€ä¾‹2.13ã€‘Jugde the double linked list is symmetryï¼Ÿ
+template <typename T> bool Symm(DLinkNode<T> *L)//åˆ¤æ–­å¾ªç¯åŒé“¾è¡¨çš„æ•°æ®ç»“ç‚¹æ˜¯å¦å¯¹ç§°
 {
-	bool same = true;  //same±íÊ¾LÊÇ·ñ¶Ô³Æ
+	bool same = true;  //sameè¡¨ç¤ºLæ˜¯å¦å¯¹ç§°
 	DLinkNode<T> *p = L->next, *q = L->prior;
 	while (same) {
 		if (p->data != q->data) {

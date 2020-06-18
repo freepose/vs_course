@@ -5,7 +5,7 @@
 
 #include "example_chapter_4.h"
 
-double cylinder(int r, int h) // r, h -> �β�
+double cylinder(int r, int h) // r, h -> ÐÎ²Î
 {
 	double pi = 3.141592653;
 	return pi * r * r * h;

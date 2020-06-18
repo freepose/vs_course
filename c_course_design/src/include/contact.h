@@ -6,15 +6,15 @@
 #include<memory.h>
 
 
-// windows (default): D:\\study\\teaching\\2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶\\contacts.csv
-// macos or linux: "D:/study/teaching/2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶/contacts.csv"
-// ×Ö¶Î£º"Ñ§ºÅ,ĞÕÃû,ĞÔ±ğ,ÁªÏµµç»°,ÓÊÏä£¨±ØÌî£©,QQºÅ,Î¢ĞÅºÅ,¼ÒÍ¥×¡Ö·,"
+// windows (default): D:\\study\\teaching\\2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§\\contacts.csv
+// macos or linux: "D:/study/teaching/2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§/contacts.csv"
+// å­—æ®µï¼š"å­¦å·,å§“å,æ€§åˆ«,è”ç³»ç”µè¯,é‚®ç®±ï¼ˆå¿…å¡«ï¼‰,QQå·,å¾®ä¿¡å·,å®¶åº­ä½å€,"
 
 
 typedef struct {
 	char number[20 + 1];
 	char name[10 * 2 + 1];
-	char gender[1 * 2 + 1];
+	char gender[2 * 2 + 1];
 	char phone[20 + 1];
 	char email[20 + 1];
 	char qq_id[20 + 1];
@@ -37,9 +37,9 @@ typedef struct
 
 void initial_filename(Filename *p)
 {
-	// char source_file[] = "D:/study/teaching/2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶/contacts.csv";
-	char source_file[] = "D:/data/c_course/contacts.csv";
-	char target_file[] = "D:/data/c_course/contacts.target.csv";
+	// char source_file[] = "D:/study/teaching/2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§/contacts.csv";
+	char source_file[] = "/Users/freepose/data/c_course/contacts.csv";
+	char target_file[] = "/Users/freepose/data/c_course/contacts.target.csv";
 	strcpy(p->source_contact_file, source_file);
 	strcpy(p->target_contact_file, target_file);
 }
@@ -47,22 +47,22 @@ void initial_filename(Filename *p)
 void split(char *src, const char *separator, char **dest, int *num) 
 {
 	/*
-	src Ô´×Ö·û´®µÄÊ×µØÖ·(bufµÄµØÖ·)
-	separator Ö¸¶¨µÄ·Ö¸î×Ö·û
-	dest ½ÓÊÕ×Ó×Ö·û´®µÄÊı×é
-	num ·Ö¸îºó×Ó×Ö·û´®µÄ¸öÊı
+	src æºå­—ç¬¦ä¸²çš„é¦–åœ°å€(bufçš„åœ°å€)
+	separator æŒ‡å®šçš„åˆ†å‰²å­—ç¬¦
+	dest æ¥æ”¶å­å­—ç¬¦ä¸²çš„æ•°ç»„
+	num åˆ†å‰²åå­å­—ç¬¦ä¸²çš„ä¸ªæ•°
 	*/
 	char *pNext;
 	int count = 0;
-	if (src == NULL || strlen(src) == 0) //Èç¹û´«ÈëµÄµØÖ·Îª¿Õ»ò³¤¶ÈÎª0£¬Ö±½ÓÖÕÖ¹ 
+	if (src == NULL || strlen(src) == 0) //å¦‚æœä¼ å…¥çš„åœ°å€ä¸ºç©ºæˆ–é•¿åº¦ä¸º0ï¼Œç›´æ¥ç»ˆæ­¢ 
 		return;
-	if (separator == NULL || strlen(separator) == 0) //ÈçÎ´Ö¸¶¨·Ö¸îµÄ×Ö·û´®£¬Ö±½ÓÖÕÖ¹ 
+	if (separator == NULL || strlen(separator) == 0) //å¦‚æœªæŒ‡å®šåˆ†å‰²çš„å­—ç¬¦ä¸²ï¼Œç›´æ¥ç»ˆæ­¢ 
 		return;
-	pNext = (char *)strtok(src, separator); //±ØĞëÊ¹ÓÃ(char *)½øĞĞÇ¿ÖÆÀàĞÍ×ª»»(ËäÈ»²»Ğ´ÓĞµÄ±àÒëÆ÷ÖĞ²»»á³öÏÖÖ¸Õë´íÎó)
+	pNext = (char *)strtok(src, separator); //å¿…é¡»ä½¿ç”¨(char *)è¿›è¡Œå¼ºåˆ¶ç±»å‹è½¬æ¢(è™½ç„¶ä¸å†™æœ‰çš„ç¼–è¯‘å™¨ä¸­ä¸ä¼šå‡ºç°æŒ‡é’ˆé”™è¯¯)
 	while (pNext != NULL) {
 		*dest++ = pNext;
 		++count;
-		pNext = (char *)strtok(NULL, separator);  //±ØĞëÊ¹ÓÃ(char *)½øĞĞÇ¿ÖÆÀàĞÍ×ª»»
+		pNext = (char *)strtok(NULL, separator);  //å¿…é¡»ä½¿ç”¨(char *)è¿›è¡Œå¼ºåˆ¶ç±»å‹è½¬æ¢
 	}
 	*num = count;
 }
@@ -92,7 +92,7 @@ StudentArray* read_students(char *filename)
 		int num = 0;
 		fgets(buffer, 1024, fp);
 
-		split(buffer, ",", revbuf, &num); //µ÷ÓÃº¯Êı½øĞĞ·Ö¸î
+		split(buffer, ",", revbuf, &num); //è°ƒç”¨å‡½æ•°è¿›è¡Œåˆ†å‰²
 		if (num == 9)
 		{
 			strcpy(pStudent->number, revbuf[0]);
@@ -171,30 +171,30 @@ bool insert_student(StudentArray* L, int i, Student e)
 		return false;
 	}
 
-	i--;    // ½«Ë³Ğò±íÂß¼­ĞòºÅ×ª»¯ÎªÎïÀíĞòºÅ
+	i--;    // å°†é¡ºåºè¡¨é€»è¾‘åºå·è½¬åŒ–ä¸ºç‰©ç†åºå·
 	for (j = L->num_student; j > i; j--) {
-		L->students[j] = L->students[j - 1];	//½«data[i..n]ÔªËØºóÒÆÒ»¸öÎ»ÖÃ
+		L->students[j] = L->students[j - 1];	//å°†data[i..n]å…ƒç´ åç§»ä¸€ä¸ªä½ç½®
 	}
-	L->students[i] = e;  //²åÈëÔªËØe
-	L->num_student++;  //Ë³Ğò±í³¤¶ÈÔö1
-	return true;   //³É¹¦²åÈë·µ»Øtrue
+	L->students[i] = e;  //æ’å…¥å…ƒç´ e
+	L->num_student++;  //é¡ºåºè¡¨é•¿åº¦å¢1
+	return true;   //æˆåŠŸæ’å…¥è¿”å›true
 }
 
 bool delete_student(StudentArray* L, int i, Student &e)
 {
 	int j;
-	if (i<0 || i > L->num_student - 1) //²ÎÊı´íÎóÊ±·µ»Øfalse
+	if (i<0 || i > L->num_student - 1) //å‚æ•°é”™è¯¯æ—¶è¿”å›false
 	{
 		return false;
 	}
 
 	e = L->students[i];	// backup the student
-	for (j = i; j < L->num_student - 1; j++)   //½«data[i..n-1]ÔªËØÇ°ÒÆ
+	for (j = i; j < L->num_student - 1; j++)   //å°†data[i..n-1]å…ƒç´ å‰ç§»
 	{
 		L->students[j] = L->students[j + 1];
 	}
-	L->num_student--;     //Ë³Ğò±í³¤¶È¼õ1
-	return true;     //³É¹¦É¾³ı·µ»Øtrue
+	L->num_student--;     //é¡ºåºè¡¨é•¿åº¦å‡1
+	return true;     //æˆåŠŸåˆ é™¤è¿”å›true
 }
 
 
@@ -281,6 +281,8 @@ void write_students(StudentArray* list, char * target_file)
 	fclose(fp);
 }
 
+
+// Some examples of this header
 void contact_example()
 {
 	Filename files;

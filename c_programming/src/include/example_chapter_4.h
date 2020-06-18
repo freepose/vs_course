@@ -5,8 +5,8 @@
 
 
 // Example 4-1
-// Ê¹ÓÃ¸ñÀ×¸êÀï¹«Ê½Çó¦ĞµÄ½üËÆÖµ£¨while£©
-// + Êä³ö£º¦ĞµÄ½üËÆÖµÇÒ¾«È·µ½×îºóÒ»ÏîµÄ¾ø¶ÔÖµĞ¡ÓÚ10^¨C4 ¡£
+// ä½¿ç”¨æ ¼é›·æˆˆé‡Œå…¬å¼æ±‚Ï€çš„è¿‘ä¼¼å€¼ï¼ˆwhileï¼‰
+// + è¾“å‡ºï¼šÏ€çš„è¿‘ä¼¼å€¼ä¸”ç²¾ç¡®åˆ°æœ€åä¸€é¡¹çš„ç»å¯¹å€¼å°äº10^â€“4 ã€‚
 
 void pi_estimate()
 {
@@ -85,7 +85,7 @@ void sum_for_scores()
 	printf("%d students -> average, %lf, %d fails.\n", counter, average, fail_counter);
 }
 
-// Example 4-3, ¸Ä½ø°æ
+// Example 4-3, æ”¹è¿›ç‰ˆ
 
 void decompose_v0()
 {
@@ -93,7 +93,7 @@ void decompose_v0()
 	int weight = 1, i;
 	scanf("%d", &read);
 	n = read;
-	// Õ·×ªÇóÓà
+	// è¾—è½¬æ±‚ä½™
 	do {
 		printf("%d\t", read % 10);
 		read /= 10;
@@ -194,7 +194,7 @@ void sum_of_factorials_v1(int n)
 
 // static version
 
-// Example 4-11, Fibonacci -> °Ä´óÀûÑÇµÄÍÃ×Ó
+// Example 4-11, Fibonacci -> æ¾³å¤§åˆ©äºšçš„å…”å­
 
 void fibonacci(int n)
 {
@@ -215,7 +215,7 @@ void fibonacci(int n)
 
 void data_types()
 {
-	int a = '0';	// ×Ö·û×ªÊı×Ö
+	int a = '0';	// å­—ç¬¦è½¬æ•°å­—
 	double f = 250.250;
 	printf("char: %c -> int: %d\n", a, a);
 	printf("double: %lf -> int: %d\n", f, (int)f);

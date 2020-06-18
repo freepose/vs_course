@@ -70,9 +70,9 @@ template <typename T> struct AdjGraph
 //use for Kruskal's algrithm
 typedef struct
 {
-	int u;	//±ßµÄÆğÊ¼¶¥µã
-	int v;	//±ßµÄÖÕÖ¹¶¥µã
-	int w;	//±ßµÄÈ¨Öµ
+	int u;	//è¾¹çš„èµ·å§‹é¡¶ç‚¹
+	int v;	//è¾¹çš„ç»ˆæ­¢é¡¶ç‚¹
+	int w;	//è¾¹çš„æƒå€¼
 }Edge;
 
 //Print adjacency matrix 
@@ -95,15 +95,15 @@ template <typename T> void CreateAdj(AdjGraph<T> *&G, int A[MAX_SIZE][MAX_SIZE],
 	ArcNode<int> *p;
 	G = new AdjGraph<T>;
 	for (i = 0; i < n; i++) {
-		G->adjlist[i].firstarc = 0;        //½«ËùÓĞÍ·½áµãµÄÖ¸ÕëÓòÖÃ³õÖµ
+		G->adjlist[i].firstarc = 0;        //å°†æ‰€æœ‰å¤´ç»“ç‚¹çš„æŒ‡é’ˆåŸŸç½®åˆå€¼
 	}
 	for (i = 0; i < n; i++) {
-		for (j = n - 1; j >= 0; j--) {      //¼ì²éÁÚ½Ó¾ØÕóµÄÃ¿¸öÔªËØ
-			if (A[i][j] != 0 && A[i][j] != INF) {         //´æÔÚÒ»Ìõ±ß
-				p = new ArcNode<int>;                       //´´½¨Ò»¸ö½áµãP
-				p->adjvex = j;                          //´æ·ÅÁÚ½Óµã
-				p->weight = A[i][j];                      //´æ·ÅÈ¨
-				p->nextarc = G->adjlist[i].firstarc;            //²ÉÓÃÍ·²å·¨²åÈë½áµãp
+		for (j = n - 1; j >= 0; j--) {      //æ£€æŸ¥é‚»æ¥çŸ©é˜µçš„æ¯ä¸ªå…ƒç´ 
+			if (A[i][j] != 0 && A[i][j] != INF) {         //å­˜åœ¨ä¸€æ¡è¾¹
+				p = new ArcNode<int>;                       //åˆ›å»ºä¸€ä¸ªç»“ç‚¹P
+				p->adjvex = j;                          //å­˜æ”¾é‚»æ¥ç‚¹
+				p->weight = A[i][j];                      //å­˜æ”¾æƒ
+				p->nextarc = G->adjlist[i].firstarc;            //é‡‡ç”¨å¤´æ’æ³•æ’å…¥ç»“ç‚¹p
 				G->adjlist[i].firstarc = p;
 			}
 		}
@@ -133,11 +133,11 @@ template <typename T> void DispAdj(AdjGraph<T> *&G)
 	ArcNode<int> *p;
 	for (i = 0; i < G->n; i++) {
 		p = G->adjlist[i].firstarc;
-		cout << setw(3) << setfill('0') << i << ": ";   //Êä³ö¶¥µã±àºÅ
+		cout << setw(3) << setfill('0') << i << ": ";   //è¾“å‡ºé¡¶ç‚¹ç¼–å·
 		while (p != 0) {
 			cout << setw(3) << setfill('0') << p->adjvex << "[" << p->weight << "] ->";
 			if (p->nextarc == 0)
-				cout << "¦«";
+				cout << "Î›";
 			p = p->nextarc;
 		}
 		cout << endl;
@@ -165,7 +165,7 @@ template <typename T> void DestroyAdj(AdjGraph<T> *&G)
 }
 
 
-//p261 Àı¡¾8.2¡¿ Converting the adjacency matrix into a adjacency list 
+//p261 ä¾‹ã€8.2ã€‘ Converting the adjacency matrix into a adjacency list 
 template <typename T1, typename T2> void MatToList(MatGraph<T1> g, AdjGraph<T2> *&G)
 {
 	int i, j;
@@ -175,12 +175,12 @@ template <typename T1, typename T2> void MatToList(MatGraph<T1> g, AdjGraph<T2> 
 		G->adjlist[i].firstarc = 0;
 	}
 	for (i = 0; i < g.n; i++) {
-		for (j = g.n - 1; j >= 0; j--) {      //¼ì²éÁÚ½Ó¾ØÕóµÄÃ¿¸öÔªËØ
-			if (g.edges[i][j] != 0 && g.edges[i][j] != INF) {         //´æÔÚÒ»Ìõ±ß
-				p = new ArcNode<T1>;                       //´´½¨Ò»¸ö½áµãP
-				p->adjvex = j;                          //´æ·ÅÁÚ½Óµã
-				p->weight = g.edges[i][j];                      //´æ·ÅÈ¨
-				p->nextarc = G->adjlist[i].firstarc;            //²ÉÓÃÍ·²å·¨²åÈë½áµãp
+		for (j = g.n - 1; j >= 0; j--) {      //æ£€æŸ¥é‚»æ¥çŸ©é˜µçš„æ¯ä¸ªå…ƒç´ 
+			if (g.edges[i][j] != 0 && g.edges[i][j] != INF) {         //å­˜åœ¨ä¸€æ¡è¾¹
+				p = new ArcNode<T1>;                       //åˆ›å»ºä¸€ä¸ªç»“ç‚¹P
+				p->adjvex = j;                          //å­˜æ”¾é‚»æ¥ç‚¹
+				p->weight = g.edges[i][j];                      //å­˜æ”¾æƒ
+				p->nextarc = G->adjlist[i].firstarc;            //é‡‡ç”¨å¤´æ’æ³•æ’å…¥ç»“ç‚¹p
 				G->adjlist[i].firstarc = p;
 			}
 		}
@@ -188,7 +188,7 @@ template <typename T1, typename T2> void MatToList(MatGraph<T1> g, AdjGraph<T2> 
 	G->n = g.n; G->e = g.e;
 }
 
-//p261 Àı¡¾8.2¡¿ Converting adjacency tables into adjacency matrices 
+//p261 ä¾‹ã€8.2ã€‘ Converting adjacency tables into adjacency matrices 
 template <typename T1, typename T2> void ListToMat(AdjGraph<T2> *&G, MatGraph<T1> &g)
 {
 	int i;
@@ -222,14 +222,14 @@ template<typename T> void Zero(AdjGraph<T> *G, int visited[])
 template<typename T> void DFS(AdjGraph<T> *G, int v, int visited[])
 {
 	ArcNode<int> *p;
-	visited[v] = 1;                //ÖÃÒÔ·ÃÎÊ±ê¼Ç
-	cout << v << " ";                     //Êä³ö±»·ÃÎÊ¶¥µãµÄ±àºÅ
-	p = G->adjlist[v].firstarc;    //pÖ¸Ïò¶¥µãvµÄµÚÒ»¸öÁÚ½Óµã
+	visited[v] = 1;                //ç½®ä»¥è®¿é—®æ ‡è®°
+	cout << v << " ";                     //è¾“å‡ºè¢«è®¿é—®é¡¶ç‚¹çš„ç¼–å·
+	p = G->adjlist[v].firstarc;    //pæŒ‡å‘é¡¶ç‚¹vçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
 	while (p != 0) {
 		if (visited[p->adjvex] == 0) {
-			DFS(G, p->adjvex, visited);     //Èôp->adjvex¶¥µãÎ´±»·ÃÎÊ£¬µİ¹é·ÃÎÊËü
+			DFS(G, p->adjvex, visited);     //è‹¥p->adjvexé¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œé€’å½’è®¿é—®å®ƒ
 		}
-		p = p->nextarc;            //pÖ¸Ïò¶¥µãvµÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc;            //pæŒ‡å‘é¡¶ç‚¹vçš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
 }
 
@@ -238,20 +238,20 @@ template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 {
 	int w;
 	ArcNode<int> *p;
-	SqQueue<int> *qu;          //¶¨Òå»·ĞÎ¶ÓÁĞÖ¸Õë
-	InitQueue(qu);          //³õÊ¼»¯¶ÓÁĞ
+	SqQueue<int> *qu;          //å®šä¹‰ç¯å½¢é˜Ÿåˆ—æŒ‡é’ˆ
+	InitQueue(qu);          //åˆå§‹åŒ–é˜Ÿåˆ—
 	cout << v << " ";	
-	Zero(G, visited);         //±ê¼ÇÖÃÁã
+	Zero(G, visited);         //æ ‡è®°ç½®é›¶
 	visited[v] = 1;
 	enQueue(qu, v);
 	while (!QueueEmpty(qu)) {
-		deQueue(qu, w);         //³ö¶ÓÒ»¸ö¶¥µãw
-		p = G->adjlist[w].firstarc;  //Ö¸ÏòwµÄµÚÒ»¸öÁÚ½Óµã
-		while (p != 0) {             //²éÕÒwµÄËùÓĞÁÚ½Óµã
+		deQueue(qu, w);         //å‡ºé˜Ÿä¸€ä¸ªé¡¶ç‚¹w
+		p = G->adjlist[w].firstarc;  //æŒ‡å‘wçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		while (p != 0) {             //æŸ¥æ‰¾wçš„æ‰€æœ‰é‚»æ¥ç‚¹
 			if (visited[p->adjvex] == 0) {
 				cout << p->adjvex << " ";
 				visited[p->adjvex] = 1;
-				enQueue(qu, p->adjvex); //¸Ã¶¥µã½ø¶Ó
+				enQueue(qu, p->adjvex); //è¯¥é¡¶ç‚¹è¿›é˜Ÿ
 			}
 			p = p->nextarc;
 		}
@@ -262,7 +262,7 @@ template<typename T> void BFS(AdjGraph<T> *G, int v, int visited[])
 template<typename T> void N_Con_DFS(AdjGraph<T> *G)
 {
 	int i;
-	int visited[MAX_SIZE] = { 0 };        //±ê¼ÇÖÃÁã
+	int visited[MAX_SIZE] = { 0 };        //æ ‡è®°ç½®é›¶
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
 			DFS(G, i, visited);
@@ -274,7 +274,7 @@ template<typename T> void N_Con_DFS(AdjGraph<T> *G)
 template<typename T> void N_Con_BFS(AdjGraph<T> *G)
 {
 	int i;
-	int visited[MAX_SIZE] = { 0 };         //±ê¼ÇÖÃÁã
+	int visited[MAX_SIZE] = { 0 };         //æ ‡è®°ç½®é›¶
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
 			BFS(G, i, visited);
@@ -282,16 +282,16 @@ template<typename T> void N_Con_BFS(AdjGraph<T> *G)
 	}
 }
 
-// P269¡¾Àı8.3¡¿Determine whether the undirected graph is connected
+// P269ã€ä¾‹8.3ã€‘Determine whether the undirected graph is connected
 template<typename T> bool Connect(AdjGraph<T> *G)
 {
 	int i;
 	bool flag = true;
-	int visited[MAX_SIZE] = { 0 };         //±ê¼ÇÖÃÁã
-	DFS(G, 0, visited);        //´Ó¶¥µã0¿ªÊ¼Éî¶ÈÓÅÏÈ±éÀú
+	int visited[MAX_SIZE] = { 0 };         //æ ‡è®°ç½®é›¶
+	DFS(G, 0, visited);        //ä»é¡¶ç‚¹0å¼€å§‹æ·±åº¦ä¼˜å…ˆéå†
 	for (i = 0; i < G->n; i++) {
 		if (visited[i] == 0) {
-			flag = false;     //ÈôÓĞ¶¥µãÃ»ÓĞ±»·ÃÎÊµ½£¬ËµÃ÷ÊÇ²»Á¬Í¨µÄ
+			flag = false;     //è‹¥æœ‰é¡¶ç‚¹æ²¡æœ‰è¢«è®¿é—®åˆ°ï¼Œè¯´æ˜æ˜¯ä¸è¿é€šçš„
 			break;
 		}
 	}
@@ -302,34 +302,34 @@ template<typename T> bool Connect(AdjGraph<T> *G)
 /*Application based on Depth First Search*/
 
 
-// P269¡¾Àı8.4¡¿Find simple path of u to v
+// P269ã€ä¾‹8.4ã€‘Find simple path of u to v
 template<typename T> void ExistPath(AdjGraph<T> *G, int u, int v, bool &has, int visited[])
 {
 	int w;
 	ArcNode<int> *p;
-	visited[u] = 1;        //ÖÃÒÔ·ÃÎÊ±ê¼Ç
+	visited[u] = 1;        //ç½®ä»¥è®¿é—®æ ‡è®°
 	if (u == v) {
 		has = true;
 		return;
 	}
-	p = G->adjlist[u].firstarc;  //pÖ¸Ïò¶¥µãuµÄµÚÒ»¸öÁÚ½Óµã
+	p = G->adjlist[u].firstarc;  //pæŒ‡å‘é¡¶ç‚¹uçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
 	while (p != 0) {
-		w = p->adjvex;                //wÎª¶¥µãuµÄµÚÒ»¸öÁÚ½Óµã
-		if (visited[w] == 0) {       //Èôw¶¥µãÎª·ÃÎÊ£¬µİ¹é·ÃÎÊËû
+		w = p->adjvex;                //wä¸ºé¡¶ç‚¹uçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		if (visited[w] == 0) {       //è‹¥wé¡¶ç‚¹ä¸ºè®¿é—®ï¼Œé€’å½’è®¿é—®ä»–
 			ExistPath(G, w, v, has, visited);
 		}
 		p = p->nextarc;
 	}
 }
 
-// P270¡¾Àı8.5¡¿Disp simple path of u to v, d is the length of path
+// P270ã€ä¾‹8.5ã€‘Disp simple path of u to v, d is the length of path
 template<typename T> void FindaPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
 	ArcNode<int> *p;
 	visited[u] = 1;
 	d++;
-	path[d] = u;        //Â·¾¶³¤¶ÈdÔö¼Ó1£¬¶¥µãu¼ÓÈëµ½Â·¾¶ÖĞ
+	path[d] = u;        //è·¯å¾„é•¿åº¦då¢åŠ 1ï¼Œé¡¶ç‚¹uåŠ å…¥åˆ°è·¯å¾„ä¸­
 	if (u == v) {
 		for (i = 0; i <= d; i++) {
 			cout << path[i] << " ";
@@ -337,17 +337,17 @@ template<typename T> void FindaPath(AdjGraph<T> *G, int u, int v, int path[], in
 		cout << endl;
 		return;
 	}
-	p = G->adjlist[u].firstarc;  //pÖ¸Ïò¶¥µãuµÄµÚÒ»¸öÁÚ½Óµã
+	p = G->adjlist[u].firstarc;  //pæŒ‡å‘é¡¶ç‚¹uçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
 	while (p != 0) {
-		w = p->adjvex;                //wÎª¶¥µãuµÄÁÚ½Óµã
-		if (visited[w] == 0) {       //Èôw¶¥µãÎª·ÃÎÊ£¬µİ¹é·ÃÎÊËû
+		w = p->adjvex;                //wä¸ºé¡¶ç‚¹uçš„é‚»æ¥ç‚¹
+		if (visited[w] == 0) {       //è‹¥wé¡¶ç‚¹ä¸ºè®¿é—®ï¼Œé€’å½’è®¿é—®ä»–
 			FindaPath(G, w, v, path, d, visited);
 		}
 		p = p->nextarc;
 	}
 }
 
-// P271¡¾Àı8.6¡¿Disp all the simple pathes of u to v.
+// P271ã€ä¾‹8.6ã€‘Disp all the simple pathes of u to v.
 template<typename T> void FindAllPath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
@@ -369,10 +369,10 @@ template<typename T> void FindAllPath(AdjGraph<T> *G, int u, int v, int path[], 
 		}
 		p = p->nextarc;
 	}
-	visited[u] = 0;    //»Ö¸´»·¾³£¬Ê¹¸Ã¶¥µã¿ÉÖØĞÂÊ¹ÓÃ
+	visited[u] = 0;    //æ¢å¤ç¯å¢ƒï¼Œä½¿è¯¥é¡¶ç‚¹å¯é‡æ–°ä½¿ç”¨
 }
 
-// P272¡¾Àı8.7¡¿Disp all paths of length l from u to v
+// P272ã€ä¾‹8.7ã€‘Disp all paths of length l from u to v
 template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int path[], int d, int visited[])
 {
 	int w, i;
@@ -380,7 +380,7 @@ template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int pa
 	visited[u] = 1;
 	d++;
 	path[d] = u;
-	if (v == u && d == l) {              //³¤¶ÈÎªlÊ±Êä³öÂ·¾¶
+	if (v == u && d == l) {              //é•¿åº¦ä¸ºlæ—¶è¾“å‡ºè·¯å¾„
 		for (i = 0; i <= d; i++) {
 			cout << path[i] << " ";
 		}
@@ -398,7 +398,7 @@ template<typename T> void PathLenAll(AdjGraph<T> *G, int u, int v, int l, int pa
 	visited[u] = 0;
 }
 
-//P274¡¾Àı8.8¡¿Disp all the simple cycle which through k
+//P274ã€ä¾‹8.8ã€‘Disp all the simple cycle which through k
 template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[], int d, int visited[])
 {
 	int w, i;
@@ -427,56 +427,56 @@ template<typename T> void FindCyclePath(AdjGraph<T> *G, int u, int v, int path[]
 /*Application based on Breadth First Search*/
 
 
-// P276¡¾Àı8.9¡¿Inverse disp the shortest path from u to v
+// P276ã€ä¾‹8.9ã€‘Inverse disp the shortest path from u to v
 template<typename T> void ShortPath(AdjGraph<T> *G, int u, int v, int visited[])
 {
 	ArcNode<int> *p;
 	int w, i;
-	Quere<T> qu[MAX_SIZE];       //·Ç»·ĞÎ¶ÓÁĞ
-	int front = -1, rear = -1;   //¶ÓÁĞµÄÍ·Ö¸Õë¡¢Î²Ö¸Õë
+	Quere<T> qu[MAX_SIZE];       //éç¯å½¢é˜Ÿåˆ—
+	int front = -1, rear = -1;   //é˜Ÿåˆ—çš„å¤´æŒ‡é’ˆã€å°¾æŒ‡é’ˆ
 	rear++;
-	qu[rear].data = u;           //¶¥µãu½ø¶Ó
+	qu[rear].data = u;           //é¡¶ç‚¹uè¿›é˜Ÿ
 	qu[rear].parent = -1;
 	visited[u] = 1;
-	while (front != rear) {     //¶Ó²»¿ÕÑ­»·
-		front++;                //³ö¶Ó¶¥µãw
+	while (front != rear) {     //é˜Ÿä¸ç©ºå¾ªç¯
+		front++;                //å‡ºé˜Ÿé¡¶ç‚¹w
 		w = qu[front].data;
-		if (w == v) {            //Óöµ½vÊ±Êä³öÄæÂ·¾¶£¬ÍË³ö
+		if (w == v) {            //é‡åˆ°væ—¶è¾“å‡ºé€†è·¯å¾„ï¼Œé€€å‡º
 			i = front;
-			while (qu[i].parent != -1) {    //Í¨¹ı¶ÓÁĞÊä³öÄæÂ·¾¶
+			while (qu[i].parent != -1) {    //é€šè¿‡é˜Ÿåˆ—è¾“å‡ºé€†è·¯å¾„
 				cout << qu[i].data << " ";
 				i = qu[i].parent;
 			}
 			cout << qu[i].data << endl;
 			break;
 		}
-		p = G->adjlist[w].firstarc;     //wµÄµÚÒ»¸öÁÚ½Óµã
+		p = G->adjlist[w].firstarc;     //wçš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
 		while (p != 0) {
-			if (visited[p->adjvex] == 0) {  //½«wÎ´·ÃÎÊ¹ıµÄÁÚ½Óµã½ø¶Ó
+			if (visited[p->adjvex] == 0) {  //å°†wæœªè®¿é—®è¿‡çš„é‚»æ¥ç‚¹è¿›é˜Ÿ
 				rear++;
 				qu[rear].data = p->adjvex;
 				qu[rear].parent = front;
 			}
-			p = p->nextarc;        //ÕÒwµÄÏÂÒ»¸öÁÚ½Óµã
+			p = p->nextarc;        //æ‰¾wçš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 		}
 	}
 }
 
 
-// P277¡¾Àı8.10¡¿Find the furthest vertex from v, using SqQueue instead of Qu[]
+// P277ã€ä¾‹8.10ã€‘Find the furthest vertex from v, using SqQueue instead of Qu[]
 template<typename T> int Maxdist(AdjGraph<T> *G, int v, int visited[])
 {
 	ArcNode<int> *p;
 	SqQueue<int> *qu;
 	InitCycleQueue(qu);
-	int j, k;
-	enCycleQueueF(qu, v);    //¶¥µãv½ø¶Ó
-	visited[v] = 1;      //±ê¼ÇvÒÑ·ÃÎÊ
+	int j, k = 0;
+	enCycleQueueF(qu, v);    //é¡¶ç‚¹vè¿›é˜Ÿ
+	visited[v] = 1;      //æ ‡è®°vå·²è®¿é—®
 	while (!QueueEmpty(qu)) {
-		deCycleQueueR(qu, k);   //¶¥µãk³ö¶Ó
-		p = G->adjlist[k].firstarc;     //ÕÒµÚÒ»¸öÁÚ½Óµã
-		while (p != 0) {                //ËùÓĞÎ´±»·ÃÎÊ¹ıµÄÁÚ½Óµã½ø¶Ó
-			j = p->adjvex;              //ÁÚ½ÓµãÎª¶¥µãj
+		deCycleQueueR(qu, k);   //é¡¶ç‚¹kå‡ºé˜Ÿ
+		p = G->adjlist[k].firstarc;     //æ‰¾ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		while (p != 0) {                //æ‰€æœ‰æœªè¢«è®¿é—®è¿‡çš„é‚»æ¥ç‚¹è¿›é˜Ÿ
+			j = p->adjvex;              //é‚»æ¥ç‚¹ä¸ºé¡¶ç‚¹j
 			if (visited[j] == 0) {
 				visited[j] = 1;
 				enCycleQueueF(qu, j);
@@ -497,17 +497,17 @@ template<typename T> int Maxdist(AdjGraph<T> *G, int v, int visited[])
 template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], int v)
 {
 	int i, j, k;
-	int apath[MAX_SIZE], d;   //´æ·ÅÒ»Ìõ×î¶ÌÂ·Â·¾¶£¨ÄæÏò£©¼°Æä¶¥µã¸öÊı
-	for(i=0;i<g.n;i++)       //Ñ­»·Êä³ö´Ó¶¥µãvµ½iµÄÂ·¾¶
+	int apath[MAX_SIZE], d;   //å­˜æ”¾ä¸€æ¡æœ€çŸ­è·¯è·¯å¾„ï¼ˆé€†å‘ï¼‰åŠå…¶é¡¶ç‚¹ä¸ªæ•°
+	for(i=0;i<g.n;i++)       //å¾ªç¯è¾“å‡ºä»é¡¶ç‚¹våˆ°içš„è·¯å¾„
 		if (S[i] == 1 && i != v)
 		{
-			cout << "´Ó¶¥µã" << v << "µ½¶¥µã" << i << "µÄÂ·¾¶³¤¶ÈÎª£º" << dist[i] << '\t' << "Â·¾¶Îª£º";
+			cout << "ä»é¡¶ç‚¹" << v << "åˆ°é¡¶ç‚¹" << i << "çš„è·¯å¾„é•¿åº¦ä¸ºï¼š" << dist[i] << '\t' << "è·¯å¾„ä¸ºï¼š";
 			d = 0;
-			apath[d] = i;  //Ìí¼ÓÂ·¾¶ÉÏµÄÖÕµã
+			apath[d] = i;  //æ·»åŠ è·¯å¾„ä¸Šçš„ç»ˆç‚¹
 			k = path[i];
-			if (k == -1)  //Ã»ÓĞÂ·¾¶µÄÇé¿ö
-				cout << "ÎŞÂ·¾¶" << endl;
-			else       //´æÔÚÂ·¾¶Ê±Êä³ö¸ÃÂ·¾¶
+			if (k == -1)  //æ²¡æœ‰è·¯å¾„çš„æƒ…å†µ
+				cout << "æ— è·¯å¾„" << endl;
+			else       //å­˜åœ¨è·¯å¾„æ—¶è¾“å‡ºè¯¥è·¯å¾„
 			{
 				while (k != v)
 				{
@@ -516,9 +516,9 @@ template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], 
 					k = path[k];
 				}
 				d++;
-				apath[d] = v;   //Ìí¼ÓÂ·¾¶ÉÏµÄÆğµã
-				cout << apath[d];   //ÏÈÊä³öÆğµã
-				for (j = d - 1; j >= 0; j--)   //ÔÙÊä³öÆäËû¶¥µã
+				apath[d] = v;   //æ·»åŠ è·¯å¾„ä¸Šçš„èµ·ç‚¹
+				cout << apath[d];   //å…ˆè¾“å‡ºèµ·ç‚¹
+				for (j = d - 1; j >= 0; j--)   //å†è¾“å‡ºå…¶ä»–é¡¶ç‚¹
 					cout << "," << apath[j];
 				cout << endl;
 			}
@@ -530,30 +530,30 @@ template<typename T>void Dispath(MatGraph<T> g, int dist[],int path[], int S[], 
 template<typename T> void Dijkstra(MatGraph<T> g, int v)
 {
 	int dist[MAX_SIZE], path[MAX_SIZE];
-	int S[MAX_SIZE];     //S[i]=1±íÊ¾¶¥µãiÔÚSÖĞ£¬S[i]=0±íÊ¾¶¥µãiÔÚUÖĞ
+	int S[MAX_SIZE];     //S[i]=1è¡¨ç¤ºé¡¶ç‚¹iåœ¨Sä¸­ï¼ŒS[i]=0è¡¨ç¤ºé¡¶ç‚¹iåœ¨Uä¸­
 	int MINdis, i, j, u;
 	for (i = 0; i < g.n; i++)
 	{
-		dist[i] = g.edges[v][i];    //¾àÀë³õÊ¼»¯
-		S[i] = 0;//S[]ÖÃ¿Õ
-		if (g.edges[v][i] < INF)    //Â·¾¶³õÊ¼»¯
-			path[i] = v;    //¶¥µãvµ½¶¥µãiÓĞ±ßÊ±£¬ÖÃ¶¥µãiµÄÇ°Ò»¸ö¶¥µãÎªv
+		dist[i] = g.edges[v][i];    //è·ç¦»åˆå§‹åŒ–
+		S[i] = 0;//S[]ç½®ç©º
+		if (g.edges[v][i] < INF)    //è·¯å¾„åˆå§‹åŒ–
+			path[i] = v;    //é¡¶ç‚¹våˆ°é¡¶ç‚¹iæœ‰è¾¹æ—¶ï¼Œç½®é¡¶ç‚¹içš„å‰ä¸€ä¸ªé¡¶ç‚¹ä¸ºv
 		else
-			path[i] = -1;    //¶¥µãvµ½¶¥µãiÃ»±ßÊ±£¬ÖÃ¶¥µãiµÄÇ°Ò»¸ö¶¥µãÎª-1
+			path[i] = -1;    //é¡¶ç‚¹våˆ°é¡¶ç‚¹iæ²¡è¾¹æ—¶ï¼Œç½®é¡¶ç‚¹içš„å‰ä¸€ä¸ªé¡¶ç‚¹ä¸º-1
 	}
 	S[v] = 1;
-	path[v] = 0;    //Ô´µã±àºÅv·ÅÈëSÖĞ
-	for (i = 0; i < g.n - 1; i++)   //Ñ­»·Ö±µ½ËùÓĞ¶¥µãµÄ×î¶ÌÂ·¾¶¶¼Çó³ö
+	path[v] = 0;    //æºç‚¹ç¼–å·væ”¾å…¥Sä¸­
+	for (i = 0; i < g.n - 1; i++)   //å¾ªç¯ç›´åˆ°æ‰€æœ‰é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„éƒ½æ±‚å‡º
 	{
-		MINdis = INF;   //MINdisÖÃ×î´ó³¤¶È³õÖµ
-		for(j=0;j<g.n;j++)    //Ñ¡È¡²»ÔÚSÖĞ£¨¼´UÖĞ£©ÇÒ¾ßÓĞ×îĞ¡×î¶ÌÂ·¾¶³¤¶ÈµÄ¶¥µãv
+		MINdis = INF;   //MINdisç½®æœ€å¤§é•¿åº¦åˆå€¼
+		for(j=0;j<g.n;j++)    //é€‰å–ä¸åœ¨Sä¸­ï¼ˆå³Uä¸­ï¼‰ä¸”å…·æœ‰æœ€å°æœ€çŸ­è·¯å¾„é•¿åº¦çš„é¡¶ç‚¹v
 			if (S[j] == 0 && dist[j] < MINdis)
 			{
 				u = j;
 				MINdis = dist[j];
 			}
-		S[u] = 1;   //¶¥µãu¼ÓÈëSÖĞ
-		for(j=0;j<g.n;j++)   //ĞŞ¸Ä²»ÔÚSÖĞ£¨¼´UÖĞ£©µÄ¶¥µãµÄ×î¶ÌÂ·¾¶
+		S[u] = 1;   //é¡¶ç‚¹uåŠ å…¥Sä¸­
+		for(j=0;j<g.n;j++)   //ä¿®æ”¹ä¸åœ¨Sä¸­ï¼ˆå³Uä¸­ï¼‰çš„é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„
 			if(S[j]==0)
 				if (g.edges[u][j] < INF&&dist[u] + g.edges[u][j] < dist[j])
 				{
@@ -561,7 +561,7 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 					path[j] = u;
 				}
 	}
-	Dispath(g, dist, path, S, v);   //Êä³ö×î¶ÌÂ·¾¶
+	Dispath(g, dist, path, S, v);   //è¾“å‡ºæœ€çŸ­è·¯å¾„
 }
 
 
@@ -575,37 +575,37 @@ template<typename T> void Dijkstra(MatGraph<T> g, int v)
 template <typename T> void TopSort(AdjGraph<T> *G)
 {
 	int i, j;
-	int St[MAX_SIZE];  //ÓÃË³ĞòÕ»´æ·ÅÈë¶ÈÎª0µÄ¶¥µã
-	int top = -1;     //Õ»¶¥Ö¸Õë
+	int St[MAX_SIZE];  //ç”¨é¡ºåºæ ˆå­˜æ”¾å…¥åº¦ä¸º0çš„é¡¶ç‚¹
+	int top = -1;     //æ ˆé¡¶æŒ‡é’ˆ
 	ArcNode<int> *p;
 	for (i = 0; i < G->n; i++) {
-		G->adjlist[i].count = 0;      //Èë¶ÈÖÃ³õÖµ0
+		G->adjlist[i].count = 0;      //å…¥åº¦ç½®åˆå€¼0
 	}
-	for (i = 0; i < G->n; i++) {     //ÇóËùÓĞ¶¥µãµÄÈë¶È
+	for (i = 0; i < G->n; i++) {     //æ±‚æ‰€æœ‰é¡¶ç‚¹çš„å…¥åº¦
 		p = G->adjlist[i].firstarc;
 		while (p != 0) {
 			G->adjlist[p->adjvex].count++;
 			p = p->nextarc;
 		}
 	}
-	for (i = 0; i < G->n; i++) {      //½«Èë¶ÈÎª0µÄ¶¥µãÈëÕ»
+	for (i = 0; i < G->n; i++) {      //å°†å…¥åº¦ä¸º0çš„é¡¶ç‚¹å…¥æ ˆ
 		if (G->adjlist[i].count == 0) {
 			top++;
 			St[top] = i;
 		}
 	}
-	while (top > -1) {   //Õ»²»¿ÕÊ±Ñ­»·
-		i = St[top]; top--;    //³öÕ»Ò»¸ö¶¥µã
-		cout << i;            //Êä³ö¸Ã¶¥µã
-		p = G->adjlist[i].firstarc;       //ÕÒµÚÒ»¸öÁÚ½Óµã
-		while (p != 0) {       //½«¶¥µãiµÄ³ö±ßÁÚ½ÓµãµÄÈë¶È¼õ1
+	while (top > -1) {   //æ ˆä¸ç©ºæ—¶å¾ªç¯
+		i = St[top]; top--;    //å‡ºæ ˆä¸€ä¸ªé¡¶ç‚¹
+		cout << i;            //è¾“å‡ºè¯¥é¡¶ç‚¹
+		p = G->adjlist[i].firstarc;       //æ‰¾ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		while (p != 0) {       //å°†é¡¶ç‚¹içš„å‡ºè¾¹é‚»æ¥ç‚¹çš„å…¥åº¦å‡1
 			j = p->adjvex;
 			G->adjlist[j].count--;
-			if (G->adjlist[j].count == 0) {   //½«Èë¶ÈÎª0µÄÁÚ½Óµã½øÕ»
+			if (G->adjlist[j].count == 0) {   //å°†å…¥åº¦ä¸º0çš„é‚»æ¥ç‚¹è¿›æ ˆ
 				top++;
 				St[top] = j;
 			}
-			p = p->nextarc;       //ÕÒÏÂÒ»¸öÁÚ½Óµã
+			p = p->nextarc;       //æ‰¾ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 		}
 	}
 	cout << endl;
@@ -622,31 +622,31 @@ template <typename T> void Prim(MatGraph<T> *g, int v)
 {
 	int lowcost[MAX_SIZE];
 	int MIN;
-	int closest[MAX_SIZE], i, j, k;
-	for (i = 0; i < g->n; i++)		//¸ølowcost[]ºÍclosest[]ÖÃ³õÖµ
+	int closest[MAX_SIZE], i, j, k = 0;
+	for (i = 0; i < g->n; i++)		//ç»™lowcost[]å’Œclosest[]ç½®åˆå€¼
 	{
 		lowcost[i] = g->edges[v][i];
 		closest[i] = v;
 	}
-	for (i = 1; i < g->n; i++)		//ÕÒ³ö(n-1)¸ö½áµã
+	for (i = 1; i < g->n; i++)		//æ‰¾å‡º(n-1)ä¸ªç»“ç‚¹
 	{
 		MIN = INF;
-		for (j = 0; j < g->n; j++)		//ÔÚ(V-U)ÖĞÕÒ³öÀëU×î½üµÄ¶¥µãk
+		for (j = 0; j < g->n; j++)		//åœ¨(V-U)ä¸­æ‰¾å‡ºç¦»Uæœ€è¿‘çš„é¡¶ç‚¹k
 		{
 			if (lowcost[j] != 0 && lowcost[j] < MIN)
 			{
 				MIN = lowcost[j];
-				k = j;		//¼ÇÂ¼×î½ü¶¥µãµÄ±àºÅ
+				k = j;		//è®°å½•æœ€è¿‘é¡¶ç‚¹çš„ç¼–å·
 			}
 		}
-		cout << "±ß£¨" << closest[k] << "," << k << "£©È¨Îª£º" << MIN << endl;	//Êä³ö×îĞ¡Éú³ÉÊ÷µÄÒ»Ìõ±ß
-		lowcost[k] = 0;		//±ê¼ÇkÒÑ¾­¼ÓÈëµ½U
-		for (j = 0; j < g->n; j++)		//¶Ô(V-U)ÖĞµÄ¶¥µãj½øĞĞµ÷Õû
+		cout << "è¾¹ï¼ˆ" << closest[k] << "," << k << "ï¼‰æƒä¸ºï¼š" << MIN << endl;	//è¾“å‡ºæœ€å°ç”Ÿæˆæ ‘çš„ä¸€æ¡è¾¹
+		lowcost[k] = 0;		//æ ‡è®°kå·²ç»åŠ å…¥åˆ°U
+		for (j = 0; j < g->n; j++)		//å¯¹(V-U)ä¸­çš„é¡¶ç‚¹jè¿›è¡Œè°ƒæ•´
 		{
 			if (lowcost[j] != 0 && g->edges[k][j] < lowcost[j])
 			{
 				lowcost[j] = g->edges[k][j];
-				closest[j] = k;		//ĞŞ¸ÄÊı×élowcostºÍclosest
+				closest[j] = k;		//ä¿®æ”¹æ•°ç»„lowcostå’Œclosest
 			}
 		}
 	}
@@ -667,9 +667,9 @@ template <typename T> void Kruskal(MatGraph<T> *g)
 {
 	int i, j, u1, v1, sn1, sn2, k;
 	int vset[MAX_SIZE];
-	Edge E[MAX_SIZE];		//´æ·ÅÍ¼ÖĞµÄËùÓĞ±ß
-	k = 0;					//eÊı×éµÄÏÂ±ê´Ó0¿ªÊ¼¼Æ
-	for (i = 0; i < g->n; i++)		//ÓÉg²úÉú±ß¼¯E£¬²»ÖØ¸´Ñ¡È¡Í¬Ò»Ìõ±ß
+	Edge E[MAX_SIZE];		//å­˜æ”¾å›¾ä¸­çš„æ‰€æœ‰è¾¹
+	k = 0;					//eæ•°ç»„çš„ä¸‹æ ‡ä»0å¼€å§‹è®¡
+	for (i = 0; i < g->n; i++)		//ç”±gäº§ç”Ÿè¾¹é›†Eï¼Œä¸é‡å¤é€‰å–åŒä¸€æ¡è¾¹
 	{
 		for (j = 0; j <= i; j++)
 		{
@@ -680,53 +680,53 @@ template <typename T> void Kruskal(MatGraph<T> *g)
 			}
 		}
 	}
-	InserSort(E, g->e);		//²ÉÓÃÖ±½Ó²åÈëÅÅĞò¶ÔEÊı×é°´È¨ÖµµİÔöÅÅĞò
-	for (i = 0; i < g->e; i++)		//³õÊ¼»¯¸¨ÖúÊı×é
+	InserSort(E, g->e);		//é‡‡ç”¨ç›´æ¥æ’å…¥æ’åºå¯¹Eæ•°ç»„æŒ‰æƒå€¼é€’å¢æ’åº
+	for (i = 0; i < g->e; i++)		//åˆå§‹åŒ–è¾…åŠ©æ•°ç»„
 	{
 		vset[i] = i;
 	}
-	k = 1;		//k±íÊ¾µ±Ç°¹¹ÔìÉú³ÉÊ÷µÄµÚ¼¸Ìõ±ß£¬³õÖµÎª1
-	j = 0;		//EÖĞ±ßµÄÏÂ±ê£¬³õÖµÎª0
+	k = 1;		//kè¡¨ç¤ºå½“å‰æ„é€ ç”Ÿæˆæ ‘çš„ç¬¬å‡ æ¡è¾¹ï¼Œåˆå€¼ä¸º1
+	j = 0;		//Eä¸­è¾¹çš„ä¸‹æ ‡ï¼Œåˆå€¼ä¸º0
 	while (k < g->n)
 	{
-		u1 = E[j].u; v1 = E[j].v;		//È¡Ò»Ìõ±ßµÄÁ½¸ö¶¥µã
+		u1 = E[j].u; v1 = E[j].v;		//å–ä¸€æ¡è¾¹çš„ä¸¤ä¸ªé¡¶ç‚¹
 		sn1 = vset[u1];
-		sn2 = vset[v1];		//·Ö±ğµÃµ½Á½¸ö¶¥µãËùÊôµÄ¼¯ºÏ±àºÅ
-		if (sn1 != sn2)		//Á½¸ö¶¥µãÊôÓÚ²»Í¬µÄ¼¯ºÏ£¬¸Ã±ßÊÇ×îĞ¡Éú³ÉÊ÷µÄÒ»Ìõ±ß
+		sn2 = vset[v1];		//åˆ†åˆ«å¾—åˆ°ä¸¤ä¸ªé¡¶ç‚¹æ‰€å±çš„é›†åˆç¼–å·
+		if (sn1 != sn2)		//ä¸¤ä¸ªé¡¶ç‚¹å±äºä¸åŒçš„é›†åˆï¼Œè¯¥è¾¹æ˜¯æœ€å°ç”Ÿæˆæ ‘çš„ä¸€æ¡è¾¹
 		{
-			cout << "(" << u1 << "," << v1 << "): " << E[j].w << endl;		//Êä³ö×îĞ¡Éú³ÉÊ÷µÄÒ»Ìõ±ß
-			k++;		//Éú³É±ßÊıÔö1
-			for (i = 0; i < g->n; i++)		//Á½¸ö¼¯ºÏÍ³Ò»±àºÅ
-				if (vset[i] == sn2)			//¼¯ºÏ±àºÅÎªsn2µÄ¸ÄÎªsn1
+			cout << "(" << u1 << "," << v1 << "): " << E[j].w << endl;		//è¾“å‡ºæœ€å°ç”Ÿæˆæ ‘çš„ä¸€æ¡è¾¹
+			k++;		//ç”Ÿæˆè¾¹æ•°å¢1
+			for (i = 0; i < g->n; i++)		//ä¸¤ä¸ªé›†åˆç»Ÿä¸€ç¼–å·
+				if (vset[i] == sn2)			//é›†åˆç¼–å·ä¸ºsn2çš„æ”¹ä¸ºsn1
 					vset[i] = sn1;
 		}
-		j++;		//É¨ÃèÏÂÒ»Ìõ±ß
+		j++;		//æ‰«æä¸‹ä¸€æ¡è¾¹
 	}
 }
 
 template <typename T> void DisMatGraphPath(MatGraph<T> *g, int A[][MAX_SIZE], int path[][MAX_SIZE])
 {
 	int i, j, k, s;
-	int apath[MAX_SIZE], d;		//´æ·ÅÒ»Ìõ×î¶ÌÂ·¾¶ÖĞ¼ä¶¥µã£¨·´Ïò£©¼°Æä¶¥µã¸öÊı
+	int apath[MAX_SIZE], d;		//å­˜æ”¾ä¸€æ¡æœ€çŸ­è·¯å¾„ä¸­é—´é¡¶ç‚¹ï¼ˆåå‘ï¼‰åŠå…¶é¡¶ç‚¹ä¸ªæ•°
 	for (i = 0; i < g->n; i++)
 	{
 		for (j = 0; j < g->n; j++)
 		{
-			if (A[i][j] != INF && i != j)	//Èô¶¥µãiºÍjÖ®¼ä´æÔÚÂ·¾¶
+			if (A[i][j] != INF && i != j)	//è‹¥é¡¶ç‚¹iå’Œjä¹‹é—´å­˜åœ¨è·¯å¾„
 			{
-				cout << "´Ó" << i << "µ½" << j << "Ö®¼äµÄÂ·¾¶Îª£º";
+				cout << "ä»" << i << "åˆ°" << j << "ä¹‹é—´çš„è·¯å¾„ä¸ºï¼š";
 				k = path[i][j];
-				d = 0; apath[d] = j;	//Â·¾¶ÉÏÌí¼ÓÖÕµã
-				while (k != -1 && k != i)	//Â·¾¶ÉÏÌí¼ÓÖĞ¼äµã
+				d = 0; apath[d] = j;	//è·¯å¾„ä¸Šæ·»åŠ ç»ˆç‚¹
+				while (k != -1 && k != i)	//è·¯å¾„ä¸Šæ·»åŠ ä¸­é—´ç‚¹
 				{
 					d++; apath[d] = k;
 					k = path[i][k];
 				}
-				d++; apath[d] = i;		//Â·¾¶ÉÏÌí¼ÓÆğµã
-				cout << apath[d];		//Êä³öÆğµã
-				for (s = d - 1; s >= 0; s--)		//Êä³öÂ·¾¶ÉÏµÄÖĞ¼ä¶¥µã
+				d++; apath[d] = i;		//è·¯å¾„ä¸Šæ·»åŠ èµ·ç‚¹
+				cout << apath[d];		//è¾“å‡ºèµ·ç‚¹
+				for (s = d - 1; s >= 0; s--)		//è¾“å‡ºè·¯å¾„ä¸Šçš„ä¸­é—´é¡¶ç‚¹
 					cout << "," << apath[s];
-				cout << "\tÂ·¾¶³¤¶ÈÎª£º" << A[i][j] << endl;
+				cout << "\tè·¯å¾„é•¿åº¦ä¸ºï¼š" << A[i][j] << endl;
 			}
 		}
 	}
@@ -741,21 +741,21 @@ template <typename T> void Floyd(MatGraph<T> *g)
 		{
 			A[i][j] = g->edges[i][j];
 			if (i != j && g->edges[i][j] < INF)
-				path[i][j] = i;		//¶¥µãiµ½jÓĞ±ßÊ±
+				path[i][j] = i;		//é¡¶ç‚¹iåˆ°jæœ‰è¾¹æ—¶
 			else
-				path[i][j] = -1;	//¶¥µãiµ½jÃ»ÓĞ±ßÊ±
+				path[i][j] = -1;	//é¡¶ç‚¹iåˆ°jæ²¡æœ‰è¾¹æ—¶
 		}
-	for (k = 0; k < g->n; k++)		//ÒÀ´Î¿¼²ìËùÓĞ¶¥µã
+	for (k = 0; k < g->n; k++)		//ä¾æ¬¡è€ƒå¯Ÿæ‰€æœ‰é¡¶ç‚¹
 	{
 		for(i = 0; i < g->n; i++)
 			for(j = 0; j < g->n; j++)
 				if (A[i][j] > A[i][k] + A[k][j])
 				{
-					A[i][j] = A[i][k] + A[k][j];	//ĞŞ¸Ä×î¶ÌÂ·¾¶³¤¶È
-					path[i][j] = path[k][j];		//ĞŞ¸Ä×î¶ÌÂ·¾¶
+					A[i][j] = A[i][k] + A[k][j];	//ä¿®æ”¹æœ€çŸ­è·¯å¾„é•¿åº¦
+					path[i][j] = path[k][j];		//ä¿®æ”¹æœ€çŸ­è·¯å¾„
 				}
 	}
-	DisMatGraphPath(g, A, path);	//Êä³ö×î¶ÌÂ·¾¶
+	DisMatGraphPath(g, A, path);	//è¾“å‡ºæœ€çŸ­è·¯å¾„
 }
 
 
@@ -763,7 +763,7 @@ void GraphExample()
 {
 	AdjGraph<VNode<int>> *G;
 	int n = 5, e = 8;
-	int A[MAX_SIZE][MAX_SIZE] =  //ÎŞÏòÍ¼
+	int A[MAX_SIZE][MAX_SIZE] =  //æ— å‘å›¾
 	{
 		{ 0,1,0,1,1 },
 		{ 1,0,1,1,0 },
@@ -773,17 +773,17 @@ void GraphExample()
 	};
 	CreateAdj(G, A, n, e);
 
-	//p261 Àı¡¾8.2¡¿
+	//p261 ä¾‹ã€8.2ã€‘
 	MatGraph<int> g;
 	memcpy(g.edges, A, MAX_SIZE * MAX_SIZE * sizeof(int));
 	g.n = n; g.e = e;
 	MatToList(g, G);
-	cout << "Í¼G:\n";
+	cout << "å›¾G:\n";
 	DispAdj(G);
 
 	memset(g.edges, 0, MAX_SIZE * MAX_SIZE * sizeof(int));
 	ListToMat(G, g);
-	cout << "Í¼g:\n";
+	cout << "å›¾g:\n";
 	DispMatGraph(g);
 
 	int visited[MAX_SIZE] = { 0 };
@@ -793,42 +793,43 @@ void GraphExample()
 	cout << endl << "Non-connected graph Breadth First Search: "; N_Con_BFS(G);
 	cout << endl;
 	
-	// P269¡¾Àı8.3¡¿
+	// P269ã€ä¾‹8.3ã€‘
 	if (Connect(G)) {
 		cout << " is connected graph. " << endl;
 	}
 	cout << endl;
 
-	// P269¡¾Àı8.4¡¿ P270¡¾Àı8.5¡¿ P271¡¾Àı8.6¡¿
+	// P269ã€ä¾‹8.4ã€‘ P270ã€ä¾‹8.5ã€‘ P271ã€ä¾‹8.6ã€‘
 	int d = -1, path[MAX_SIZE] = { 0 };
 	int u = 1, v = 4;
 	bool has = false;
-	Zero(G, visited);         //±ê¼ÇÖÃÁã
+	Zero(G, visited);         //æ ‡è®°ç½®é›¶
 	ExistPath(G, u, v, has,visited);
 	if (has) {
 		cout << "Can find the simple path of " << u << " to " << v << endl;
 		Zero(G, visited);
 		cout << "A simple path of " << u << " to " << v << " is: "; 
 		FindaPath(G, u, v, path, d, visited);
-		Zero(G, visited);  //ÖÃÎÊ³õÊ¼Öµ
+		Zero(G, visited);  //ç½®é—®åˆå§‹å€¼
 		d = -1;
 		cout << "All simple path of " << u << " to " << v << " is: "<<endl; 
 		FindAllPath(G, u, v, path, d, visited);
 	}
 	cout << endl;
 
-	// P272¡¾Àı8.7¡¿
-	Zero(G, visited);  //ÖÃÎÊ³õÊ¼Öµ
+	// P272ã€ä¾‹8.7ã€‘
+	Zero(G, visited);  //ç½®é—®åˆå§‹å€¼
 	int Path[MAX_SIZE] = { 0 };
-	u = 1, v = 4;
+    u = 1;
+    v = 4;
 	int l = 3;
-	cout << "Í¼G:\n";
+	cout << "å›¾G:\n";
 	DispAdj(G);
 	cout << "All " << l << " length simple path of " << u << " to " << v << " is: " << endl;
 	PathLenAll(G, u, v, l, Path, -1, visited);
 	cout << endl;
 
-	//P274¡¾Àı8.8¡¿
+	//P274ã€ä¾‹8.8ã€‘
 	AdjGraph<VNode<int>>  *G1;
 	int A1[MAX_SIZE][MAX_SIZE] =
 	{
@@ -842,17 +843,17 @@ void GraphExample()
 	int k = 1;
 	cout << "All the cycle path through "<<k <<" is :" << endl; FindCyclePath(G1, k, k, path, d, visited);
 
-	// P276¡¾Àı8.9¡¿
+	// P276ã€ä¾‹8.9ã€‘
 	Zero(G1, visited);
 	cout << "Inverse disp the shortest path from "<<u <<" to " <<v <<" : "; ShortPath(G1, u, v, visited);
 
-	// P277¡¾Àı8.10¡¿
+	// P277ã€ä¾‹8.10ã€‘
 	Zero(G1, visited);
 	int ver;
 	ver = Maxdist(G1, v, visited);
 	cout << "The furthest vertex from " <<v<<" is " << k << endl;
 
-	//P303 Àı¡¾8.14¡¿
+	//P303 ä¾‹ã€8.14ã€‘
 	AdjGraph<NewVNode<int>> *M;
 	int C[MAX_SIZE][MAX_SIZE] =
 	{
@@ -865,7 +866,7 @@ void GraphExample()
 	};
 	n = 6; e = 6;
 	CreateAdj(M, C, n, e);
-	cout << "Í¼M:\n"; 
+	cout << "å›¾M:\n"; 
 	DispAdj(M);
 	cout << "A topological sort of M:";  TopSort(M); 
 	DestroyAdj(M);

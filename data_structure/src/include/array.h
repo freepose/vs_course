@@ -52,7 +52,7 @@ template<typename T> void buble_sort(T a[], int n)
 }
 
 
-//½«Êı×éÑ­»·×óÒÆp¸öÎ»ÖÃ
+//å°†æ•°ç»„å¾ªç¯å·¦ç§»pä¸ªä½ç½®
 template<typename T> void reverse(T *r, int left, int right)
 {
 	int i = left, j = right;
@@ -68,11 +68,11 @@ template<typename T> void reverse(T *r, int left, int right)
 template<typename T> void leftShift(T *r, int n, int p)
 {
 	if (p > 0 && p < n) {
-		reverse(r, 0, n - 1);              //ÏÈ½«È«²¿Ô­µØÄæÖÃ
+		reverse(r, 0, n - 1);              //å…ˆå°†å…¨éƒ¨åŸåœ°é€†ç½®
 		print_array(r, n);
-		reverse(r, 0, n-p-1);             //ÔÙ½«Ç°n-p¸öÔªËØÄæÖÃ
+		reverse(r, 0, n-p-1);             //å†å°†å‰n-pä¸ªå…ƒç´ é€†ç½®
 		print_array(r, n);
-		reverse(r, n - p, n - 1);         //½«ºóp¸öÔªËØÄæÖÃ
+		reverse(r, n - p, n - 1);         //å°†åpä¸ªå…ƒç´ é€†ç½®
 		print_array(r, n);
 	}
 }
@@ -84,10 +84,10 @@ void  arrayExample()
 	int a[8] = { 1, 3, 3, 34, 2, 5 };
 	int b[10] = { 1,2,3,4,5,6,7,8 };
 	// read_array(a,n);
-	//buble_sort(a, n);//µ÷ÓÃÃ°ÅİÅÅĞò
-	//print_array(a, n);
-	//select_sort(a, n);//µ÷ÓÃÑ¡ÔñÅÅĞò
-	//print_array(a, n);
+	buble_sort(a, n);//è°ƒç”¨å†’æ³¡æ’åº
+	print_array(a, n);
+	select_sort(a, n);//è°ƒç”¨é€‰æ‹©æ’åº
+	print_array(a, n);
 	leftShift(b, 8, 4);
 }
 

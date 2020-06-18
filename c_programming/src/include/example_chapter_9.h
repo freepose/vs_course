@@ -8,8 +8,8 @@
 typedef struct  {
 	// basic information
 	char number[13];		// e.g., 201921145022
-	char name[4 * 2 + 2];	// ×î³¤4¸öºº×Ö
-	char gender[2 * 1 + 2];	// {'ÄĞ', 'Å®'}
+	char name[4 * 2 + 2];	// æœ€é•¿4ä¸ªæ±‰å­—
+	char gender[2 * 1 + 2];	// {'ç”·', 'å¥³'}
 
 	// address
 	struct
@@ -25,16 +25,16 @@ typedef struct  {
 
 	// neighbors
 
-} Student;	// ×î¼òÉè¼Æ£º·½±ãÒÔºóÔö¼Ó³ÉÔ±±äÁ¿£¬²»ĞèÒªËæ±ãĞŞ¸ÄÒÔÇ°µÄº¯Êı
+} Student;	// æœ€ç®€è®¾è®¡ï¼šæ–¹ä¾¿ä»¥åå¢åŠ æˆå‘˜å˜é‡ï¼Œä¸éœ€è¦éšä¾¿ä¿®æ”¹ä»¥å‰çš„å‡½æ•°
 
 
 void read_student(Student *p)
 {
-	printf("ÇëÊäÈëÑ§ºÅ£º");
+	printf("è¯·è¾“å…¥å­¦å·ï¼š");
 	scanf("%s", p->number);
-	printf("ÇëÊäÈëĞÕÃû£º");
+	printf("è¯·è¾“å…¥å§“åï¼š");
 	scanf("%s", p->name);
-	printf("ÇëÊäÈëĞÔ±ğ£º");
+	printf("è¯·è¾“å…¥æ€§åˆ«ï¼š");
 	scanf("%s", p->gender);
 
 	// TODO
@@ -45,15 +45,15 @@ void print_student(Student *p)
 	printf("%s\t%s\t%s\n", p->number, p->name, p->gender);
 }
 
-// ´ÓºÜ¶à¸öÑ§ÉúÀïÃæ²éÕÒÒ»¸öÑ§Éú
-// ´ÓÊı×éÀïÃæÕÒµ½Ò»¸öÄ¿±ê±äÁ¿
-// ÕÒµ½·µ»ØÖ¸Õë£¬²¹²»µ½Ôò·µ»Ø0
+// ä»å¾ˆå¤šä¸ªå­¦ç”Ÿé‡Œé¢æŸ¥æ‰¾ä¸€ä¸ªå­¦ç”Ÿ
+// ä»æ•°ç»„é‡Œé¢æ‰¾åˆ°ä¸€ä¸ªç›®æ ‡å˜é‡
+// æ‰¾åˆ°è¿”å›æŒ‡é’ˆï¼Œè¡¥ä¸åˆ°åˆ™è¿”å›0
 Student * find_student(Student *p, int n, char *target_number)
 {
 	int i;
 	for (i = 0; i < n; i++)
 	{
-		if (strcmp(p[i].number, target_number) == 0)	// ÈçºÎ±È½Ï×Ö·û´®
+		if (strcmp(p[i].number, target_number) == 0)	// å¦‚ä½•æ¯”è¾ƒå­—ç¬¦ä¸²
 		{
 			// print_student(&p[i]);
 			return &p[i];
@@ -72,8 +72,8 @@ void update_student(Student *p)
 
 void sort_sutdent_by_number(Student *students, int n)
 {
-	int i; // µ±Ç°µÚi¸öÊı×îĞ¡
-	int j;	// µ±Ç°×î´óµÄÊı£¬ĞèÒª½øĞĞ½»»»µÄÊı
+	int i; // å½“å‰ç¬¬iä¸ªæ•°æœ€å°
+	int j;	// å½“å‰æœ€å¤§çš„æ•°ï¼Œéœ€è¦è¿›è¡Œäº¤æ¢çš„æ•°
 	Student temp;
 
 	for (i = 0; i < n - 1; i++)
@@ -97,8 +97,8 @@ void sort_sutdent_by_number(Student *students, int n)
 
 void sort_sutdent_by_name(Student *students, int n)
 {
-	int i; // µ±Ç°µÚi¸öÊı×îĞ¡
-	int j;	// µ±Ç°×î´óµÄÊı£¬ĞèÒª½øĞĞ½»»»µÄÊı
+	int i; // å½“å‰ç¬¬iä¸ªæ•°æœ€å°
+	int j;	// å½“å‰æœ€å¤§çš„æ•°ï¼Œéœ€è¦è¿›è¡Œäº¤æ¢çš„æ•°
 	Student temp;
 
 	for (i = 0; i < n - 1; i++)
@@ -127,14 +127,14 @@ void delete_student(Student *p, int n, char *number)
 
 void show_tips()
 {
-	printf("1. ÊäÈëÈô¸É¸öÑ§ÉúĞÅÏ¢\n");
-	printf("2. ÏÔÊ¾Èô¸É¸öÑ§ÉúĞÅÏ¢\n");
-	printf("3. °´Ñ§ºÅ²éÕÒ²¢ÏÔÊ¾Ñ§ÉúĞÅÏ¢\n");
-	printf("4. ²åÈëÒ»¸öÑ§ÉúĞÅÏ¢\n");
-	printf("5. °´Ñ§ºÅ¸üĞÂÖ¸¶¨Ñ§ÉúĞÅÏ¢\n");
-	printf("6. °´Ñ§ºÅÅÅĞòËùÓĞÑ§ÉúĞÅÏ¢\n");
-	printf("7. °´ĞÕÃûÅÅĞòËùÓĞÑ§ÉúĞÅÏ¢\n");
-	printf("0. ÍË³ö³ÌĞò\n");
+	printf("1. è¾“å…¥è‹¥å¹²ä¸ªå­¦ç”Ÿä¿¡æ¯\n");
+	printf("2. æ˜¾ç¤ºè‹¥å¹²ä¸ªå­¦ç”Ÿä¿¡æ¯\n");
+	printf("3. æŒ‰å­¦å·æŸ¥æ‰¾å¹¶æ˜¾ç¤ºå­¦ç”Ÿä¿¡æ¯\n");
+	printf("4. æ’å…¥ä¸€ä¸ªå­¦ç”Ÿä¿¡æ¯\n");
+	printf("5. æŒ‰å­¦å·æ›´æ–°æŒ‡å®šå­¦ç”Ÿä¿¡æ¯\n");
+	printf("6. æŒ‰å­¦å·æ’åºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯\n");
+	printf("7. æŒ‰å§“åæ’åºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯\n");
+	printf("0. é€€å‡ºç¨‹åº\n");
 	printf("input your choice: ");
 }
 

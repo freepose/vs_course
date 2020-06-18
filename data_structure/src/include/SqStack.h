@@ -71,7 +71,7 @@ template<typename T> bool GetTop(SqStack<T> *s, T &e)
  *Examples
  */
 
-//P82 ¿˝°æ3.4°øWhether the string is symmetric.
+//P82 ‰æã„Äê3.4„ÄëWhether the string is symmetric.
 bool Symmetry(char str[])
 {
 	int i; char e;
@@ -96,10 +96,7 @@ bool Symmetry(char str[])
 
 void SymmetryExample()
 {
-	char a[] = { '1', '2', '3', '4', '5' };
 	char b[] = { 'a', 'b', 'b', 'a', '\0' };
-	const int n = 5;
-
 	SqStack<char> *S;
 	InitStack(S);
 
@@ -242,9 +239,9 @@ void PostExpressionExample()
 	char exp[] = "(56-20)/(4+2)";
 	char postexp[200] = { 0 };
 	trans(exp, postexp);
-	cout << "÷–◊∫±Ì¥Ô Ω£∫" << exp << endl;
-	cout << "∫Û◊∫±Ì¥Ô Ω£∫" << postexp << endl;
-	cout << "±Ì¥Ô Ωµƒ÷µ£∫" << compvalue(postexp) << endl;
+	cout << "‰∏≠ÁºÄË°®ËææÂºèÔºö" << exp << endl;
+	cout << "ÂêéÁºÄË°®ËææÂºèÔºö" << postexp << endl;
+	cout << "Ë°®ËææÂºèÁöÑÂÄºÔºö" << compvalue(postexp) << endl;
 }
 
 //Determine whether the stack sequence is legal.
@@ -254,21 +251,21 @@ bool JudgeLegal(const string &s1, const string &s2)
 	InitStack(sc);
 	int i = 0, j = 0;
 	char e;
-	while (s1[i] != '\0')//»Î’ª–Ú¡–≤ªŒ™ø’ 
+	while (s1[i] != '\0')//ÂÖ•Ê†àÂ∫èÂàó‰∏ç‰∏∫Á©∫ 
 	{
 		GetTop(sc, e);
-		if (s2[j] !=e  || (StackEmpty(sc)))//≈–∂œ≥ˆ’ª–Ú¡–À˘÷∏‘™Àÿ”Îsc’ª∂• «∑Òœ‡Õ¨ 
+		if (s2[j] !=e  || (StackEmpty(sc)))//Âà§Êñ≠Âá∫Ê†àÂ∫èÂàóÊâÄÊåáÂÖÉÁ¥†‰∏éscÊ†àÈ°∂ÊòØÂê¶Áõ∏Âêå 
 		{
 			Push(sc, s1[i]);
 			i++;
 		}
-		else if (s2[j] == e)//œ‡Õ¨£¨‘ÚÕÀ’ª≤¢Ω´≥ˆ’ª–Ú¡–∫Û“∆“ªŒª£¨Ω¯––œ¬¬÷≈–∂œ 
+		else if (s2[j] == e)//Áõ∏ÂêåÔºåÂàôÈÄÄÊ†àÂπ∂Â∞ÜÂá∫Ê†àÂ∫èÂàóÂêéÁßª‰∏Ä‰ΩçÔºåËøõË°å‰∏ãËΩÆÂà§Êñ≠ 
 		{
 			Pop(sc, e);
 			j++;
 		}
 	}
-	while (!StackEmpty(sc)) {//»ÙscŒ¥≥ˆ’ªÕÍ£¨Ω”◊≈≈–∂œ
+	while (!StackEmpty(sc)) {//Ëã•scÊú™Âá∫Ê†àÂÆåÔºåÊé•ÁùÄÂà§Êñ≠
 		GetTop(sc, e);
 		if (s2[j] != e) {
 			return false;
@@ -290,16 +287,16 @@ void JudgeLegalExample()
 	}
 }
 
-//––±‡º≠Œ Ã‚£∫ºŸ…Ë#¥˙±Ìœ˚≥˝«∞“ª∏ˆ ˝£¨@¥˙±Ìœ˚≥˝’‚“ª––
+//Ë°åÁºñËæëÈóÆÈ¢òÔºöÂÅáËÆæ#‰ª£Ë°®Ê∂àÈô§Ââç‰∏Ä‰∏™Êï∞Ôºå@‰ª£Ë°®Ê∂àÈô§Ëøô‰∏ÄË°å
 void Edit()
 {
 	SqStack<char>  *S,*Sq;
 	InitStack(S);
 	InitStack(Sq);
 	char ch,e;
-	cout << "«Î ‰»Î◊÷∑˚¥Æ:";
+	cout << "ËØ∑ËæìÂÖ•Â≠óÁ¨¶‰∏≤:";
 	ch=cin.get();
-	while (ch != 'EOF'&&ch != '\n') {  //±Í÷æŒƒº˛Ω· ¯
+	while (ch != EOF && ch != '\n') {  //Ê†áÂøóÊñá‰ª∂ÁªìÊùü
 		switch (ch) {
 		case '#':Pop(S, e); break;
 		case '@':
@@ -310,12 +307,12 @@ void Edit()
 		default:Push(S, ch); break;
 		}
 		ch = cin.get();
-	}             //∑Ò‘Ú ‰≥ˆ’‚“ª––µƒ◊÷∑˚
+	}             //Âê¶ÂàôËæìÂá∫Ëøô‰∏ÄË°åÁöÑÂ≠óÁ¨¶
 	while (!StackEmpty(S)) {
 		Pop(S, e);
 		Push(Sq, e);
 	}
-	while (!StackEmpty(Sq)) {  // ‰≥ˆ’˝–Ú
+	while (!StackEmpty(Sq)) {  //ËæìÂá∫Ê≠£Â∫è
 		Pop(Sq, e);
 		cout << e;
 	}

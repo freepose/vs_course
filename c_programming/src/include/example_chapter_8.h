@@ -29,7 +29,7 @@ void swap0(int f, int s)
 //	s = t;
 //}
 
-// ½»»»Á½¸öÖ¸ÕëÖ¸ÏòµÄ±äÁ¿
+// äº¤æ¢ä¸¤ä¸ªæŒ‡é’ˆæŒ‡å‘çš„å˜é‡
 void swap1(int *f, int *s)
 {
 	int t = *f;
@@ -37,7 +37,7 @@ void swap1(int *f, int *s)
 	*s = t;
 }
 
-// ½»»»Á½¸öÖ¸Õë
+// äº¤æ¢ä¸¤ä¸ªæŒ‡é’ˆ
 void swap1_0(int *f, int *s)
 {
 	int* t = f;
@@ -46,7 +46,7 @@ void swap1_0(int *f, int *s)
 }
 
 
-// Example 8-4£¬ÈçºÎÍ¨¹ıÖ¸Õë·µ»Ø¶à¸öÖµ£¨º¯Êı²ÎÊı£©
+// Example 8-4ï¼Œå¦‚ä½•é€šè¿‡æŒ‡é’ˆè¿”å›å¤šä¸ªå€¼ï¼ˆå‡½æ•°å‚æ•°ï¼‰
 void get_month_day(int year, int day_of_year, int *month, int *day)
 {
 	// input: year, day_of_year 
@@ -195,9 +195,9 @@ void free_2d_array(int **p, int m, int n)
 }
 
 
-// ÈçºÎÈ¥´«µİÒ»¸ö¶şÎ¬Êı×éµ½º¯Êı£º²»¿ÉÒÔÓÃ¶ş¼¶Ö¸ÕëÀ´´®Êı¶şÎ¬Êı×é
-// void print_2d_array(int a[][3], int m, int n)	// ¿ÉÒÔÓÃ¶şÎ¬Êı×é±äÁ¿´«µİ£¬Ö¸¶¨µÍÎ¬³¤¶È
-// void print_2d_array(int (*a)[3], int m, int n)		// ¿ÉÒÔÓÃÊı×éÖ¸ÕëÀ´´«µİ£¬Ö¸¶¨µÍÎ¬³¤¶È
+// å¦‚ä½•å»ä¼ é€’ä¸€ä¸ªäºŒç»´æ•°ç»„åˆ°å‡½æ•°ï¼šä¸å¯ä»¥ç”¨äºŒçº§æŒ‡é’ˆæ¥ä¸²æ•°äºŒç»´æ•°ç»„
+// void print_2d_array(int a[][3], int m, int n)	// å¯ä»¥ç”¨äºŒç»´æ•°ç»„å˜é‡ä¼ é€’ï¼ŒæŒ‡å®šä½ç»´é•¿åº¦
+// void print_2d_array(int (*a)[3], int m, int n)		// å¯ä»¥ç”¨æ•°ç»„æŒ‡é’ˆæ¥ä¼ é€’ï¼ŒæŒ‡å®šä½ç»´é•¿åº¦
 void print_2d_array(int **a, int m, int n)
 {
 	// s
@@ -217,7 +217,7 @@ void print_2d_array(int **a, int m, int n)
 void dynamic_allocation_example()
 {
 	int *a = 0;
-	int size = 1024 * 1024;	// ÏµÍ³ÎŞ·¨Ò»´ÎĞÔ¸÷Ò»¸ö³ÌĞò¿ª±Ù1G * 4BµÄ¿Õ¼ä
+	int size = 1024 * 1024;	// ç³»ç»Ÿæ— æ³•ä¸€æ¬¡æ€§å„ä¸€ä¸ªç¨‹åºå¼€è¾Ÿ1G * 4Bçš„ç©ºé—´
 
 	a = (int *)malloc(sizeof(int) * size);
 	memset(a, 0, sizeof(int) * size);
@@ -229,13 +229,13 @@ void dynamic_allocation_example()
 	a = 0;
 }
 
-// ÄÚ´æÄ£ĞÍ£ºËüµÄÄÚ´æ³¤Ê²Ã´Ñù×Ó
+// å†…å­˜æ¨¡å‹ï¼šå®ƒçš„å†…å­˜é•¿ä»€ä¹ˆæ ·å­
 void dynamic_allocation_2d_array_example()
 {
 	int m = 1024 * 10;
 	int n = 1024;
 
-	int **p = 0;	// ¶ş¼¶Ö¸Õë£ºÖ¸ÏòÖ¸ÕëµÄÖ¸Õë
+	int **p = 0;	// äºŒçº§æŒ‡é’ˆï¼šæŒ‡å‘æŒ‡é’ˆçš„æŒ‡é’ˆ
 	int i = 0;
 
 	p = (int **)malloc(sizeof(int *) * m);

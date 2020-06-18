@@ -16,7 +16,7 @@ template<typename T> struct SqQueue {
 };
 
 
-//using in Graph P276¡¾Àı8.9¡¿
+//using in Graph P276ã€ä¾‹8.9ã€‘
 template<typename T> struct Quere
 {
 	int data;
@@ -42,7 +42,7 @@ template<typename T> bool QueueEmpty(SqQueue<T> *q)
 
 template<typename T> bool enQueue(SqQueue<T> *&q, T e)
 {
-	if (q->front == MAX_SIZE - 1) {  //¶ÓÂúÉÏÒç³ö
+	if (q->front == MAX_SIZE - 1) {  //é˜Ÿæ»¡ä¸Šæº¢å‡º
 		return false;
 	}
 	q->rear++;
@@ -52,7 +52,7 @@ template<typename T> bool enQueue(SqQueue<T> *&q, T e)
 
 template<typename T> bool deQueue(SqQueue<T> *&q, T &e)
 {
-	if (q->front == q->rear) {  //¶Ó¿ÕÏÂÒç³ö
+	if (q->front == q->rear) {  //é˜Ÿç©ºä¸‹æº¢å‡º
 		return false;
 	}
 	q->front++;
@@ -67,7 +67,7 @@ template<typename T> void InitCycleQueue(SqQueue<T> *&q)
 	q->front = q->rear = 0;
 }
 
-//´Ó¶ÓÎ²½ø¶Ó
+//ä»é˜Ÿå°¾è¿›é˜Ÿ
 template<typename T> bool enCycleQueueR(SqQueue<T> *&q, T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
@@ -78,18 +78,18 @@ template<typename T> bool enCycleQueueR(SqQueue<T> *&q, T e)
 	return true;
 }
 
-//´Ó¶ÓÍ·½ø¶Ó
+//ä»é˜Ÿå¤´è¿›é˜Ÿ
 template<typename T> bool enCycleQueueF(SqQueue<T> *&q,T e)
 {
 	if ((q->rear + 1) % MAX_SIZE == q->front) {
 		return false;
 	}
 	q->data[q->front] = e;
-	q->front = (q->front - 1 + MAX_SIZE) % MAX_SIZE;  //ĞŞ¸ÄÍ·Ö¸Õë
+	q->front = (q->front - 1 + MAX_SIZE) % MAX_SIZE;  //ä¿®æ”¹å¤´æŒ‡é’ˆ
 	return true;
 }
 
-//´Ó¶ÓÍ·É¾³ı
+//ä»é˜Ÿå¤´åˆ é™¤
 template<typename T> bool deCycleQueueF(SqQueue<T> *&q, T &e)
 {
 	if (q->front == q->rear) {
@@ -100,7 +100,7 @@ template<typename T> bool deCycleQueueF(SqQueue<T> *&q, T &e)
 	return true;
 }
 
-//´Ó¶ÓÎ²É¾³ı
+//ä»é˜Ÿå°¾åˆ é™¤
 template<typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
 {
 	if (q->rear == q->front) {
@@ -111,7 +111,7 @@ template<typename T> bool deCycleQueueR(SqQueue<T> *&q, T &e)
 	return true;
 }
 
-//P102 Àı¡¾3.7¡¿Count instead of p->rear;
+//P102 ä¾‹ã€3.7ã€‘Count instead of p->rear;
 template<typename T> struct QuType
 {
 	T data[MAX_SIZE];
@@ -133,7 +133,7 @@ template<typename T> bool EnQueue_count(QuType<T>  *&qu, T x)
 		return false;
 	}
 	else {
-		rear = (qu->front + qu->count) % MAX_SIZE;  //Çó¶ÓÎ²Î»ÖÃ
+		rear = (qu->front + qu->count) % MAX_SIZE;  //æ±‚é˜Ÿå°¾ä½ç½®
 		rear = (rear + 1) % MAX_SIZE;
 		qu->data[MAX_SIZE] = x;
 		qu->count++;
@@ -147,7 +147,7 @@ template<typename T> bool DeQueue_count(QuType<T>  *&qu, T &x)
 		return false;
 	}
 	else {
-		qu->front = (q->front + 1) % MAX_SIZE;
+		qu->front = (qu->front + 1) % MAX_SIZE;
 		x = qu->data[qu->front];
 		qu->count--;
 		return true;
@@ -164,12 +164,12 @@ void number(int n)
 {
 	int i;
 	int e=0;
-	SqQueue<int> *q;        //»·ĞÎ¶ÓÁĞÖ¸Õëq
+	SqQueue<int> *q;        //ç¯å½¢é˜Ÿåˆ—æŒ‡é’ˆq
 	InitCycleQueue(q);
 	for (i = 1; i <=n; i++) {
 		enCycleQueueF(q, i);
 	}
-	cout << "±¨Êı³öÁĞË³Ğò£º" << endl;
+	cout << "æŠ¥æ•°å‡ºåˆ—é¡ºåºï¼š" << endl;
 	while (!QueueEmpty(q)) {
 		deCycleQueueR(q, e);
 		cout << '\t' << e;
@@ -186,7 +186,7 @@ void number(int n)
 void SqQueueExample()
 {
 	int n = 8;
-	cout << "³õÊ¼ĞòÁĞ" << endl;
+	cout << "åˆå§‹åºåˆ—" << endl;
 	for (int i = 1; i <= n; i++) {
 		cout << '\t' << i;
 	}

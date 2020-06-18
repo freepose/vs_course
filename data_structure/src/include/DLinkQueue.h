@@ -8,27 +8,27 @@
 #include"basic.h"
 
 
-template<typename T> struct DDataNode		//Ë«¶ËÁ´¶ÓÊı¾İ½áµãÀàĞÍ
+template<typename T> struct DDataNode		//åŒç«¯é“¾é˜Ÿæ•°æ®ç»“ç‚¹ç±»å‹
 {
 	T data;
 	DDataNode<T> *next;
 	DDataNode<T> *prear;
 };
 
-template<typename T> struct DLinkQueue		//Ë«¶ËÁ´¶Ó½ÚµãÀàĞÍ
+template<typename T> struct DLinkQueue		//åŒç«¯é“¾é˜ŸèŠ‚ç‚¹ç±»å‹
 {
 	DDataNode<T> *front;
 	DDataNode<T> *rear;
 };
 
 
-template<typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//³õÊ¼»¯¶ÓÁĞ
+template<typename T> void InitDLinkQueue(DLinkQueue<T> *&dq)		//åˆå§‹åŒ–é˜Ÿåˆ—
 {
 	dq = new DLinkQueue<T>;
 	dq->front = dq->rear = 0;
 }
 
-template<typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//Ïú»Ù¶ÓÁĞ
+template<typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//é”€æ¯é˜Ÿåˆ—
 {
 	DDataNode<T> *dpre = dq->front, *p;
 	while (dpre != 0)
@@ -45,50 +45,50 @@ template<typename T> void DestroyDLinkQueue(DLinkQueue<T> *&dq)		//Ïú»Ù¶ÓÁĞ
 	delete dq;
 }
 
-template<typename T> bool DLinkQueueEmpty(DLinkQueue<T> *dq)		//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+template<typename T> bool DLinkQueueEmpty(DLinkQueue<T> *dq)		//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 {
 	return (dq->rear == 0);
 }
 
-template<typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//Í·Èë¶Ó
+template<typename T> void enFDLinkQueue(DLinkQueue<T> *&dq, T e)		//å¤´å…¥é˜Ÿ
 {
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
 	p->data = e;
 	p->next = p->prear = 0;
-	if (dq->rear == 0)		//Èç¹ûÔ­¶ÓÁĞÎª¿Õ
+	if (dq->rear == 0)		//å¦‚æœåŸé˜Ÿåˆ—ä¸ºç©º
 		dq->front = dq->rear = p;
 	else
 	{
-		dq->front->prear = p;		//½«Í·½áµãµÄÇ°Ò»¸ö½áµãÖ¸Ïòp
-		p->next = dq->front;		//½«pµÄÏÂÒ»¸ö½áµãÁ¬½Óµ½Í·½áµã
-		dq->front = p;				//Í·½áµã¸ÄÎªp½áµã
+		dq->front->prear = p;		//å°†å¤´ç»“ç‚¹çš„å‰ä¸€ä¸ªç»“ç‚¹æŒ‡å‘p
+		p->next = dq->front;		//å°†pçš„ä¸‹ä¸€ä¸ªç»“ç‚¹è¿æ¥åˆ°å¤´ç»“ç‚¹
+		dq->front = p;				//å¤´ç»“ç‚¹æ”¹ä¸ºpç»“ç‚¹
 	}
 }
 
-template<typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//Î²Èë¶Ó
+template<typename T> void enRDLinkQueue(DLinkQueue<T> *&dq, T e)		//å°¾å…¥é˜Ÿ
 {
 	DDataNode<T> *p;
 	p = new DDataNode<T>;
 	p->data = e;
 	p->next = 0;
-	p->prear = dq->rear;		//pµÄÇ°½áµãÖ¸ÏòÎ²½Úµã
-	if (dq->rear == 0)		//Èç¹ûÔ­¶ÓÁĞÎª¿Õ
+	p->prear = dq->rear;		//pçš„å‰ç»“ç‚¹æŒ‡å‘å°¾èŠ‚ç‚¹
+	if (dq->rear == 0)		//å¦‚æœåŸé˜Ÿåˆ—ä¸ºç©º
 		dq->front = dq->rear = p;
 	else
 	{
-		dq->rear->next = p;			//½«Î²½áµãµÄÏÂÒ»¸ö½áµãÁ¬½Óp
-		dq->rear = p;				//Î²½áµã¸ÄÎªp½áµã
+		dq->rear->next = p;			//å°†å°¾ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹è¿æ¥p
+		dq->rear = p;				//å°¾ç»“ç‚¹æ”¹ä¸ºpç»“ç‚¹
 	}
 }
 
-template<typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//Í·³ö¶Ó
+template<typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//å¤´å‡ºé˜Ÿ
 {
 	DDataNode<T> *t;
-	if (dq->front == 0)		//Èç¹ûÔ­¶ÓÁĞÎª¿Õ
+	if (dq->front == 0)		//å¦‚æœåŸé˜Ÿåˆ—ä¸ºç©º
 		return false;
 	t = dq->front;
-	if (dq->front == dq->rear)		//¶ÓÁĞÖĞÖ»ÓĞÒ»¸ö½áµã
+	if (dq->front == dq->rear)		//é˜Ÿåˆ—ä¸­åªæœ‰ä¸€ä¸ªç»“ç‚¹
 		dq->front = dq->rear = 0;
 	else
 		dq->front = dq->front->next;
@@ -97,13 +97,13 @@ template<typename T> bool deFDLinkQueue(DLinkQueue<T> *&dq, T &e)		//Í·³ö¶Ó
 	return true;
 }
 
-template<typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//Î²³ö¶Ó
+template<typename T> bool deRDLinkQueue(DLinkQueue<T> *&dq, T &e)		//å°¾å‡ºé˜Ÿ
 {
 	DDataNode<T> *t;
-	if (dq->rear == 0)		//Èç¹ûÔ­¶ÓÁĞÎª¿Õ
+	if (dq->rear == 0)		//å¦‚æœåŸé˜Ÿåˆ—ä¸ºç©º
 		return false;
 	t = dq->rear;
-	if (dq->front == dq->rear)		//¶ÓÁĞÖĞÖ»ÓĞÒ»¸ö½áµã
+	if (dq->front == dq->rear)		//é˜Ÿåˆ—ä¸­åªæœ‰ä¸€ä¸ªç»“ç‚¹
 		dq->front = dq->rear = 0;
 	else
 		dq->rear = dq->rear->prear;

@@ -1,4 +1,6 @@
+
 #pragma once
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -27,27 +29,27 @@ typedef struct {
 void split(char *src, const char *separator, char **dest, int *num)
 {
 	/*
-	src Ô´×Ö·û´®µÄÊ×µØÖ·(bufµÄµØÖ·)
-	separator Ö¸¶¨µÄ·Ö¸î×Ö·û
-	dest ½ÓÊÕ×Ó×Ö·û´®µÄÊý×é
-	num ·Ö¸îºó×Ó×Ö·û´®µÄ¸öÊý
+	src æºå­—ç¬¦ä¸²çš„é¦–åœ°å€(bufçš„åœ°å€)
+	separator æŒ‡å®šçš„åˆ†å‰²å­—ç¬¦
+	dest æŽ¥æ”¶å­å­—ç¬¦ä¸²çš„æ•°ç»„
+	num åˆ†å‰²åŽå­å­—ç¬¦ä¸²çš„ä¸ªæ•°
 	*/
 	char *pNext;
 	int count = 0;
-	if (src == NULL || strlen(src) == 0) //Èç¹û´«ÈëµÄµØÖ·Îª¿Õ»ò³¤¶ÈÎª0£¬Ö±½ÓÖÕÖ¹ 
+	if (src == NULL || strlen(src) == 0) //å¦‚æžœä¼ å…¥çš„åœ°å€ä¸ºç©ºæˆ–é•¿åº¦ä¸º0ï¼Œç›´æŽ¥ç»ˆæ­¢ 
 		return;
-	if (separator == NULL || strlen(separator) == 0) //ÈçÎ´Ö¸¶¨·Ö¸îµÄ×Ö·û´®£¬Ö±½ÓÖÕÖ¹ 
+	if (separator == NULL || strlen(separator) == 0) //å¦‚æœªæŒ‡å®šåˆ†å‰²çš„å­—ç¬¦ä¸²ï¼Œç›´æŽ¥ç»ˆæ­¢ 
 		return;
-	pNext = (char *)strtok(src, separator); //±ØÐëÊ¹ÓÃ(char *)½øÐÐÇ¿ÖÆÀàÐÍ×ª»»(ËäÈ»²»Ð´ÓÐµÄ±àÒëÆ÷ÖÐ²»»á³öÏÖÖ¸Õë´íÎó)
+	pNext = (char *)strtok(src, separator); //å¿…é¡»ä½¿ç”¨(char *)è¿›è¡Œå¼ºåˆ¶ç±»åž‹è½¬æ¢(è™½ç„¶ä¸å†™æœ‰çš„ç¼–è¯‘å™¨ä¸­ä¸ä¼šå‡ºçŽ°æŒ‡é’ˆé”™è¯¯)
 	while (pNext != NULL) {
 		*dest++ = pNext;
 		++count;
-		pNext = (char *)strtok(NULL, separator);  //±ØÐëÊ¹ÓÃ(char *)½øÐÐÇ¿ÖÆÀàÐÍ×ª»»
+		pNext = (char *)strtok(NULL, separator);  //å¿…é¡»ä½¿ç”¨(char *)è¿›è¡Œå¼ºåˆ¶ç±»åž‹è½¬æ¢
 	}
 	*num = count;
 }
 
-StudentList* read_scores(char *filename)
+StudentList* read_scores(char const* filename)
 {
 	FILE *fp = 0;
 	if ((fp = fopen(filename, "r")) == 0)
@@ -72,16 +74,18 @@ StudentList* read_scores(char *filename)
 		int num = 0;
 		fgets(buffer, 1024, fp);
 
-		split(buffer, ",", revbuf, &num); //µ÷ÓÃº¯Êý½øÐÐ·Ö¸î
+		split(buffer, ",", revbuf, &num); // è°ƒç”¨å‡½æ•°è¿›è¡Œåˆ†å‰²
 		if (num == 7)
 		{
 			strcpy(pStudent->number, revbuf[0]);
 			strcpy(pStudent->name, revbuf[1]);
 			strcpy(pStudent->classroom, revbuf[2]);
+            
 			pStudent->scores.scores[0] = atoi(revbuf[3]);
 			pStudent->scores.scores[1] = atoi(revbuf[4]);
 			pStudent->scores.scores[2] = atoi(revbuf[5]);
 			pStudent->scores.scores[3] = atoi(revbuf[6]);
+            
 			counter++;
 		}
 	}
@@ -153,7 +157,7 @@ void sort_student_by_number(StudentList* p)
 	}
 }
 
-int binary_search_by_number(StudentList* sorted_list, char* target_number)
+int binary_search_by_number(StudentList* sorted_list, char const* target_number)
 {
 	int low = 0, high = sorted_list->num_students - 1;
 	int mid = (low + high) / 2;
@@ -177,7 +181,7 @@ int binary_search_by_number(StudentList* sorted_list, char* target_number)
 	return -1;
 }
 
-void display_scores_by_classroom(StudentList* list, char *classroom)
+void display_scores_by_classroom(StudentList* list, char const* classroom)
 {
 	for (int i = 0; i < list->num_students; i++)
 	{
@@ -207,20 +211,21 @@ void student_scores_average(StudentList* list)
 void scores_example()
 {
 	// 1. read score information from a given file.
-	char *filename = "D:/data/c_course/scores.csv";
-	char *target_filename = "D:/data/c_course/scores.target.csv";
+	char const* filename = "/Users/freepose/data/c_course/scores.csv";
+    //	char const* target_filename = "/Users/freepose/data/c_course/scores.target.csv";
 
 	StudentList* list = read_scores(filename);
 	sort_student_by_number(list);
 
-	int index = binary_search_by_number(list, "201921145075");
+    char const* target_number = "201921145075";
+	int index = binary_search_by_number(list, target_number);
 	if (index > 0)
 	{
-		Student *given_student = list->students + index;
+		Student* given_student = list->students + index;
 		print_student_scores(given_student);
 	}
 
-	display_scores_by_classroom(list, "¹âµç1912");
+	display_scores_by_classroom(list, "å…‰ç”µ1912");
 
 	student_scores_average(list);
 

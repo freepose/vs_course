@@ -145,19 +145,19 @@ template<typename T> void CreateCircularListR(LinkNode<T> *&L, T a[], int n)
  *  examples
  */
 
-//·µ»Ø´øÍ·½áµãµÄÄæ×ªµ¥Á´±í
+//è¿”å›å¸¦å¤´ç»“ç‚¹çš„é€†è½¬å•é“¾è¡¨
 template<typename T> LinkNode<T>* ListReverse(LinkNode<T> *L)
 {
 	LinkNode<T> *New_head, *Old_head,*temp;
-	New_head = 0;          //µÚÒ»ÏîÔªËØÎªÄæÖÃºóµÄ×îºóÒ»¸öÔªËØ£¬ÆänextµÄÖµÎªNULL
+	New_head = 0;          //ç¬¬ä¸€é¡¹å…ƒç´ ä¸ºé€†ç½®åçš„æœ€åä¸€ä¸ªå…ƒç´ ï¼Œå…¶nextçš„å€¼ä¸ºNULL
 	Old_head = L->next;
 	while (Old_head) {
 		temp = Old_head->next;
-		Old_head->next = New_head;   //·­×ªÖ¸Õë£¬ÓÉºóÒ»¸öÔªËØÖ¸ÏòÇ°Ò»¸öÔªËØ
-		New_head = Old_head;        //ÏòºóÒÆµ½Ò»¸öÔªËØ
-		Old_head = temp;           //ÏòºóÒÆµ½Ò»¸öÔªËØ
+		Old_head->next = New_head;   //ç¿»è½¬æŒ‡é’ˆï¼Œç”±åä¸€ä¸ªå…ƒç´ æŒ‡å‘å‰ä¸€ä¸ªå…ƒç´ 
+		New_head = Old_head;        //å‘åç§»åˆ°ä¸€ä¸ªå…ƒç´ 
+		Old_head = temp;           //å‘åç§»åˆ°ä¸€ä¸ªå…ƒç´ 
 	}
-	L->next = New_head;          //½«Í·Ö¸ÕëÖ¸Ïò×îºóµÄÔªËØ
+	L->next = New_head;          //å°†å¤´æŒ‡é’ˆæŒ‡å‘æœ€åçš„å…ƒç´ 
 	return L;
 }
 
@@ -180,7 +180,7 @@ void LinkNodeExample()
 	ListDelete(linkedlist, 6);
 	DispList(linkedlist);
 
-	//P53 Àı¡¾2.7¡¿
+	//P53 ä¾‹ã€2.7ã€‘
 	deletemaxnode(linkedlist);
 	DispList(linkedlist);
 

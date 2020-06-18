@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-// Example 11-1£ºÖ¸ÕëÊı×é
+// Example 11-1ï¼šæŒ‡é’ˆæ•°ç»„
 void Olympic_rings()
 {
 	char* rings[5] = {"blue", "yellow", "black", "green", "red"};
@@ -34,7 +34,7 @@ void Olympic_rings()
 }
 
 
-// Ê¹ÓÃÊı×éÀàĞÍµÄÖ¸Õë»ò¶ş¼¶Ö¸ÕëÀ´·ÃÎÊ×Ö·ûÖ¸ÕëÊı×é
+// ä½¿ç”¨æ•°ç»„ç±»å‹çš„æŒ‡é’ˆæˆ–äºŒçº§æŒ‡é’ˆæ¥è®¿é—®å­—ç¬¦æŒ‡é’ˆæ•°ç»„
 void Olympic_rings_v2()
 {
 	char* rings[5] = { "blue", "yellow", "black", "green", "red" };
@@ -66,7 +66,7 @@ void Olympic_rings_v2()
 	}
 }
 
-// ¶şÎ¬Êı×é´æ´¢¶à¸ö×Ö·û´®
+// äºŒç»´æ•°ç»„å­˜å‚¨å¤šä¸ªå­—ç¬¦ä¸²
 void Olympic_rings_v3()
 {
 	char rings[][7] = { "blue", "yellow", "black", "green", "red" };
@@ -141,10 +141,10 @@ void sort_Olympic_rings_example()
 	print_rings(rings, 5);
 }
 
-// ½âÃÜ²ØÍ·Ê«
+// è§£å¯†è—å¤´è¯—
 void jiemi()
 {
-	char* poem[4] = {"Ò»Ò¶ÇáÖÛÏò¶«Á÷", "·«ÉÒÇáÎÕÑîÁøÊÖ", "·çÏË±Ì²¨Î¢ÆğÎè", "Ë³Ë®ÈÎ´ÓÑÅ¿ÍÓÆ"};
+	char* poem[4] = {"ä¸€å¶è½»èˆŸå‘ä¸œæµ", "å¸†æ¢¢è½»æ¡æ¨æŸ³æ‰‹", "é£çº¤ç¢§æ³¢å¾®èµ·èˆ", "é¡ºæ°´ä»»ä»é›…å®¢æ‚ "};
 	int i, n = 4;
 	print_rings(poem, 4);
 	for (i = 0; i < n; i++)
@@ -155,12 +155,12 @@ void jiemi()
 		printf("%s", buffer);
 	}
 
-	// ÓĞÁ½¸öÒª×¢ÒâµÄÊÂÏî
-	// 1. ÖĞÎÄÕ¼Á½¸ö×Ö·û
-	// 2. ×Ö·û²»¶ÔÆë»á²úÉúÂÒÂë
+	// æœ‰ä¸¤ä¸ªè¦æ³¨æ„çš„äº‹é¡¹
+	// 1. ä¸­æ–‡å ä¸¤ä¸ªå­—ç¬¦
+	// 2. å­—ç¬¦ä¸å¯¹é½ä¼šäº§ç”Ÿä¹±ç 
 
-	// ÕâĞ©»áÓ°Ïìµ½×Ö¶ÎÉèÖÃºÍÆäËûµÄ
-	// »¹ÓĞÁíÍâÒ»ÖÖ×ö·¨ÊÇ¿í×Ö·û
+	// è¿™äº›ä¼šå½±å“åˆ°å­—æ®µè®¾ç½®å’Œå…¶ä»–çš„
+	// è¿˜æœ‰å¦å¤–ä¸€ç§åšæ³•æ˜¯å®½å­—ç¬¦
 }
 
 
@@ -184,8 +184,8 @@ void strings_reverse_output()
 	}
 }
 
-// Ö¸Õëº¯Êı vs. º¯ÊıÖ¸Õë
-// º¯ÊıÖ¸Õë£ºº¯ÊıÀàĞÍµÄÖ¸Õë
+// æŒ‡é’ˆå‡½æ•° vs. å‡½æ•°æŒ‡é’ˆ
+// å‡½æ•°æŒ‡é’ˆï¼šå‡½æ•°ç±»å‹çš„æŒ‡é’ˆ
 
 int func(int r, int h)
 {
@@ -202,13 +202,13 @@ void print_func(int(*funptr)(int, int), int r, int h)
 	printf("%d\n", funptr(r, h));
 }
 
-// ½á¹¹ÌåÖ¸Õë
+// ç»“æ„ä½“æŒ‡é’ˆ
 
 struct StudentLinkNode
 {
-	int data;	// ¿ÉÒÔ·Å¸ü¶àÊı¾İ
+	int data;	// å¯ä»¥æ”¾æ›´å¤šæ•°æ®
 	
-	struct StudentLinkNode *next;	// ½á¹¹ÌåÖ¸Õë
+	struct StudentLinkNode *next;	// ç»“æ„ä½“æŒ‡é’ˆ
 };
 
 struct StudentLinkNode *create_students()

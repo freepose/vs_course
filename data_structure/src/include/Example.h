@@ -22,9 +22,9 @@
 
 typedef struct
 {
-	int i;	//µ±Ç°·½¿éµÄĞĞºÅ
-	int j;	//µ±Ç°·½¿éµÄÁĞºÅ
-	int di;	//diÊÇÏÂÒ»¿É×ßÏàÁÚ·½Î»µÄ·½Î»ºÅ
+	int i;	//å½“å‰æ–¹å—çš„è¡Œå·
+	int j;	//å½“å‰æ–¹å—çš„åˆ—å·
+	int di;	//diæ˜¯ä¸‹ä¸€å¯èµ°ç›¸é‚»æ–¹ä½çš„æ–¹ä½å·
 } Box;		
 
 void Initmgpath(int mg[][10])
@@ -45,42 +45,42 @@ void Initmgpath(int mg[][10])
 	memcpy(mg, mgpath, 10 * 10 * sizeof(int));
 }
 
-bool MgpathSqStack(int xi, int yi, int xe, int ye)	//Çó½âÂ·¾¶Îª:(xi,yi)->(xe,ye)
+bool MgpathSqStack(int xi, int yi, int xe, int ye)	//æ±‚è§£è·¯å¾„ä¸º:(xi,yi)->(xe,ye)
 {
-	Box path[MAX_SIZE], e;  int i, j, di, i1, j1, k;   bool find;
-	SqStack<Box> *st = 0;			//¶¨ÒåÕ»st
-	InitStack(st);				//³õÊ¼»¯Õ»¶¥Ö¸Õë
-	e.i = xi; e.j = yi; e.di = -1;			//ÉèÖÃeÎªÈë¿Ú
-	Push(st, e);				//·½¿ée½øÕ»
+	Box path[MAX_SIZE], e;  int i, j, di, i1 = 0, j1 = 0, k;   bool find;
+	SqStack<Box> *st = 0;			//å®šä¹‰æ ˆst
+	InitStack(st);				//åˆå§‹åŒ–æ ˆé¡¶æŒ‡é’ˆ
+	e.i = xi; e.j = yi; e.di = -1;			//è®¾ç½®eä¸ºå…¥å£
+	Push(st, e);				//æ–¹å—eè¿›æ ˆ
 	int mg[8+2][8+2];
 	Initmgpath(mg);
-	mg[xi][yi] = -1;	//Èë¿ÚµÄÃÔ¹¬ÖµÖÃÎª-1±ÜÃâÖØ¸´×ßµ½¸Ã·½¿é
-	while (!StackEmpty(st))		//Õ»²»¿ÕÊ±Ñ­»·
+	mg[xi][yi] = -1;	//å…¥å£çš„è¿·å®«å€¼ç½®ä¸º-1é¿å…é‡å¤èµ°åˆ°è¯¥æ–¹å—
+	while (!StackEmpty(st))		//æ ˆä¸ç©ºæ—¶å¾ªç¯
 	{
-		GetTop(st, e);		//È¡Õ»¶¥·½¿ée
+		GetTop(st, e);		//å–æ ˆé¡¶æ–¹å—e
 		i = e.i; j = e.j; di = e.di;
-		if (i == xe && j == ye)		//ÕÒµ½ÁË³ö¿Ú,Êä³ö¸ÃÂ·¾¶
+		if (i == xe && j == ye)		//æ‰¾åˆ°äº†å‡ºå£,è¾“å‡ºè¯¥è·¯å¾„
 		{
-			printf("Ò»ÌõÃÔ¹¬Â·¾¶ÈçÏÂ:\n");
+			printf("ä¸€æ¡è¿·å®«è·¯å¾„å¦‚ä¸‹:\n");
 			k = 0;
 			while (!StackEmpty(st))
 			{
-				Pop(st, e);		//³öÕ»·½¿ée
-				path[k++] = e;	//½«eÌí¼Óµ½pathÊı×éÖĞ
+				Pop(st, e);		//å‡ºæ ˆæ–¹å—e
+				path[k++] = e;	//å°†eæ·»åŠ åˆ°pathæ•°ç»„ä¸­
 			}
 			while (k >= 1)
 			{
 				k--;
 				printf("\t(%d,%d)", path[k].i, path[k].j);
-				if ((k + 2) % 5 == 0)  //Ã¿Êä³öÃ¿5¸ö·½¿éºó»»Ò»ĞĞ
+				if ((k + 2) % 5 == 0)  //æ¯è¾“å‡ºæ¯5ä¸ªæ–¹å—åæ¢ä¸€è¡Œ
 					printf("\n");
 			}
 			printf("\n");
-			DestroyStack(st);//Ïú»ÙÕ»
-			return true;	//Êä³öÒ»ÌõÃÔ¹¬Â·¾¶ºó·µ»Øtrue
+			DestroyStack(st);//é”€æ¯æ ˆ
+			return true;	//è¾“å‡ºä¸€æ¡è¿·å®«è·¯å¾„åè¿”å›true
 		}
 		find = false;
-		while (di<4 && !find)   //ÕÒÏàÁÚ¿É×ß·½¿é(i1,j1)
+		while (di<4 && !find)   //æ‰¾ç›¸é‚»å¯èµ°æ–¹å—(i1,j1)
 		{
 			di++;
 			switch (di)
@@ -90,26 +90,28 @@ bool MgpathSqStack(int xi, int yi, int xe, int ye)	//Çó½âÂ·¾¶Îª:(xi,yi)->(xe,ye)
 			case 2:i1 = i + 1; j1 = j;   break;
 			case 3:i1 = i;   j1 = j - 1; break;
 			}
-			if (mg[i1][j1] == 0)  find = true;
-			//ÕÒµ½Ò»¸öÏàÁÚ¿É×ß·½¿é£¬ÉèÖÃfindÎªÕæ
+            if (mg[i1][j1] == 0) {
+                find = true;
+            }
+			//æ‰¾åˆ°ä¸€ä¸ªç›¸é‚»å¯èµ°æ–¹å—ï¼Œè®¾ç½®findä¸ºçœŸ
 		}
-		if (find)  		//ÕÒµ½ÁËÒ»¸öÏàÁÚ¿É×ß·½¿é(i1,j1)
+		if (find)  		//æ‰¾åˆ°äº†ä¸€ä¸ªç›¸é‚»å¯èµ°æ–¹å—(i1,j1)
 		{
-			st->data[st->top].di = di;	  //ĞŞ¸ÄÔ­Õ»¶¥ÔªËØµÄdiÖµ
+			st->data[st->top].di = di;	  //ä¿®æ”¹åŸæ ˆé¡¶å…ƒç´ çš„diå€¼
 			e.i = i1; e.j = j1; e.di = -1;
-			Push(st, e);		  //ÏàÁÚ¿É×ß·½¿ée½øÕ»
+			Push(st, e);		  //ç›¸é‚»å¯èµ°æ–¹å—eè¿›æ ˆ
 			mg[i1][j1] = -1;
-			//(i1,j1)ÃÔ¹¬ÖµÖÃÎª-1±ÜÃâÖØ¸´×ßµ½¸Ã·½¿é
+			//(i1,j1)è¿·å®«å€¼ç½®ä¸º-1é¿å…é‡å¤èµ°åˆ°è¯¥æ–¹å—
 		}
-		else			//Ã»ÓĞÂ·¾¶¿É×ß,ÔòÍËÕ»
+		else			//æ²¡æœ‰è·¯å¾„å¯èµ°,åˆ™é€€æ ˆ
 		{
-			Pop(st, e);	//½«Õ»¶¥·½¿éÍËÕ»
+			Pop(st, e);	//å°†æ ˆé¡¶æ–¹å—é€€æ ˆ
 			mg[e.i][e.j] = 0;
-			//ÈÃÍËÕ»·½¿éµÄÎ»ÖÃ±äÎªÆäËûÂ·¾¶¿É×ß·½¿é
+			//è®©é€€æ ˆæ–¹å—çš„ä½ç½®å˜ä¸ºå…¶ä»–è·¯å¾„å¯èµ°æ–¹å—
 		}
 	}
-	DestroyStack(st);	//Ïú»ÙÕ»
-	return false;		//±íÊ¾Ã»ÓĞ¿É×ßÂ·¾¶
+	DestroyStack(st);	//é”€æ¯æ ˆ
+	return false;		//è¡¨ç¤ºæ²¡æœ‰å¯èµ°è·¯å¾„
 }
 
 
@@ -132,7 +134,7 @@ template<typename T> void Disp(SqQueue<T> *qu, int front)
 		k = qu->data[k].pre;
 		qu->data[j].pre = -1;
 	} while (k != 0);
-	cout << "Ò»ÌõÃÔ¹¬Í¨Â·ÈçÏÂ£º" << endl;
+	cout << "ä¸€æ¡è¿·å®«é€šè·¯å¦‚ä¸‹ï¼š" << endl;
 	k = 0;
 	while (k < MAX_SIZE) {
 		if (qu->data[k].pre == -1) {
@@ -150,7 +152,7 @@ template<typename T> void Disp(SqQueue<T> *qu, int front)
 bool MgpathSqQueue(int xi, int yi, int xe, int ye)
 {
 	Box1 e;
-	int  i, j, di, i1, j1;
+	int  i, j, di, i1 = 0, j1 = 0;
 	SqQueue<Box1> *qu;
 	InitQueue(qu);
 	e.i = xi; e.j = yi; e.pre = -1;
@@ -191,10 +193,10 @@ bool MgpathSqQueue(int xi, int yi, int xe, int ye)
 void MgpathExample()
 {
 	if (!MgpathSqStack(1, 1, 8, 8)) {
-		cout << "¸ÃÃÔ¹¬Ã»ÓĞ½â£¡" << endl;
+		cout << "è¯¥è¿·å®«æ²¡æœ‰è§£ï¼" << endl;
 	}
 	if (!MgpathSqStack(1, 1, 8, 8)) {
-		cout << "¸ÃÃÔ¹¬Ã»ÓĞ½â£¡" << endl;
+		cout << "è¯¥è¿·å®«æ²¡æœ‰è§£ï¼" << endl;
 	}
 }
 

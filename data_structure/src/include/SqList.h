@@ -80,31 +80,31 @@ template<typename T> bool ListInsert(SqList<T> *&L, int i, T e)
 		return false; 
 	}
 		
-	i--;    // ½«Ë³Ğò±íÂß¼­ĞòºÅ×ª»¯ÎªÎïÀíĞòºÅ
+	i--;    // å°†é¡ºåºè¡¨é€»è¾‘åºå·è½¬åŒ–ä¸ºç‰©ç†åºå·
 	for (j = L->length; j > i; j--) {
-		L->data[j] = L->data[j - 1];	//½«data[i..n]ÔªËØºóÒÆÒ»¸öÎ»ÖÃ
+		L->data[j] = L->data[j - 1];	//å°†data[i..n]å…ƒç´ åç§»ä¸€ä¸ªä½ç½®
 	}		
-	L->data[i] = e;  //²åÈëÔªËØe
-	L->length++;  //Ë³Ğò±í³¤¶ÈÔö1
-	return true;   //³É¹¦²åÈë·µ»Øtrue
+	L->data[i] = e;  //æ’å…¥å…ƒç´ e
+	L->length++;  //é¡ºåºè¡¨é•¿åº¦å¢1
+	return true;   //æˆåŠŸæ’å…¥è¿”å›true
 }
 
 template<typename T> bool ListDelete(SqList<T> *&L, int i, T &e)
 {
 	int j;
-	if (i<1 || i>L->length) //²ÎÊı´íÎóÊ±·µ»Øfalse
+	if (i<1 || i>L->length) //å‚æ•°é”™è¯¯æ—¶è¿”å›false
 	{
 		return false;
 	}
 		
-	i--;    //½«Ë³Ğò±íÂß¼­ĞòºÅ×ª»¯ÎªÎïÀíĞòºÅ
+	i--;    //å°†é¡ºåºè¡¨é€»è¾‘åºå·è½¬åŒ–ä¸ºç‰©ç†åºå·
 	e = L->data[i];
-	for (j = i; j < L->length - 1; j++)   //½«data[i..n-1]ÔªËØÇ°ÒÆ
+	for (j = i; j < L->length - 1; j++)   //å°†data[i..n-1]å…ƒç´ å‰ç§»
 	{
 		L->data[j] = L->data[j + 1];
 	}		
-	L->length--;     //Ë³Ğò±í³¤¶È¼õ1
-	return true;     //³É¹¦É¾³ı·µ»Øtrue
+	L->length--;     //é¡ºåºè¡¨é•¿åº¦å‡1
+	return true;     //æˆåŠŸåˆ é™¤è¿”å›true
 }
 
 template<typename T> void DeleteAllXNode(SqList<T> *&L, T x)

@@ -86,7 +86,7 @@ void odd_or_even()
 void operations()
 {
 	float a = .0, b = .0, result = .0;
-	char op;	// ×Ö·ûÀàĞÍ
+	char op;	// å­—ç¬¦ç±»å‹
 	scanf("%f%c%f", &a, &op, &b);
 	
 	if (op == '+')
@@ -118,7 +118,7 @@ void operations()
 void operations_switch()
 {
 	float a = .0, b = .0, result = .0;
-	char op;	// ×Ö·ûÀàĞÍ
+	char op;	// å­—ç¬¦ç±»å‹
 	scanf("%f%c%f", &a, &op, &b);
 
 	switch (op)
@@ -198,12 +198,12 @@ void character_counter()
 	int n = 10, i;
 	int character_counter = 0, number_counter = 0, others=0;
 
-	// Ñ­»·¶ÁÈë10¸öÊı
+	// å¾ªç¯è¯»å…¥10ä¸ªæ•°
 	for (i = 0; i < n; i++)
 	{
 		// loop body
 		ch = getchar();
-		// ÅĞ¶ÏÒ»¸ö×Ö·ûÊÇÊı×Ö»¹ÊÇ×ÖÄ¸£¿
+		// åˆ¤æ–­ä¸€ä¸ªå­—ç¬¦æ˜¯æ•°å­—è¿˜æ˜¯å­—æ¯ï¼Ÿ
 		if ((ch >= 'A' && ch <= 'Z') || // is alphabet
 			(ch >= 'a' && ch <= 'z'))
 		{

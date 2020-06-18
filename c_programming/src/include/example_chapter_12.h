@@ -1,12 +1,12 @@
 
 #include<stdio.h>
 
-// Ñ§ºÅ,ĞÕÃû,ĞÔ±ğ,ÁªÏµµç»°,ÓÊÏä£¨±ØÌî£©,QQºÅ,Î¢ĞÅºÅ,¼ÒÍ¥×¡Ö·,
+// å­¦å·,å§“å,æ€§åˆ«,è”ç³»ç”µè¯,é‚®ç®±ï¼ˆå¿…å¡«ï¼‰,QQå·,å¾®ä¿¡å·,å®¶åº­ä½å€,
 
 // FILE
 
-// windows (default): D:\\study\\teaching\\2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶\\contacts.csv
-// macos or linux: "D:/study/teaching/2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶/contacts.csv"
+// windows (default): D:\\study\\teaching\\2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§\\contacts.csv
+// macos or linux: "D:/study/teaching/2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§/contacts.csv"
 
 void read_file_example()
 {
@@ -16,7 +16,7 @@ void read_file_example()
 	//301104 Zhengwei 69
 	//301105 Guowentao 55
 	FILE *fp = 0;
-	// char filename[] = "D:/study/teaching/2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶/contacts.csv";
+	// char filename[] = "D:/study/teaching/2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§/contacts.csv";
 	char filename[] = "D:/f12_1.txt";
 	char buffer[1024] = {0};
 	// 1. open a file
@@ -47,7 +47,7 @@ void read_and_write_file_example()
 	//301104 Zhengwei 69
 	//301105 Guowentao 55
 	FILE *fp = 0, *fp_write = 0;
-	// char filename[] = "D:/study/teaching/2020´º CÓïÑÔ-ÀíÑ§Ôº19¼¶/contacts.csv";
+	// char filename[] = "D:/study/teaching/2020æ˜¥ Cè¯­è¨€-ç†å­¦é™¢19çº§/contacts.csv";
 	char filename[] = "D:/f12_1.txt";
 	char target[] = "D:/target.txt";
 	char buffer[1024] = { 0 };

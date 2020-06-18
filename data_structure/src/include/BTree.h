@@ -30,37 +30,37 @@ template <typename T> struct HTNode
 
 template <typename T> struct HCode
 {
-	T cd[MAX_SIZE];//ÓÃÀ´´¢´æÃ¿¸öÒ¶×Ó½áµãµÄ¹ş¶ûÂü±àÂëÂ·¾¶
+	T cd[MAX_SIZE];//ç”¨æ¥å‚¨å­˜æ¯ä¸ªå¶å­ç»“ç‚¹çš„å“ˆå°”æ›¼ç¼–ç è·¯å¾„
 	int start;
 };
 
 typedef struct node
 {
-	int data;		//½áµã¶ÔÓ¦ÈËµÄ±àºÅ
-	int rank;		//½áµã¶ÔÓ¦ÖÈ
-	int parent;		//½áµã¶ÔÓ¦Ë«Ç×ÏÂ±ê
-}UFSTree;		//²¢²é¼¯Ê÷µÄ½áµãÀàĞÍ
+	int data;		//ç»“ç‚¹å¯¹åº”äººçš„ç¼–å·
+	int rank;		//ç»“ç‚¹å¯¹åº”ç§©
+	int parent;		//ç»“ç‚¹å¯¹åº”åŒäº²ä¸‹æ ‡
+}UFSTree;		//å¹¶æŸ¥é›†æ ‘çš„ç»“ç‚¹ç±»å‹
 
 /* The basic operation of the tree (by PHY) */
 
 template<typename T> void CreateBTree(BTNode<T> *&b, char *str)
 {
-	BTNode<T> *St[MAX_SIZE], *p;       //StÊı×é×÷ÎªË³ĞòÕ»
-	int top = -1, k, j = 0;            //topÎªÕ»¶¥Ö¸Õë
+	BTNode<T> *St[MAX_SIZE], *p = 0;       //Stæ•°ç»„ä½œä¸ºé¡ºåºæ ˆ
+	int top = -1, k = 1, j = 0;            //topä¸ºæ ˆé¡¶æŒ‡é’ˆ
 	T ch;
-	b = 0;                             //³õÊ¼¶ş²æÊ÷Îª¿Õ
+	b = 0;                             //åˆå§‹äºŒå‰æ ‘ä¸ºç©º
 	ch = str[j];
-	while (ch != '\0')                 //Ñ­»·É¨ÃèstrÖĞµÄÃ¿¸ö×Ö·û
+	while (ch != '\0')                 //å¾ªç¯æ‰«æsträ¸­çš„æ¯ä¸ªå­—ç¬¦
 	{
 		switch (ch)                    //A(B(D(,G)),C(E,F))
 		{
-		case'(':top++; St[top] = p; k = 1; break;    //¿ªÊ¼´¦Àí×óº¢×Ó½áµã
-		case')':top--; break;                        //Õ»¶¥½áµãµÄ×ÓÊ÷´¦ÀíÍê±Ï
-		case',':k = 2; break;                        //¿ªÊ¼´¦ÀíÓÒº¢×Ó½áµã
+		case'(':top++; St[top] = p; k = 1; break;    //å¼€å§‹å¤„ç†å·¦å­©å­ç»“ç‚¹
+		case')':top--; break;                        //æ ˆé¡¶ç»“ç‚¹çš„å­æ ‘å¤„ç†å®Œæ¯•
+		case',':k = 2; break;                        //å¼€å§‹å¤„ç†å³å­©å­ç»“ç‚¹
 		default:p = new BTNode<T>;
 			p->data = ch;
 			p->lchild = p->rchild = 0;
-			if (b == 0) {                           //ÈôÉĞÎ´½¨Á¢¸ù½Úµã£¬p¾ÍÎª¸ù½Úµã
+			if (b == 0) {                           //è‹¥å°šæœªå»ºç«‹æ ¹èŠ‚ç‚¹ï¼Œpå°±ä¸ºæ ¹èŠ‚ç‚¹
 				b = p;
 			}
 			else {
@@ -147,10 +147,10 @@ template<typename T> int BTNodeDepth(BTNode<T> *b)
 template<typename T> int BTNodeWidth(BTNode<T> *b)
 {
 	BTNode<T> *q;
-	SqQueue<BTNode<T>*> *Q;   //Õ»ÓÃÀ´´æ´¢½Úµã
+	SqQueue<BTNode<T>*> *Q;   //æ ˆç”¨æ¥å­˜å‚¨èŠ‚ç‚¹
 	int last, temp_width=0, max_width=0;
 	InitQueue(Q);
-	last = Q->rear;      //last±ê¼Ç¶ÓÎ²ÏÂ±ê
+	last = Q->rear;      //lastæ ‡è®°é˜Ÿå°¾ä¸‹æ ‡
 	if (b == 0) {
 		return 0;
 	}
@@ -158,14 +158,14 @@ template<typename T> int BTNodeWidth(BTNode<T> *b)
 		enQueue(Q, b);
 		while (!QueueEmpty(Q)) {
 			deQueue(Q, q);
-			temp_width++;       //³ö¶ÓÕâ²ã½Úµã++
+			temp_width++;       //å‡ºé˜Ÿè¿™å±‚èŠ‚ç‚¹++
 			if (q->lchild != 0) {
 				enQueue(Q, q->lchild);
 			}
 			if (q->rchild != 0) {
 				enQueue(Q, q->rchild);
 			}
-			if (Q->front > last) {    //¼´ÉÏÒ»²ã½ÚµãÒÑÊıÍê
+			if (Q->front > last) {    //å³ä¸Šä¸€å±‚èŠ‚ç‚¹å·²æ•°å®Œ
 				last = Q->rear;
 				if (temp_width > max_width) {
 					max_width = temp_width;
@@ -339,26 +339,26 @@ template<typename T> void LevelOrder(BTNode<T> *b)
 
 /* Cue methodThe of a tree (by ChenXiaodie) */
 
-TBTNode<char> *pre;//È«¾Ö±äÁ¿
+TBTNode<char> *pre;//å…¨å±€å˜é‡
 
 template <typename T> void TCreateBTree(TBTNode<T> *&b, char *str)
 {
-	TBTNode<T> *St[MAX_SIZE], *p;       //StÊı×é×÷ÎªË³ĞòÕ»
-	int top = -1, k, j = 0;            //topÎªÕ»¶¥Ö¸Õë
+	TBTNode<T> *St[MAX_SIZE], *p = 0;       //Stæ•°ç»„ä½œä¸ºé¡ºåºæ ˆ
+	int top = -1, k = 1, j = 0;            //topä¸ºæ ˆé¡¶æŒ‡é’ˆ
 	T ch;
-	b = 0;                             //³õÊ¼¶ş²æÊ÷Îª¿Õ
+	b = 0;                             //åˆå§‹äºŒå‰æ ‘ä¸ºç©º
 	ch = str[j];
-	while (ch != '\0')                 //Ñ­»·É¨ÃèstrÖĞµÄÃ¿¸ö×Ö·û
+	while (ch != '\0')                 //å¾ªç¯æ‰«æsträ¸­çš„æ¯ä¸ªå­—ç¬¦
 	{
 		switch (ch)                    //A(B(D(,G)),C(E,F))
 		{
-		case'(':top++; St[top] = p; k = 1; break;    //¿ªÊ¼´¦Àí×óº¢×Ó½áµã
-		case')':top--; break;                        //Õ»¶¥½áµãµÄ×ÓÊ÷´¦ÀíÍê±Ï
-		case',':k = 2; break;                        //¿ªÊ¼´¦ÀíÓÒº¢×Ó½áµã
+		case'(':top++; St[top] = p; k = 1; break;    //å¼€å§‹å¤„ç†å·¦å­©å­ç»“ç‚¹
+		case')':top--; break;                        //æ ˆé¡¶ç»“ç‚¹çš„å­æ ‘å¤„ç†å®Œæ¯•
+		case',':k = 2; break;                        //å¼€å§‹å¤„ç†å³å­©å­ç»“ç‚¹
 		default:p = new TBTNode<T>;
 			p->data = ch;
 			p->lchild = p->rchild = 0;
-			if (b == 0) {                           //ÈôÉĞÎ´½¨Á¢¸ù½Úµã£¬p¾ÍÎª¸ù½Úµã
+			if (b == 0) {                           //è‹¥å°šæœªå»ºç«‹æ ¹èŠ‚ç‚¹ï¼Œpå°±ä¸ºæ ¹èŠ‚ç‚¹
 				b = p;
 			}
 			else {
@@ -438,8 +438,8 @@ template<typename T> void InOderThread(TBTNode<T> *tb)
 /*Create a tree (by TangNi)*/
 
 //Create a tree  by the known preorder and middle sequence sequence
-// pre save preorder sequence,in save midlle sequence£¬n is node number£¬return the root node
-BTNode<char> *CreateBT1(char *pre, char *in, int n)
+// pre save preorder sequence,in save midlle sequenceï¼Œn is node numberï¼Œreturn the root node
+BTNode<char> *CreateBT1(char const* pre, char const* inner, int n)
 {
 	BTNode<char> *b;
 	char *p;
@@ -447,22 +447,22 @@ BTNode<char> *CreateBT1(char *pre, char *in, int n)
 	if (n <= 0) {
 		return 0;
 	}
-	b = new BTNode<char>;     //´´½¨¶ş²æÊ÷½áµã*s
+	b = new BTNode<char>;     //åˆ›å»ºäºŒå‰æ ‘ç»“ç‚¹*s
 	b->data = *pre;
-	for (p = in; p < in + n; p++) {           //ÔÚÖĞĞòĞòÁĞÖĞÕÒµÈÓÚ*pposµÄÎ»ÖÃk
-		if (*p == *pre) {                    //preÖ¸Ïò¸ù½áµã
-			break;                             //ÔÚinÖĞÕÒµ½ºóÍË³öÑ­»·
+	for (p = (char *)inner; p < inner + n; p++) {           //åœ¨ä¸­åºåºåˆ—ä¸­æ‰¾ç­‰äº*pposçš„ä½ç½®k
+		if (*p == *pre) {                    //preæŒ‡å‘æ ¹ç»“ç‚¹
+			break;                             //åœ¨inä¸­æ‰¾åˆ°åé€€å‡ºå¾ªç¯
 		}
 	}
-	k = int(p - in);                               //È·¶¨¸ù½áµãÔÚinÖĞµÄÎ»ÖÃ
-	b->lchild = CreateBT1(pre + 1, in, k);        //µİ¹é¹¹Ôì×ó×ÓÊ÷
-	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //µİ¹é¹¹ÔìÓÒ×ÓÊ÷
+	k = int(p - inner);                               //ç¡®å®šæ ¹ç»“ç‚¹åœ¨inä¸­çš„ä½ç½®
+	b->lchild = CreateBT1(pre + 1, inner, k);        //é€’å½’æ„é€ å·¦å­æ ‘
+	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //é€’å½’æ„é€ å³å­æ ‘
 	return b;
 }
 
 //Create a tree  by the known preorder and postorder  sequence sequence
-// pre save postorder sequence,in save midlle sequence£¬n is node number£¬return the root node
-BTNode<char> *CreateBT2(char *post, char *in, int n)
+// pre save postorder sequence,in save midlle sequenceï¼Œn is node numberï¼Œreturn the root node
+BTNode<char> *CreateBT2(char const* post, char const* inner, int n)
 {
 	BTNode<char> *b;
 	char r, *p;
@@ -473,18 +473,18 @@ BTNode<char> *CreateBT2(char *post, char *in, int n)
 	r = *(post + n - 1);
 	b = new BTNode<char>;
 	b->data = r;
-	for (p = in; p < in + n; p++) {
+	for (p = (char *)inner; p < inner + n; p++) {
 		if (*p == r) {
 			break;
 		}
 	}
-	k = int(p - in);
-	b->lchild = CreateBT2(post, in, k);
+	k = int(p - inner);
+	b->lchild = CreateBT2(post, inner, k);
 	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);
 	return b;
 }
 
-// P216¡¾Àı7.19¡¿change the sequence binary tree to chian binary tree
+// P216ã€ä¾‹7.19ã€‘change the sequence binary tree to chian binary tree
 template<typename T> BTNode<T> *transStoL(T *a, int i)
 {
 	BTNode<T> *b;
@@ -513,9 +513,9 @@ template<typename T> void CreateHT(HTNode<T> *ht, int n0)
 	}
 	for (i = n0; i < 2 * n0 - 1; i++)
 	{
-		min1 = min2 = 32767;//¸³Óè×îĞ¡ÖµĞÂµÄ³õÖµ£¬Ñ°ÕÒÃ¿´ÎµÄ×îĞ¡Öµ
+		min1 = min2 = 32767;//èµ‹äºˆæœ€å°å€¼æ–°çš„åˆå€¼ï¼Œå¯»æ‰¾æ¯æ¬¡çš„æœ€å°å€¼
 		lnode = rnode = -1;
-		for (k = 0; k <= i - 1; k++) {//ÔÚi-1ÀïÃæÕÒ,µ±ÓĞĞÂµÄ½áµãºó£¬Ê÷Öğ½¥À©´ó
+		for (k = 0; k <= i - 1; k++) {//åœ¨i-1é‡Œé¢æ‰¾,å½“æœ‰æ–°çš„ç»“ç‚¹åï¼Œæ ‘é€æ¸æ‰©å¤§
 			if (ht[k].parent == -1) {
 				if (ht[k].weight < min1) {
 					min2 = min1;
@@ -538,9 +538,9 @@ template<typename T> void CreateHT(HTNode<T> *ht, int n0)
 template<typename T> void CreateHCode(HTNode<T> *ht, HCode<T> *hcd, int n0)
 {
 	HCode<char> hc;
-	int i, f, c;//fÓÃÀ´´æ´¢parentÎ»ÖÃ,cÓÃÀ´´æ´¢½áµãµÄÎ»ÖÃ
+	int i, f, c;//fç”¨æ¥å­˜å‚¨parentä½ç½®,cç”¨æ¥å­˜å‚¨ç»“ç‚¹çš„ä½ç½®
 	for (i = 0; i < n0; i++) {
-		hc.start = n0;//´Ón0¿ªÊ¼µİ¼õ£¬ÒÀ´Î´¢´æ¹ş¶ûÂü±àÂë
+		hc.start = n0;//ä»n0å¼€å§‹é€’å‡ï¼Œä¾æ¬¡å‚¨å­˜å“ˆå°”æ›¼ç¼–ç 
 		c = i;
 		f = ht[i].parent;
 		while (f != -1) {
@@ -553,40 +553,40 @@ template<typename T> void CreateHCode(HTNode<T> *ht, HCode<T> *hcd, int n0)
 			c = f;
 			f = ht[f].parent;
 		}
-		hc.start++;//µ±f=-1Ê±£¬startÖ¸µÄÊÇ¸ù½áµã£¬Òª++£¬Ö¸Ïò¹ş·òÂü±àÂëµÄ¿ªÍ·½áµã
+		hc.start++;//å½“f=-1æ—¶ï¼ŒstartæŒ‡çš„æ˜¯æ ¹ç»“ç‚¹ï¼Œè¦++ï¼ŒæŒ‡å‘å“ˆå¤«æ›¼ç¼–ç çš„å¼€å¤´ç»“ç‚¹
 		hcd[i] = hc;
 	}
 }
 
-void MAKE_SET(UFSTree t[], int n)		//³õÊ¼»¯²¢²é¼¯Ê÷
+void MAKE_SET(UFSTree t[], int n)		//åˆå§‹åŒ–å¹¶æŸ¥é›†æ ‘
 {
 	for (int i = 0; i <= n; i++)
 	{
-		t[i].data = i;		//Êı¾İÎª¸ÃÈËµÄ±àºÅ
-		t[i].rank = 0;		//ÖÈ³õÊ¼»¯Îª0
-		t[i].parent = i;	//Ë«Ç×³õÊ¼»¯Ö¸Ïò×Ô¼º
+		t[i].data = i;		//æ•°æ®ä¸ºè¯¥äººçš„ç¼–å·
+		t[i].rank = 0;		//ç§©åˆå§‹åŒ–ä¸º0
+		t[i].parent = i;	//åŒäº²åˆå§‹åŒ–æŒ‡å‘è‡ªå·±
 	}
 }
 
-int FIND_SET(UFSTree t[], int x)		//ÔÚxËùÔÚµÄ×ÓÊ÷ÖĞ²éÕÒ¼¯ºÏ±àºÅ
+int FIND_SET(UFSTree t[], int x)		//åœ¨xæ‰€åœ¨çš„å­æ ‘ä¸­æŸ¥æ‰¾é›†åˆç¼–å·
 {
-	if (x != t[x].parent)		//Ë«Ç×²»ÊÇ×Ô¼º
-		return(FIND_SET(t, t[x].parent));		//µİ¹éÔÚË«Ç×ÖĞÕÒx
+	if (x != t[x].parent)		//åŒäº²ä¸æ˜¯è‡ªå·±
+		return(FIND_SET(t, t[x].parent));		//é€’å½’åœ¨åŒäº²ä¸­æ‰¾x
 	else
-		return x;		//Ë«Ç×ÊÇ×Ô¼º£¬·µ»Øx
+		return x;		//åŒäº²æ˜¯è‡ªå·±ï¼Œè¿”å›x
 }
 
-void UNION(UFSTree t[], int x, int y)		//½«xºÍyËùÔÚµÄ×ÓÊ÷ºÏ²¢
+void UNION(UFSTree t[], int x, int y)		//å°†xå’Œyæ‰€åœ¨çš„å­æ ‘åˆå¹¶
 {
-	x = FIND_SET(t, x);			//²éÕÒxËùÔÚ·ÖÀë¼¯ºÏÊıµÄ±àºÅ
-	y = FIND_SET(t, y);			//²éÕÒyËùÔÚ·ÖÀë¼¯ºÏÊıµÄ±àºÅ
-	if (t[x].rank > t[y].rank)	//y½áµãµÄÖÈĞ¡ÓÚx½áµãµÄÖÈ
-		t[y].parent = x;		//½«yÁ¬µ½x½áµãÉÏ£¬x×÷ÎªyµÄË«Ç×½áµã
-	else						//y½áµãµÄÖÈ´óÓÚx½áµãµÄÖÈ
+	x = FIND_SET(t, x);			//æŸ¥æ‰¾xæ‰€åœ¨åˆ†ç¦»é›†åˆæ•°çš„ç¼–å·
+	y = FIND_SET(t, y);			//æŸ¥æ‰¾yæ‰€åœ¨åˆ†ç¦»é›†åˆæ•°çš„ç¼–å·
+	if (t[x].rank > t[y].rank)	//yç»“ç‚¹çš„ç§©å°äºxç»“ç‚¹çš„ç§©
+		t[y].parent = x;		//å°†yè¿åˆ°xç»“ç‚¹ä¸Šï¼Œxä½œä¸ºyçš„åŒäº²ç»“ç‚¹
+	else						//yç»“ç‚¹çš„ç§©å¤§äºxç»“ç‚¹çš„ç§©
 	{
-		t[x].parent = y;		//½«xÁ¬µ½y½áµãÉÏ£¬y×÷ÎªxµÄË«Ç×½áµã
-		if (t[x].rank == t[y].rank)	//xºÍyµÄ½áµãÖÈÏàÍ¬
-			t[y].rank++;		//yµÄ½áµãÖÈÔö¼Ó1
+		t[x].parent = y;		//å°†xè¿åˆ°yç»“ç‚¹ä¸Šï¼Œyä½œä¸ºxçš„åŒäº²ç»“ç‚¹
+		if (t[x].rank == t[y].rank)	//xå’Œyçš„ç»“ç‚¹ç§©ç›¸åŒ
+			t[y].rank++;		//yçš„ç»“ç‚¹ç§©å¢åŠ 1
 	}
 }
 
@@ -595,7 +595,7 @@ void UNION(UFSTree t[], int x, int y)		//½«xºÍyËùÔÚµÄ×ÓÊ÷ºÏ²¢
 *Example
 */
 
-//P213¡¾Àı7.11¡¿The number of a tree
+//P213ã€ä¾‹7.11ã€‘The number of a tree
 template<typename T> int Nodes(BTNode<T> *b)	
 {
 	if (b == 0) {
@@ -606,9 +606,9 @@ template<typename T> int Nodes(BTNode<T> *b)
 	}		
 }
 
-// P214¡¾Àı7.12¡¿Display leaf node value
+// P214ã€ä¾‹7.12ã€‘Display leaf node value
 //from left to right
-template<typename T> void DispLeafL(BTNode<T> *b)	//Êä³öËùÓĞÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©¡¾Àı7.12¡¿ 
+template<typename T> void DispLeafL(BTNode<T> *b)	//è¾“å‡ºæ‰€æœ‰å¶å­ç»“ç‚¹ï¼ˆä»å·¦åˆ°å³ï¼‰ã€ä¾‹7.12ã€‘ 
 {
 	if (b != 0)
 	{
@@ -621,7 +621,7 @@ template<typename T> void DispLeafL(BTNode<T> *b)	//Êä³öËùÓĞÒ¶×Ó½áµã£¨´Ó×óµ½ÓÒ£©
 }
 
 //from right to left
-template<typename T> void DispLeafR(BTNode<T> *b)	//Êä³öËùÓĞÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©¡¾Àı7.12¡¿ 
+template<typename T> void DispLeafR(BTNode<T> *b)	//è¾“å‡ºæ‰€æœ‰å¶å­ç»“ç‚¹ï¼ˆä»å³åˆ°å·¦ï¼‰ã€ä¾‹7.12ã€‘ 
 {
 	if (b != 0)
 	{
@@ -633,7 +633,7 @@ template<typename T> void DispLeafR(BTNode<T> *b)	//Êä³öËùÓĞÒ¶×Ó½áµã£¨´ÓÓÒµ½×ó£©
 	}
 }
 
-// P215¡¾Àı7.13¡¿Display the level of X node
+// P215ã€ä¾‹7.13ã€‘Display the level of X node
 template<typename T> int Level(BTNode<T> *b, char x, int h)	
 {
 	int l;
@@ -655,13 +655,12 @@ template<typename T> int Level(BTNode<T> *b, char x, int h)
 	}
 }
 
-// P216¡¾Àı7.14¡¿Display the level of X node
+// P216ã€ä¾‹7.14ã€‘Display the level of X node
 // h = 1, n = 0
 // h: variable of level, k: given level
 // return: #nodes of k-th level
-template<typename T> int Lnodenum(BTNode<T> *b, int h, int k) //Êä³öÄ³¸ö²ã´ÎµÄ½áµãÊı
+template<typename T> int Lnodenum(BTNode<T> *b, int h, int k) //è¾“å‡ºæŸä¸ªå±‚æ¬¡çš„ç»“ç‚¹æ•°
 {
-	int n = 0;
 	if (b != 0) {
 		if (h == k) {
 			return 1;
@@ -676,8 +675,8 @@ template<typename T> int Lnodenum(BTNode<T> *b, int h, int k) //Êä³öÄ³¸ö²ã´ÎµÄ½á
 	}
 }
 
-// P217¡¾Àı7.15¡¿ Judge two binary trees is similar
-template<typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217¡¾Àı7.15¡¿ Á½¿Å¶ş²æÊ÷ÊÇ·ñÏàËÆ 
+// P217ã€ä¾‹7.15ã€‘ Judge two binary trees is similar
+template<typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217ã€ä¾‹7.15ã€‘ ä¸¤é¢—äºŒå‰æ ‘æ˜¯å¦ç›¸ä¼¼ 
 {
 	bool like1, like2;
 	if (b1 == 0 && b2 == 0) {
@@ -694,13 +693,13 @@ template<typename T> bool Like(BTNode<T> *b1, BTNode<T> *b2)	//p217¡¾Àı7.15¡¿ Á½
 	}
 }
 
-// P217¡¾Àı7.16¡¿ Display all the parents node of X node
-template<typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àı7.16¡¿Êä³öÖµÎªx½áµãµÄËùÓĞ×æÏÈ 
+// P217ã€ä¾‹7.16ã€‘ Display all the parents node of X node
+template<typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218ã€ä¾‹7.16ã€‘è¾“å‡ºå€¼ä¸ºxç»“ç‚¹çš„æ‰€æœ‰ç¥–å…ˆ 
 {
 	if (b == 0) {
 		return false;
 	}		
-	else if (b->lchild != 0 && b->lchild->data == x || b->rchild != 0 && b->rchild->data == x)
+	else if ((b->lchild != 0 && b->lchild->data == x) || (b->rchild != 0 && b->rchild->data == x))
 	{
 		cout << b->data;
 		return true;
@@ -715,7 +714,7 @@ template<typename T> bool Ancestor(BTNode<T> *b, const T x)	//p218¡¾Àı7.16¡¿Êä³ö
 	}		
 }
 
-// P225¡¾Àı7.17¡¿Using binary tree(BTNode) display node value from leaf to root 
+// P225ã€ä¾‹7.17ã€‘Using binary tree(BTNode) display node value from leaf to root 
 template<typename T> void AllPath1(BTNode<T> *b)
 {
 	BTNode<T> *p, *r;
@@ -755,7 +754,7 @@ template<typename T> void AllPath1(BTNode<T> *b)
 	} while (!StackEmpty(st));
 }
 
-// P227¡¾Àı7.18¡¿Using sequence queue(SqQueue) display node value from leaf to root 
+// P227ã€ä¾‹7.18ã€‘Using sequence queue(SqQueue) display node value from leaf to root 
 template<typename T> struct NodeType {
 	T pt;
 	int parent;
@@ -767,12 +766,12 @@ template<typename T> void AllPath2(BTNode<T> *b)
 	BTNode<T> *p;
 	NodeType<BTNode<T>*> qelem;
 	SqQueue<NodeType<BTNode<T>*>> *qu;
-	InitQueue(qu);                     //·Ç»·ĞÎ¶ÓÁĞ
+	InitQueue(qu);                     //éç¯å½¢é˜Ÿåˆ—
 	qelem.pt = b;
-	qelem.parent = -1;                 //´´½¨¸ú½áµã¶ÔÓ¦µÄ¶ÓÁĞÔªËØ
-	enQueue(qu, qelem);                //¸ù½Úµã½ø¶Ó
+	qelem.parent = -1;                 //åˆ›å»ºè·Ÿç»“ç‚¹å¯¹åº”çš„é˜Ÿåˆ—å…ƒç´ 
+	enQueue(qu, qelem);                //æ ¹èŠ‚ç‚¹è¿›é˜Ÿ
 	while (!QueueEmpty(qu)) {
-		deQueue(qu, qelem);            //³ö¶ÓÔªËØqelem £¬ÔÚ¶ÓÖĞµÄÏÂ±êÎªqu->front
+		deQueue(qu, qelem);            //å‡ºé˜Ÿå…ƒç´ qelem ï¼Œåœ¨é˜Ÿä¸­çš„ä¸‹æ ‡ä¸ºqu->front
 		p = qelem.pt;
 		if (p->lchild == 0 && p->rchild == 0) {
 			k = qu->front;
@@ -797,9 +796,9 @@ template<typename T> void AllPath2(BTNode<T> *b)
 
 //P241 Kinship question
 /*
-  µÚÒ»²¿·ÖÒÔN, M¿ªÊ¼¡£NÎªÎÊÌâÉæ¼°µÄÈËµÄ¸öÊı£¨1 <= N <= 20,000£©¡£ÕâĞ©ÈËµÄ±àºÅÎª1£¬2£¬3£¬¡­£¬N¡£
-  ÏÂÃæÓĞMĞĞ£¨1 <= M <= 1,000,000£©£¬Ã¿ĞĞÓĞÁ½¸öÊıx£¬y£¬±íÊ¾ÒÑÖªx ºÍ yÊÇÇ×Æİ¡£
-  µÚ¶ş²¿·ÖÒÔQ¿ªÊ¼¡£ÒÔÏÂQĞĞ¶ÔÓ¦Q¸öÑ¯ÎÊ£¨1 <= Q <= 1,000,000£©£¬Ã¿ĞĞÎªx£¬y£¬±íÊ¾Ñ¯ÎÊxºÍyÊÇ·ñÎªÇ×Æİ
+  ç¬¬ä¸€éƒ¨åˆ†ä»¥N, Må¼€å§‹ã€‚Nä¸ºé—®é¢˜æ¶‰åŠçš„äººçš„ä¸ªæ•°ï¼ˆ1 <= N <= 20,000ï¼‰ã€‚è¿™äº›äººçš„ç¼–å·ä¸º1ï¼Œ2ï¼Œ3ï¼Œâ€¦ï¼ŒNã€‚
+  ä¸‹é¢æœ‰Mè¡Œï¼ˆ1 <= M <= 1,000,000ï¼‰ï¼Œæ¯è¡Œæœ‰ä¸¤ä¸ªæ•°xï¼Œyï¼Œè¡¨ç¤ºå·²çŸ¥x å’Œ yæ˜¯äº²æˆšã€‚
+  ç¬¬äºŒéƒ¨åˆ†ä»¥Qå¼€å§‹ã€‚ä»¥ä¸‹Qè¡Œå¯¹åº”Qä¸ªè¯¢é—®ï¼ˆ1 <= Q <= 1,000,000ï¼‰ï¼Œæ¯è¡Œä¸ºxï¼Œyï¼Œè¡¨ç¤ºè¯¢é—®xå’Œyæ˜¯å¦ä¸ºäº²æˆš
 */
 void KinshipQuestion()
 {
@@ -829,28 +828,28 @@ void BTreeTraversalExample()
 	BTNode<char> *T = 0;
 	char str[] = "A(B(D(,G)),C(E,F))";
 	CreateBTree(T, str);
-	cout << "Display the tree £º"; DispBTree(T);
+	cout << "Display the tree ï¼š"; DispBTree(T);
 	
 	cout << endl <<"Height Of The Tree Is " << BTNodeDepth(T) << endl;
 	cout  << "Width Of The Tree Is " << BTNodeWidth(T) << endl;
 
-	cout << "Preorder Recursive Traversal£º"; PreOrderRecursively(T);
-	cout << endl << "Inorder Recursive Traversal£º"; InOrderRecursively(T);
-	cout << endl << "Postorder Recursive Traversal£º"; PostOrderRecursively(T);
+	cout << "Preorder Recursive Traversalï¼š"; PreOrderRecursively(T);
+	cout << endl << "Inorder Recursive Traversalï¼š"; InOrderRecursively(T);
+	cout << endl << "Postorder Recursive Traversalï¼š"; PostOrderRecursively(T);
 
-	cout <<endl<<"Preorder non-recursive Traversal£º"; PreOrder(T);
-	cout << "Inorder non-recursive Traversal£º"; InOrder(T);
-	cout << "Postorder non-recursive Traversal£º"; PostOrder(T);
+	cout <<endl<<"Preorder non-recursive Traversalï¼š"; PreOrder(T);
+	cout << "Inorder non-recursive Traversalï¼š"; InOrder(T);
+	cout << "Postorder non-recursive Traversalï¼š"; PostOrder(T);
 	cout << "Levelorder non-recursive Traversal: "; LevelOrder(T);
 	TBTNode<char> *b;
 	TCreateBTree(b, str);
-	cout << endl << "InOrderThread Recursive Traversal£º"; InOderThread(CreateThread(b));
+	cout << endl << "InOrderThread Recursive Traversalï¼š"; InOderThread(CreateThread(b));
 
 	cout << endl << "Num Of Nodes Is " << Nodes(T);
-	cout << endl << "Display leaf node£¨form left to right£©:"; DispLeafL(T);
-	cout << endl << "Display leaf node£¨form right to left£©:"; DispLeafR(T);
+	cout << endl << "Display leaf nodeï¼ˆform left to rightï¼‰:"; DispLeafL(T);
+	cout << endl << "Display leaf nodeï¼ˆform right to leftï¼‰:"; DispLeafR(T);
 
-	// P215¡¾Àı7.13¡¿
+	// P215ã€ä¾‹7.13ã€‘
 	int h;
 	char x;
 	cout <<endl << "which node's level do you want to know?";
@@ -863,52 +862,55 @@ void BTreeTraversalExample()
 		cout  << x << "'s height is " << h << endl;
 	}
 	
-	// P216¡¾Àı7.14¡¿
+	// P216ã€ä¾‹7.14ã€‘
 	int k;
 	cout << "which level'node do you want to know?";
 	cin >> k;
 	int n = 0;
 	n = Lnodenum(T, 1, k);
-	cout << "Num of node is£º"<<n << endl;
+	cout << "Num of node isï¼š"<<n << endl;
 	
-	// P217¡¾Àı7.15¡¿
+	// P217ã€ä¾‹7.15ã€‘
 	BTNode<char> *G;
 	CreateBTree(G, str);
 	if (Like(T, G) == true) {
-		cout << "Similar£¡" << endl;
+		cout << "Similarï¼" << endl;
 	}
 	else {
-		cout << "Not Similar£¡" << endl;
+		cout << "Not Similarï¼" << endl;
 	}
 
-	// p218¡¾Àı7.16¡¿
+	// p218ã€ä¾‹7.16ã€‘
 	char y;
 	cout << "Enter the node:";
 	cin >> y;
-	cout << "Parent's node is £º";
+	cout << "Parent's node is ï¼š";
 	Ancestor(T, y);
 	cout << endl;
 
-	// P226 ¡¾Àı7.17¡¿
-	cout << "Using BTNode display node value from leaf to root£º" << endl; AllPath1(T);
-	// P226 ¡¾Àı7.18¡¿
-	cout << "Using SqQueue display node value from leaf to root£º" << endl; AllPath2(T);
+	// P226 ã€ä¾‹7.17ã€‘
+	cout << "Using BTNode display node value from leaf to rootï¼š" << endl; AllPath1(T);
+	// P226 ã€ä¾‹7.18ã€‘
+	cout << "Using SqQueue display node value from leaf to rootï¼š" << endl; AllPath2(T);
 	
 
-	char *pre = "ABDGCEF", *in = "DGBAECF", *post = "GDBEFCA";
+    char const* pre = "ABDGCEF";
+    char const* inner = "DGBAECF";
+    char const* post = "GDBEFCA";
 	BTNode<char> *b1;
-	b1 = CreateBT1(pre, in, 7);
-	DispBTree(b1); cout << endl;
+	b1 = CreateBT1(pre, inner, 7);
+	DispBTree(b1);
+    cout << endl;
 
 	BTNode<char> *b2;
-	b2 = CreateBT2(post, in, 7);
+	b2 = CreateBT2(post, inner, 7);
 	DispBTree(b2); cout << endl;
 
-	// P216¡¾Àı7.19¡¿
+	// P216ã€ä¾‹7.19ã€‘
 	char a[] = " ABCD#EF#G#############";
 	DispBTree(transStoL(a, 1)); cout << endl;
 
-	//P240¡¾Àı7.20¡¿
+	//P240ã€ä¾‹7.20ã€‘
 	HTNode<char> ht[MAX_SIZE];
 	HCode<char> hcd[50], p;
 	int i, j, n0 = 8;
