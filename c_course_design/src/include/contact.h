@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -37,8 +37,8 @@ typedef struct
 
 void initial_filename(Filename *p)
 {
-	// char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
-	char source_file[] = "/Users/freepose/data/c_course/contacts.csv";
+	char source_file[] = "D:/study/teaching/2020春 C语言-理学院19级/contacts.csv";
+	// char source_file[] = "/Users/freepose/data/c_course/contacts.csv";
 	char target_file[] = "/Users/freepose/data/c_course/contacts.target.csv";
 	strcpy(p->source_contact_file, source_file);
 	strcpy(p->target_contact_file, target_file);
@@ -166,13 +166,12 @@ void sort_student_by_name(StudentArray* p)
 
 bool insert_student(StudentArray* L, int i, Student e)
 {
-	int j;
 	if (i < 0 || i > L->num_student) {
 		return false;
 	}
 
 	i--;    // 将顺序表逻辑序号转化为物理序号
-	for (j = L->num_student; j > i; j--) {
+	for (int j = L->num_student; j > i; j--) {
 		L->students[j] = L->students[j - 1];	//将data[i..n]元素后移一个位置
 	}
 	L->students[i] = e;  //插入元素e

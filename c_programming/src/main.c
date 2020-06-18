@@ -1,3 +1,6 @@
+﻿
+
+
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include"include/example_chapter_3.h"
@@ -117,9 +120,9 @@ int main(int argc, char* argv[])
 //	int n_students = 92;
 //	initialize_students(pStudents, n_students);
 
-	Student students[200];
-	int choice = 1, n = 0;
-	show_tips();
+	// Student students[200];
+	//int choice = 1, n = 0;
+	//show_tips();
 
 	//while (choice != 0)
 	//{
