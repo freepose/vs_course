@@ -290,7 +290,20 @@ void contact_example()
 
 	sort_student_by_number(list);
 	printf("#(students) = %d\n", list->num_student);
-	print_students(list);
+	//print_students(list);
 
-	write_students(list, files.target_contact_file);
+	sort_student_by_number(list);
+	Student *student = binary_search_by_number(list, "201921145019");
+
+	if (student != 0)
+	{
+		printf("%s,%s,%s,%s,%s,%s,%s,%s\n", student->number,
+			student->name, student->gender, student->phone, student->email,
+			student->qq_id, student->wechat_id, student->address);
+	}
+	else
+	{
+		printf("没找到\n");
+	}
+	//write_students(list, files.target_contact_file);
 }

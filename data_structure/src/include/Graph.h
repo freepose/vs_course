@@ -26,6 +26,8 @@ template<typename T> struct VertexType
 	T info;		//Other information at the vertex
 };
 
+/* adjacency matrix*/
+
 //The storage structure of adjacency matrix 
 template<typename T> struct MatGraph
 {

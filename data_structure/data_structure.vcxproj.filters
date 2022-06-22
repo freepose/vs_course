@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\course_design">
+      <UniqueIdentifier>{6871437a-b012-4b2f-ab0b-182aff2fcd03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\DLinkNode.h">
@@ -65,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="src\include\InternalSort.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\course_design\course_plan.h">
+      <Filter>Header Files\course_design</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

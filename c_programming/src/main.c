@@ -1,6 +1,4 @@
 ﻿
-
-
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include"include/example_chapter_3.h"
@@ -16,7 +14,7 @@
 int main(int argc, char* argv[])
 {
 	// chapter 3
-	// guess_number();
+	guess_number();
 	// water_charge();
 	// odd_or_even();
 	// operations();
@@ -149,8 +147,8 @@ int main(int argc, char* argv[])
 	//printf("%p", p);
 
 	// chapter 12
-	// read_file_example();
-	// read_and_write_file_example();
+	//read_file_example();
+	//read_and_write_file_example();
 
 	return 0;
 }

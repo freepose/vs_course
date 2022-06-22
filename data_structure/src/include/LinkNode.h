@@ -99,6 +99,7 @@ template<typename T> void deletemaxnode(LinkNode<T> *&L)
 		pre = p;
 		p = p->next;
 	}
+
 	maxpre->next = maxp->next;
 	delete maxp;
 }
