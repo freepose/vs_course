@@ -1,4 +1,7 @@
-﻿#include"include/SqList.h"
+﻿
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include"include/SqList.h"
 #include"include/LinkNode.h"
 #include"include/DLinkNode.h"
 #include"include/SqStack.h"
@@ -14,6 +17,7 @@
 #include"include/Graph.h"
 #include"include/Search.h"
 #include"include/InternalSort.h"
+#include"include/course_design/course_plan.h"
 
 int main()
 {
@@ -32,18 +36,22 @@ int main()
 	//MgpathExample();
 	//JosephProblemExample();
 
-	// BTreeTraversalExample();
+	//BTreeTraversalExample();
 
 	//SqStringexample();
 	//LinkStringExample();
 
-	GraphExample();
+	//GraphExample();
 
-	// SearchExample();
+	//SearchExample();
 
 	//InternalSortExmaple();
 
+	/* Course design: a big homework */
 
+	program_entry();
+
+	// update 2022.07.01
 
 	return 0;
 }
