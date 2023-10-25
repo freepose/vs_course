@@ -10,7 +10,6 @@ double cylinder(int r, int h) // r, h -> ÐÎ²Î
 	return pi * r * r * h;
 }
 
-
 int is_even(int n)
 {
 	return n % 2 == 0;

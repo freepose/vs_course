@@ -14,7 +14,7 @@
 int main(int argc, char* argv[])
 {
 	// chapter 3
-	guess_number();
+	//guess_number();
 	// water_charge();
 	// odd_or_even();
 	// operations();
@@ -44,7 +44,8 @@ int main(int argc, char* argv[])
 	//print_deyaosanjiao(9);
 
 	// chapter 5	
-	//printf("%.2lf", cylinder(3, 10));
+	//printf("%.2lf", cylinder(2, 5));
+	printf("%s", is_even(6) == 1 ? "YES" : "NO");
 	// printf("%lf", estimate_pi(10e-9));
 	// prime_under(100);
 	// dectobin(0);
